@@ -1,0 +1,403 @@
+.main_pos_wrapper {
+    display: flex;
+}
+
+button {
+    background: none;
+    border: none;
+    color: #428bca;
+}
+
+.leftside {
+    width: 45%;
+    margin: 0 20px;
+}
+
+.topInp {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.topInp input {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+.topInp .bg-gray {
+    background-color: #eeeeee;
+    padding: 5px 10px;
+
+    font-size: 18px;
+    border: 1px solid gray;
+}
+
+.topInp .bg-gray button {
+    background-color: none;
+    border: none;
+    color: #428bca;
+}
+
+.secInp {
+    width: 97%;
+    border: 1px solid gray;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.thirdInp {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+
+.thirdInp input {
+    width: 97%;
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+.third-inp-btn {
+    background: #eeeeee;
+    padding: 5px;
+    height: 100%;
+    width: 10%;
+    border: 1px solid black;
+    font-size: 17px;
+}
+
+.third-inp {
+    width: 92%;
+    padding: 10px;
+    margin-left: -15px;
+    margin-bottom: 5px;
+    border: 1px solid gray;
+}
+
+.thirdInp .bg-gray {
+    background-color: #eeeeee;
+    /* padding: 5px; */
+    font-size: 18px;
+
+}
+
+.thirdInp .bg-gray button {
+    background-color: none;
+    border: 1px solid gray;
+    color: #428bca;
+    /* padding: 4px 5px; */
+}
+
+.table_wrapper {
+    width: 100%;
+}
+
+.table_wrapper table {
+    width: 98%;
+}
+
+.table_wrapper table th {
+    text-align: center;
+    background: #428bca;
+    padding: 5px;
+    color: #fff;
+    letter-spacing: 1px;
+    border: 1px solid black;
+}
+
+.table_wrapper table th .del-btn {
+    background-color: none;
+    border: none;
+    color: #428bca;
+}
+
+.table_wrapper table .fixedheight {
+    height: 270px;
+    width: 100%;
+    /* border: 1px solid red; */
+    visibility: hidden;
+}
+
+.font-bold tr td {
+    padding: 5px;
+    font-weight: 600;
+}
+
+.bg-black {
+    width: 560px;
+    padding: 5px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.bg-black button {
+    font-size: 18px;
+}
+
+.colorfulTable {
+    width: 99%;
+    text-align: center;
+}
+
+/* .colorfulTable tr {
+        padding: 15px
+    } */
+.colorfulTable .bg-orange {
+    background-color: orange;
+    padding: 8px
+}
+
+.colorfulTable .bg-orange button {
+    color: #fff;
+}
+
+.colorfulTable .bg-blue {
+    background-color: #5bc0de;
+    padding: 8px
+}
+
+.colorfulTable .bg-blue button {
+    color: #fff;
+}
+
+.colorfulTable .bg-deepblue {
+    background-color: #428bca;
+    padding: 8px;
+}
+
+.colorfulTable .bg-deepblue button {
+    color: #fff;
+}
+
+.colorfulTable .bg-red {
+    background-color: red;
+    padding: 8px;
+}
+
+.colorfulTable .bg-red button {
+    color: #fff;
+}
+
+.colorfulTable .bg-green {
+    background-color: #5cb85c;
+    padding: 6px;
+}
+
+.colorfulTable .bg-green button {
+    color: #fff;
+}
+
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.bold-td-text {
+    font-weight: bold;
+    color: black;
+}
+
+
+.rightside {
+    /* padding: 10px; */
+}
+
+.list_wrapper ul {
+    margin: 0;
+    padding: 0;
+    transform: rotate(90deg);
+    position: fixed;
+    right: -7%;
+    top: 50%;
+}
+
+.list_wrapper ul li {
+    padding: 4px 10px;
+    display: inline-block;
+    color: #fff;
+    font-weight: 500;
+    transform: rotate(180deg);
+}
+
+.list_wrapper ul li:nth-child(1) {
+    background-color: #428aca;
+}
+
+.list_wrapper ul li:nth-child(2) {
+    background-color: #eeab4f;
+}
+
+.list_wrapper ul li:nth-child(3) {
+    background-color: #59c0de;
+}
+
+.categories-box {
+    width: 45%;
+    height: 100%;
+    /* border: 1px solid gray; */
+    padding: 50px 20px 20px 50px;
+    position: fixed;
+    right: -100%;
+    background-color: #fff;
+    z-index: 1;
+    transition: all .4s ease-in-out;
+    /* overflow: scroll; */
+
+}
+
+.txt-bold {
+    font-weight: 700;
+}
+
+.rel-box {
+    position: relative;
+}
+
+.cross {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    /* background-color: #fff; */
+    position: absolute;
+    top: -15px;
+    left: -15px;
+}
+
+.categories-box.active {
+    right: 0;
+}
+
+.categ_prod_wrapper {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.categ_prod_wrapper li {
+    width: 19%;
+    margin: 3px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+}
+
+.categ_prod_wrapper li figure {
+    margin: 0;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+}
+
+.categ_prod_wrapper li figure img {
+    width: 100%;
+    height: 100%;
+}
+
+.categ_prod_wrapper li figcaption {
+    margin-top: 5px;
+    padding: 0;
+    text-align: initial;
+}
+
+.sell-gift-card {
+    position: fixed;
+    bottom: 0;
+    /* left: 0; */
+    width: 44%;
+
+}
+
+.sell-gift-card ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+
+}
+
+.sell-gift-card ul li {
+    width: 100%;
+    background-color: blue;
+    color: #fff;
+    padding: 5px;
+}
+
+.sell-gift-card ul li button {
+    color: #fff;
+
+}
+
+
+
+.sell-gift-card ul li:nth-child(1) {
+    background-color: #59c0de;
+}
+
+.sell-gift-card ul li:nth-child(2) {
+    background-color: #428aca;
+}
+
+.sell-gift-card ul li:nth-child(3) {
+    background-color: #59c0de;
+}
+
+.self-card-scroll {
+    height: calc(100vh - 60px);
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.amount-sec {
+    padding: 10px 5px;
+    background-color: #f6f6f6;
+    margin-top: 10px;
+}
+
+.orderListSec {
+    position: relative;
+}
+.third-inp-btn{
+    border-color: gray;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.modal-dialog.productManualModal{
+    max-width: 50%;
+}

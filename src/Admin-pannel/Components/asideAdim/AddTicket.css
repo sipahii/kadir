@@ -1,0 +1,300 @@
+/* .top-msgbx {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid gray;
+}
+
+.name-time-sec {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid black;
+}
+
+.user-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.sm-text {
+    color: gray;
+    margin-left: 8px;
+}
+
+.right-text {
+    display: flex;
+   
+    text-align: right;
+    margin: 0;
+    color: grey;
+    font-size: 14px;
+}
+
+.messging-sec {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sticker {
+    padding: 15px 15px 735px 15px;
+}
+
+.sticker span {
+    font-size: 18px;
+}
+
+.right-wrapper {
+  
+}
+
+.top-sec {
+    padding: 15px 15px 20px 15px;
+    border-bottom: 1px solid gray;
+}
+
+.image-name-top-sec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img_name_sec {
+    display: flex;
+    align-items: center;
+}
+
+.img_name_sec .image_wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid black;
+}
+
+.img_name_sec .image_wrapper img {
+    width: 100%;
+    height: 100%;
+}
+
+.top-right-btn-sec {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.top-right-btn-sec button {
+    color: gray;
+    font-size: 18px;
+}
+
+.txt-blue {
+    color: #25bcf1;
+}
+
+.customModal {
+    width: 600px;
+    height: 200px;
+    margin: 50px auto;
+}
+
+.modlbtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+} */
+
+
+.main-chat-box-wrapper {
+    padding-bottom: 60px;
+    border-bottom: 1px solid gray;
+}
+
+.top-msgbx {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid gray;
+}
+
+.name-time-sec {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid black;
+}
+
+.user-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.sm-text {
+    color: blueviolet;
+    margin-left: 8px;
+}
+
+.right-text {
+    display: flex;
+    /* align-items: end; */
+    text-align: right;
+    margin: 0;
+    color: grey;
+    font-size: 14px;
+}
+
+.messging-sec {
+    padding: 15px;
+    /* display: flex;
+    align-items: center;
+    margin-bottom: 20px; */
+}
+
+.sticker {
+    padding: 15px 15px 735px 15px;
+}
+
+.sticker span {
+    font-size: 18px;
+}
+
+.right-wrapper {
+    /* border: 1px solid black; */
+}
+
+.top-sec {
+    padding: 15px 15px 20px 15px;
+    border-bottom: 1px solid gray;
+}
+
+.image-name-top-sec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img_name_sec {
+    display: flex;
+    align-items: center;
+}
+
+.img_name_sec .image_wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid black;
+}
+
+.img_name_sec .image_wrapper img {
+    width: 100%;
+    height: 100%;
+}
+
+.top-right-btn-sec {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.top-right-btn-sec button {
+    color: gray;
+    font-size: 18px;
+}
+
+.txt-blue {
+    color: #25bcf1;
+}
+
+.modlbtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* text-align: left; */
+}
+
+.customModal {
+    width: 600px;
+    height: 200px;
+    margin: 50px auto;
+}
+
+.userimg-name {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.name-sec {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.name-sec h6 {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.name-sec span {
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 14px;
+}
+
+.user-img-wrapper {
+    width: 150px;
+    height: 60px;
+    margin-left: 25px;
+}
+
+.user-img-wrapper img {
+    width: 100%;
+    height: 100%;
+}
+
+.desc {
+    font-size: 16px;
+    font-weight: 500;
+    color: gray;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-box-wrapper {
+    padding-bottom: 8px;
+    box-shadow: 0 0 5px gainsboro;
+}
+
+.transac-sec {
+    margin: 10px 0;
+    padding: 10px;
+
+    /* justify-content: space-around; */
+    /* text-align: center; */
+}
+
+.transac-sec h6 span {
+    margin-left: 10px;
+}
