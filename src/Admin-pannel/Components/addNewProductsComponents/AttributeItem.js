@@ -41,13 +41,13 @@ export const AttributeItem = ({
     // }
     if (tags?.length) {
       handleChoiceValues(tags, {
-        id: item._id,
+        id: item._id || item.id,
         title: item.name ? item.name : item.title,
         data: tags ? [...tags] : "",
       });
     } else if (isSuccess) {
       handleChoiceValues(tags, {
-        id: item._id,
+        id: item._id || item.id,
         title: item.name ? item.name : item.title,
         data: tags ? [...tags] : "",
       });

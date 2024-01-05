@@ -152,18 +152,31 @@ function ProductsVariation({
 
   const { data: attributesData } = useGetAttributesQuery(token);
   const [colorVariant, setColorVariant] = useState([]);
-  const [allAttributes, setAllAttributes] = useState(null);
+  const [allAttributes, setAllAttributes] = useState([]);
   const [allChoices, setAllChoices] = useState(null);
 
+  useEffect(() => {
+    console.log("itemmm", item);
+    if (item) {
+      setAllAttributes(item.variation_Form);
+      setAllChoices(item.variation_Form);
+    }
+    return () => {
+      setAllAttributes([]);
+      setAllChoices(null);
+    };
+  }, [item]);
   const getAttributes = (attributes) => {
-    setAllAttributes([...attributes]);
+    if (attributesData) {
+      setAllAttributes([...attributes]);
+    }
   };
   const getChoiceValues = (choiceValues, currentAttr) => {
     setAllChoices(choiceValues && [...choiceValues]);
     const clone = [...sendPayload];
     for (let i = 0; i < clone.length; i++) {
       const element = clone[i];
-      if (element._id !== choiceValues._id) {
+      if (choiceValues._id && element._id !== choiceValues._id) {
         clone.push(choiceValues);
       }
     }
@@ -182,14 +195,19 @@ function ProductsVariation({
     } else {
       clone.push(currentAttr);
     }
-
     let filteredData = clone.filter((item) => item.data.length);
 
     if (filteredData.length) {
+      let previousAtrributs = item.variation_Form || [];
+      let prevoousVariation = item.variations || [];
       form_variatio({
-        data: { attributes: filteredData, variations: updatedVariants },
+        data: {
+          attributes: [...filteredData, ...previousAtrributs],
+          variations: [...updatedVariants, ...prevoousVariation],
+        },
         token: token,
       });
+
       setattributesVal(filteredData);
     }
     if (!filteredData.length) {
