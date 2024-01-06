@@ -3,30 +3,46 @@ import { AttributeItem } from "../../../Components/addNewProductsComponents/Attr
 import {
   useForm_variatioMutation,
   useGetAttributesQuery,
+  useGetCounterQuery,
 } from "../../../Components/all-products/allproductsApi/allProductsApi";
 import { CustomSelectOption } from "../../../common/CustomMultiselection";
 
 const Variation = ({ item, setattributesVal, setVariantsData }) => {
   const token = window.localStorage.getItem("token");
   const { data: attributesData } = useGetAttributesQuery(token);
-  const [allAttributes, setAllAttributes] = useState(item.attributes || []);
-  const [updatedVariants, setUpdatedVariants] = useState(item?.variations);
+  const [allAttributes, setAllAttributes] = useState(
+    item?.variation_Form || []
+  );
+  const [updatedVariants, setUpdatedVariants] = useState(
+    item?.variations || []
+  );
 
   const prevAllAttributesRef = useRef();
 
   const [form_variatio, { data: variationsData }] = useForm_variatioMutation();
+  const { data: countryData } = useGetCounterQuery(token);
 
   useEffect(() => {
     console.log("variationsData", variationsData);
+
     if (variationsData) {
       setUpdatedVariants(variationsData);
-      setVariantsData(variationsData);
+      let variationLists = JSON.parse(JSON.stringify(variationsData));
+
+      variationLists.forEach((element) => {
+        element.prices = [];
+        countryData.forEach((item) => {
+          element.prices.push({ country_id: { ...item } });
+        });
+      });
+
+      console.log("variationLists", variationLists);
+      setVariantsData(variationLists);
     }
   }, [variationsData]);
 
   useEffect(() => {
     const prevAllAttributes = prevAllAttributesRef?.current;
-
     if (prevAllAttributes?.length > allAttributes?.length) {
       form_variatio({
         data: {
@@ -40,17 +56,13 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
   }, [allAttributes]);
 
   const getAttributes = (attributes) => {
-    // // callVariationAPi();
     const updateExistingAttribute = attributes.map((secondObj) => {
       const matchingObj = allAttributes.find(
         (originalObj) => originalObj._id === secondObj._id
       );
 
       if (matchingObj) {
-        // Copy properties from the second object
         const updatedObj = { ...secondObj };
-
-        // Add properties from the first object
         updatedObj.title = matchingObj.title;
         updatedObj.data = matchingObj.data;
 
@@ -59,6 +71,7 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
         return secondObj;
       }
     });
+
     prevAllAttributesRef.current = allAttributes;
     setAllAttributes(updateExistingAttribute);
   };

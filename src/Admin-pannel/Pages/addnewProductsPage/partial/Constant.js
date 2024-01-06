@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   show_stock_quantity: false,
   show_stock_with_text_only: false,
   hide_stock: false,
-  low_stock_quantity: false,
+  low_stock_quantity: false, //doubt
   trending: false,
   category_id: [],
   brand_id: "",
@@ -19,10 +19,10 @@ const INITIAL_STATE = {
   barcode: "",
   refundable: false,
   video_link: "",
-  variations: [],
-  attributes: [],
-  size: "",
-  current_stock: "",
+  variations: [], //TODO
+
+  size: "", //TODO
+  //   current_stock: "", //TODO
   minimum_order_qty: "",
   shipping_cost: "",
   purchase_price: "",
@@ -36,15 +36,19 @@ const INITIAL_STATE = {
   meta_description: "",
   meta_img: "",
   Quantity: "",
-  seller_id: "",
+  seller_id: "", //TODO Seller
   unit: "",
-  company_id: "",
+  //   company_id: "", //TODO
   flashDeal: {},
-  variation_Form: [],
+  variation_Form: [], //TODO  attributes: [], //TODO
   productDescription: "",
   weights: "",
   meta_keywords: "",
+  attributeList: "",
   images: [],
+  mainImage_url: [],
 };
+// Industry *
+//Product Attribute
 
 export default INITIAL_STATE;

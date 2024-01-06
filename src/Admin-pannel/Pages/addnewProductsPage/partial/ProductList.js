@@ -8,10 +8,13 @@ const ProductList = ({
   deleteRow,
   sellerD,
   pickUp,
-  getUpdatedVariant,
   setVariantsData,
+  updateVarientPriceAndAttributes,
 }) => {
-  debugger;
+  const toCheck = (data) => {
+    console.log("check", data);
+    updateVarientPriceAndAttributes(data);
+  };
   return (
     <div className="card mt-2 rest-part col-lg-12">
       <div className="card-header">
@@ -99,8 +102,6 @@ const ProductList = ({
 
                 {updatedVariants &&
                   updatedVariants?.map((variantItem, i) => {
-                    // console.log('variantItem', variantItem);
-
                     return (
                       <ColorVariant
                         deleteRow={deleteRow}
@@ -109,9 +110,9 @@ const ProductList = ({
                         item={item}
                         data={variantItem}
                         pickUp={pickUp}
-                        handleVariant={getUpdatedVariant}
-                        setVariantsData={setVariantsData}
+                        // setVariantsData={toCheck}
                         index={i}
+                        updateVarientDetails={updateVarientPriceAndAttributes}
                       />
                     );
                   })}

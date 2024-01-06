@@ -42,14 +42,10 @@ const toastErrorMessage = () => {
     position: "top-center",
   });
 };
-
+const variationIdVsPricingAndAttributes = new Map();
 function AddNewProductsPage() {
-  // setspcOr(false)
   const [tags, setTags] = useState([]);
   const [categ, setCateg] = useState([]);
-  const [finalCatD, setFinalCatD] = useState();
-  const [finalCatDIndus, setFinalCatDIndus] = useState();
-
   const [flashDeal, setFlashdeal] = useState({
     start_Date: "",
     end_Date: "",
@@ -76,6 +72,19 @@ function AddNewProductsPage() {
   const { productDescription } = useSelector((state) => {
     return state.textEditorData;
   });
+  const { data } = useGetLanguagesQuery(token);
+  const { data: currdata, isLoading } = useGetCurrencyQuery(token);
+  const [value, setValue] = useState(0);
+  const [val, setVal] = useState(data);
+  const [existPro, setExistPro] = useState(false);
+  const [spcOr, setspcOr] = useState(false);
+  const [data1, setData1] = useState();
+  const [shoing, setShoaing] = useState({
+    featured: false,
+    todays_deal: false,
+    trending: false,
+  });
+  const [disNextVal, setdisNextVal] = useState(true);
 
   useEffect(() => {
     const getCatData = async () => {
@@ -102,18 +111,39 @@ function AddNewProductsPage() {
       }
     };
     getCatData();
-  }, []);
-  const [attributesVal, setattributesVals] = useState();
+  }, [token]);
 
-  const setattributesVal = (val) => {
-    setattributesVals(val);
+  const setattributesVal = (data) => {
+    let cloneAllData = [...val];
+    let modifiedObject = { ...cloneAllData[value] };
+    modifiedObject.variation_Form = data;
+    cloneAllData[value] = modifiedObject;
+    setVal(cloneAllData);
   };
 
-  const [spinn, setspinn] = useState(false);
-  const [spcOr, setspcOr] = useState(false);
-
   const handleVariantData = (data) => {
-    setVariantsData(data);
+    console.log(variationIdVsPricingAndAttributes);
+    let cloneAllData = [...val];
+    let existingId = "";
+    let findIndex = data.findIndex((item) => {
+      const variationIdVsPricingAndAttributesItem =
+        variationIdVsPricingAndAttributes.get(item._id);
+
+      if (
+        variationIdVsPricingAndAttributesItem &&
+        item._id === variationIdVsPricingAndAttributesItem._id
+      ) {
+        existingId = item._id;
+        return true;
+      }
+
+      return false;
+    });
+    if (findIndex !== -1) {
+      data[findIndex] = variationIdVsPricingAndAttributes.get(existingId);
+    }
+    cloneAllData[value].variations = data;
+    setVal(cloneAllData);
   };
 
   function handleTagKeyDown(e) {
@@ -127,8 +157,6 @@ function AddNewProductsPage() {
     setTags(tags.filter((el, i) => i !== index)),
   ];
 
-  const [proAtt, setProAtt] = useState();
-  const [data1, setData1] = useState();
   const getDatas = async () => {
     const res = await axios.get(
       "https://onlineparttimejobs.in/api/attributeSetMaster/admin",
@@ -146,43 +174,37 @@ function AddNewProductsPage() {
     getDatas();
   }, []);
   const changettriPro = (e) => {
+    const cloneValue = [...val];
     const maped = data1.find((item) => {
       return item._id === e.target.value;
     });
-    setProAtt(maped);
+    cloneValue[value].attributeList = maped;
+    setVal(cloneValue);
   };
 
   const removeRowAt = (id) => {
-    const clone = { ...proAtt };
-    const filterd = clone.values.filter((item) => {
-      if (item._id === id) {
-        return;
-      } else {
-        return item;
-      }
-    });
-    clone.values = filterd;
-    setProAtt(clone);
+    const cloneValue = [...val];
+    const filterd = cloneValue[value]?.attributeList?.values?.filter(
+      (item) => item._id !== id
+    );
+    cloneValue[value].attributeList.values = filterd;
+    setVal(cloneValue);
   };
 
-  const changeValues = (e) => {
-    const clone = { ...proAtt };
-    const filterd = clone.values.map((item) => {
+  const changeValues = (e, item) => {
+    const cloneValue = [...val];
+    console.log(item);
+    const filterd = cloneValue[value]?.attributeList?.values?.map((item) => {
       if (item._id === e.target.name) {
         return { ...item, value: e.target.value };
       } else {
         return item;
       }
     });
-    clone.values = filterd;
-    setProAtt(clone);
+    cloneValue[value].attributeList.values = filterd;
+    setVal(cloneValue);
   };
 
-  const [shoing, setShoaing] = useState({
-    featured: false,
-    todays_deal: false,
-    trending: false,
-  });
   const changeHandr = (e) => {
     const clone = { ...shoing };
     const name = e.target.name;
@@ -190,24 +212,23 @@ function AddNewProductsPage() {
     setShoaing(clone);
   };
 
-  const { data } = useGetLanguagesQuery(token);
-  const { data: currdata } = useGetCurrencyQuery(token);
-  const [value, setValue] = useState(0);
-  const [val, setVal] = useState(data);
   useEffect(() => {
     if (data && currdata) {
       const maped = data.map((item) => {
-        return { language_id: item._id, lable: item.name, ...INITIAL_STATE };
+        return { ...INITIAL_STATE, language_id: item._id, lable: item.name };
       });
 
       setVal(maped);
     }
   }, [data, currdata]);
 
+  const handleCategoryId = (ids) => {
+    val[value].category_id = [...ids];
+  };
+
   const changeDataForm = (index) => {
-    setFinalCatD(val[index].category_id);
     setTags(val[index].tags);
-    setVariantsData(val[index].variations);
+    //setVariantsData(val[index].variations);
     setShoaing({
       featured: val[index].featured,
       todays_deal: val[index]?.todays_deal,
@@ -217,26 +238,21 @@ function AddNewProductsPage() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    changeDataForm(newValue);
+    // changeDataForm(newValue);
   };
-
-  const [existPro, setExistPro] = useState(false);
 
   const onChangeHandler = async (e, id, bul) => {
     console.log("togglerrcheckType--", typeof bul);
+    let maped;
     if (typeof bul === "boolean") {
       console.log("togglerrcheck--", bul);
-      const maped = val.map((item) => {
+      maped = val.map((item) => {
         if (item.language_id === id) {
-          // const obj = { ...item, [e.target.name]: e.target.value }
           const obj = {
             ...item,
             [e.target.name]: bul,
-            variations: varianstData,
             flashDeal: flashDeal,
-            variation_Form: attributesVal,
             tags: tags,
-            category_id: finalCatD,
             productDescription: productDescription,
           };
           return obj;
@@ -246,17 +262,13 @@ function AddNewProductsPage() {
       });
       setVal(maped);
     } else if (bul) {
-      const maped = val.map((item) => {
-        if (item.language_id == id) {
-          // const obj = { ...item, [e.target.name]: e.target.value }
+      maped = val.map((item) => {
+        if (item.language_id === id) {
           const obj = {
             ...item,
             [e.target.name]: bul,
-            variations: varianstData,
             flashDeal: flashDeal,
-            variation_Form: attributesVal,
             tags: tags,
-            category_id: finalCatD,
             productDescription: productDescription,
           };
           return obj;
@@ -266,17 +278,13 @@ function AddNewProductsPage() {
       });
       setVal(maped);
     } else {
-      const maped = val.map((item) => {
-        if (item.language_id == id) {
-          // const obj = { ...item, [e.target.name]: e.target.value }
+      maped = val.map((item) => {
+        if (item.language_id === id) {
           const obj = {
             ...item,
             [e.target.name]: e.target.value,
-            variations: varianstData,
             flashDeal: flashDeal,
-            variation_Form: attributesVal,
             tags: tags,
-            category_id: finalCatD,
             productDescription: productDescription,
           };
           return obj;
@@ -285,7 +293,7 @@ function AddNewProductsPage() {
         }
       });
       setVal(maped);
-      if (e.target.name == "name") {
+      if (e.target.name === "name") {
         const res = await axios.get(
           `https://onlineparttimejobs.in/api/product/checkName/${e.target.value}`,
           {
@@ -298,9 +306,9 @@ function AddNewProductsPage() {
         setExistPro(res.data?.isExist);
       }
     }
+    console.log("maped", maped);
   };
 
-  const [disNextVal, setdisNextVal] = useState(true);
   const freshDeals = (e) => {
     const clone = { ...flashDeal };
     clone[e.target.name] = e.target.value;
@@ -349,7 +357,7 @@ function AddNewProductsPage() {
   const onchangeImges = (e, id) => {
     const inpVal = e.target.files;
     const maped = val.map((item) => {
-      if (item.language_id == id) {
+      if (item.language_id === id) {
         const obj = { ...item, images: inpVal };
         return obj;
       } else {
@@ -361,7 +369,7 @@ function AddNewProductsPage() {
   const onchangeImges1 = (e, id) => {
     const inpVal = e.target.files[0];
     const maped = val.map((item) => {
-      if (item.language_id == id) {
+      if (item.language_id === id) {
         const obj = { ...item, mainImage_url: inpVal };
         return obj;
       } else {
@@ -370,48 +378,30 @@ function AddNewProductsPage() {
     });
     setVal(maped);
   };
-
-  const SaveData = (i, str, id) => {
-    const maped = val.map((item) => {
-      if (item.language_id == id) {
-        const obj = {
-          ...item,
-          ...shoing,
-          variations: varianstData,
-          flashDeal: flashDeal,
-          variation_Form: attributesVal,
-          tags: tags,
-          category_id: finalCatD ? finalCatD : item?.category_id,
-          productDescription: productDescription
-            ? productDescription
-            : item.productDescription,
-          attributes: [proAtt?._id],
-          attributeSet: proAtt?.values,
-          industry_id: finalCatDIndus,
-        };
-        return obj;
-      } else {
-        return item;
-      }
-    });
-    setVal(maped);
-    setattributesVals([]);
-    window.scrollTo(0, 0);
-  };
   const { data: industryData } = useGetIndustryQuery(token);
 
-  const getUpdatedVariant = (variant) => {
-    // const updatedData = updatedVariants?.map((item) => {
-    //   if (variant._id === item._id) {
-    //     return variant;
-    //   } else {
-    //     return item;
-    //   }
-    // });
-    // setUpdatedVariants(updatedData);
+  const deleteRow = (id) => {
+    let cloneAllData = [...val];
+    const filterdData = cloneAllData[value].variations.filter((item) => {
+      return item._id !== id;
+    });
+    cloneAllData[value].variations = filterdData;
+    setVal(cloneAllData);
   };
 
-  const deleteRow = () => {};
+  const updateVarientPriceAndAttributes = (data) => {
+    variationIdVsPricingAndAttributes.set(data._id, data);
+    console.log(variationIdVsPricingAndAttributes);
+    let cloneAllData = [...val];
+    const selectedIndex = cloneAllData[value].variations.findIndex((item) => {
+      return item._id === data._id;
+    });
+    if (selectedIndex !== -1) {
+      cloneAllData[value].variations[selectedIndex] = data;
+    }
+
+    setVal(cloneAllData);
+  };
 
   return (
     <>
@@ -425,7 +415,7 @@ function AddNewProductsPage() {
           </div>
         )}
 
-        {spinn && (
+        {isLoading && (
           <div className="preloaderCount">
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -440,13 +430,13 @@ function AddNewProductsPage() {
                 aria-label="lab API tabs example"
               >
                 {data &&
-                  data.map((item, i) => {
+                  data?.map((item, i) => {
                     return <Tab label={item?.name} value={i} />;
                   })}
               </TabList>
             </Box>
             {val &&
-              val.map((item, i) => {
+              val?.map((item, i) => {
                 return (
                   <TabPanel value={i} key={i}>
                     <div className="px-15px px-lg-25px">
@@ -471,10 +461,10 @@ function AddNewProductsPage() {
                                 item={item}
                                 onChangeHandler={onChangeHandler}
                                 existPro={existPro}
-                                setFinalCatD={setFinalCatD}
+                                setCategoryIds={handleCategoryId}
                                 categ={categ}
                                 industryData={industryData}
-                                setFinalCatDIndus={setFinalCatDIndus}
+                                setFinalCatDIndus={() => {}}
                                 isSellerLogin={isSellerLogin}
                                 sellerD={sellerD}
                                 brandData={brandData}
@@ -486,7 +476,7 @@ function AddNewProductsPage() {
                                 changettriPro={changettriPro}
                                 handleTagKeyDown={handleTagKeyDown}
                                 data1={data1}
-                                proAtt={proAtt}
+                                proAtt={item?.attributeList}
                                 changeValues={changeValues}
                                 removeRowAt={removeRowAt}
                               />
@@ -546,6 +536,13 @@ function AddNewProductsPage() {
                                         name="show_stock_quantity"
                                         isStatus={item.show_stock_quantity}
                                         changeStatus={changeStatus}
+                                        onChangeHandler={(e) =>
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.show_stock_quantity
+                                          )
+                                        }
                                       />
                                     </div>
                                   </div>
@@ -560,7 +557,13 @@ function AddNewProductsPage() {
                                         isStatus={
                                           item.show_stock_with_text_only
                                         }
-                                        changeStatus={changeStatus}
+                                        onChangeHandler={(e) =>
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.show_stock_with_text_only
+                                          )
+                                        }
                                       />
                                     </div>
                                   </div>
@@ -573,7 +576,13 @@ function AddNewProductsPage() {
                                       <ToggleStatus
                                         name="hide_stock"
                                         isStatus={item.hide_stock}
-                                        changeStatus={changeStatus}
+                                        onChangeHandler={(e) =>
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.hide_stock
+                                          )
+                                        }
                                       />
                                     </div>
                                   </div>
@@ -593,7 +602,13 @@ function AddNewProductsPage() {
                                       <ToggleStatus
                                         name="cash_on_delivery"
                                         isStatus={item.cash_on_delivery}
-                                        changeStatus={changeStatus}
+                                        onChangeHandler={(e) =>
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.cash_on_delivery
+                                          )
+                                        }
                                       />
                                     </div>
                                   </div>
@@ -613,9 +628,16 @@ function AddNewProductsPage() {
                                       <input
                                         type="checkbox"
                                         name={"featured"}
-                                        checked={shoing.featured}
-                                        onChange={changeHandr}
+                                        checked={item.featured}
+                                        onChange={(e) => {
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.featured
+                                          );
+                                        }}
                                       />
+
                                       <span />
                                     </div>
                                   </div>
@@ -635,8 +657,14 @@ function AddNewProductsPage() {
                                       <input
                                         type="checkbox"
                                         name={"todays_deal"}
-                                        checked={shoing.todays_deal}
-                                        onChange={changeHandr}
+                                        checked={item.todays_deal}
+                                        onChange={(e) => {
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.todays_deal
+                                          );
+                                        }}
                                       />
                                     </div>
                                   </div>
@@ -656,8 +684,15 @@ function AddNewProductsPage() {
                                       <input
                                         type="checkbox"
                                         name={"trending"}
-                                        checked={shoing.trending}
-                                        onChange={changeHandr}
+                                        checked={item.trending}
+                                        // onChange={changeHandr}
+                                        onChange={(e) => {
+                                          onChangeHandler(
+                                            e,
+                                            item.language_id,
+                                            !item.trending
+                                          );
+                                        }}
                                       />
                                     </div>
                                   </div>
@@ -685,10 +720,12 @@ function AddNewProductsPage() {
                               sellerD={sellerD}
                               pickUp={pickUp}
                               isVariantLoading={false}
-                              updatedVariants={varianstData}
-                              getUpdatedVariant={getUpdatedVariant}
+                              updatedVariants={item.variations}
                               deleteRow={deleteRow}
                               setVariantsData={setVariantsData}
+                              updateVarientPriceAndAttributes={
+                                updateVarientPriceAndAttributes
+                              }
                             />
                           </div>
                           <div className="row">
@@ -702,11 +739,10 @@ function AddNewProductsPage() {
                               <input
                                 type="number"
                                 placeholder="Quantity"
-                                name="current_stock"
+                                name="total_quantity"
                                 className="form-control"
                                 required
                                 fdprocessedid="gny5jm"
-                                readOnly="readonly"
                                 onChange={(e) => {
                                   onChangeHandler(e, item.language_id);
                                 }}
@@ -771,9 +807,9 @@ function AddNewProductsPage() {
                                 >
                                   <Checkbox
                                     className="chBox"
-                                    onClick={() => {
-                                      SaveData(i, "", item.language_id);
-                                    }}
+                                    // onClick={() => {
+                                    //   SaveData(i, "", item.language_id);
+                                    // }}
                                   >
                                     Checkbox
                                   </Checkbox>
@@ -791,9 +827,16 @@ function AddNewProductsPage() {
                                 <input
                                   className="switcher_input"
                                   type="checkbox"
-                                  name=" Shipping_cost_multiply_with_quantity"
+                                  name="Shipping_cost_multiply_with_quantity"
+                                  checked={
+                                    item.Shipping_cost_multiply_with_quantity
+                                  }
                                   onChange={(e) => {
-                                    onChangeHandler(e, item.language_id);
+                                    onChangeHandler(
+                                      e,
+                                      item.language_id,
+                                      !item.Shipping_cost_multiply_with_quantity
+                                    );
                                   }}
                                 />
                                 <span className="switcher_control" />

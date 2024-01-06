@@ -5,7 +5,7 @@ const ProductInforamation = ({
   item,
   onChangeHandler,
   existPro,
-  setFinalCatD,
+  setCategoryIds,
   categ,
   industryData,
   setFinalCatDIndus,
@@ -24,6 +24,7 @@ const ProductInforamation = ({
   changeValues,
   removeRowAt,
 }) => {
+  console.log("item.attributeList", item.attributeList);
   return (
     <div className="card">
       <div className="card-header">
@@ -68,13 +69,13 @@ const ProductInforamation = ({
                 const selectedIds = selectedCat.map((cat) => {
                   return cat;
                 });
-                setFinalCatD(selectedIds);
+                setCategoryIds(selectedIds);
               }}
               onSelect={(selectedCat) => {
                 const selectedIds = selectedCat.map((cat) => {
                   return cat;
                 });
-                setFinalCatD(selectedIds);
+                setCategoryIds(selectedIds);
               }}
             />
           </div>
@@ -249,10 +250,10 @@ const ProductInforamation = ({
                   }}
                   placeholder="type some text"
                   className="tags-input"
-                  name="attributes"
-                  onChange={(e) => {
-                    onChangeHandler(e, item.language_id);
-                  }}
+                  name="tags"
+                  // onChange={(e) => {
+                  //   onChangeHandler(e, item.language_id);
+                  // }}
                 />
               </div>
             </div>
@@ -313,8 +314,11 @@ const ProductInforamation = ({
             <select
               className="form-select"
               aria-label="Default select example"
-              name="unit"
+              name="attributeList"
               onChange={changettriPro}
+              // value={item?.attributeList?.name}
+              // value="first"
+              defaultValue={item?.attributeList?._id || 1}
             >
               <option value={1}>Select Unit</option>
               {data1 &&
@@ -351,7 +355,8 @@ const ProductInforamation = ({
                         placeholder="Value"
                         name={item?._id}
                         className="form-control"
-                        onChange={changeValues}
+                        value={item?.value}
+                        onChange={(e) => changeValues(e, item)}
                       />
                       <div
                         style={{
