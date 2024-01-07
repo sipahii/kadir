@@ -32,7 +32,7 @@ const ProductInforamation = ({
   useEffect(() => {
     console.log("proAtt", proAtt);
     if (proAtt) {
-      const maped = proAtt.map((item) => {
+      const maped = proAtt?.map((item) => {
         return {
           _id: item?.attributeSetMaster?._id,
           name: item?.attributeSetMaster?.name,
@@ -91,13 +91,13 @@ const ProductInforamation = ({
               showCheckbox
               selectedValues={item?.category_id}
               onRemove={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat;
                 });
                 setCategoryIds(selectedIds);
               }}
               onSelect={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat;
                 });
                 setCategoryIds(selectedIds);
@@ -117,13 +117,13 @@ const ProductInforamation = ({
               showCheckbox
               selectedValues={[]}
               onRemove={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat._id;
                 });
                 setFinalCatDIndus(selectedIds);
               }}
               onSelect={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat._id;
                 });
                 setFinalCatDIndus(selectedIds);
@@ -173,7 +173,7 @@ const ProductInforamation = ({
             >
               <option>Select Brand</option>
               {brandData.data?.length &&
-                brandData.data.map((item) => {
+                brandData.data?.map((item) => {
                   return (
                     <option value={item._id} key={item._id}>
                       {item.name || item._id}
@@ -255,7 +255,7 @@ const ProductInforamation = ({
           <div className="col-md-8">
             <div className="tags_inp_wrapper">
               <div className="tags-input-container">
-                {tags.map((tag, index) => {
+                {tags?.map((tag, index) => {
                   return (
                     <div className="tag-item" key={index}>
                       <span className="text">{tag}</span>
@@ -347,13 +347,13 @@ const ProductInforamation = ({
                   showCheckbox
                   selectedValues={sel}
                   onRemove={(selectedCat) => {
-                    const selectedIds = selectedCat.map((cat) => {
+                    const selectedIds = selectedCat?.map((cat) => {
                       return cat._id;
                     });
                     setFinalCatD(selectedIds);
                   }}
                   onSelect={(selectedCat) => {
-                    const selectedIds = selectedCat.map((cat) => {
+                    const selectedIds = selectedCat?.map((cat) => {
                       return cat._id;
                     });
                     setFinalCatD(selectedIds);
@@ -376,7 +376,7 @@ const ProductInforamation = ({
             >
               <option value={1}>Select Unit</option>
               {data1 &&
-                data1.map((item) => {
+                data1?.map((item) => {
                   return (
                     <option value={item._id} key={item._id} id={item._id}>
                       {item.name}

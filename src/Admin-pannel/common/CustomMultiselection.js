@@ -12,11 +12,14 @@ export const CustomSelectOption = ({
     // setSelectedOptions([...option]);
     getSelectedOptions([...option]);
   };
+  useEffect(() => {
+    setSelectedOptions([...allAttributes]);
+  }, [allAttributes]);
 
   const onChangeHandler = (data) => {
     getSelectedOptions(data);
   };
-
+  console.log("selectedOptions", selectedOptions);
   return (
     <>
       {children && children}

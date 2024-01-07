@@ -56,7 +56,7 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
   }, [allAttributes]);
 
   const getAttributes = (attributes) => {
-    const updateExistingAttribute = attributes.map((secondObj) => {
+    const updateExistingAttribute = attributes?.map((secondObj) => {
       const matchingObj = allAttributes.find(
         (originalObj) => originalObj._id === secondObj._id
       );

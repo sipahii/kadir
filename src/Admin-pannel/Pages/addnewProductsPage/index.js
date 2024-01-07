@@ -13,7 +13,7 @@ import {
   useGetUnitMasterQuery,
 } from "../../Components/all-products/allproductsApi/allProductsApi";
 import { ToastContainer, toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ToggleStatus from "../../Components/toggleStatus/ToggleStatus";
 import ProductDescriptionWrapper from "../../Components/productDescriptionWrapper/productDescriptionWrapper";
 import { useSelector } from "react-redux";
@@ -32,20 +32,19 @@ import Variation from "./partial/Variation";
 import ProductList from "./partial/ProductList";
 import INITIAL_STATE from "./partial/Constant";
 
-const toastSuccessMessage = () => {
-  toast.success("Product added Successfully", {
+const toastSuccessMessage = (message) => {
+  toast.success(message, {
     position: "top-center",
   });
 };
 
-const toastErrorMessage = () => {
+const toastErrorMessage = (message) => {
   toast.error("Product not added", {
     position: "top-center",
   });
 };
 const variationIdVsPricingAndAttributes = new Map();
 function AddNewProductsPage() {
-  const [tags, setTags] = useState([]);
   const [categ, setCateg] = useState([]);
   const [flashDeal, setFlashdeal] = useState({
     start_Date: "",
@@ -86,6 +85,8 @@ function AddNewProductsPage() {
     trending: false,
   });
   const [disNextVal, setdisNextVal] = useState(true);
+
+  const navigate = useNavigate();
 
   const {
     data: productData,
@@ -215,14 +216,6 @@ function AddNewProductsPage() {
 
     setVal(cloneValue);
   };
-
-  const changeHandr = (e) => {
-    const clone = { ...shoing };
-    const name = e.target.name;
-    clone[e.target.name] = !clone[name];
-    setShoaing(clone);
-  };
-
   useEffect(() => {
     if (productData && params?.id) {
       setVal(productData?.product || []);
@@ -240,20 +233,8 @@ function AddNewProductsPage() {
   const handleCategoryId = (ids) => {
     val[value].category_id = [...ids];
   };
-
-  const changeDataForm = (index) => {
-    setTags(val[index].tags);
-    //setVariantsData(val[index].variations);
-    setShoaing({
-      featured: val[index].featured,
-      todays_deal: val[index]?.todays_deal,
-      trending: val[index]?.trending,
-    });
-  };
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    // changeDataForm(newValue);
   };
 
   const onChangeHandler = async (e, id, bul) => {
@@ -261,7 +242,7 @@ function AddNewProductsPage() {
     let maped;
     if (typeof bul === "boolean") {
       console.log("togglerrcheck--", bul);
-      maped = val.map((item) => {
+      maped = val?.map((item) => {
         if (item.language_id === id) {
           const obj = {
             ...item,
@@ -276,7 +257,7 @@ function AddNewProductsPage() {
       });
       setVal(maped);
     } else if (bul) {
-      maped = val.map((item) => {
+      maped = val?.map((item) => {
         if (item.language_id === id) {
           const obj = {
             ...item,
@@ -291,7 +272,7 @@ function AddNewProductsPage() {
       });
       setVal(maped);
     } else {
-      maped = val.map((item) => {
+      maped = val?.map((item) => {
         if (item.language_id === id) {
           const obj = {
             ...item,
@@ -331,27 +312,37 @@ function AddNewProductsPage() {
   };
 
   const addFile = async (clonedObj) => {
-    const url = "https://onlineparttimejobs.in/api/product/add_product";
+    const urlBase = "https://onlineparttimejobs.in/api/product";
+    const endpoint = params.id ? `/${params.id}` : "/add_product";
+    const url = `${urlBase}${endpoint}`;
+
     const images = new FormData();
-    let cloned = [...clonedObj];
-    // console.log('ffiinnaal', cloned)
-    // return
+    const cloned = [...clonedObj];
 
     try {
-      const res = await axios.post(
+      const res = await axios({
+        method: params.id ? "put" : "post",
         url,
-        { list: cloned },
-        {
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data: { list: cloned },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      toastSuccessMessage(
+        params.id
+          ? "Product updated Successfully"
+          : "Product added Successfully"
       );
-      toastSuccessMessage();
       setspcOr(false);
+      setTimeout(() => {
+        navigate("../products/all");
+      }, 5000);
     } catch (error) {
-      toastErrorMessage();
+      toastErrorMessage(
+        params.id ? "Product not updated" : "Product not added"
+      );
       setspcOr(false);
     }
   };
@@ -368,7 +359,7 @@ function AddNewProductsPage() {
   };
   const onchangeImges = (e, id) => {
     const inpVal = e.target.files;
-    const maped = val.map((item) => {
+    const maped = val?.map((item) => {
       if (item.language_id === id) {
         const obj = { ...item, images: inpVal };
         return obj;
@@ -380,7 +371,7 @@ function AddNewProductsPage() {
   };
   const onchangeImges1 = (e, id) => {
     const inpVal = e.target.files[0];
-    const maped = val.map((item) => {
+    const maped = val?.map((item) => {
       if (item.language_id === id) {
         const obj = { ...item, mainImage_url: inpVal };
         return obj;
@@ -698,7 +689,6 @@ function AddNewProductsPage() {
                                         type="checkbox"
                                         name={"trending"}
                                         checked={item.trending}
-                                        // onChange={changeHandr}
                                         onChange={(e) => {
                                           onChangeHandler(
                                             e,
@@ -719,7 +709,7 @@ function AddNewProductsPage() {
                             </div>
                           </div>
 
-                          <ProductDescriptionWrapper />
+                          {/* <ProductDescriptionWrapper /> */}
 
                           <div className="row">
                             <Variation
