@@ -1,5 +1,8 @@
 import Multiselect from "multiselect-react-dropdown";
+import { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
+import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 const ProductInforamation = ({
   item,
@@ -24,7 +27,29 @@ const ProductInforamation = ({
   changeValues,
   removeRowAt,
 }) => {
-  console.log("item.attributeList", item.attributeList);
+  const [sel, setSel] = useState(proAtt);
+  const [finalCatD, setFinalCatD] = useState();
+  useEffect(() => {
+    console.log("proAtt", proAtt);
+    if (proAtt) {
+      const maped = proAtt.map((item) => {
+        return {
+          _id: item?.attributeSetMaster?._id,
+          name: item?.attributeSetMaster?.name,
+        };
+      });
+      setSel(maped);
+    }
+  }, [proAtt]);
+
+  const getGlobalAttributesList = async () => {
+    debugger;
+    const res = await axios.post(
+      "https://onlineparttimejobs.in/api/attributeSetMaster/categ/get",
+      { id: finalCatD }
+    );
+    changettriPro(res?.data);
+  };
   return (
     <div className="card">
       <div className="card-header">
@@ -311,7 +336,36 @@ const ProductInforamation = ({
           <label className="col-md-3 col-from-label"> Product Attribute </label>
 
           <div className="col-md-8">
-            <select
+            <div className="form-group row">
+              {/* <label className="col-md-3 col-from-label"> Attribute </label> */}
+
+              <div className="col-md-12 d-flex classatt">
+                <Multiselect
+                  isObject={true}
+                  displayValue="name"
+                  options={data1}
+                  showCheckbox
+                  selectedValues={sel}
+                  onRemove={(selectedCat) => {
+                    const selectedIds = selectedCat.map((cat) => {
+                      return cat._id;
+                    });
+                    setFinalCatD(selectedIds);
+                  }}
+                  onSelect={(selectedCat) => {
+                    const selectedIds = selectedCat.map((cat) => {
+                      return cat._id;
+                    });
+                    setFinalCatD(selectedIds);
+                  }}
+                />
+                <Button onClick={getGlobalAttributesList} variant="success">
+                  Click
+                </Button>
+              </div>
+            </div>
+
+            {/* <select
               className="form-select"
               aria-label="Default select example"
               name="attributeList"
@@ -329,7 +383,7 @@ const ProductInforamation = ({
                     </option>
                   );
                 })}
-            </select>
+            </select> */}
           </div>
         </div>
         {proAtt && (
@@ -338,42 +392,61 @@ const ProductInforamation = ({
               Set Attribute Values
             </label>
             <div className="col-md-8">
-              {proAtt?.values &&
-                proAtt.values.map((item, i) => {
-                  return (
-                    <div
-                      style={{
-                        display: "flex",
-                        margin: "5px 0",
-                      }}
-                      key={i}
-                    >
-                      <label className="col-md-3 col-from-label">
-                        {item?.name}
-                      </label>
-                      <input
-                        placeholder="Value"
-                        name={item?._id}
-                        className="form-control"
-                        value={item?.value}
-                        onChange={(e) => changeValues(e, item)}
-                      />
-                      <div
-                        style={{
-                          fontSize: "17px",
-                          margin: "0 5px",
-                        }}
-                      >
-                        {" "}
-                        <RxCross1
-                          onClick={() => {
-                            removeRowAt(item?._id);
-                          }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
+              <div>
+                {proAtt &&
+                  proAtt?.map((item, i) => {
+                    return (
+                      !!item?.list.length && (
+                        <div className="mainboxatt" key={i}>
+                          <div className="col-4">
+                            {item.attributeSetMaster.name}
+                          </div>
+                          <div>
+                            {item?.list?.map((val, v) => {
+                              return (
+                                <div
+                                  key={v}
+                                  style={{
+                                    display: "flex",
+                                    alignContent: "baseline",
+                                    margin: "7px 0",
+                                  }}
+                                >
+                                  <label className="col-md-3 col-from-label">
+                                    {val.attribute.name}
+                                  </label>
+                                  <input
+                                    placeholder="Value"
+                                    name={val?.attribute._id}
+                                    value={val.value}
+                                    id={i}
+                                    className="form-control"
+                                    onChange={(e) => {
+                                      changeValues(e, val.attribute._id);
+                                    }}
+                                  />
+                                  <div
+                                    style={{
+                                      fontSize: "17px",
+                                      margin: "0 5px",
+                                    }}
+                                  >
+                                    {" "}
+                                    <RxCross1
+                                      onClick={() => {
+                                        removeRowAt(val?.attribute._id, i);
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )
+                    );
+                  })}
+              </div>
             </div>
           </div>
         )}

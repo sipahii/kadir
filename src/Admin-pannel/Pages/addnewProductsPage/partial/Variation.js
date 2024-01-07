@@ -29,9 +29,9 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
       setUpdatedVariants(variationsData);
       let variationLists = JSON.parse(JSON.stringify(variationsData));
 
-      variationLists.forEach((element) => {
+      variationLists?.forEach((element) => {
         element.prices = [];
-        countryData.forEach((item) => {
+        countryData?.forEach((item) => {
           element.prices.push({ country_id: { ...item } });
         });
       });

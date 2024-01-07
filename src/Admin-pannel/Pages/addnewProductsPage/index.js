@@ -8,6 +8,7 @@ import {
   useGetIndustryQuery,
   useGetLanguagesQuery,
   useGetPickupPointQuery,
+  useGetProductByIdQuery,
   useGetSellersQuery,
   useGetUnitMasterQuery,
 } from "../../Components/all-products/allproductsApi/allProductsApi";
@@ -86,6 +87,12 @@ function AddNewProductsPage() {
   });
   const [disNextVal, setdisNextVal] = useState(true);
 
+  const {
+    data: productData,
+    isSuccess,
+    isLoading: productLoading,
+  } = useGetProductByIdQuery({ id: params?.id, token: token });
+
   useEffect(() => {
     const getCatData = async () => {
       const getCategoryName = [];
@@ -148,14 +155,18 @@ function AddNewProductsPage() {
 
   function handleTagKeyDown(e) {
     if (e.key !== "Enter") return;
-    const value = e.target.value;
-    if (!value.trim()) return;
-    setTags([...tags, value]);
+    let cloneAllData = [...val];
+    if (!e.target.value.trim()) return;
+    cloneAllData[value].tags = [...cloneAllData[value]?.tags, e.target?.value];
     e.target.value = "";
+    setVal(cloneAllData);
   }
-  const removetagTag = (index) => [
-    setTags(tags.filter((el, i) => i !== index)),
-  ];
+  const removetagTag = (index) => {
+    let cloneAllData = [...val];
+    let remainingTags = cloneAllData[value].filter((item, i) => i !== index);
+    cloneAllData[value].tags = remainingTags;
+    setVal(cloneAllData);
+  };
 
   const getDatas = async () => {
     const res = await axios.get(
@@ -173,35 +184,35 @@ function AddNewProductsPage() {
   useEffect(() => {
     getDatas();
   }, []);
-  const changettriPro = (e) => {
+  const changettriPro = (list) => {
     const cloneValue = [...val];
-    const maped = data1.find((item) => {
-      return item._id === e.target.value;
-    });
-    cloneValue[value].attributeList = maped;
+    cloneValue[value].attributeList = list;
     setVal(cloneValue);
   };
 
-  const removeRowAt = (id) => {
+  const removeRowAt = (id, selectedIndex) => {
     const cloneValue = [...val];
-    const filterd = cloneValue[value]?.attributeList?.values?.filter(
-      (item) => item._id !== id
-    );
-    cloneValue[value].attributeList.values = filterd;
+    const filterd = cloneValue[value]?.attributeList[
+      selectedIndex
+    ]?.list?.filter((item) => item.attribute?._id !== id);
+    cloneValue[value].attributeList[selectedIndex].list = filterd;
     setVal(cloneValue);
   };
 
   const changeValues = (e, item) => {
     const cloneValue = [...val];
-    console.log(item);
-    const filterd = cloneValue[value]?.attributeList?.values?.map((item) => {
-      if (item._id === e.target.name) {
-        return { ...item, value: e.target.value };
-      } else {
-        return item;
+    const selectedIndex = e.target.id;
+    const filterd = cloneValue[value]?.attributeList[selectedIndex]?.list?.map(
+      (item) => {
+        if (item?.attribute?._id === e.target.name) {
+          return { ...item, value: e.target.value };
+        } else {
+          return item;
+        }
       }
-    });
-    cloneValue[value].attributeList.values = filterd;
+    );
+    cloneValue[value].attributeList[selectedIndex].list = filterd;
+
     setVal(cloneValue);
   };
 
@@ -213,14 +224,18 @@ function AddNewProductsPage() {
   };
 
   useEffect(() => {
-    if (data && currdata) {
-      const maped = data.map((item) => {
-        return { ...INITIAL_STATE, language_id: item._id, lable: item.name };
-      });
+    if (productData && params?.id) {
+      setVal(productData?.product || []);
+    } else {
+      if (data && currdata) {
+        const maped = data.map((item) => {
+          return { ...INITIAL_STATE, language_id: item._id, lable: item.name };
+        });
 
-      setVal(maped);
+        setVal(maped);
+      }
     }
-  }, [data, currdata]);
+  }, [data, currdata, productData, params?.id]);
 
   const handleCategoryId = (ids) => {
     val[value].category_id = [...ids];
@@ -252,7 +267,6 @@ function AddNewProductsPage() {
             ...item,
             [e.target.name]: bul,
             flashDeal: flashDeal,
-            tags: tags,
             productDescription: productDescription,
           };
           return obj;
@@ -268,7 +282,6 @@ function AddNewProductsPage() {
             ...item,
             [e.target.name]: bul,
             flashDeal: flashDeal,
-            tags: tags,
             productDescription: productDescription,
           };
           return obj;
@@ -284,7 +297,6 @@ function AddNewProductsPage() {
             ...item,
             [e.target.name]: e.target.value,
             flashDeal: flashDeal,
-            tags: tags,
             productDescription: productDescription,
           };
           return obj;
@@ -392,11 +404,12 @@ function AddNewProductsPage() {
   const updateVarientPriceAndAttributes = (data) => {
     variationIdVsPricingAndAttributes.set(data._id, data);
     console.log(variationIdVsPricingAndAttributes);
-    let cloneAllData = [...val];
+    const cloneAllData = JSON.parse(JSON.stringify(val));
     const selectedIndex = cloneAllData[value].variations.findIndex((item) => {
       return item._id === data._id;
     });
     if (selectedIndex !== -1) {
+      console.log(cloneAllData[value].variations[selectedIndex]);
       cloneAllData[value].variations[selectedIndex] = data;
     }
 
@@ -469,7 +482,7 @@ function AddNewProductsPage() {
                                 sellerD={sellerD}
                                 brandData={brandData}
                                 unitMast={unitMast}
-                                tags={tags}
+                                tags={item.tags}
                                 onchangeImges={onchangeImges}
                                 removetagTag={removetagTag}
                                 onchangeImges1={onchangeImges1}
