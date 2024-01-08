@@ -46,12 +46,6 @@ const toastErrorMessage = (message) => {
 const variationIdVsPricingAndAttributes = new Map();
 function AddNewProductsPage() {
   const [categ, setCateg] = useState([]);
-  const [flashDeal, setFlashdeal] = useState({
-    start_Date: "",
-    end_Date: "",
-    discount_type: "",
-    discount: "",
-  });
   const token = window.localStorage.getItem("token");
   const isSellerLogin = window.localStorage.getItem("isSellerLogin");
 
@@ -68,24 +62,16 @@ function AddNewProductsPage() {
   };
   const brandData = useGetBrandsQuery(token);
   const { data: sellerD } = useGetSellersQuery(token);
-  const [varianstData, setVariantsData] = useState();
   const { productDescription } = useSelector((state) => {
     return state.textEditorData;
   });
   const { data } = useGetLanguagesQuery(token);
   const { data: currdata, isLoading } = useGetCurrencyQuery(token);
   const [value, setValue] = useState(0);
-  const [val, setVal] = useState(data);
+  const [val, setVal] = useState([]);
   const [existPro, setExistPro] = useState(false);
   const [spcOr, setspcOr] = useState(false);
   const [data1, setData1] = useState();
-  const [shoing, setShoaing] = useState({
-    featured: false,
-    todays_deal: false,
-    trending: false,
-  });
-  const [disNextVal, setdisNextVal] = useState(true);
-
   const navigate = useNavigate();
 
   const {
@@ -93,6 +79,16 @@ function AddNewProductsPage() {
     isSuccess,
     isLoading: productLoading,
   } = useGetProductByIdQuery({ id: params?.id, token: token });
+
+  useEffect(() => {
+    if (val?.length) {
+      let cloneAllData = [...val];
+      let modifiedObject = { ...cloneAllData[value] };
+      modifiedObject.productDescription = productDescription || "<p><br></p>";
+      cloneAllData[value] = modifiedObject;
+      setVal(cloneAllData);
+    }
+  }, [productDescription]);
 
   useEffect(() => {
     const getCatData = async () => {
@@ -121,6 +117,22 @@ function AddNewProductsPage() {
     getCatData();
   }, [token]);
 
+  useEffect(() => {
+    if (params?.id) {
+      if (productData) {
+        setVal(productData?.product || []);
+      }
+    } else {
+      if (data && currdata) {
+        const maped = data.map((item) => {
+          return { ...INITIAL_STATE, language_id: item._id, lable: item.name };
+        });
+
+        setVal(maped);
+      }
+    }
+  }, [data, currdata, productData, params?.id]);
+
   const setattributesVal = (data) => {
     let cloneAllData = [...val];
     let modifiedObject = { ...cloneAllData[value] };
@@ -130,7 +142,6 @@ function AddNewProductsPage() {
   };
 
   const handleVariantData = (data) => {
-    console.log(variationIdVsPricingAndAttributes);
     let cloneAllData = [...val];
     let existingId = "";
     let findIndex = data.findIndex((item) => {
@@ -216,19 +227,6 @@ function AddNewProductsPage() {
 
     setVal(cloneValue);
   };
-  useEffect(() => {
-    if (productData && params?.id) {
-      setVal(productData?.product || []);
-    } else {
-      if (data && currdata) {
-        const maped = data.map((item) => {
-          return { ...INITIAL_STATE, language_id: item._id, lable: item.name };
-        });
-
-        setVal(maped);
-      }
-    }
-  }, [data, currdata, productData, params?.id]);
 
   const handleCategoryId = (ids) => {
     val[value].category_id = [...ids];
@@ -238,17 +236,13 @@ function AddNewProductsPage() {
   };
 
   const onChangeHandler = async (e, id, bul) => {
-    console.log("togglerrcheckType--", typeof bul);
     let maped;
     if (typeof bul === "boolean") {
-      console.log("togglerrcheck--", bul);
       maped = val?.map((item) => {
         if (item.language_id === id) {
           const obj = {
             ...item,
             [e.target.name]: bul,
-            flashDeal: flashDeal,
-            productDescription: productDescription,
           };
           return obj;
         } else {
@@ -262,8 +256,6 @@ function AddNewProductsPage() {
           const obj = {
             ...item,
             [e.target.name]: bul,
-            flashDeal: flashDeal,
-            productDescription: productDescription,
           };
           return obj;
         } else {
@@ -277,8 +269,6 @@ function AddNewProductsPage() {
           const obj = {
             ...item,
             [e.target.name]: e.target.value,
-            flashDeal: flashDeal,
-            productDescription: productDescription,
           };
           return obj;
         } else {
@@ -299,16 +289,14 @@ function AddNewProductsPage() {
         setExistPro(res.data?.isExist);
       }
     }
-    console.log("maped", maped);
   };
 
   const freshDeals = (e) => {
-    const clone = { ...flashDeal };
-    clone[e.target.name] = e.target.value;
-    setFlashdeal(clone);
-    if (clone.start_Date) {
-      setdisNextVal(false);
-    }
+    let cloneAllData = [...val];
+    let modifiedObject = JSON.parse(JSON.stringify(cloneAllData[value]));
+    modifiedObject.flashDeal[e.target.name] = e.target.value;
+    cloneAllData[value] = modifiedObject;
+    setVal(cloneAllData);
   };
 
   const addFile = async (clonedObj) => {
@@ -350,11 +338,7 @@ function AddNewProductsPage() {
   const addNewAttributeData = async (e, id) => {
     e.preventDefault();
     let clone2 = [...val];
-
     setspcOr(true);
-
-    console.log(clone2);
-    // return
     addFile(clone2, token);
   };
 
@@ -375,8 +359,10 @@ function AddNewProductsPage() {
         const obj = { public_id: res.data.public_id, url: res.data.url };
         if (e.target.name === "gallery_image") {
           cloneAllData[value].images.push(obj);
+        } else if (e.target.name === "mainImage_url") {
+          cloneAllData[value].mainImage_url = { ...obj };
         } else {
-          cloneAllData[value].mainImage_url = [obj];
+          cloneAllData[value].meta_image = { ...obj };
         }
       } catch (error) {
         console.log("Gallery Image not uploaded");
@@ -412,16 +398,20 @@ function AddNewProductsPage() {
 
   const updateVarientPriceAndAttributes = (data) => {
     variationIdVsPricingAndAttributes.set(data._id, data);
-    console.log(variationIdVsPricingAndAttributes);
     const cloneAllData = JSON.parse(JSON.stringify(val));
     const selectedIndex = cloneAllData[value].variations.findIndex((item) => {
       return item._id === data._id;
     });
     if (selectedIndex !== -1) {
-      console.log(cloneAllData[value].variations[selectedIndex]);
       cloneAllData[value].variations[selectedIndex] = data;
     }
 
+    setVal(cloneAllData);
+  };
+
+  const setFinalCatDIndus = (selectedIds) => {
+    let cloneAllData = [...val];
+    cloneAllData[value].industry_id = selectedIds;
     setVal(cloneAllData);
   };
 
@@ -445,22 +435,28 @@ function AddNewProductsPage() {
           </div>
         )}
         <Box sx={{ width: "100%", typography: "body1" }}>
-          <TabContext value={value}>
+          <TabContext value={value.toString()}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >
-                {data &&
-                  data?.map((item, i) => {
-                    return <Tab label={item?.name} value={i} />;
+                {!!val.length &&
+                  val?.map((item, i) => {
+                    return (
+                      <Tab
+                        label={item?.language_id?.name}
+                        value={i.toString()}
+                        key={i}
+                      />
+                    );
                   })}
               </TabList>
             </Box>
             {val &&
               val?.map((item, i) => {
                 return (
-                  <TabPanel value={i} key={i}>
+                  <TabPanel value={i.toString()} key={i}>
                     <div className="px-15px px-lg-25px">
                       <div className="aiz-titlebar text-left mt-2 mb-3">
                         {params.id ? (
@@ -486,7 +482,7 @@ function AddNewProductsPage() {
                                 setCategoryIds={handleCategoryId}
                                 categ={categ}
                                 industryData={industryData}
-                                setFinalCatDIndus={() => {}}
+                                setFinalCatDIndus={setFinalCatDIndus}
                                 isSellerLogin={isSellerLogin}
                                 sellerD={sellerD}
                                 brandData={brandData}
@@ -512,6 +508,7 @@ function AddNewProductsPage() {
                                 <SEOMetaTags
                                   item={item}
                                   onChangeHandler={onChangeHandler}
+                                  onchangeImges={onchangeImgeHandler}
                                 />
                               )}
                               {/* <SeoMetaTagsAdmin /> */}
@@ -721,13 +718,16 @@ function AddNewProductsPage() {
                               </div>
 
                               <FlashDeal
-                                flashDeal={flashDeal}
+                                flashDeal={item?.flashDeal}
                                 freshDeals={freshDeals}
                               />
                             </div>
                           </div>
 
-                          <ProductDescriptionWrapper item={item} />
+                          <ProductDescriptionWrapper
+                            item={item}
+                            // getCallbackHtml={getCallbackHtml}
+                          />
 
                           <div className="row">
                             <Variation
@@ -743,7 +743,6 @@ function AddNewProductsPage() {
                               isVariantLoading={false}
                               updatedVariants={item.variations}
                               deleteRow={deleteRow}
-                              setVariantsData={setVariantsData}
                               updateVarientPriceAndAttributes={
                                 updateVarientPriceAndAttributes
                               }

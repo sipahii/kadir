@@ -27,10 +27,10 @@ const ProductInforamation = ({
   changeValues,
   removeRowAt,
 }) => {
-  const [sel, setSel] = useState(proAtt);
+  const [sel, setSel] = useState([]);
   const [finalCatD, setFinalCatD] = useState();
+  const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
-    console.log("proAtt", proAtt);
     if (proAtt) {
       const maped = proAtt?.map((item) => {
         return {
@@ -40,10 +40,22 @@ const ProductInforamation = ({
       });
       if (maped.length) setSel(maped);
     }
-  }, [proAtt]);
+    if (item?.industry_id?.length) {
+      let ids = industryData?.filter((list) => {
+        if (item.industry_id.includes(list?._id)) {
+          return { name: list?.name };
+        }
+      });
+      setSelectedIds(ids);
+    }
+    return () => {
+      setSelectedIds([]);
+      setFinalCatD([]);
+      setSel([]);
+    };
+  }, [proAtt, item, industryData]);
 
   const getGlobalAttributesList = async () => {
-    debugger;
     const res = await axios.post(
       "https://onlineparttimejobs.in/api/attributeSetMaster/categ/get",
       { id: finalCatD }
@@ -115,7 +127,7 @@ const ProductInforamation = ({
               displayValue="name"
               options={industryData}
               showCheckbox
-              selectedValues={[]}
+              selectedValues={selectedIds}
               onRemove={(selectedCat) => {
                 const selectedIds = selectedCat?.map((cat) => {
                   return cat._id;
@@ -331,12 +343,12 @@ const ProductInforamation = ({
           </div>
         </div>
         <div className="form-group row">
-          {!!item?.mainImage_url?.length && (
+          {!!item?.mainImage_url?.url && (
             <>
               <div className="col-md-3"></div>
               <div className="col-md-9">
                 <img
-                  src={item.mainImage_url[0]?.url}
+                  src={item.mainImage_url?.url}
                   height={"100"}
                   width={"100"}
                   alt="mainImage_url"

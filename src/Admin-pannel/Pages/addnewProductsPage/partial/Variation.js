@@ -23,8 +23,11 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
   const { data: countryData } = useGetCounterQuery(token);
 
   useEffect(() => {
-    console.log("variationsData", variationsData);
+    setAllAttributes(item?.variation_Form || []);
+    setUpdatedVariants(item?.variations || []);
+  }, [item]);
 
+  useEffect(() => {
     if (variationsData) {
       setUpdatedVariants(variationsData);
       let variationLists = JSON.parse(JSON.stringify(variationsData));
@@ -35,8 +38,6 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
           element.prices.push({ country_id: { ...item } });
         });
       });
-
-      console.log("variationLists", variationLists);
       setVariantsData(variationLists);
     }
   }, [variationsData]);
@@ -56,6 +57,7 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
   }, [allAttributes]);
 
   const getAttributes = (attributes) => {
+    debugger;
     const updateExistingAttribute = attributes?.map((secondObj) => {
       const matchingObj = allAttributes.find(
         (originalObj) => originalObj._id === secondObj._id
@@ -93,10 +95,7 @@ const Variation = ({ item, setattributesVal, setVariantsData }) => {
       clone[findIndex] = findCurrentAttributes;
     }
     let filteredData = clone.filter((item) => item?.data?.length);
-
     setAllAttributes(clone);
-    console.log(clone);
-
     form_variatio({
       data: {
         attributes: [...filteredData],

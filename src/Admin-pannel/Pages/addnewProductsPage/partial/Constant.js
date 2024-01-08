@@ -22,7 +22,6 @@ const INITIAL_STATE = {
   variations: [], //TODO
 
   size: "", //TODO
-  //   current_stock: "", //TODO
   minimum_order_qty: "",
   shipping_cost: "",
   purchase_price: "",
@@ -38,15 +37,15 @@ const INITIAL_STATE = {
   Quantity: "",
   seller_id: "", //TODO Seller
   unit: "",
-  //   company_id: "", //TODO
   flashDeal: {},
   variation_Form: [], //TODO  attributes: [], //TODO
   productDescription: "",
   weights: "",
   meta_keywords: "",
-  attributeList: "",
+  attributeList: [],
   images: [],
   mainImage_url: [],
+  industry_id: [],
 };
 // Industry *
 //Product Attribute

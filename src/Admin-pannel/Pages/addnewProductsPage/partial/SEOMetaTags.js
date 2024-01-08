@@ -1,4 +1,4 @@
-const SEOMetaTags = ({ onChangeHandler, item }) => {
+const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
   return (
     <div className="card">
       <div className="card-header">
@@ -88,6 +88,19 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
         </div>
 
         <div className="form-group row">
+          {!!item?.meta_image?.url && (
+            <>
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <img
+                  src={item.meta_image.url}
+                  height={"100"}
+                  width={"100"}
+                  alt="gallaryImage"
+                />
+              </div>
+            </>
+          )}
           <label className="col-md-3 col-form-label" htmlFor="signinSrEmail">
             Meta Image
           </label>
@@ -108,7 +121,7 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
                   name="meta_image"
                   className="selected-files"
                   onChange={(e) => {
-                    onChangeHandler(e, item.language_id);
+                    onchangeImges(e, item.language_id);
                   }}
                 />
               </div>

@@ -36,7 +36,7 @@ export const ColorVariant = ({
     setshoingLoader(true);
     const inpVal = e.target.files;
     const images = new FormData();
-    let cloneAllData = { ...formData };
+    let cloneAllData = JSON.parse(JSON.stringify(formData));
 
     for (let ind = 0; ind < inpVal?.length; ind++) {
       try {

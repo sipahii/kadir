@@ -9,7 +9,6 @@ export const CustomSelectOption = ({
 }) => {
   const [selectedOptions, setSelectedOptions] = useState([...allAttributes]);
   const handleRemove = (option) => {
-    // setSelectedOptions([...option]);
     getSelectedOptions([...option]);
   };
   useEffect(() => {
@@ -19,7 +18,6 @@ export const CustomSelectOption = ({
   const onChangeHandler = (data) => {
     getSelectedOptions(data);
   };
-  console.log("selectedOptions", selectedOptions);
   return (
     <>
       {children && children}

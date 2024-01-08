@@ -8,13 +8,8 @@ const ProductList = ({
   deleteRow,
   sellerD,
   pickUp,
-  setVariantsData,
   updateVarientPriceAndAttributes,
 }) => {
-  const toCheck = (data) => {
-    console.log("check", data);
-    updateVarientPriceAndAttributes(data);
-  };
   return (
     <div className="card mt-2 rest-part col-lg-12">
       <div className="card-header">
@@ -110,7 +105,6 @@ const ProductList = ({
                         item={item}
                         data={variantItem}
                         pickUp={pickUp}
-                        // setVariantsData={toCheck}
                         index={i}
                         updateVarientDetails={updateVarientPriceAndAttributes}
                       />

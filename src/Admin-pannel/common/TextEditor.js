@@ -3,7 +3,6 @@ import {
   Editor,
   EditorState,
   ContentState,
-  convertToRaw,
   RichUtils,
   convertFromHTML,
 } from "draft-js";
@@ -14,7 +13,7 @@ class TextEditor extends Component {
   constructor(props) {
     super(props);
 
-    const defaultHtml = props?.item?.productDescription || "<p>Hello</p>";
+    const defaultHtml = props?.item?.productDescription || "";
     const blocksFromHTML = convertFromHTML(defaultHtml);
     const initialContentState = ContentState.createFromBlockArray(
       blocksFromHTML.contentBlocks,
