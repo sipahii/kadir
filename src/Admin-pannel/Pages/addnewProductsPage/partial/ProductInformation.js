@@ -19,7 +19,7 @@ const ProductInforamation = ({
   tags,
   onchangeImges,
   removetagTag,
-  onchangeImges1,
+  // onchangeImges1,
   changettriPro,
   handleTagKeyDown,
   data1,
@@ -38,7 +38,7 @@ const ProductInforamation = ({
           name: item?.attributeSetMaster?.name,
         };
       });
-      setSel(maped);
+      if (maped.length) setSel(maped);
     }
   }, [proAtt]);
 
@@ -303,6 +303,19 @@ const ProductInforamation = ({
         </div>
 
         <div className="form-group row">
+          {!!item?.images?.length && (
+            <>
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <img
+                  src={item.images[0]?.url}
+                  height={"100"}
+                  width={"100"}
+                  alt="gallaryImage"
+                />
+              </div>
+            </>
+          )}
           <label className="col-md-3 col-from-label">Gallery Images</label>
           <div className="col-md-8">
             <input
@@ -318,6 +331,19 @@ const ProductInforamation = ({
           </div>
         </div>
         <div className="form-group row">
+          {!!item?.mainImage_url?.length && (
+            <>
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <img
+                  src={item.mainImage_url[0]?.url}
+                  height={"100"}
+                  width={"100"}
+                  alt="mainImage_url"
+                />
+              </div>
+            </>
+          )}
           <label className="col-md-3 col-from-label">Thumbnail Image</label>
           <div className="col-md-8">
             <input
@@ -326,7 +352,7 @@ const ProductInforamation = ({
               accept="image/*"
               className="form-control"
               onChange={(e) => {
-                onchangeImges1(e, item.language_id);
+                onchangeImges(e, item.language_id);
               }}
             />
           </div>
@@ -364,26 +390,6 @@ const ProductInforamation = ({
                 </Button>
               </div>
             </div>
-
-            {/* <select
-              className="form-select"
-              aria-label="Default select example"
-              name="attributeList"
-              onChange={changettriPro}
-              // value={item?.attributeList?.name}
-              // value="first"
-              defaultValue={item?.attributeList?._id || 1}
-            >
-              <option value={1}>Select Unit</option>
-              {data1 &&
-                data1?.map((item) => {
-                  return (
-                    <option value={item._id} key={item._id} id={item._id}>
-                      {item.name}
-                    </option>
-                  );
-                })}
-            </select> */}
           </div>
         </div>
         {proAtt && (
@@ -396,7 +402,7 @@ const ProductInforamation = ({
                 {proAtt &&
                   proAtt?.map((item, i) => {
                     return (
-                      !!item?.list.length && (
+                      !!item?.list?.length && (
                         <div className="mainboxatt" key={i}>
                           <div className="col-4">
                             {item.attributeSetMaster.name}

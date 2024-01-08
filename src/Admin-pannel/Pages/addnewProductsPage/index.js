@@ -357,18 +357,36 @@ function AddNewProductsPage() {
     // return
     addFile(clone2, token);
   };
-  const onchangeImges = (e, id) => {
+
+  const onchangeImgeHandler = async (e) => {
     const inpVal = e.target.files;
-    const maped = val?.map((item) => {
-      if (item.language_id === id) {
-        const obj = { ...item, images: inpVal };
-        return obj;
-      } else {
-        return item;
+    const images = new FormData();
+    let cloneAllData = [...val];
+
+    for (let ind = 0; ind < inpVal?.length; ind++) {
+      try {
+        const element0 = inpVal[ind];
+        images.set("image", element0);
+
+        const res = await axios.post(
+          "https://onlineparttimejobs.in/api/cloudinaryImage/addImage",
+          images
+        );
+        const obj = { public_id: res.data.public_id, url: res.data.url };
+        if (e.target.name === "gallery_image") {
+          cloneAllData[value].images.push(obj);
+        } else {
+          cloneAllData[value].mainImage_url = [obj];
+        }
+      } catch (error) {
+        console.log("Gallery Image not uploaded");
+      } finally {
+        images.delete("image");
       }
-    });
-    setVal(maped);
+    }
+    setVal(cloneAllData);
   };
+
   const onchangeImges1 = (e, id) => {
     const inpVal = e.target.files[0];
     const maped = val?.map((item) => {
@@ -474,7 +492,7 @@ function AddNewProductsPage() {
                                 brandData={brandData}
                                 unitMast={unitMast}
                                 tags={item.tags}
-                                onchangeImges={onchangeImges}
+                                onchangeImges={onchangeImgeHandler}
                                 removetagTag={removetagTag}
                                 onchangeImges1={onchangeImges1}
                                 changettriPro={changettriPro}
@@ -709,7 +727,7 @@ function AddNewProductsPage() {
                             </div>
                           </div>
 
-                          {/* <ProductDescriptionWrapper /> */}
+                          <ProductDescriptionWrapper item={item} />
 
                           <div className="row">
                             <Variation

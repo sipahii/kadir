@@ -20,7 +20,7 @@ export const ColorVariant = ({
   const onChangeHandler = (e) => {
     const inputName = e.target.name;
     const inputVal = e.target.value;
-    setFormData({ ...formData, [inputName]: inputVal });
+    setFormData({ images: [], ...formData, [inputName]: inputVal });
     //setVariantsData(formData);
   };
   const params = useParams();
@@ -31,59 +31,43 @@ export const ColorVariant = ({
   useEffect(() => {
     updateVarientDetails(formData);
   }, [formData]);
-  const onchangeImagehandle = async (e) => {
-    const inpVal = e.target.files;
-    setshoingLoader(true);
-    const images = new FormData();
-    const varclone1 = [];
-    for (let ind = 0; ind < inpVal?.length; ind++) {
-      images.delete("image");
-      const element0 = inpVal[ind];
-      images.append("image", element0);
-      try {
-        const res = await axios.post(
-          `https://onlineparttimejobs.in/api/cloudinaryImage/addImage`,
-          images
-        );
-        const obj = { public_id: res.data.public_id, url: res.data.url };
-        varclone1.push(obj);
-      } catch (error) {
-        console.log("Gallery Image  not uploded --outer");
-      }
-      images.delete("image");
-    }
-
-    const cloneObj = { ...formData, images: varclone1 };
-    // setVariantsData(cloneObj);
-    setFormData({ ...cloneObj });
-    setshoingLoader(false);
-  };
-  const onchangeImagehandle1 = async (e) => {
+  const onchangeImgeHandler = async (e) => {
     setShping(false);
     setshoingLoader(true);
-    const inpVal = e.target.files[0];
+    const inpVal = e.target.files;
     const images = new FormData();
-    images.delete("image");
-    images.append("image", inpVal);
-    let objj = {};
-    try {
-      const res2 = await axios.post(
-        `https://onlineparttimejobs.in/api/cloudinaryImage/addImage`,
-        images
-      );
-      objj = { public_id: res2.data.public_id, url: res2.data.url };
-    } catch (error) {
-      console.log("Thumnail Image  not uploded");
+    let cloneAllData = { ...formData };
+
+    for (let ind = 0; ind < inpVal?.length; ind++) {
+      try {
+        const element0 = inpVal[ind];
+        images.set("image", element0);
+
+        const res = await axios.post(
+          "https://onlineparttimejobs.in/api/cloudinaryImage/addImage",
+          images
+        );
+        debugger;
+        const obj = { public_id: res.data.public_id, url: res.data.url };
+        if (e.target.name === "gallery_image") {
+          if (cloneAllData?.images) {
+            cloneAllData.images.push(obj);
+          } else {
+            cloneAllData.images = [obj];
+          }
+        } else {
+          cloneAllData.mainImage_url = obj;
+        }
+      } catch (error) {
+        console.log("Gallery Image not uploaded");
+      } finally {
+        images.delete("image");
+      }
     }
-    images.delete("image");
-
-    const cloneObj = { ...formData, mainImage_url: objj };
-    //setVariantsData(cloneObj);
-    setFormData({ ...cloneObj });
-
-    console.log("cloneObj", cloneObj);
     setshoingLoader(false);
+    setFormData(cloneAllData);
   };
+
   const setData = (data, i) => {
     const clone = { ...data };
     setFormData(clone);
@@ -164,8 +148,7 @@ export const ColorVariant = ({
         <DatabaseFilled onClick={() => setModalShow(true)} />
       </td>
       <td>
-        {data?.images?.length &&
-          data?.images[0]?.url &&
+        {!!data?.images?.length &&
           data?.images?.map((item) => {
             return (
               // eslint-disable-next-line jsx-a11y/alt-text
@@ -182,11 +165,11 @@ export const ColorVariant = ({
           multiple
           accept="image/*"
           className="form-control"
-          onChange={onchangeImagehandle}
+          onChange={onchangeImgeHandler}
         />
       </td>
       <td>
-        {data?.mainImage_url?.url && (
+        {!!data?.mainImage_url?.url && (
           // eslint-disable-next-line jsx-a11y/alt-text
           <img
             style={{ width: "100px", height: "100px" }}
@@ -198,7 +181,7 @@ export const ColorVariant = ({
           name="mainImage_url"
           accept="image/*"
           className="form-control"
-          onChange={onchangeImagehandle1}
+          onChange={onchangeImgeHandler}
         />
       </td>
 
