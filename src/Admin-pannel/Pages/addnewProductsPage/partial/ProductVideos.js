@@ -14,7 +14,7 @@ const ProductVideo = ({ item, onChangeHandler }) => {
               aria-label="Default select example"
               name="video_provider"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             >
               <option value="youtube">Youtube</option>
@@ -35,7 +35,7 @@ const ProductVideo = ({ item, onChangeHandler }) => {
               placeholder="Video Link"
               fdprocessedid="2pggse"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
             <small className="text-muted">

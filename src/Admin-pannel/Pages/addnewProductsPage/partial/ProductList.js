@@ -25,7 +25,11 @@ const ProductList = ({
                 name={"isGlobalAttribute"}
                 checked={item?.isGlobalAttribute}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item.isGlobalAttribute);
+                  onChangeHandler(
+                    e,
+                    item?.language_id?._id,
+                    !item.isGlobalAttribute
+                  );
                 }}
               />
               <span />
@@ -42,7 +46,11 @@ const ProductList = ({
                 name={"isGlobalImage"}
                 checked={item?.isGlobalImage}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item?.isGlobalImage);
+                  onChangeHandler(
+                    e,
+                    item?.language_id?._id,
+                    !item?.isGlobalImage
+                  );
                 }}
               />
               <span />

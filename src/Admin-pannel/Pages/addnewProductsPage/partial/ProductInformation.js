@@ -82,7 +82,7 @@ const ProductInforamation = ({
               required
               fdprocessedid="3bss68"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
             {existPro && (
@@ -154,7 +154,7 @@ const ProductInforamation = ({
                 value={item?.seller_id}
                 name="seller_id"
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id);
+                  onChangeHandler(e, item?.language_id?._id);
                 }}
               >
                 <option>Select Seller</option>
@@ -180,7 +180,7 @@ const ProductInforamation = ({
               aria-label="Default select example"
               name="brand_id"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             >
               <option>Select Brand</option>
@@ -205,7 +205,7 @@ const ProductInforamation = ({
               aria-label="Default select example"
               name="unit"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             >
               <option value={1}>Select Unit</option>
@@ -234,7 +234,7 @@ const ProductInforamation = ({
               placeholder="weight"
               fdprocessedid="sq5qc3"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -254,7 +254,7 @@ const ProductInforamation = ({
               required
               fdprocessedid="d0gl3m"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -283,13 +283,13 @@ const ProductInforamation = ({
                 <input
                   type="text"
                   onKeyDown={(e) => {
-                    handleTagKeyDown(e, item.language_id);
+                    handleTagKeyDown(e, item?.language_id?._id);
                   }}
                   placeholder="type some text"
                   className="tags-input"
                   name="tags"
                   // onChange={(e) => {
-                  //   onChangeHandler(e, item.language_id);
+                  //   onChangeHandler(e, item?.language_id?._id);
                   // }}
                 />
               </div>
@@ -308,7 +308,7 @@ const ProductInforamation = ({
               placeholder="Barcode"
               fdprocessedid="ifjwoo"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -337,7 +337,7 @@ const ProductInforamation = ({
               multiple
               accept="image/*"
               onChange={(e) => {
-                onchangeImges(e, item.language_id);
+                onchangeImges(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -364,7 +364,7 @@ const ProductInforamation = ({
               accept="image/*"
               className="form-control"
               onChange={(e) => {
-                onchangeImges(e, item.language_id);
+                onchangeImges(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -478,7 +478,7 @@ const ProductInforamation = ({
                 name={"refundable"}
                 checked={item.refundable}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item.refundable);
+                  onChangeHandler(e, item?.language_id?._id, !item.refundable);
                 }}
               />
               <span />
@@ -495,7 +495,7 @@ const ProductInforamation = ({
                 name={"quotation"}
                 checked={item.quotation}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item.quotation);
+                  onChangeHandler(e, item?.language_id?._id, !item.quotation);
                 }}
               />
               <span />

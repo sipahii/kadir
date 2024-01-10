@@ -1,4 +1,4 @@
-const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
+const SEOMetaTags = ({ onChangeHandler, item, onchangeImges, isExistSlug }) => {
   return (
     <div className="card">
       <div className="card-header">
@@ -16,7 +16,7 @@ const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
               placeholder="Meta Title"
               fdprocessedid="1hz7zu"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -32,7 +32,7 @@ const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
               placeholder="Meta Key Word"
               fdprocessedid="1hz7zu"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -48,9 +48,14 @@ const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
               placeholder="Slug"
               fdprocessedid="1hz7zu"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
+            {isExistSlug && (
+              <div style={{ color: "red" }}>
+                Slug is already exists with {item?.slug}
+              </div>
+            )}
           </div>
         </div>
 
@@ -72,7 +77,7 @@ const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
               rows={8}
               className="form-control"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -121,7 +126,7 @@ const SEOMetaTags = ({ onChangeHandler, item, onchangeImges }) => {
                   name="meta_image"
                   className="selected-files"
                   onChange={(e) => {
-                    onchangeImges(e, item.language_id);
+                    onchangeImges(e, item?.language_id?._id);
                   }}
                 />
               </div>
