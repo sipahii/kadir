@@ -257,7 +257,6 @@ function AddNewProductsPage() {
   };
 
   const onChangeHandler = async (e, id, bul) => {
-    debugger;
     let maped;
     if (typeof bul === "boolean") {
       maped = val?.map((item) => {
