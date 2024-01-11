@@ -40,7 +40,7 @@ const ProductInforamation = ({
       });
       if (maped.length) setSel(maped);
     }
-    if (item?.industry_id?.length) {
+    if (item?.industry_id?.length && industryData) {
       let ids = industryData?.filter((list) => {
         if (item.industry_id.includes(list?._id)) {
           return { name: list?.name };
@@ -53,7 +53,7 @@ const ProductInforamation = ({
       setFinalCatD([]);
       setSel([]);
     };
-  }, [proAtt, item, industryData]);
+  }, [proAtt, item?.industry_id, industryData]);
 
   const getGlobalAttributesList = async () => {
     const res = await axios.post(

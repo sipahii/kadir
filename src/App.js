@@ -731,6 +731,8 @@ import EditSizeJwellsPage from "./Admin-pannel/Pages/editSizeJwellsPage";
 import MetalPriceTypePage from "./Admin-pannel/Pages/metalPriceTypePage";
 import AddMetalPriceTypePage from "./Admin-pannel/Pages/addMetalPriceTypePage";
 import EditMetalPriceTypePage from "./Admin-pannel/Pages/editMetalPriceTypePage";
+import AddProduct from "./Admin-pannel/Pages/addnewProductsPage/addProduct";
+import EditProduct from "./Admin-pannel/Pages/addnewProductsPage/editProduct";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -746,14 +748,8 @@ function App() {
           element={<DashboardRightSectionAdmin setshow={setshow} />}
         >
           <Route path="" element={<DashboardAdminPage />} />
-          <Route
-            path="products/all/products/create"
-            element={<AddNewProductsPage />}
-          />
-          <Route
-            path="products/all/edit/:id"
-            element={<AddNewProductsPage />}
-          />
+          <Route path="products/all/products/create" element={<AddProduct />} />
+          <Route path="products/all/edit/:id" element={<EditProduct />} />
           {/* <Route path="products/all/edit/:id" element={< AddNewProductsPage />} /> */}
 
           <Route

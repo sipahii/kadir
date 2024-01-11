@@ -9,7 +9,7 @@ function PriceModal(props) {
   const changeHanle = (e, id) => {
     const clone = [...val];
     const maped = clone.map((item) => {
-      if (item?.country_id._id == id) {
+      if (item?.country_id._id === id) {
         return { ...item, [e.target.name]: e.target.value };
       } else {
         return item;

@@ -39,7 +39,7 @@ const INITIAL_STATE = {
   unit: "",
   flashDeal: {},
   variation_Form: [], //TODO  attributes: [], //TODO
-  productDescription: "",
+  productDescription: "<p><br></p>",
   weights: "",
   meta_keywords: "",
   attributeList: [],

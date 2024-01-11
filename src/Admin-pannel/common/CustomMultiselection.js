@@ -12,7 +12,7 @@ export const CustomSelectOption = ({
     getSelectedOptions([...option]);
   };
   useEffect(() => {
-    setSelectedOptions([...allAttributes]);
+    if (allAttributes.length) setSelectedOptions([...allAttributes]);
   }, [allAttributes]);
 
   const onChangeHandler = (data) => {
