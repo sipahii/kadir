@@ -70,8 +70,8 @@ function PriceModal(props) {
   const deleteRow = (id) => {
     for (let i = 0; i < val.length; i++) {
       const element = val[i];
-      if (element.isSelected == true) {
-        if (id == element?.country_id?._id) {
+      if (element.isSelected === true) {
+        if (id === element?.country_id?._id) {
           alert("You Can Not Delete Selected Country");
           return;
         }
@@ -166,6 +166,7 @@ function PriceModal(props) {
                   <tr>
                     <td>
                       <Popconfirm
+                        zIndex={99999}
                         title="Delete the task"
                         description="Are you sure to delete this Prices?"
                         icon={

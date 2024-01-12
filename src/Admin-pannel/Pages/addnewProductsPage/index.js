@@ -86,16 +86,6 @@ function AddNewProductsPage() {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (val?.length) {
-  //     let cloneAllData = [...val];
-  //     let modifiedObject = { ...cloneAllData[value] };
-  //     modifiedObject.productDescription = productDescription || "<p><br></p>";
-  //     cloneAllData[value] = modifiedObject;
-  //     setVal(cloneAllData);
-  //   }
-  // }, [productDescription]);
-
   useEffect(() => {
     const getCatData = async () => {
       const getCategoryName = [];
@@ -108,8 +98,6 @@ function AddNewProductsPage() {
           },
         }
       );
-      // const resData = await reqData.json();
-      //
       for (let i = 0; i < resData.data.length; i++) {
         getCategoryName.push({
           name: resData.data[i].name,
