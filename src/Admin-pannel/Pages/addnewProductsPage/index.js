@@ -13,10 +13,10 @@ import {
   useGetUnitMasterQuery,
 } from "../../Components/all-products/allproductsApi/allProductsApi";
 import { ToastContainer, toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ToggleStatus from "../../Components/toggleStatus/ToggleStatus";
 import ProductDescriptionWrapper from "../../Components/productDescriptionWrapper/productDescriptionWrapper";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -31,28 +31,22 @@ import FlashDeal from "./partial/FlashDeal";
 import Variation from "./partial/Variation";
 import ProductList from "./partial/ProductList";
 import INITIAL_STATE from "./partial/Constant";
+import { setDataDescription } from "../../Components/productDescriptionWrapper/textEditorSlice";
 
-const toastSuccessMessage = () => {
-  toast.success("Product added Successfully", {
+const toastSuccessMessage = (message) => {
+  toast.success(message, {
     position: "top-center",
   });
 };
 
-const toastErrorMessage = () => {
+const toastErrorMessage = (message) => {
   toast.error("Product not added", {
     position: "top-center",
   });
 };
 const variationIdVsPricingAndAttributes = new Map();
 function AddNewProductsPage() {
-  const [tags, setTags] = useState([]);
   const [categ, setCateg] = useState([]);
-  const [flashDeal, setFlashdeal] = useState({
-    start_Date: "",
-    end_Date: "",
-    discount_type: "",
-    discount: "",
-  });
   const token = window.localStorage.getItem("token");
   const isSellerLogin = window.localStorage.getItem("isSellerLogin");
 
@@ -69,29 +63,28 @@ function AddNewProductsPage() {
   };
   const brandData = useGetBrandsQuery(token);
   const { data: sellerD } = useGetSellersQuery(token);
-  const [varianstData, setVariantsData] = useState();
-  const { productDescription } = useSelector((state) => {
-    return state.textEditorData;
-  });
+  // const { productDescription } = useSelector((state) => {
+  //   return state.textEditorData;
+  // });
   const { data } = useGetLanguagesQuery(token);
   const { data: currdata, isLoading } = useGetCurrencyQuery(token);
   const [value, setValue] = useState(0);
-  const [val, setVal] = useState(data);
+  const [val, setVal] = useState([]);
   const [existPro, setExistPro] = useState(false);
+  const [isExistSlug, setIsExistSlug] = useState(false);
   const [spcOr, setspcOr] = useState(false);
   const [data1, setData1] = useState();
-  const [shoing, setShoaing] = useState({
-    featured: false,
-    todays_deal: false,
-    trending: false,
-  });
-  const [disNextVal, setdisNextVal] = useState(true);
+  const [variationList, setVariationList] = useState([]);
+  const [variationForm, setVariationForm] = useState([]);
+  const navigate = useNavigate();
 
   const {
     data: productData,
     isSuccess,
     isLoading: productLoading,
   } = useGetProductByIdQuery({ id: params?.id, token: token });
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getCatData = async () => {
@@ -105,8 +98,6 @@ function AddNewProductsPage() {
           },
         }
       );
-      // const resData = await reqData.json();
-      //
       for (let i = 0; i < resData.data.length; i++) {
         getCategoryName.push({
           name: resData.data[i].name,
@@ -120,17 +111,43 @@ function AddNewProductsPage() {
     getCatData();
   }, [token]);
 
+  useEffect(() => {
+    if (params?.id) {
+      if (productData) {
+        setVal(productData?.product || []);
+        setVariationForm(productData?.product[0]?.variation_Form || []);
+        setVariationList(productData?.product[0]?.variations || []);
+      }
+    } else {
+      if (data && currdata) {
+        const maped = data.map((item) => {
+          return {
+            ...INITIAL_STATE,
+            language_id: { _id: item._id, name: item.name },
+            variations: [],
+            variation_Form: [],
+          };
+        });
+
+        setVal(maped);
+        setVariationForm([]);
+        setVariationList([]);
+        setspcOr(false);
+        setVariationList([]);
+        setVariationForm([]);
+        setExistPro(false);
+        setIsExistSlug(false);
+        setspcOr(false);
+        dispatch(setDataDescription("<p><br></p>"));
+      }
+    }
+  }, [data, currdata, productData, params?.id]);
+
   const setattributesVal = (data) => {
-    let cloneAllData = [...val];
-    let modifiedObject = { ...cloneAllData[value] };
-    modifiedObject.variation_Form = data;
-    cloneAllData[value] = modifiedObject;
-    setVal(cloneAllData);
+    setVariationForm(data || []);
   };
 
   const handleVariantData = (data) => {
-    console.log(variationIdVsPricingAndAttributes);
-    let cloneAllData = [...val];
     let existingId = "";
     let findIndex = data.findIndex((item) => {
       const variationIdVsPricingAndAttributesItem =
@@ -149,8 +166,7 @@ function AddNewProductsPage() {
     if (findIndex !== -1) {
       data[findIndex] = variationIdVsPricingAndAttributes.get(existingId);
     }
-    cloneAllData[value].variations = data;
-    setVal(cloneAllData);
+    setVariationList(data);
   };
 
   function handleTagKeyDown(e) {
@@ -183,6 +199,16 @@ function AddNewProductsPage() {
 
   useEffect(() => {
     getDatas();
+    return () => {
+      setVariationForm([]);
+      setVariationList([]);
+      setspcOr(false);
+      setVariationList([]);
+      setVariationForm([]);
+      setExistPro(false);
+      setIsExistSlug(false);
+      setspcOr(false);
+    };
   }, []);
   const changettriPro = (list) => {
     const cloneValue = [...val];
@@ -216,58 +242,25 @@ function AddNewProductsPage() {
     setVal(cloneValue);
   };
 
-  const changeHandr = (e) => {
-    const clone = { ...shoing };
-    const name = e.target.name;
-    clone[e.target.name] = !clone[name];
-    setShoaing(clone);
-  };
-
-  useEffect(() => {
-    if (productData && params?.id) {
-      setVal(productData?.product || []);
-    } else {
-      if (data && currdata) {
-        const maped = data.map((item) => {
-          return { ...INITIAL_STATE, language_id: item._id, lable: item.name };
-        });
-
-        setVal(maped);
-      }
-    }
-  }, [data, currdata, productData, params?.id]);
-
   const handleCategoryId = (ids) => {
     val[value].category_id = [...ids];
   };
-
-  const changeDataForm = (index) => {
-    setTags(val[index].tags);
-    //setVariantsData(val[index].variations);
-    setShoaing({
-      featured: val[index].featured,
-      todays_deal: val[index]?.todays_deal,
-      trending: val[index]?.trending,
-    });
-  };
-
   const handleChange = (event, newValue) => {
+    debugger;
+    console.log(variationForm);
+    console.log(variationList);
     setValue(newValue);
-    // changeDataForm(newValue);
   };
 
   const onChangeHandler = async (e, id, bul) => {
-    console.log("togglerrcheckType--", typeof bul);
+    console.log("id", id);
     let maped;
     if (typeof bul === "boolean") {
-      console.log("togglerrcheck--", bul);
-      maped = val.map((item) => {
-        if (item.language_id === id) {
+      maped = val?.map((item) => {
+        if (item?.language_id?._id === id) {
           const obj = {
             ...item,
             [e.target.name]: bul,
-            flashDeal: flashDeal,
-            productDescription: productDescription,
           };
           return obj;
         } else {
@@ -276,13 +269,11 @@ function AddNewProductsPage() {
       });
       setVal(maped);
     } else if (bul) {
-      maped = val.map((item) => {
-        if (item.language_id === id) {
+      maped = val?.map((item) => {
+        if (item?.language_id?._id === id) {
           const obj = {
             ...item,
             [e.target.name]: bul,
-            flashDeal: flashDeal,
-            productDescription: productDescription,
           };
           return obj;
         } else {
@@ -291,13 +282,11 @@ function AddNewProductsPage() {
       });
       setVal(maped);
     } else {
-      maped = val.map((item) => {
-        if (item.language_id === id) {
+      maped = val?.map((item) => {
+        if (item?.language_id?._id === id) {
           const obj = {
             ...item,
             [e.target.name]: e.target.value,
-            flashDeal: flashDeal,
-            productDescription: productDescription,
           };
           return obj;
         } else {
@@ -316,42 +305,74 @@ function AddNewProductsPage() {
           }
         );
         setExistPro(res.data?.isExist);
+      } else if (e.target.name === "slug") {
+        const res = await axios.get(
+          `https://onlineparttimejobs.in/api/product/checkslug/${e.target.value}`,
+          {
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        setIsExistSlug(res.data?.isExist);
       }
     }
     console.log("maped", maped);
   };
 
   const freshDeals = (e) => {
-    const clone = { ...flashDeal };
-    clone[e.target.name] = e.target.value;
-    setFlashdeal(clone);
-    if (clone.start_Date) {
-      setdisNextVal(false);
-    }
+    let cloneAllData = [...val];
+    let modifiedObject = JSON.parse(JSON.stringify(cloneAllData[value]));
+    modifiedObject.flashDeal[e.target.name] = e.target.value;
+    cloneAllData[value] = modifiedObject;
+    setVal(cloneAllData);
   };
 
   const addFile = async (clonedObj) => {
-    const url = "https://onlineparttimejobs.in/api/product/add_product";
+    const urlBase = "https://onlineparttimejobs.in/api/product";
+    const endpoint = params.id ? `/${params.id}` : "/add_product";
+    const url = `${urlBase}${endpoint}`;
+
     const images = new FormData();
-    let cloned = [...clonedObj];
-    // console.log('ffiinnaal', cloned)
-    // return
+    const cloned = JSON.parse(JSON.stringify(clonedObj));
+    cloned.forEach((item) => {
+      item.variations = variationList;
+      item.variation_Form = variationForm;
+    });
 
     try {
-      const res = await axios.post(
+      const res = await axios({
+        method: params.id ? "put" : "post",
         url,
-        { list: cloned },
-        {
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data: { list: cloned },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      toastSuccessMessage(
+        params.id
+          ? "Product updated Successfully"
+          : "Product added Successfully"
       );
-      toastSuccessMessage();
-      setspcOr(false);
+
+      setTimeout(() => {
+        setspcOr(false);
+        setVariationList([]);
+        setVariationForm([]);
+        setVal([]);
+        setExistPro(false);
+        setIsExistSlug(false);
+        setspcOr(false);
+        navigate("../products/all");
+      }, 5000);
     } catch (error) {
-      toastErrorMessage();
+      console.log("error", error);
+      toastErrorMessage(
+        params.id ? "Product not updated" : "Product not added"
+      );
       setspcOr(false);
     }
   };
@@ -359,29 +380,45 @@ function AddNewProductsPage() {
   const addNewAttributeData = async (e, id) => {
     e.preventDefault();
     let clone2 = [...val];
-
     setspcOr(true);
-
-    console.log(clone2);
-    // return
     addFile(clone2, token);
   };
-  const onchangeImges = (e, id) => {
+
+  const onchangeImgeHandler = async (e) => {
     const inpVal = e.target.files;
-    const maped = val.map((item) => {
-      if (item.language_id === id) {
-        const obj = { ...item, images: inpVal };
-        return obj;
-      } else {
-        return item;
+    const images = new FormData();
+    let cloneAllData = [...val];
+
+    for (let ind = 0; ind < inpVal?.length; ind++) {
+      try {
+        const element0 = inpVal[ind];
+        images.set("image", element0);
+
+        const res = await axios.post(
+          "https://onlineparttimejobs.in/api/cloudinaryImage/addImage",
+          images
+        );
+        const obj = { public_id: res.data.public_id, url: res.data.url };
+        if (e.target.name === "gallery_image") {
+          cloneAllData[value].images.push(obj);
+        } else if (e.target.name === "mainImage_url") {
+          cloneAllData[value].mainImage_url = { ...obj };
+        } else {
+          cloneAllData[value].meta_image = { ...obj };
+        }
+      } catch (error) {
+        console.log("Gallery Image not uploaded");
+      } finally {
+        images.delete("image");
       }
-    });
-    setVal(maped);
+    }
+    setVal(cloneAllData);
   };
+
   const onchangeImges1 = (e, id) => {
     const inpVal = e.target.files[0];
-    const maped = val.map((item) => {
-      if (item.language_id === id) {
+    const maped = val?.map((item) => {
+      if (item?.language_id?._id === id) {
         const obj = { ...item, mainImage_url: inpVal };
         return obj;
       } else {
@@ -393,26 +430,47 @@ function AddNewProductsPage() {
   const { data: industryData } = useGetIndustryQuery(token);
 
   const deleteRow = (id) => {
-    let cloneAllData = [...val];
-    const filterdData = cloneAllData[value].variations.filter((item) => {
+    let cloneAllData = JSON.parse(JSON.stringify(variationList));
+    const filterdData = cloneAllData.filter((item) => {
       return item._id !== id;
     });
-    cloneAllData[value].variations = filterdData;
-    setVal(cloneAllData);
+    // cloneAllData.forEach((item) => {
+    //   item.variations = filterdData;
+    // });
+    // setVal(cloneAllData);
+    setVariationList(filterdData);
+    // cloneAllData[value].variations = filterdData;
+    // setVal(cloneAllData);
   };
 
   const updateVarientPriceAndAttributes = (data) => {
     variationIdVsPricingAndAttributes.set(data._id, data);
-    console.log(variationIdVsPricingAndAttributes);
-    const cloneAllData = JSON.parse(JSON.stringify(val));
-    const selectedIndex = cloneAllData[value].variations.findIndex((item) => {
+    debugger;
+    const cloneAllData = JSON.parse(JSON.stringify(variationList));
+    const selectedIndex = cloneAllData.findIndex((item) => {
       return item._id === data._id;
     });
     if (selectedIndex !== -1) {
-      console.log(cloneAllData[value].variations[selectedIndex]);
-      cloneAllData[value].variations[selectedIndex] = data;
+      cloneAllData[selectedIndex] = data;
     }
+    // cloneAllData.forEach((item) => {
+    //   item.variations = variationList;
+    // });
+    // setVal(cloneAllData);
+    setVariationList(cloneAllData);
+  };
 
+  const setFinalCatDIndus = (selectedIds) => {
+    let cloneAllData = [...val];
+    cloneAllData[value].industry_id = selectedIds;
+    setVal(cloneAllData);
+  };
+
+  const handleCallBackData = (data) => {
+    let cloneAllData = [...val];
+    let modifiedObject = { ...cloneAllData[value] };
+    modifiedObject.productDescription = data || "<p><br></p>";
+    cloneAllData[value] = modifiedObject;
     setVal(cloneAllData);
   };
 
@@ -436,22 +494,28 @@ function AddNewProductsPage() {
           </div>
         )}
         <Box sx={{ width: "100%", typography: "body1" }}>
-          <TabContext value={value}>
+          <TabContext value={value.toString()}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >
-                {data &&
-                  data?.map((item, i) => {
-                    return <Tab label={item?.name} value={i} />;
+                {!!val.length &&
+                  val?.map((item, i) => {
+                    return (
+                      <Tab
+                        label={item?.language_id?.name}
+                        value={i.toString()}
+                        key={i}
+                      />
+                    );
                   })}
               </TabList>
             </Box>
             {val &&
               val?.map((item, i) => {
                 return (
-                  <TabPanel value={i} key={i}>
+                  <TabPanel value={i.toString()} key={`tabList${i}`}>
                     <div className="px-15px px-lg-25px">
                       <div className="aiz-titlebar text-left mt-2 mb-3">
                         {params.id ? (
@@ -477,13 +541,13 @@ function AddNewProductsPage() {
                                 setCategoryIds={handleCategoryId}
                                 categ={categ}
                                 industryData={industryData}
-                                setFinalCatDIndus={() => {}}
+                                setFinalCatDIndus={setFinalCatDIndus}
                                 isSellerLogin={isSellerLogin}
                                 sellerD={sellerD}
                                 brandData={brandData}
                                 unitMast={unitMast}
                                 tags={item.tags}
-                                onchangeImges={onchangeImges}
+                                onchangeImges={onchangeImgeHandler}
                                 removetagTag={removetagTag}
                                 onchangeImges1={onchangeImges1}
                                 changettriPro={changettriPro}
@@ -499,10 +563,13 @@ function AddNewProductsPage() {
                                 onChangeHandler={onChangeHandler}
                               />
 
-                              {i === 0 && (
+                              {item.language_id._id ===
+                                "65111f1f78085e4cc5cce8ff" && (
                                 <SEOMetaTags
                                   item={item}
                                   onChangeHandler={onChangeHandler}
+                                  onchangeImges={onchangeImgeHandler}
+                                  isExistSlug={isExistSlug}
                                 />
                               )}
                               {/* <SeoMetaTagsAdmin /> */}
@@ -526,7 +593,10 @@ function AddNewProductsPage() {
                                       className="form-control"
                                       fdprocessedid="dtmr1"
                                       onChange={(e) => {
-                                        onChangeHandler(e, item.language_id);
+                                        onChangeHandler(
+                                          e,
+                                          item?.language_id?._id
+                                        );
                                       }}
                                     />
                                   </div>
@@ -552,7 +622,7 @@ function AddNewProductsPage() {
                                         onChangeHandler={(e) =>
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.show_stock_quantity
                                           )
                                         }
@@ -573,7 +643,7 @@ function AddNewProductsPage() {
                                         onChangeHandler={(e) =>
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.show_stock_with_text_only
                                           )
                                         }
@@ -592,7 +662,7 @@ function AddNewProductsPage() {
                                         onChangeHandler={(e) =>
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.hide_stock
                                           )
                                         }
@@ -618,7 +688,7 @@ function AddNewProductsPage() {
                                         onChangeHandler={(e) =>
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.cash_on_delivery
                                           )
                                         }
@@ -645,7 +715,7 @@ function AddNewProductsPage() {
                                         onChange={(e) => {
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.featured
                                           );
                                         }}
@@ -674,7 +744,7 @@ function AddNewProductsPage() {
                                         onChange={(e) => {
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.todays_deal
                                           );
                                         }}
@@ -698,11 +768,10 @@ function AddNewProductsPage() {
                                         type="checkbox"
                                         name={"trending"}
                                         checked={item.trending}
-                                        // onChange={changeHandr}
                                         onChange={(e) => {
                                           onChangeHandler(
                                             e,
-                                            item.language_id,
+                                            item?.language_id?._id,
                                             !item.trending
                                           );
                                         }}
@@ -713,29 +782,36 @@ function AddNewProductsPage() {
                               </div>
 
                               <FlashDeal
-                                flashDeal={flashDeal}
+                                flashDeal={item?.flashDeal}
                                 freshDeals={freshDeals}
                               />
                             </div>
                           </div>
 
-                          <ProductDescriptionWrapper />
+                          <ProductDescriptionWrapper
+                            productDescription={item?.productDescription}
+                            callBackWithHtml={handleCallBackData}
+                          />
 
                           <div className="row">
                             <Variation
-                              item={item}
                               setattributesVal={setattributesVal}
                               setVariantsData={handleVariantData}
+                              variations={variationList}
+                              variationForm={variationForm}
                             />
                             <ProductList
                               onChangeHandler={onChangeHandler}
-                              item={item}
+                              item={{
+                                ...item,
+                                variations: variationList,
+                                variation_Form: variationForm,
+                              }}
                               sellerD={sellerD}
                               pickUp={pickUp}
                               isVariantLoading={false}
-                              updatedVariants={item.variations}
+                              updatedVariants={variationList}
                               deleteRow={deleteRow}
-                              setVariantsData={setVariantsData}
                               updateVarientPriceAndAttributes={
                                 updateVarientPriceAndAttributes
                               }
@@ -757,7 +833,7 @@ function AddNewProductsPage() {
                                 required
                                 fdprocessedid="gny5jm"
                                 onChange={(e) => {
-                                  onChangeHandler(e, item.language_id);
+                                  onChangeHandler(e, item?.language_id?._id);
                                 }}
                               />
                             </div>
@@ -777,7 +853,7 @@ function AddNewProductsPage() {
                                 required
                                 fdprocessedid="wabmv"
                                 onChange={(e) => {
-                                  onChangeHandler(e, item.language_id);
+                                  onChangeHandler(e, item?.language_id?._id);
                                 }}
                               />
                             </div>
@@ -796,7 +872,7 @@ function AddNewProductsPage() {
                                 required
                                 fdprocessedid="pvn15"
                                 onChange={(e) => {
-                                  onChangeHandler(e, item.language_id);
+                                  onChangeHandler(e, item?.language_id?._id);
                                 }}
                               />
                             </div>
@@ -817,16 +893,7 @@ function AddNewProductsPage() {
                                       },
                                     },
                                   }}
-                                >
-                                  <Checkbox
-                                    className="chBox"
-                                    // onClick={() => {
-                                    //   SaveData(i, "", item.language_id);
-                                    // }}
-                                  >
-                                    Checkbox
-                                  </Checkbox>
-                                </ConfigProvider>
+                                ></ConfigProvider>
                               </div>
                             </div>
                             <div
@@ -847,7 +914,7 @@ function AddNewProductsPage() {
                                   onChange={(e) => {
                                     onChangeHandler(
                                       e,
-                                      item.language_id,
+                                      item?.language_id?._id,
                                       !item.Shipping_cost_multiply_with_quantity
                                     );
                                   }}
@@ -875,7 +942,7 @@ function AddNewProductsPage() {
                             className="btn btn-primary"
                             fdprocessedid="uzw7ye"
                             onClick={(e) => {
-                              addNewAttributeData(e, item.language_id);
+                              addNewAttributeData(e, item?.language_id?._id);
                             }}
                           >
                             Save

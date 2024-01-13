@@ -8,13 +8,8 @@ const ProductList = ({
   deleteRow,
   sellerD,
   pickUp,
-  setVariantsData,
   updateVarientPriceAndAttributes,
 }) => {
-  const toCheck = (data) => {
-    console.log("check", data);
-    updateVarientPriceAndAttributes(data);
-  };
   return (
     <div className="card mt-2 rest-part col-lg-12">
       <div className="card-header">
@@ -30,7 +25,11 @@ const ProductList = ({
                 name={"isGlobalAttribute"}
                 checked={item?.isGlobalAttribute}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item.isGlobalAttribute);
+                  onChangeHandler(
+                    e,
+                    item?.language_id?._id,
+                    !item.isGlobalAttribute
+                  );
                 }}
               />
               <span />
@@ -47,7 +46,11 @@ const ProductList = ({
                 name={"isGlobalImage"}
                 checked={item?.isGlobalImage}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item?.isGlobalImage);
+                  onChangeHandler(
+                    e,
+                    item?.language_id?._id,
+                    !item?.isGlobalImage
+                  );
                 }}
               />
               <span />
@@ -110,7 +113,6 @@ const ProductList = ({
                         item={item}
                         data={variantItem}
                         pickUp={pickUp}
-                        // setVariantsData={toCheck}
                         index={i}
                         updateVarientDetails={updateVarientPriceAndAttributes}
                       />

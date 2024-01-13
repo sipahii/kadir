@@ -9,14 +9,15 @@ export const CustomSelectOption = ({
 }) => {
   const [selectedOptions, setSelectedOptions] = useState([...allAttributes]);
   const handleRemove = (option) => {
-    // setSelectedOptions([...option]);
     getSelectedOptions([...option]);
   };
+  useEffect(() => {
+    if (allAttributes.length) setSelectedOptions([...allAttributes]);
+  }, [allAttributes]);
 
   const onChangeHandler = (data) => {
     getSelectedOptions(data);
   };
-
   return (
     <>
       {children && children}

@@ -19,7 +19,7 @@ const ProductInforamation = ({
   tags,
   onchangeImges,
   removetagTag,
-  onchangeImges1,
+  // onchangeImges1,
   changettriPro,
   handleTagKeyDown,
   data1,
@@ -27,23 +27,35 @@ const ProductInforamation = ({
   changeValues,
   removeRowAt,
 }) => {
-  const [sel, setSel] = useState(proAtt);
+  const [sel, setSel] = useState([]);
   const [finalCatD, setFinalCatD] = useState();
+  const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
-    console.log("proAtt", proAtt);
     if (proAtt) {
-      const maped = proAtt.map((item) => {
+      const maped = proAtt?.map((item) => {
         return {
           _id: item?.attributeSetMaster?._id,
           name: item?.attributeSetMaster?.name,
         };
       });
-      setSel(maped);
+      if (maped.length) setSel(maped);
     }
-  }, [proAtt]);
+    if (item?.industry_id?.length && industryData) {
+      let ids = industryData?.filter((list) => {
+        if (item.industry_id.includes(list?._id)) {
+          return { name: list?.name };
+        }
+      });
+      setSelectedIds(ids);
+    }
+    return () => {
+      setSelectedIds([]);
+      setFinalCatD([]);
+      setSel([]);
+    };
+  }, [proAtt, item?.industry_id, industryData]);
 
   const getGlobalAttributesList = async () => {
-    debugger;
     const res = await axios.post(
       "https://onlineparttimejobs.in/api/attributeSetMaster/categ/get",
       { id: finalCatD }
@@ -70,7 +82,7 @@ const ProductInforamation = ({
               required
               fdprocessedid="3bss68"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
             {existPro && (
@@ -91,13 +103,13 @@ const ProductInforamation = ({
               showCheckbox
               selectedValues={item?.category_id}
               onRemove={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat;
                 });
                 setCategoryIds(selectedIds);
               }}
               onSelect={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat;
                 });
                 setCategoryIds(selectedIds);
@@ -115,15 +127,15 @@ const ProductInforamation = ({
               displayValue="name"
               options={industryData}
               showCheckbox
-              selectedValues={[]}
+              selectedValues={selectedIds}
               onRemove={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat._id;
                 });
                 setFinalCatDIndus(selectedIds);
               }}
               onSelect={(selectedCat) => {
-                const selectedIds = selectedCat.map((cat) => {
+                const selectedIds = selectedCat?.map((cat) => {
                   return cat._id;
                 });
                 setFinalCatDIndus(selectedIds);
@@ -142,7 +154,7 @@ const ProductInforamation = ({
                 value={item?.seller_id}
                 name="seller_id"
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id);
+                  onChangeHandler(e, item?.language_id?._id);
                 }}
               >
                 <option>Select Seller</option>
@@ -168,12 +180,12 @@ const ProductInforamation = ({
               aria-label="Default select example"
               name="brand_id"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             >
               <option>Select Brand</option>
               {brandData.data?.length &&
-                brandData.data.map((item) => {
+                brandData.data?.map((item) => {
                   return (
                     <option value={item._id} key={item._id}>
                       {item.name || item._id}
@@ -193,7 +205,7 @@ const ProductInforamation = ({
               aria-label="Default select example"
               name="unit"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             >
               <option value={1}>Select Unit</option>
@@ -222,7 +234,7 @@ const ProductInforamation = ({
               placeholder="weight"
               fdprocessedid="sq5qc3"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -242,7 +254,7 @@ const ProductInforamation = ({
               required
               fdprocessedid="d0gl3m"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -255,7 +267,7 @@ const ProductInforamation = ({
           <div className="col-md-8">
             <div className="tags_inp_wrapper">
               <div className="tags-input-container">
-                {tags.map((tag, index) => {
+                {tags?.map((tag, index) => {
                   return (
                     <div className="tag-item" key={index}>
                       <span className="text">{tag}</span>
@@ -271,13 +283,13 @@ const ProductInforamation = ({
                 <input
                   type="text"
                   onKeyDown={(e) => {
-                    handleTagKeyDown(e, item.language_id);
+                    handleTagKeyDown(e, item?.language_id?._id);
                   }}
                   placeholder="type some text"
                   className="tags-input"
                   name="tags"
                   // onChange={(e) => {
-                  //   onChangeHandler(e, item.language_id);
+                  //   onChangeHandler(e, item?.language_id?._id);
                   // }}
                 />
               </div>
@@ -296,13 +308,26 @@ const ProductInforamation = ({
               placeholder="Barcode"
               fdprocessedid="ifjwoo"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
         </div>
 
         <div className="form-group row">
+          {!!item?.images?.length && (
+            <>
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <img
+                  src={item.images[0]?.url}
+                  height={"100"}
+                  width={"100"}
+                  alt="gallaryImage"
+                />
+              </div>
+            </>
+          )}
           <label className="col-md-3 col-from-label">Gallery Images</label>
           <div className="col-md-8">
             <input
@@ -312,12 +337,25 @@ const ProductInforamation = ({
               multiple
               accept="image/*"
               onChange={(e) => {
-                onchangeImges(e, item.language_id);
+                onchangeImges(e, item?.language_id?._id);
               }}
             />
           </div>
         </div>
         <div className="form-group row">
+          {!!item?.mainImage_url?.url && (
+            <>
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <img
+                  src={item.mainImage_url?.url}
+                  height={"100"}
+                  width={"100"}
+                  alt="mainImage_url"
+                />
+              </div>
+            </>
+          )}
           <label className="col-md-3 col-from-label">Thumbnail Image</label>
           <div className="col-md-8">
             <input
@@ -326,7 +364,7 @@ const ProductInforamation = ({
               accept="image/*"
               className="form-control"
               onChange={(e) => {
-                onchangeImges1(e, item.language_id);
+                onchangeImges(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -347,13 +385,13 @@ const ProductInforamation = ({
                   showCheckbox
                   selectedValues={sel}
                   onRemove={(selectedCat) => {
-                    const selectedIds = selectedCat.map((cat) => {
+                    const selectedIds = selectedCat?.map((cat) => {
                       return cat._id;
                     });
                     setFinalCatD(selectedIds);
                   }}
                   onSelect={(selectedCat) => {
-                    const selectedIds = selectedCat.map((cat) => {
+                    const selectedIds = selectedCat?.map((cat) => {
                       return cat._id;
                     });
                     setFinalCatD(selectedIds);
@@ -364,26 +402,6 @@ const ProductInforamation = ({
                 </Button>
               </div>
             </div>
-
-            {/* <select
-              className="form-select"
-              aria-label="Default select example"
-              name="attributeList"
-              onChange={changettriPro}
-              // value={item?.attributeList?.name}
-              // value="first"
-              defaultValue={item?.attributeList?._id || 1}
-            >
-              <option value={1}>Select Unit</option>
-              {data1 &&
-                data1.map((item) => {
-                  return (
-                    <option value={item._id} key={item._id} id={item._id}>
-                      {item.name}
-                    </option>
-                  );
-                })}
-            </select> */}
           </div>
         </div>
         {proAtt && (
@@ -396,7 +414,7 @@ const ProductInforamation = ({
                 {proAtt &&
                   proAtt?.map((item, i) => {
                     return (
-                      !!item?.list.length && (
+                      !!item?.list?.length && (
                         <div className="mainboxatt" key={i}>
                           <div className="col-4">
                             {item.attributeSetMaster.name}
@@ -460,7 +478,7 @@ const ProductInforamation = ({
                 name={"refundable"}
                 checked={item.refundable}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item.refundable);
+                  onChangeHandler(e, item?.language_id?._id, !item.refundable);
                 }}
               />
               <span />
@@ -477,7 +495,7 @@ const ProductInforamation = ({
                 name={"quotation"}
                 checked={item.quotation}
                 onChange={(e) => {
-                  onChangeHandler(e, item.language_id, !item.quotation);
+                  onChangeHandler(e, item?.language_id?._id, !item.quotation);
                 }}
               />
               <span />

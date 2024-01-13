@@ -10,7 +10,7 @@ const FlashDeal = ({ flashDeal, freshDeals }) => {
           <input
             type="date"
             name="start_Date"
-            value={flashDeal.start_Date}
+            value={flashDeal?.start_Date?.split("T")[0]}
             onChange={freshDeals}
             className="form-control"
           />
@@ -20,7 +20,7 @@ const FlashDeal = ({ flashDeal, freshDeals }) => {
           <input
             type="date"
             name="end_Date"
-            value={flashDeal.end_Date}
+            value={flashDeal?.end_Date?.split("T")[0]}
             onChange={freshDeals}
             className="form-control"
           />
@@ -30,7 +30,7 @@ const FlashDeal = ({ flashDeal, freshDeals }) => {
           <input
             type="number"
             onChange={freshDeals}
-            value={flashDeal.discount}
+            value={flashDeal?.discount}
             name="discount"
             defaultValue={0}
             min={0}
@@ -47,6 +47,7 @@ const FlashDeal = ({ flashDeal, freshDeals }) => {
             name="discount_type"
             id="flash_discount_type"
             tabIndex={-98}
+            defaultValue={flashDeal?.discount_type}
           >
             <option value>Choose Discount Type</option>
             <option value="Amount">Amount</option>

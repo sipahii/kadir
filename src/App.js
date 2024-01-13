@@ -1,4 +1,3 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/media.css";
 import "./assets/css/style.css";
@@ -10,11 +9,11 @@ import "./assets/all-pannel-css/css/aiz-core.css";
 import "./assets/all-pannel-css/css/custom-style.css";
 
 // import "./Admin-pannel/Components/crmNew/assets/styles/main.css";
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import HomePage from './pages/home';
-import Footer from './common/footer/Footer';
-import { useState } from 'react';
+import HomePage from "./pages/home";
+import Footer from "./common/footer/Footer";
+import { useState } from "react";
 import DashboardRightSectionAdmin from "./Admin-pannel/Pages/dashboardRightSection";
 import DashboardAdminPage from "./Admin-pannel/Pages/dashboardPage";
 import AddNewProductsPage from "./Admin-pannel/Pages/addnewProductsPage";
@@ -157,7 +156,7 @@ import CustomerShippingAdressDetail from "./Admin-pannel/Components/customerList
 import EditColor from "./Admin-pannel/Components/colors/EditColor";
 import EditFlashDeal from "./Admin-pannel/Components/flashDeals/EditFlashDeal";
 
-// junaid import 
+// junaid import
 import SellerAddEditForm from "./Admin-pannel/Pages/allSeller/SellerAddEditForm";
 import SellerDetail from "./Admin-pannel/Pages/allSeller/SellerDetail";
 // import SmsTemplatesPage from "./Admin-pannel/Pages/smsTemplatesPage";
@@ -302,9 +301,6 @@ import EditComboProducts from "./Admin-pannel/Pages/addComboProduct/EditComboPro
 // import NewDashboardCard from "./Admin-pannel/Components/crmNew/components/Card/Dashboard/NewDashboardCard";
 // import Contacts from "./Admin-pannel/Components/crmNew/components/CRM/Contacts/Contacts";
 
-
-
-
 // import AssetComments from "./Admin-pannel/Components/assetCategoriesMaster/assetComment/AssetComments";
 // import AssetStatus from "./Admin-pannel/Components/assetCategoriesMaster/assetStatus/AssetStatus";
 
@@ -338,7 +334,7 @@ import EditAssetsStatus from "./Admin-pannel/Components/assetCategoriesMaster/as
 import DetailsAssetsStatus from "./Admin-pannel/Components/assetCategoriesMaster/assetStatus/detailsAssetsStatus/DetailsAssetsStatus";
 
 // import EditDepartment from "./Admin-pannel/Components/manageDepartmentmaster/department/editDepartment/EditDepartment";
-import EditDepartment from "./Admin-pannel/Components/manageDepartmentmaster/department/editDepartment/EditDepartment"
+import EditDepartment from "./Admin-pannel/Components/manageDepartmentmaster/department/editDepartment/EditDepartment";
 import AddSubDepartment from "./Admin-pannel/Components/manageDepartmentmaster/subDepartment/addSubDepaetment/AddSubDepartment";
 import EditSubDepartment from "./Admin-pannel/Components/manageDepartmentmaster/subDepartment/editSubDepartment/EditSubDepartment";
 import DetailsSubDepartment from "./Admin-pannel/Components/manageDepartmentmaster/subDepartment/detailsSubDepartment/DetailsSubDepartment";
@@ -384,7 +380,6 @@ import MarketTicket from "./Admin-pannel/Pages/marketTicket";
 import MarketplaceValidator from "./Admin-pannel/Pages/marketplaceValidater";
 import MyAssets from "./Admin-pannel/Components/myAssests/MyAssets";
 
-
 // {Nizam import end}
 // {Shhaz import start}
 
@@ -409,8 +404,6 @@ import CallOverView from "./Admin-pannel/Pages/callOverView";
 import EditComplaintType from "./Admin-pannel/Components/EditComplaintType";
 import EditComplaintNature from "./Admin-pannel/Components/EditComplaintNature";
 import AddUser from "./Admin-pannel/Components/user/addUser";
-
-
 
 import "../src/assets2/styles/main.css";
 import "../src/assets2/styles/responsive.css";
@@ -467,7 +460,6 @@ import ListVochers from "./Admin-pannel/Pages/accounts/Vochers/ListVochers";
 import DayBooks from "./Admin-pannel/Pages/accounts/addcompany/books/DayBooks";
 import CustomFelds from "./Admin-pannel/Pages/settings/custom_fields/CustomFelds";
 // {Shaaz import end}
-
 
 // {daud import start}
 // import AmazonAccountListPage from "./Admin-pannel/Pages/amazonAccount-list/index";
@@ -583,11 +575,6 @@ import Inventoryof from "./Admin-pannel/Pages/inventory";
 import Inventoryfl from "./Admin-pannel/Pages/Inventoryflow";
 import Marketing from "./Admin-pannel/Pages/marketing";
 import Ecommers from "./Admin-pannel/Pages/ecommerse";
-
-
-
-
-
 
 import ColorStonePage from "./Admin-pannel/Pages/generalMaster/colorStone/Index";
 import AddColorStone from "./Admin-pannel/Components/generalMaster/colorStone/addColorStone/AddColorStone";
@@ -744,6 +731,12 @@ import EditSizeJwellsPage from "./Admin-pannel/Pages/editSizeJwellsPage";
 import MetalPriceTypePage from "./Admin-pannel/Pages/metalPriceTypePage";
 import AddMetalPriceTypePage from "./Admin-pannel/Pages/addMetalPriceTypePage";
 import EditMetalPriceTypePage from "./Admin-pannel/Pages/editMetalPriceTypePage";
+import AddProduct from "./Admin-pannel/Pages/addnewProductsPage/addProduct";
+import EditProduct from "./Admin-pannel/Pages/addnewProductsPage/editProduct";
+import AddCelebritiesPackagePage from "./Admin-pannel/Pages/addCelebrityPackagePage";
+import ListCelebrityPackagePage from "./Admin-pannel/Pages/listCelebrityPackagePage";
+import EditCelebrityPackagePage from "./Admin-pannel/Pages/editCelebrityPackagePage";
+import CelebrityGoogleDashboardPage from "./Admin-pannel/Pages/celebrityGoogleDashboardPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -754,38 +747,52 @@ function App() {
       <Routes>
         <Route path="/loginPage" element={<LoginSection setshow={setshow} />} />
         <Route path="/" element={<Navigate to="/loginPage" />} />
-        <Route path="/admin" element={<DashboardRightSectionAdmin setshow={setshow} />}>
+        <Route
+          path="/admin"
+          element={<DashboardRightSectionAdmin setshow={setshow} />}
+        >
           <Route path="" element={<DashboardAdminPage />} />
-          <Route path="products/all/products/create" element={<AddNewProductsPage />} />
-          <Route path="products/all/edit/:id" element={< EditProducts />} />
+          <Route path="products/all/products/create" element={<AddProduct />} />
+          <Route path="products/all/edit/:id" element={<EditProduct />} />
           {/* <Route path="products/all/edit/:id" element={< AddNewProductsPage />} /> */}
 
-          <Route path="products/all/products/create/comboProduct" element={<AddComboProduct />} />
-          <Route path="products/all/comboProduct" element={<ListComboProdust />} />
-          <Route path="products/all/comboProduct/edit/:id" element={<EditComboProducts />} />
-
+          <Route
+            path="products/all/products/create/comboProduct"
+            element={<AddComboProduct />}
+          />
+          <Route
+            path="products/all/comboProduct"
+            element={<ListComboProdust />}
+          />
+          <Route
+            path="products/all/comboProduct/edit/:id"
+            element={<EditComboProducts />}
+          />
 
           {/* Mustafa Works */}
           <Route path="login_setting" element={<LoginSetting />} />
           <Route path="robotic-master" element={<RoboticMaster />} />
           <Route path="robotic-master-list" element={<RoboticList />} />
-          <Route path="robotic-master/edit/:id" element={<RoboticMasterEdit />} />
-
-
+          <Route
+            path="robotic-master/edit/:id"
+            element={<RoboticMasterEdit />}
+          />
 
           <Route path="task-project-dash" element={<ProjectDashBord />} />
           <Route path="time-sheets" element={<Timesheet />} />
           <Route path="help-desk" element={<HelpDesk />} />
           <Route path="hr-resources" element={<HrEmployee />} />
           <Route path="event-marketing" element={<Marketing />} />
-          <Route path="ecommerse" element={< Ecommers />} />
-
+          <Route path="ecommerse" element={<Ecommers />} />
 
           <Route path="unit" element={<UnitPage />} />
           <Route path="stock_report" element={<StockReport />} />
           <Route path="sales_report" element={<SalesReport />} />
           <Route path="register_report" element={<RegisterReport />} />
-          <Route path="products_quantity_alerts" element={<ProductsQuantityAlerts />} />
+          <Route
+            path="products_quantity_alerts"
+            element={<ProductsQuantityAlerts />}
+          />
           <Route path="products_report" element={<ProductsReport />} />
           <Route path="adjustments_report" element={<AdjustmentsReport />} />
           <Route path="categories_report" element={<CategoriesReport />} />
@@ -813,14 +820,22 @@ function App() {
           <Route path="damage-product-entry" element={<DamageProEntry />} />
           <Route path="product-damage-list" element={<ProductDamage />} />
           <Route path="material-re-order-list" element={<MaterialReorders />} />
-          <Route path="product-transfer-entry" element={<ProductTransferEntry />} />
-          <Route path="product-transfer-list" element={<ProductTransferList />} />
+          <Route
+            path="product-transfer-entry"
+            element={<ProductTransferEntry />}
+          />
+          <Route
+            path="product-transfer-list"
+            element={<ProductTransferList />}
+          />
           <Route path="bulk_import_inventory" element={<BulkInventry />} />
 
           {/* sales_Modules */}
           <Route path="add_privacyPolicy" element={<Add_privacyPolicy />} />
-          <Route path="add_TermsAndCondition" element={<AddTermsAndCondition />} />
-
+          <Route
+            path="add_TermsAndCondition"
+            element={<AddTermsAndCondition />}
+          />
 
           {/* <Route path="products/all/products/edit/:id" element={<AddNewProductsPage />} /> */}
           <Route path="products/seller" element={<SellerProductsPage />} />
@@ -839,7 +854,6 @@ function App() {
           <Route path="list_banner/bannerEdit/:id" element={<AddNewBanner />} />
           <Route path="list_banner" element={<ListBanner />} />
 
-
           <Route path="add_faq" element={<AddFaq />} />
           <Route path="list_faq" element={<ListFaqAdmin />} />
           <Route path="faqsMaster" element={<FaqMaster />} />
@@ -848,138 +862,271 @@ function App() {
 
           <Route path="attributes" element={<AttributeAdminPage />} />
           <Route path="product_attributes" element={<IndexPages />} />
-          <Route path="product_attributes/edit/:uid" element={<EditSetAttributesPage />} />
+          <Route
+            path="product_attributes/edit/:uid"
+            element={<EditSetAttributesPage />}
+          />
           <Route path="category_attributes" element={<Category_Attributes />} />
-          <Route path="/admin/category_attributes/edit/:id" element={<Category_Attributes />} />
+          <Route
+            path="/admin/category_attributes/edit/:id"
+            element={<Category_Attributes />}
+          />
 
           <Route path="attributes/edit/:id" element={<EditAttribute />} />
-          <Route path="pos-activation" element={< PosConfigurationPage />} />
-          <Route path="products/all" element={< AllProductsPage />} />
+          <Route path="pos-activation" element={<PosConfigurationPage />} />
+          <Route path="products/all" element={<AllProductsPage />} />
 
-          <Route path="list-purchase" element={< ListPurchasePage />} />
-          <Route path="add-purchase-list" element={< AddPurchaseListPage />} />
+          <Route path="list-purchase" element={<ListPurchasePage />} />
+          <Route path="add-purchase-list" element={<AddPurchaseListPage />} />
 
           <Route path="reviews" element={<ProductsReviewPage />} />
           <Route path="colors" element={<ColorsPage />} />
           <Route path="colors/edit/:id" element={<EditColor />} />
           <Route path="size" element={<SizePage />} />
           <Route path="size/edit/:id" element={<EditSize />} />
-          <Route path="wholesale-product/create" element={<AddNewWholesaleProductsPage />} />
-          <Route path="wholesale/all-products" element={<AllWholsaleProductsPage />} />
+          <Route
+            path="wholesale-product/create"
+            element={<AddNewWholesaleProductsPage />}
+          />
+          <Route
+            path="wholesale/all-products"
+            element={<AllWholsaleProductsPage />}
+          />
           {/* <Route path="wholesale/all-products/edit/:id" element={<EditWholsaleProducts />} /> */}
           <Route path="all_orders" element={<AllOrdersPage />} />
 
           <Route path="seller/all_orders" element={<SellerAllOrder />} />
 
-          <Route path="assign_orders/status/:id" element={<AssighOrderStatus />} />
+          <Route
+            path="assign_orders/status/:id"
+            element={<AssighOrderStatus />}
+          />
 
           <Route path="orders/status/:id" element={<OrderByStatus />} />
 
           <Route path="all_cancel_orders" element={<AllCancelOrders />} />
 
+          <Route
+            path="orders/PickupPints/:id"
+            element={<OrderByPickupPoints />}
+          />
 
-          <Route path="orders/PickupPints/:id" element={<OrderByPickupPoints />} />
-
-
-          <Route path="all_orders/order-Details/:id" element={<OrdersDetailsPage />} />
+          <Route
+            path="all_orders/order-Details/:id"
+            element={<OrdersDetailsPage />}
+          />
           <Route path="inhouse-orders" element={<InHouseOrderPage />} />
           <Route path="seller-orders" element={<SellerOrdersPage />} />
-          <Route path="orders_by_pickup_point" element={<PickUpPointOrderPage />} />
+          <Route
+            path="orders_by_pickup_point"
+            element={<PickUpPointOrderPage />}
+          />
           <Route path="customer-list" element={<CustomerListPage />} />
           <Route path="customer-create" element={<AddCustomer />} />
-          <Route path="customer-shippingAddress" element={<CustomerShippingAddress />} />
-          <Route path="customer-shippingAddress/detail/:id" element={<CustomerShippingAdressDetail />} />
+          <Route
+            path="customer-shippingAddress"
+            element={<CustomerShippingAddress />}
+          />
+          <Route
+            path="customer-shippingAddress/detail/:id"
+            element={<CustomerShippingAdressDetail />}
+          />
           {/* <Route path="customer-shippingAddress/create" element={<CustomerShippingAddList />} /> */}
           <Route path="customer-list/edit/:id" element={<AddCustomer />} />
-          <Route path="customer-list/editBillings/:id" element={<NewCustomers />} />
+          <Route
+            path="customer-list/editBillings/:id"
+            element={<NewCustomers />}
+          />
           <Route path="seller" element={<AllSellerPage />} />
 
           {/* <Route path="customer" element={<AllCustomerPage />} /> */}
 
-          <Route path="serial-wise-stock-report" element={<SerialWiseStockReport />} />
+          <Route
+            path="serial-wise-stock-report"
+            element={<SerialWiseStockReport />}
+          />
           <Route path="serial-code-tracking" element={<SerialCodeTracking />} />
 
-          <Route path="in_house_sale_report" element={<InHouseProductsSalePage />} />
-          <Route path="seller_sale_report" element={<SellerProductsSalePage />} />
+          <Route
+            path="in_house_sale_report"
+            element={<InHouseProductsSalePage />}
+          />
+          <Route
+            path="seller_sale_report"
+            element={<SellerProductsSalePage />}
+          />
           <Route path="stock_report" element={<ProductsStockPage />} />
           <Route path="wish_report" element={<ProductWhislistPage />} />
           <Route path="user_search_report" element={<UserSearchesPage />} />
           <Route path="commission-log" element={<ComissionHistoryPage />} />
-          <Route path="wallet-history" element={<WalletRechargeHistoryPage />} />
+          <Route
+            path="wallet-history"
+            element={<WalletRechargeHistoryPage />}
+          />
           <Route path="Paymets" element={<PayoutsPage />} />
           <Route path="withdraw_requests_all" element={<PayoutRequestPage />} />
           <Route path="seller/payment-show" element={<PaymentShowPage />} />
           <Route path="vendor_commission" element={<SellerCommissionPage />} />
           <Route path="seller_packages" element={<SellerPackagePage />} />
-          <Route path="seller_packages/create" element={<CreatePackagePage />} />
+          <Route
+            path="seller_packages/create"
+            element={<CreatePackagePage />}
+          />
           <Route path="flash_deals" element={<FlashDealsPage />} />
           <Route path="flash_deals/edit/:id" element={<EditFlashDeal />} />
-          <Route path="flash_deals/create" element={<FlashDealsInformationPage />} />
+          <Route
+            path="flash_deals/create"
+            element={<FlashDealsInformationPage />}
+          />
           <Route path="newsletter" element={<NewsLetterPage />} />
           <Route path="sms" element={<BulkSMSPage />} />
           <Route path="subscribers" element={<SubscribersPage />} />
           <Route path="seller_packages/edit/:id" element={<UpdateInfo />} />
           <Route path="verification/form" element={<VerificationFormPage />} />
           <Route path="seller-banners" element={<SellerBannerPage />} />
-          <Route path="seller-banners/edit/:id" element={<EditSellerBanner />} />
+          <Route
+            path="seller-banners/edit/:id"
+            element={<EditSellerBanner />}
+          />
 
           <Route path="affiliate" element={<AffiliatePage />} />
-          <Route path="affiliate-cofiguration" element={<AfiliatedConfigurationPage />} />
+          <Route
+            path="affiliate-cofiguration"
+            element={<AfiliatedConfigurationPage />}
+          />
           <Route path="affiliate-users" element={<AffiliateUserPage />} />
-          <Route path="affiliate-users/verification/:id" element={<AffilliateUserVerification />} />
-          <Route path="affiliate-users/deatails" element={<AffiliateUserDetailsPage />} />
+          <Route
+            path="affiliate-users/verification/:id"
+            element={<AffilliateUserVerification />}
+          />
+          <Route
+            path="affiliate-users/deatails"
+            element={<AffiliateUserDetailsPage />}
+          />
           <Route path="refferal/users" element={<RefferalUsersPage />} />
           <Route path="uploaded-files" element={<UploadedFilePages />} />
           <Route path="uploaded-files/create" element={<UploadCreate />} />
-          <Route path="affiliate/withdraw_requests" element={<AffiliateWithdrowPage />} />
+          <Route
+            path="affiliate/withdraw_requests"
+            element={<AffiliateWithdrowPage />}
+          />
           <Route path="affiliate/logs" element={<AffliateLogsPage />} />
 
           <Route path="coupon" element={<CouponPage />} />
-          <Route path="coupon/create" element={<CouponInformationAddingPage />} />
-          <Route path="coupon/edit/:id" element={<CouponInformationAddingPage />} />
+          <Route
+            path="coupon/create"
+            element={<CouponInformationAddingPage />}
+          />
+          <Route
+            path="coupon/edit/:id"
+            element={<CouponInformationAddingPage />}
+          />
           <Route path="support_ticket" element={<TicketPage />} />
-          <Route path="support_ticket/edit/:id" element={<EditSupportTicket />} />
-          <Route path="support_ticket/detail/:id" element={<SupportTicketDetailPage />} />
+          <Route
+            path="support_ticket/edit/:id"
+            element={<EditSupportTicket />}
+          />
+          <Route
+            path="support_ticket/detail/:id"
+            element={<SupportTicketDetailPage />}
+          />
           <Route path="conversations" element={<ProductsConversationPage />} />
           <Route path="product-queries" element={<ProductsQuerriesPage />} />
-          <Route path="offline-wallet-recharge-requests" element={<OfflineWalletRechargePage />} />
-          <Route path="offline-seller-package-payment-requests" element={<OfflineSellerPackagePaymentRequestPage />} />
+          <Route
+            path="offline-wallet-recharge-requests"
+            element={<OfflineWalletRechargePage />}
+          />
+          <Route
+            path="offline-seller-package-payment-requests"
+            element={<OfflineSellerPackagePaymentRequestPage />}
+          />
           <Route path="digitalproducts" element={<DigitalProductsPage />} />
-          <Route path="digitalproducts/create" element={<NewDigitalProducts />} />
-          <Route path="product-bulk-upload/index" element={<BulkImportPage />} />
+          <Route
+            path="digitalproducts/create"
+            element={<NewDigitalProducts />}
+          />
+          <Route
+            path="product-bulk-upload/index"
+            element={<BulkImportPage />}
+          />
           <Route path="refund-request-all" element={<RefundRequestPage />} />
           <Route path="paid-refund" element={<ApprovedRefundsPage />} />
           <Route path="rejected-refund" element={<RejectedRefundsPage />} />
-          <Route path="refund-request-config" element={<RefundConfigurationPage />} />
-          <Route path="blog" element={< AllPostPage />} />
-          <Route path="blog/edit/:id" element={< EditAllBlogsPost />} />
+          <Route
+            path="refund-request-config"
+            element={<RefundConfigurationPage />}
+          />
+          <Route path="blog" element={<AllPostPage />} />
+          <Route path="blog/edit/:id" element={<EditAllBlogsPost />} />
 
-          <Route path="blog/create" element={< AddNewPost />} />
-          <Route path="blog-category" element={< BlogCategoriesPage />} />
-          <Route path="blog-category/edit/:id" element={< EditBlogCategory />} />
-          <Route path="blog-category/create" element={< AddCategories />} />
-          <Route path="set-share-reward-points" element={< ShareRewardPointsPage />} />
-          <Route path="set-like-reward-points" element={< LikeRewardPointsPage />} />
-          <Route path="manual_payment_methods" element={<ManualPaymentMethordPage />} />
-          <Route path="manual_payment_methods/create" element={<ManualPaymentMethordCreate />} />
-          <Route path="manual_payment_methods/Information" element={<ManualPaymentMethordInformation />} />
+          <Route path="blog/create" element={<AddNewPost />} />
+          <Route path="blog-category" element={<BlogCategoriesPage />} />
+          <Route path="blog-category/edit/:id" element={<EditBlogCategory />} />
+          <Route path="blog-category/create" element={<AddCategories />} />
+          <Route
+            path="set-share-reward-points"
+            element={<ShareRewardPointsPage />}
+          />
+          <Route
+            path="set-like-reward-points"
+            element={<LikeRewardPointsPage />}
+          />
+          <Route
+            path="manual_payment_methods"
+            element={<ManualPaymentMethordPage />}
+          />
+          <Route
+            path="manual_payment_methods/create"
+            element={<ManualPaymentMethordCreate />}
+          />
+          <Route
+            path="manual_payment_methods/Information"
+            element={<ManualPaymentMethordInformation />}
+          />
           <Route path="otp-configuration" element={<OtpConfigurationPage />} />
           <Route path="sms-templates" element={<SmsTemplatesPage />} />
-          <Route path="otp-credentials-configuration" element={<SetOtpCredentialPage />} />
-          <Route path="club-points/configuration" element={<ClubPointConfigurationPage />} />
+          <Route
+            path="otp-credentials-configuration"
+            element={<SetOtpCredentialPage />}
+          />
+          <Route
+            path="club-points/configuration"
+            element={<ClubPointConfigurationPage />}
+          />
           <Route path="club-points/index" element={<UserPointPage />} />
-          <Route path="club-points/index/edit/:id" element={<EditUserPoint />} />
+          <Route
+            path="club-points/index/edit/:id"
+            element={<EditUserPoint />}
+          />
           <Route path="club-points/Details" element={<UsrPointsDetails />} />
           <Route path="set-club-points" element={<SetProductPointPage />} />
-          <Route path="set-club-points/edit/:id" element={<EditAllPointsTable />} />
+          <Route
+            path="set-club-points/edit/:id"
+            element={<EditAllPointsTable />}
+          />
 
-          <Route path="african/configuration" element={<AfricanPgConfigurationPage />} />
-          <Route path="african/configuration/payment-method" element={<PaymentMethodPage />} />
-          <Route path="credentials_index" element={<AfricanPgCredentialPage />} />
+          <Route
+            path="african/configuration"
+            element={<AfricanPgConfigurationPage />}
+          />
+          <Route
+            path="african/configuration/payment-method"
+            element={<PaymentMethodPage />}
+          />
+          <Route
+            path="credentials_index"
+            element={<AfricanPgCredentialPage />}
+          />
           <Route path="website/header" element={<HeaderPage />} />
           <Route path="website-pages" element={<WebsitePagesPage />} />
-          <Route path="website-pages/custom-pages/create" element={<AddNewPage />} />
-          <Route path="website-pages/custom-pages/edit/:id" element={<AddNewPage />} />
+          <Route
+            path="website-pages/custom-pages/create"
+            element={<AddNewPage />}
+          />
+          <Route
+            path="website-pages/custom-pages/edit/:id"
+            element={<AddNewPage />}
+          />
           <Route path="website-footer" element={<FooterPage />} />
           <Route path="website/appearance" element={<AppearancesPage />} />
           <Route path="general-setting" element={<GeneralSettingPage />} />
@@ -993,8 +1140,14 @@ function App() {
           <Route path="/admin/roles/create" element={<AddRole />} />
           <Route path="languages" element={<LanguagesPage />} />
           <Route path="languages/create" element={<AddNewLanguagePage />} />
-          <Route path="languages/translation" element={<LanguageTranslationPage />} />
-          <Route path="languages/app-translation" element={<AppTranslationPage />} />
+          <Route
+            path="languages/translation"
+            element={<LanguageTranslationPage />}
+          />
+          <Route
+            path="languages/app-translation"
+            element={<AppTranslationPage />}
+          />
           <Route path="languages/edit/:id" element={<LanguageEditPage />} />
           <Route path="currency" element={<CurrencyPage />} />
           <Route path="country" element={<Country />} />
@@ -1002,10 +1155,16 @@ function App() {
           <Route path="currency/edit/:id" element={<EditCurrency />} />
 
           <Route path="system/update" element={<SystemUpdatePage />} />
-          <Route path="system/server-status" element={< ServerStatusPage />} />
+          <Route path="system/server-status" element={<ServerStatusPage />} />
           <Route path="payment-method" element={<PaymentsMethodPage />} />
-          <Route path="order-configuration" element={<OrderConfigurationPage />} />
-          <Route path="file_system" element={<FileSystemCacheConfigurationPage />} />
+          <Route
+            path="order-configuration"
+            element={<OrderConfigurationPage />}
+          />
+          <Route
+            path="file_system"
+            element={<FileSystemCacheConfigurationPage />}
+          />
           <Route path="pick_up_points" element={<PickupPointsPage />} />
           <Route path="pick_up_points/edit/:id" element={<EditPickUpPoint />} />
 
@@ -1017,7 +1176,10 @@ function App() {
           <Route path="google-recaptcha" element={<GoogleRecaptchaPage />} />
           <Route path="google-map" element={<GoogleMapPage />} />
           <Route path="google-firebase" element={<GoogleFirebasePage />} />
-          <Route path="shipping_configuration" element={<ShippingConfigurationPage />} />
+          <Route
+            path="shipping_configuration"
+            element={<ShippingConfigurationPage />}
+          />
           <Route path="countries" element={<ShippingCountriesPage />} />
           <Route path="states" element={<ShippingStatePage />} />
           <Route path="cities" element={<ShippingCitiesPage />} />
@@ -1026,15 +1188,24 @@ function App() {
 
           <Route path="categories" element={<CategoriesPageAdmin />} />
           <Route path="industry" element={<IndustryMaster />} />
-          <Route path="industry/create_industryMaster" element={<IndustryCreate />} />
-          <Route path="industry/create_industryMaster/edit/:id" element={<IndustryCreate />} />
+          <Route
+            path="industry/create_industryMaster"
+            element={<IndustryCreate />}
+          />
+          <Route
+            path="industry/create_industryMaster/edit/:id"
+            element={<IndustryCreate />}
+          />
           <Route path="categories/create" element={<AddnewCategories />} />
           <Route path="categories/edit/:id" element={<AddnewCategories />} />
 
           {/* junaid routes */}
 
           <Route path="seller" element={<AllSellerPage />} />
-          <Route path="seller/detail-fillup/:id" element={<SellerFillupForm />} />
+          <Route
+            path="seller/detail-fillup/:id"
+            element={<SellerFillupForm />}
+          />
 
           <Route path="add-seller-product" element={<AddNewProductsPage />} />
           <Route path="seller/form" element={<SellerAddEditForm />} />
@@ -1056,12 +1227,12 @@ function App() {
           <Route path="list_popup/edit_popup/:id" element={<AddPopups />} />
           <Route path="list_popup" element={<ListPopups />} />
 
-
-
-
           {/* custom_fields AAP */}
           <Route path="custom_fields" element={<CustomFelds />} />
-          <Route path="custom_fields/custom_fields_add" element={<Custom_fields_add />} />
+          <Route
+            path="custom_fields/custom_fields_add"
+            element={<Custom_fields_add />}
+          />
 
           <Route path="training" element={<Trainings />}>
             <Route path="" element={<Trainingprograms />} />
@@ -1079,16 +1250,6 @@ function App() {
           <Route path="tasks-analysis" element={<TasksAnalysis />} />
           <Route path="barchart-analysis" element={<BarchartA />} />
 
-
-
-
-
-
-
-
-
-
-
           <Route path="contract" element={<ContractSV />} />
           <Route path="new-contract" element={<NewContracts />} />
           <Route path="dependant" element={<DependantS />} />
@@ -1097,18 +1258,18 @@ function App() {
           <Route path="product" element={<PRoduct />} />
           <Route path="point-of-sale" element={<Pointofsale />} />
           <Route path="rental" element={<REntal />} />
-          <Route path="subscrip" element={< Subscrip />} />
-          <Route path="salesperson" element={< Salesperson />} />
-          <Route path="lead-crm" element={< LeadsCRM />} />
-          <Route path="pipeline" element={< PipeLine />} />
-          <Route path="accounting" element={< Account />} />
-          <Route path="invoicing" element={< Invoice />} />
-          <Route path="benchmark" element={< BenchMark />} />
-          <Route path="expenses" element={< Expenses />} />
-          <Route path="purchase" element={< Purchas />} />
-          <Route path="venders" element={< Vender />} />
-          <Route path="inventory" element={< Inventoryof />} />
-          <Route path="inventory-flow" element={< Inventoryfl />} />
+          <Route path="subscrip" element={<Subscrip />} />
+          <Route path="salesperson" element={<Salesperson />} />
+          <Route path="lead-crm" element={<LeadsCRM />} />
+          <Route path="pipeline" element={<PipeLine />} />
+          <Route path="accounting" element={<Account />} />
+          <Route path="invoicing" element={<Invoice />} />
+          <Route path="benchmark" element={<BenchMark />} />
+          <Route path="expenses" element={<Expenses />} />
+          <Route path="purchase" element={<Purchas />} />
+          <Route path="venders" element={<Vender />} />
+          <Route path="inventory" element={<Inventoryof />} />
+          <Route path="inventory-flow" element={<Inventoryfl />} />
 
           {/* <Route path="task-project-dash" element={<ProjectDashBord />} /> */}
           <Route path="report-exl" element={<ReportExl />} />
@@ -1116,9 +1277,6 @@ function App() {
           <Route path="fareenas" element={<Fareenas />} />
 
           <Route path="new-dashboard" element={<Odoo />} />
-
-
-
 
           <Route path="system_settings" element={<SystemSettingsPage />} />
           <Route path="add_printer" element={<AddPrinterPage />} />
@@ -1134,7 +1292,6 @@ function App() {
           <Route path="delivery-run-list" element={<DeliveryRunListPage />} />
           <Route path="delivery-run-sheet" element={<DeliveryRunSheetPage />} />
 
-
           <Route path="list_quotation" element={<ListQuatation />} />
           <Route path="list-vtech-quotation" element={<ListVtechQuotation />} />
           <Route path="add_quotation" element={<Add_quotation />} />
@@ -1144,21 +1301,44 @@ function App() {
           <Route path="list_members" element={<ListEtgMember />} />
 
           <Route path="delivery-boys" element={<AllDeliveryBoys />} />
-          <Route path="/admin/delivery-boys/create" element={<AddNewDeliveryBoy />} />
-          <Route path="/admin/delivery-boys/edit/:id" element={<AddNewDeliveryBoy />} />
-          <Route path="payment-history" element={<DeliveryBoyPaymentHistory />} />
-          <Route path="delivery-collection-list" element={<DeliveryCollectionList />} />
-          <Route path="delivery-cancel-request" element={<DeliveryBoyCancelRequest />} />
-          <Route path="delivery-payment-configuration" element={<DeliveryBoyConfiguration />} />
+          <Route
+            path="/admin/delivery-boys/create"
+            element={<AddNewDeliveryBoy />}
+          />
+          <Route
+            path="/admin/delivery-boys/edit/:id"
+            element={<AddNewDeliveryBoy />}
+          />
+          <Route
+            path="payment-history"
+            element={<DeliveryBoyPaymentHistory />}
+          />
+          <Route
+            path="delivery-collection-list"
+            element={<DeliveryCollectionList />}
+          />
+          <Route
+            path="delivery-cancel-request"
+            element={<DeliveryBoyCancelRequest />}
+          />
+          <Route
+            path="delivery-payment-configuration"
+            element={<DeliveryBoyConfiguration />}
+          />
           <Route path="delivery-boy-status" element={<DeliveryBoyStatus />} />
-
 
           <Route path="all/reviews" element={<AllReviewsProducts />} />
           <Route path="all/question" element={<AllQuestion />} />
 
           <Route path="seller_packages_list" element={<ListParchaseList />} />
-          <Route path="seller_packages_purchase_list" element={<Seller_packages_purchase_list />} />
-          <Route path="socialMedia-credential" element={<SocialMediaCredentail />} />
+          <Route
+            path="seller_packages_purchase_list"
+            element={<Seller_packages_purchase_list />}
+          />
+          <Route
+            path="socialMedia-credential"
+            element={<SocialMediaCredentail />}
+          />
 
           <Route path="input_purchase_tax_report" element={<InputPurchase />} />
           <Route path="output_sale_tax_report" element={<OutputPurchase />} />
@@ -1170,23 +1350,47 @@ function App() {
           <Route path="add-stock-adjustment" element={<AddAdjustments />} />
           <Route path="list-stock-adjustment" element={<ListAdjustment />} />
 
-          <Route path="products/all/print_barcodes/:id" element={<PrintBarCode />} />
+          <Route
+            path="products/all/print_barcodes/:id"
+            element={<PrintBarCode />}
+          />
 
-          <Route path="products/all/print_barcodes/:id" element={<PrintBarCode />} />
+          <Route
+            path="products/all/print_barcodes/:id"
+            element={<PrintBarCode />}
+          />
 
           {/* {zilani code} */}
-          <Route path="coast-centre-create" element={<CreateCostCentrePage />} />
+          <Route
+            path="coast-centre-create"
+            element={<CreateCostCentrePage />}
+          />
           <Route path="cost-centre" element={<CostCentreListPage />} />
           <Route path="cost-centre/edit/:id" element={<EditCostCentrePage />} />
-          <Route path="coast-centre-category-create" element={<CreateCostCentreCategorypage />} />
-          <Route path="coast-centre-category" element={<ListCostCentreCategoryPage />} />
-          <Route path="coast-centre-category/edit/:id" element={<EditCostCentreCategoryPage />} />
+          <Route
+            path="coast-centre-category-create"
+            element={<CreateCostCentreCategorypage />}
+          />
+          <Route
+            path="coast-centre-category"
+            element={<ListCostCentreCategoryPage />}
+          />
+          <Route
+            path="coast-centre-category/edit/:id"
+            element={<EditCostCentreCategoryPage />}
+          />
           <Route path="budget-create" element={<CreateBudgetPage />} />
           <Route path="budgets" element={<BudgetListpage />} />
           <Route path="budgets/edit/:id" element={<EditBudgetPage />} />
-          <Route path="vouchertype/create" element={<CreateVoucherTypePage />} />
+          <Route
+            path="vouchertype/create"
+            element={<CreateVoucherTypePage />}
+          />
           <Route path="vouchertypes" element={<ListVoucherTypePage />} />
-          <Route path="vouchertypes/edit/:id" element={<EditVoucherTypePage />} />
+          <Route
+            path="vouchertypes/edit/:id"
+            element={<EditVoucherTypePage />}
+          />
 
           {/* <Route path="add-newasset-category" element={<AddAssetCategories />} />
           <Route path="asset-category" element={<AssetCategorey />} />
@@ -1215,57 +1419,119 @@ function App() {
           <Route path="reports-status" element={<ReportAssetStatus />} />
           <Route path="reports-allocations" element={<ReportAllocation />} /> */}
 
-          <Route path="/admin/assets-dashboard/newasset-category" element={<AssetsList />} />
+          <Route
+            path="/admin/assets-dashboard/newasset-category"
+            element={<AssetsList />}
+          />
           <Route path="allocate/:id" element={<Allocate />} />
           <Route path="asset/details/:id" element={<DetailsAssets />} />
           <Route path="asset/edit/:id" element={<EditAssets />} />
-          <Route path="add-newasset-category" element={<AddAssetCategories />} />
+          <Route
+            path="add-newasset-category"
+            element={<AddAssetCategories />}
+          />
           <Route path="asset-category" element={<AssetCategorey />} />
           <Route path="my-assets" element={<MyAssets />} />
           <Route path="add-assets-request" element={<AddAssestsRequest />} />
-          <Route path="my-assets-request-list" element={<MyAssetsRequestList />} />
+          <Route
+            path="my-assets-request-list"
+            element={<MyAssetsRequestList />}
+          />
           <Route path="assets-request-list" element={<AssestsRequestList />} />
-          <Route path="assets-request-list/edit/:id" element={<EditAssetsRequestList />} />
-          <Route path="asset-category-type-view/details/:id" element={<AssetCategoryDetails />} />
+          <Route
+            path="assets-request-list/edit/:id"
+            element={<EditAssetsRequestList />}
+          />
+          <Route
+            path="asset-category-type-view/details/:id"
+            element={<AssetCategoryDetails />}
+          />
           <Route path="add-asset-category" element={<AssetAddCategory />} />
-          <Route path="asset-category/edit/:id" element={<EditAssetCategory />} />
+          <Route
+            path="asset-category/edit/:id"
+            element={<EditAssetCategory />}
+          />
           <Route path="asset-sub-category" element={<AssetSubCatecories />} />
           <Route path="add-asset-sub-category" element={<AddSubCategories />} />
-          <Route path="asset-sub-category/edit/:id" element={<EditAssetsSubCategory />} />
-          <Route path="asset-sub-category-type-view/details/:id" element={<DetailsSubCategories />} />
+          <Route
+            path="asset-sub-category/edit/:id"
+            element={<EditAssetsSubCategory />}
+          />
+          <Route
+            path="asset-sub-category-type-view/details/:id"
+            element={<DetailsSubCategories />}
+          />
           <Route path="asset-comments" element={<AssetComments />} />
           <Route path="add-asset-comments" element={<AssetsAddComment />} />
           <Route path="asset-status" element={<AssetStatus />} />
           <Route path="add-asset-status" element={<AddAssetsStatus />} />
           <Route path="asset-status/edit/:id" element={<EditAssetsStatus />} />
-          <Route path="asset-status/details/:id" element={<DetailsAssetsStatus />} />
+          <Route
+            path="asset-status/details/:id"
+            element={<DetailsAssetsStatus />}
+          />
           <Route path="department" element={<Department />} />
           <Route path="add-department" element={<AddDepartment />} />
-          <Route path="view-department/details/:id" element={<DetailsDepartment />} />
+          <Route
+            path="view-department/details/:id"
+            element={<DetailsDepartment />}
+          />
           <Route path="department/edit/:id" element={<EditDepartment />} />
           <Route path="sub-department" element={<SubDepartMent />} />
           <Route path="add-sub-department" element={<AddSubDepartment />} />
-          <Route path="sub-department/edit/:id" element={<EditSubDepartment />} />
-          <Route path="view-sub-department/details/:id" element={<DetailsSubDepartment />} />
+          <Route
+            path="sub-department/edit/:id"
+            element={<EditSubDepartment />}
+          />
+          <Route
+            path="view-sub-department/details/:id"
+            element={<DetailsSubDepartment />}
+          />
           <Route path="designation" element={<Desigination />} />
           <Route path="add-designation" element={<AddDesigination />} />
           <Route path="designation/edit/:id" element={<EditDesgination />} />
-          <Route path="designation/details/:id" element={<DetailsDesgination />} />
-          <Route path="list-delivery-challan" element={<DeliveryChalanReportPage />} />
-          <Route path="add-delivery-challan" element={<AddDeliveryChalanPage />} />
+          <Route
+            path="designation/details/:id"
+            element={<DetailsDesgination />}
+          />
+          <Route
+            path="list-delivery-challan"
+            element={<DeliveryChalanReportPage />}
+          />
+          <Route
+            path="add-delivery-challan"
+            element={<AddDeliveryChalanPage />}
+          />
           <Route path="reports-status" element={<ReportAssetStatus />} />
           <Route path="reports-allocations" element={<ReportAllocation />} />
-          <Route path="assets-dashboard" element={<AssetsDashboardAdminComp />} />
+          <Route
+            path="assets-dashboard"
+            element={<AssetsDashboardAdminComp />}
+          />
           <Route path="add-ticket" element={<AddTicket />} />
           <Route path="complaint-type" element={<ComplaintType />} />
-          <Route path="complaint-type/edit/:id" element={<EditComplaintType />} />
+          <Route
+            path="complaint-type/edit/:id"
+            element={<EditComplaintType />}
+          />
           <Route path="complaint-nature" element={<ComplaintNature />} />
-          <Route path="complaint-nature/edit/:id" element={<EditComplaintNature />} />
+          <Route
+            path="complaint-nature/edit/:id"
+            element={<EditComplaintNature />}
+          />
           <Route path="staff-ticket-list" element={<StaffTicketList />} />
-          <Route path="staff-ticket-list/edit/:id" element={<EditStaffTicket />} />
-          <Route path="employees-complaints-dashboard" element={<ComplaintsDashboardPages />} />
-          <Route path="view/complaints-detail/:id" element={<ComplaintDetail />} />
-
+          <Route
+            path="staff-ticket-list/edit/:id"
+            element={<EditStaffTicket />}
+          />
+          <Route
+            path="employees-complaints-dashboard"
+            element={<ComplaintsDashboardPages />}
+          />
+          <Route
+            path="view/complaints-detail/:id"
+            element={<ComplaintDetail />}
+          />
 
           {/* {shoaib code} */}
 
@@ -1277,14 +1543,14 @@ function App() {
           <Route path="delivery-time-settings" element={<DeliverySettings />} />
           <Route path="marketplace-pre-order" element={<MarketPlacePre />} />
           <Route path="marketplace-event-ticket" element={<MarketTicket />} />
-          <Route path="marketplace-validator" element={<MarketplaceValidator />} />
-
+          <Route
+            path="marketplace-validator"
+            element={<MarketplaceValidator />}
+          />
 
           <Route path="job-descriptions" element={<JobDesc />} />
           <Route path="job-group" element={<JobGroup />} />
           <Route path="job-departments" element={<JobDepartment />} />
-
-
 
           <Route path="group-management" element={<GroupManagement />} />
           <Route path="import-excel" element={<ImportExcel />} />
@@ -1299,23 +1565,37 @@ function App() {
           {/* {my new Routes end} */}
           {/* <Route path="add_privacyPolicy" element={<ViewRecords />} /> */}
 
-
           {/* {Shhaz Routes start} */}
           <Route path="drop-ship" element={<Dropships />} />
-          < Route path="dropship-order" element={<DropshipOrders />} />
-          < Route path="new-warehouse" element={<NewWarehouse />} />
-          < Route path="manage-shopping-rules" element={<ManageShoppingRules />} />
+          <Route path="dropship-order" element={<DropshipOrders />} />
+          <Route path="new-warehouse" element={<NewWarehouse />} />
+          <Route
+            path="manage-shopping-rules"
+            element={<ManageShoppingRules />}
+          />
           <Route path="add-new-warehouse" element={<AddNewShoppingRule />} />
-          <Route path="manage-dropship-product-upload" element={<ManageDropshipProductUpload />} />
-          <Route path="run-dropship-product-profile" element={<RunDropshipProductProfile />} />
-          <Route path="dropship-dataflow-profile" element={<DropshipDataFlowProfile />} />
+          <Route
+            path="manage-dropship-product-upload"
+            element={<ManageDropshipProductUpload />}
+          />
+          <Route
+            path="run-dropship-product-profile"
+            element={<RunDropshipProductProfile />}
+          />
+          <Route
+            path="dropship-dataflow-profile"
+            element={<DropshipDataFlowProfile />}
+          />
           <Route path="add-new-calls" element={<Addnewcalls />} />
           <Route path="asset-request" element={<AssetRequest />} />
           <Route path="call-centre-dashboard" element={<CallOverView />} />
           <Route path="AddAgreement" element={<AddAgreement />} />
           <Route path="add-v-tech-purchase" element={<VtechPurchase />} />
           <Route path="list-v-tech-purchase" element={<ListvTechPurchase />} />
-          <Route path="list-v-tech-Transfer-stock" element={<ListVPurchaseStock />} />
+          <Route
+            path="list-v-tech-Transfer-stock"
+            element={<ListVPurchaseStock />}
+          />
           <Route path="estimate-sales" element={<EstimateSales />} />
           <Route path="new-estimate" element={<NewEstimate />} />
           <Route path="task-crm" element={<Task />} />
@@ -1323,37 +1603,39 @@ function App() {
           <Route path="dashboard-crm" element={<Dashboard />} />
           <Route path="reminder-dash" element={<RecruitmentDashNew />} />
           <Route path="project" element={<Project />} />
-          <Route path='add-new-project' element={<AddNewProject />} />
-          <Route path='project/project-view/:id' element={<ProjectView />} />
-          <Route path='accounts' element={<ChartOfAccounts />} />
-          <Route path='accounts-group' element={<ChartOfAccountGroup />} />
+          <Route path="add-new-project" element={<AddNewProject />} />
+          <Route path="project/project-view/:id" element={<ProjectView />} />
+          <Route path="accounts" element={<ChartOfAccounts />} />
+          <Route path="accounts-group" element={<ChartOfAccountGroup />} />
           <Route path="groups" element={<Groups />} />
           <Route path="add-voucher" element={<AddVochers />} />
           <Route path="list-voucher" element={<ListVochers />} />
           <Route path="add-ledgers" element={<Ladgers />} />
           <Route path="reports-ledgers" element={<ReportsLedgers />} />
-          <Route path='ledgers-edit/:id' element={<Ladgers />} />
+          <Route path="ledgers-edit/:id" element={<Ladgers />} />
           <Route path="list-ledgers" element={<ListsLegers />} />
-          <Route path='add-group' element={<AddCompany />} />
-          <Route path='group_edit/:id' element={<AddCompany />} />
-          <Route path='list-group' element={<ListGroups />} />
-          <Route path='reports-group' element={<ReportsGroup />} />
-          <Route path='account-dashbord' element={<DashboarD />} />
-          <Route path='report' element={<Report />} />
-          <Route path='add-company' element={<AddCompanys />} />
-          <Route path='company_edit/:id' element={<AddCompanys />} />
-          <Route path='list-company' element={<ListCompany />} />
-          <Route path='/admin/rp_balance_report_sheet' element={<Rpblancesheetcomprasion />} />
-          <Route path='day_book' element={<DayBooks str="Day" />} />
-          <Route path='cash_book' element={<DayBooks str="Cash" />} />
-          <Route path='bank_book' element={<DayBooks str="Bank" />} />
+          <Route path="add-group" element={<AddCompany />} />
+          <Route path="group_edit/:id" element={<AddCompany />} />
+          <Route path="list-group" element={<ListGroups />} />
+          <Route path="reports-group" element={<ReportsGroup />} />
+          <Route path="account-dashbord" element={<DashboarD />} />
+          <Route path="report" element={<Report />} />
+          <Route path="add-company" element={<AddCompanys />} />
+          <Route path="company_edit/:id" element={<AddCompanys />} />
+          <Route path="list-company" element={<ListCompany />} />
+          <Route
+            path="/admin/rp_balance_report_sheet"
+            element={<Rpblancesheetcomprasion />}
+          />
+          <Route path="day_book" element={<DayBooks str="Day" />} />
+          <Route path="cash_book" element={<DayBooks str="Cash" />} />
+          <Route path="bank_book" element={<DayBooks str="Bank" />} />
 
           <Route path="routings" element={<Routings />} />
           <Route path="work-center" element={<WorkCenter />} />
           <Route path="manufacturing-order" element={<ManufacturingOrder />} />
           <Route path="work-order" element={<WorkOrder />} />
           <Route path="view-work-order" element={<ViewWorkOrder />} />
-
 
           <Route path="crm-1" element={<CRM1 />} />
           <Route path="Purchase" element={<PurchasoDo />} />
@@ -1363,22 +1645,33 @@ function App() {
           <Route path="email-new" element={<NewMail />} />
 
           {/* Mustafa Works */}
-          <Route path="special-seller-list" element={<SpecialSellerListPage />} />
+          <Route
+            path="special-seller-list"
+            element={<SpecialSellerListPage />}
+          />
           <Route path="reasonMaster" element={<ReasionMaster />} />
-          <Route path="special-seller-list/:id" element={<SpecialSellerListPage />} />
+          <Route
+            path="special-seller-list/:id"
+            element={<SpecialSellerListPage />}
+          />
           <Route path="division" element={<Division_and_districtAdd />} />
-          <Route path="division/edit/:id" element={<Division_and_districtAdd />} />
+          <Route
+            path="division/edit/:id"
+            element={<Division_and_districtAdd />}
+          />
           <Route path="district" element={<Districs />} />
           <Route path="district/edit/:id" element={<Districs />} />
           <Route path="application_track" element={<Application_track />} />
-          <Route path="special-seller/details/:id" element={<SpecialSellerDetailsPage />} />
+          <Route
+            path="special-seller/details/:id"
+            element={<SpecialSellerDetailsPage />}
+          />
           <Route path="contact_mail_info" element={<ContactMailInfo />} />
 
           <Route path="ShippingCostArea" element={<ShippingCostArea />} />
           <Route path="ShippingCostSetting" element={<ShippingSetting />} />
 
           <Route path="contact_message" element={<ContactMessage />} />
-
 
           {/* by Sajid */}
 
@@ -1390,28 +1683,31 @@ function App() {
           </Route>
           <Route path="add-working-hours" element={<AddWorkingHours />} />
 
-
           <Route path="setting" element={<Setting />}>
             <Route path="" element={<Generals />} />
             <Route path="banking" element={<Banking />} />
           </Route>
-          <Route path='add-banking' element={<AddBanking />} />
-
+          <Route path="add-banking" element={<AddBanking />} />
 
           {/* {nazim Routes end} */}
           <Route path="sales-tax-report" element={<SalesTaxRepors />} />
           <Route path="purchase-tax-report" element={<PurchaseTaxReport />} />
-          <Route path='supplier-items-report' element={<SupplierItemsReport />} />
+          <Route
+            path="supplier-items-report"
+            element={<SupplierItemsReport />}
+          />
           <Route path="sales-report" element={<SalesReports />} />
           <Route path="sales-return-report" element={<SalesReturnReport />} />
           <Route path="seller-point-return" element={<SellerPointsReturn />} />
           <Route path="purchase-report" element={<PurchaseReport />} />
-          <Route path="purchase-return-report" element={<PurchaseReturnReport />} />
+          <Route
+            path="purchase-return-report"
+            element={<PurchaseReturnReport />}
+          />
           <Route path="expense-report" element={<ExpenseReport />} />
           <Route path="stock-report" element={<StockReportV />} />
           <Route path="sales-item-report" element={<SaleItemReport />} />
           <Route path="return-item-report" element={<ReturnItemsReport />} />
-
 
           <Route path="to-do-list" element={<ToDoLists />} />
           <Route path="to-do-setting" element={<MyTodoSetting />} />
@@ -1423,22 +1719,18 @@ function App() {
           <Route path="gstr1-report" element={<GSTR />} />
           <Route path="gstr2-report" element={<GSTR2 />} /> */}
 
-
-
-
-
-
-
-
-
-
-
           <Route path="bills-of-material" element={<BillsofMaterials />} />
-          <Route path="view-billsofmaterials" element={<ViewBillsofMaterials />} />
+          <Route
+            path="view-billsofmaterials"
+            element={<ViewBillsofMaterials />}
+          />
 
           <Route path="sales-gst-report" element={<SalesGstreport />} />
           <Route path="Purchase-gst-report" element={<PurchaseGstreport />} />
-          <Route path="sales-summary-report" element={<SalesSummaryreports />} />
+          <Route
+            path="sales-summary-report"
+            element={<SalesSummaryreports />}
+          />
           <Route
             path="stock-transfer-report"
             element={<StockTransferreports />}
@@ -1455,8 +1747,6 @@ function App() {
             path="purchase-payments-report"
             element={<PurchasePaymentsreports />}
           />
-
-
 
           <Route path="lead-filters" element={<Leadfilter />} />
           <Route path="lead-filters-template" element={<LeadFilters />} />
@@ -1511,7 +1801,10 @@ function App() {
           <Route path="category-map-export" element={<CategoryMapPage />} />
           <Route path="v-tech-rent-product" element={<VtechRentProductAdd />} />
           <Route path="rentProductList" element={<RentProductList />} />
-          <Route path="add-v-tech-Transfer-stock" element={<AddVtechStockac />} />
+          <Route
+            path="add-v-tech-Transfer-stock"
+            element={<AddVtechStockac />}
+          />
           <Route
             path="category-map-export/create-mapping"
             element={<CreateMap />}
@@ -1519,28 +1812,38 @@ function App() {
 
           {/* junaid crm pages */}
           {/* junaid crm pages */}
-          <Route
-            path="staffs-new"
-            element={<AddUser />}
-          />
+          <Route path="staffs-new" element={<AddUser />} />
           {/* {zilani route } */}
 
-
-
           <Route path="color-stone" element={<ColorStonePage />} />
-          <Route path="color-stone/edit/:uid" element={<EditColorStonepage />} />
+          <Route
+            path="color-stone/edit/:uid"
+            element={<EditColorStonepage />}
+          />
           <Route path="add-color-stone" element={<AddColorStone />} />
-          <Route path="add-labour-charge-type" element={<AddLabourChargeTypePage />} />
+          <Route
+            path="add-labour-charge-type"
+            element={<AddLabourChargeTypePage />}
+          />
           <Route path="labour-charge-type" element={<LabourChangeTypePage />} />
-          <Route path="labour-charge-type/edit/:uid" element={<EditLabourChargeTypePage />} />
+          <Route
+            path="labour-charge-type/edit/:uid"
+            element={<EditLabourChargeTypePage />}
+          />
           <Route path="add-labour-charge" element={<AddLabourChargePage />} />
           <Route path="labour-charge" element={<LabourChargePage />} />
-          <Route path="labour-charge/edit/:uid" element={<EditLabourChargePage />} />
+          <Route
+            path="labour-charge/edit/:uid"
+            element={<EditLabourChargePage />}
+          />
           <Route path="price" element={<PricePage />} />
           <Route path="price/edit/:uid" element={<EditPricePage />} />
           <Route path="add-price" element={<AddPrice />} />
           <Route path="shop-for-modules" element={<ShopForModulePage />} />
-          <Route path="shop-for-modules/edit/:uid" element={<EditShopForModulePage />} />
+          <Route
+            path="shop-for-modules/edit/:uid"
+            element={<EditShopForModulePage />}
+          />
           <Route path="add-shop-for-module" element={<AddShopForModule />} />
           <Route path="occasion" element={<OccasionPage />} />
           <Route path="occasion/edit/:uid" element={<EditOccassionPage />} />
@@ -1550,32 +1853,68 @@ function App() {
           <Route path="add-ring-size" element={<AddRingSize />} />
           <Route path="couponn" element={<CouponnPage />} />
           <Route path="add-couponn" element={<AddCoupan />} />
-          <Route path="jwellery/categoryType" element={<CategoryTypeJwellsPage />} />
-          <Route path="jwellery/categoryType/edit/:uid" element={<EditCategoryTypeJwellsPage />} />
-          <Route path="add-jwellery/categoryType" element={<AddCategoryTypeJwellsPage />} />
+          <Route
+            path="jwellery/categoryType"
+            element={<CategoryTypeJwellsPage />}
+          />
+          <Route
+            path="jwellery/categoryType/edit/:uid"
+            element={<EditCategoryTypeJwellsPage />}
+          />
+          <Route
+            path="add-jwellery/categoryType"
+            element={<AddCategoryTypeJwellsPage />}
+          />
 
           <Route path="add-metal-purity" element={<AddMetalType />} />
           <Route path="metal-purity" element={<MetalPurityPage />} />
           <Route path="metal-purity/edit/:uid" element={<EditMetalPurity />} />
           <Route path="add-metal-weight" element={<AddMetalWeightPage />} />
           <Route path="metal-weight" element={<MetalWeightPage />} />
-          <Route path="metal-weight/edit/:uid" element={<EditMetalWeightPage />} />
+          <Route
+            path="metal-weight/edit/:uid"
+            element={<EditMetalWeightPage />}
+          />
           <Route path="add-diamond-color" element={<AddDiamondColorPage />} />
-          <Route path="add-diamond-clarity" element={<AddDiamondClarityPage />} />
+          <Route
+            path="add-diamond-clarity"
+            element={<AddDiamondClarityPage />}
+          />
           <Route path="list-diamond-clarity" element={<ListDiamondClarity />} />
-          <Route path="list-diamond-clarity/edit/:uid" element={<EditDiamondClarity />} />
-          <Route path="add-diamond-quality" element={<AddDiamondQualityPage />} />
+          <Route
+            path="list-diamond-clarity/edit/:uid"
+            element={<EditDiamondClarity />}
+          />
+          <Route
+            path="add-diamond-quality"
+            element={<AddDiamondQualityPage />}
+          />
           <Route path="list-diamond-quality" element={<ListDiamondQuality />} />
-          <Route path="list-diamond-quality/edit/:uid" element={<EditDiamondQuality />} />
+          <Route
+            path="list-diamond-quality/edit/:uid"
+            element={<EditDiamondQuality />}
+          />
           <Route path="add-diamond-shape" element={<AddDiamondShapePage />} />
           <Route path="list-diamond-shape" element={<ListDiamondShape />} />
-          <Route path="list-diamond-shape/edit/:uid" element={<EditDiamondShape />} />
+          <Route
+            path="list-diamond-shape/edit/:uid"
+            element={<EditDiamondShape />}
+          />
           <Route path="add-diamond-Sieves" element={<AddDiamondSievesPage />} />
           <Route path="list-diamond-Sieves" element={<ListDiamondShieves />} />
-          <Route path="list-diamond-Sieves/edit/:uid" element={<EditDiamondSieves />} />
-          <Route path="add-category-sequence" element={<AddCategorySequencePage />} />
+          <Route
+            path="list-diamond-Sieves/edit/:uid"
+            element={<EditDiamondSieves />}
+          />
+          <Route
+            path="add-category-sequence"
+            element={<AddCategorySequencePage />}
+          />
           <Route path="add-style" element={<AddStyleManagementPage />} />
-          <Route path="add-collection" element={<AddCollectionManagementPage />} />
+          <Route
+            path="add-collection"
+            element={<AddCollectionManagementPage />}
+          />
           <Route path="add-metal-type" element={<AddMetalTypePage />} />
           <Route path="metal-type" element={<MetalTypePage />} />
           <Route path="metal-type/edit/:uid" element={<EditMetalTypePage />} />
@@ -1583,69 +1922,161 @@ function App() {
           {/* {29-12-23} */}
           <Route path="metal-rate/add" element={<AddMetalRateCardPage />} />
           <Route path="metal-rate" element={<MeatlRatecardPage />} />
-          <Route path="metal-rate/edit/:id" element={<EditMetalRateCardPage />} />
+          <Route
+            path="metal-rate/edit/:id"
+            element={<EditMetalRateCardPage />}
+          />
           <Route path="diamond-rate/add" element={<AddDiamondRateCardPage />} />
           <Route path="diamond-rate" element={<DiamondRateCardPage />} />
-          <Route path="diamond-rate/edit/:id" element={<EditDiamondRateCardPage />} />
-          <Route path="labourCharge-rate/add" element={<AddLabourChargeRateCardPage />} />
-          <Route path="labourCharge-rate" element={<LabourChargeRateCardPage />} />
-          <Route path="labourCharge-rate/edit/:id" element={<EditLabourChargeRateCardPage />} />
-          <Route path="colorStone-rate/add" element={<AddColorStoneRateCardPage />} />
+          <Route
+            path="diamond-rate/edit/:id"
+            element={<EditDiamondRateCardPage />}
+          />
+          <Route
+            path="labourCharge-rate/add"
+            element={<AddLabourChargeRateCardPage />}
+          />
+          <Route
+            path="labourCharge-rate"
+            element={<LabourChargeRateCardPage />}
+          />
+          <Route
+            path="labourCharge-rate/edit/:id"
+            element={<EditLabourChargeRateCardPage />}
+          />
+          <Route
+            path="colorStone-rate/add"
+            element={<AddColorStoneRateCardPage />}
+          />
           <Route path="colorStone-rate" element={<ColorStonerateCardPage />} />
-          <Route path="colorStone-rate/edit/:id" element={<EditColorStoneRateCardPage />} />
+          <Route
+            path="colorStone-rate/edit/:id"
+            element={<EditColorStoneRateCardPage />}
+          />
 
-          <Route path="add-jwellery-produt" element={<AddJwelleryProductPage222 />} />
-          <Route path="list-jwellery-products" element={<ListJwelleryProductsPage />} />
-          <Route path="list-jwellery-products/edit/:uid" element={<EditJwelleryProductsPage />} />
+          <Route
+            path="add-jwellery-produt"
+            element={<AddJwelleryProductPage222 />}
+          />
+          <Route
+            path="list-jwellery-products"
+            element={<ListJwelleryProductsPage />}
+          />
+          <Route
+            path="list-jwellery-products/edit/:uid"
+            element={<EditJwelleryProductsPage />}
+          />
 
-          <Route path="add-productWear-tag" element={<AddProductWearTagPage />} />
+          <Route
+            path="add-productWear-tag"
+            element={<AddProductWearTagPage />}
+          />
           <Route path="productWear-tag" element={<ProductWearTagPage />} />
-          <Route path="productWear-tag/edit/:uid" element={<EditProductWearTagPage />} />
-          <Route path="add-productLook-tag" element={<AddProductLookTagPage />} />
+          <Route
+            path="productWear-tag/edit/:uid"
+            element={<EditProductWearTagPage />}
+          />
+          <Route
+            path="add-productLook-tag"
+            element={<AddProductLookTagPage />}
+          />
           <Route path="productLook-tag" element={<ProductLookTagPage />} />
-          <Route path="productLook-tag/edit/:uid" element={<EditProductLookTagPage />} />
+          <Route
+            path="productLook-tag/edit/:uid"
+            element={<EditProductLookTagPage />}
+          />
           <Route path="add-product-tag" element={<AddProductTagPage />} />
           <Route path="product-tag" element={<ProductTagPage />} />
-          <Route path="product-tag/edit/:uid" element={<EditProductTagPage />} />
+          <Route
+            path="product-tag/edit/:uid"
+            element={<EditProductTagPage />}
+          />
           <Route path="add-size-jwells" element={<AddSizeJwellsPage />} />
           <Route path="size-jwells" element={<SizeJwellsPage />} />
-          <Route path="size-jwells/edit/:uid" element={<EditSizeJwellsPage />} />
+          <Route
+            path="size-jwells/edit/:uid"
+            element={<EditSizeJwellsPage />}
+          />
 
-          <Route path="add-metal-priceType" element={<AddMetalPriceTypePage />} />
+          <Route
+            path="add-metal-priceType"
+            element={<AddMetalPriceTypePage />}
+          />
           <Route path="metal-priceType" element={<MetalPriceTypePage />} />
-          <Route path="metal-priceType/edit/:uid" element={<EditMetalPriceTypePage />} />
+          <Route
+            path="metal-priceType/edit/:uid"
+            element={<EditMetalPriceTypePage />}
+          />
 
           {/* <Route path="add-celebrity" element={<AddCelebritiesPage />} /> */}
           <Route path="celebrity/create" element={<CreateCelebrityComp />} />
           <Route path="list-celebrity" element={<ListCelebritiesPage />} />
-          <Route path="list-celebrity/edit/:id" element={<UpdateCelebrityPage />} />
-          <Route path="add-celebrity-type" element={<AddCelebritiesTypePage />} />
-          <Route path="list-general-celebrity" element={<GeneralCelebritiesListPage />} />
-          <Route path="add-celebrity-category" element={<AddCelebrityCategoryPage />} />
-          <Route path="list-celebrity-category" element={<ListCelebrityCategoryPage />} />
+          <Route
+            path="list-celebrity/edit/:id"
+            element={<UpdateCelebrityPage />}
+          />
+          <Route
+            path="add-celebrity-type"
+            element={<AddCelebritiesTypePage />}
+          />
+          <Route
+            path="list-general-celebrity"
+            element={<GeneralCelebritiesListPage />}
+          />
+          <Route
+            path="add-celebrity-category"
+            element={<AddCelebrityCategoryPage />}
+          />
+          <Route
+            path="list-celebrity-category"
+            element={<ListCelebrityCategoryPage />}
+          />
+          <Route
+            path="add-celebrity-package"
+            element={<AddCelebritiesPackagePage />}
+          />
+          <Route
+            path="list-celebrity-package"
+            element={<ListCelebrityPackagePage />}
+          />
+          <Route
+            path="list-celebrity-package/edit/:id"
+            element={<EditCelebrityPackagePage />}
+          />
+          <Route
+            path="celebrity-dashboard"
+            element={<CelebrityGoogleDashboardPage />}
+          />
 
-          <Route path="list-chiragFoundation-orders" element={<ListChiragFoundationsOrders />} />
-          <Route path="list-chiragFoundation-customers" element={<ListChiragFoundationCustomersPage />} />
+          <Route
+            path="list-chiragFoundation-orders"
+            element={<ListChiragFoundationsOrders />}
+          />
+          <Route
+            path="list-chiragFoundation-customers"
+            element={<ListChiragFoundationCustomersPage />}
+          />
           <Route path="indexGroup/create" element={<AddIndexGroupPage />} />
           <Route path="list-indexGroup" element={<ListIndexGroupPage />} />
-          <Route path="list-indexGroup/edit/:id" element={<UpdateIndexGroupPage />} />
+          <Route
+            path="list-indexGroup/edit/:id"
+            element={<UpdateIndexGroupPage />}
+          />
           <Route path="priceRange/create" element={<AddPriceRangePage />} />
           <Route path="list-priceRange" element={<ListPriceRangePage />} />
-          <Route path="list-priceRange/edit/:id" element={<UpdatePriceRangePage />} />
+          <Route
+            path="list-priceRange/edit/:id"
+            element={<UpdatePriceRangePage />}
+          />
           <Route path="grade/create" element={<AddGradePage />} />
           <Route path="list-grade" element={<ListGradesPage />} />
           <Route path="list-grade/edit/:id" element={<UpdateGradePage />} />
 
-
           {/* <Route path="crmDashboard" element={<NewDashboardCard />} />
           <Route path="crmContacts" element={<Contacts />} /> */}
-
-
         </Route>
-
-      </Routes >
-      {show && <Footer />
-      }
+      </Routes>
+      {show && <Footer />}
     </>
   );
 }

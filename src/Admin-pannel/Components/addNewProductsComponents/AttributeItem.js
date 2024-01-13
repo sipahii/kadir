@@ -15,18 +15,14 @@ export const AttributeItem = ({
     if (e.key !== "Enter") return;
     const value = e.target.value;
     if (!value.trim()) return;
-
-    if (params?.id) {
-      const arr = [];
-      for (let i = 0; i < tags?.length; i++) {
-        const element = tags[i];
-        arr.push(element);
-      }
-      arr.push(value);
-      setTags(arr);
-    } else {
+    else {
       const clone = tags ? tags : [];
       setTags([...clone, value]);
+      handleChoiceValues(tags, {
+        id: item._id || item.id,
+        title: item.name ? item.name : item.title,
+        data: [...clone, value] || "",
+      });
     }
     e.target.value = "";
   }
@@ -35,24 +31,24 @@ export const AttributeItem = ({
     setTags(tags.filter((el, i) => i !== index)),
   ];
 
-  useEffect(() => {
-    // if (!tags?.length) {
-    //     setUpdatedVariants([])
-    // }
-    if (tags?.length) {
-      handleChoiceValues(tags, {
-        id: item._id || item.id,
-        title: item.name ? item.name : item.title,
-        data: tags ? [...tags] : "",
-      });
-    } else if (isSuccess) {
-      handleChoiceValues(tags, {
-        id: item._id || item.id,
-        title: item.name ? item.name : item.title,
-        data: tags ? [...tags] : "",
-      });
-    }
-  }, [tags, isSuccess]);
+  // useEffect(() => {
+  //   // if (!tags?.length) {
+  //   //     setUpdatedVariants([])
+  //   // }
+  //   if (tags?.length) {
+  //     handleChoiceValues(tags, {
+  //       id: item._id || item.id,
+  //       title: item.name ? item.name : item.title,
+  //       data: tags ? [...tags] : "",
+  //     });
+  //   } else if (isSuccess) {
+  //     handleChoiceValues(tags, {
+  //       id: item._id || item.id,
+  //       title: item.name ? item.name : item.title,
+  //       data: tags ? [...tags] : "",
+  //     });
+  //   }
+  // }, [tags]);
   return (
     <div className="row">
       <div className="col-lg-3">

@@ -1,4 +1,4 @@
-const SEOMetaTags = ({ onChangeHandler, item }) => {
+const SEOMetaTags = ({ onChangeHandler, item, onchangeImges, isExistSlug }) => {
   return (
     <div className="card">
       <div className="card-header">
@@ -16,7 +16,7 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
               placeholder="Meta Title"
               fdprocessedid="1hz7zu"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -32,7 +32,7 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
               placeholder="Meta Key Word"
               fdprocessedid="1hz7zu"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -48,9 +48,14 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
               placeholder="Slug"
               fdprocessedid="1hz7zu"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
+            {isExistSlug && (
+              <div style={{ color: "red" }}>
+                Slug is already exists with {item?.slug}
+              </div>
+            )}
           </div>
         </div>
 
@@ -72,7 +77,7 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
               rows={8}
               className="form-control"
               onChange={(e) => {
-                onChangeHandler(e, item.language_id);
+                onChangeHandler(e, item?.language_id?._id);
               }}
             />
           </div>
@@ -88,6 +93,19 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
         </div>
 
         <div className="form-group row">
+          {!!item?.meta_image?.url && (
+            <>
+              <div className="col-md-3"></div>
+              <div className="col-md-9">
+                <img
+                  src={item.meta_image.url}
+                  height={"100"}
+                  width={"100"}
+                  alt="gallaryImage"
+                />
+              </div>
+            </>
+          )}
           <label className="col-md-3 col-form-label" htmlFor="signinSrEmail">
             Meta Image
           </label>
@@ -108,7 +126,7 @@ const SEOMetaTags = ({ onChangeHandler, item }) => {
                   name="meta_image"
                   className="selected-files"
                   onChange={(e) => {
-                    onChangeHandler(e, item.language_id);
+                    onchangeImges(e, item?.language_id?._id);
                   }}
                 />
               </div>
