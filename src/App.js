@@ -733,6 +733,10 @@ import AddMetalPriceTypePage from "./Admin-pannel/Pages/addMetalPriceTypePage";
 import EditMetalPriceTypePage from "./Admin-pannel/Pages/editMetalPriceTypePage";
 import AddProduct from "./Admin-pannel/Pages/addnewProductsPage/addProduct";
 import EditProduct from "./Admin-pannel/Pages/addnewProductsPage/editProduct";
+import AddCelebritiesPackagePage from "./Admin-pannel/Pages/addCelebrityPackagePage";
+import ListCelebrityPackagePage from "./Admin-pannel/Pages/listCelebrityPackagePage";
+import EditCelebrityPackagePage from "./Admin-pannel/Pages/editCelebrityPackagePage";
+import CelebrityGoogleDashboardPage from "./Admin-pannel/Pages/celebrityGoogleDashboardPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -2026,6 +2030,22 @@ function App() {
           <Route
             path="list-celebrity-category"
             element={<ListCelebrityCategoryPage />}
+          />
+          <Route
+            path="add-celebrity-package"
+            element={<AddCelebritiesPackagePage />}
+          />
+          <Route
+            path="list-celebrity-package"
+            element={<ListCelebrityPackagePage />}
+          />
+          <Route
+            path="list-celebrity-package/edit/:id"
+            element={<EditCelebrityPackagePage />}
+          />
+          <Route
+            path="celebrity-dashboard"
+            element={<CelebrityGoogleDashboardPage />}
           />
 
           <Route

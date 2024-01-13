@@ -563,7 +563,8 @@ function AddNewProductsPage() {
                                 onChangeHandler={onChangeHandler}
                               />
 
-                              {i === 0 && (
+                              {item.language_id._id ===
+                                "65111f1f78085e4cc5cce8ff" && (
                                 <SEOMetaTags
                                   item={item}
                                   onChangeHandler={onChangeHandler}
@@ -789,16 +790,11 @@ function AddNewProductsPage() {
 
                           <ProductDescriptionWrapper
                             productDescription={item?.productDescription}
-                            // handleCallBackData={getCallbackHtml}
                             callBackWithHtml={handleCallBackData}
                           />
 
                           <div className="row">
                             <Variation
-                              // item={{
-                              //   variations: variationList,
-                              //   variation_form: variationForm,
-                              // }}
                               setattributesVal={setattributesVal}
                               setVariantsData={handleVariantData}
                               variations={variationList}
@@ -897,16 +893,7 @@ function AddNewProductsPage() {
                                       },
                                     },
                                   }}
-                                >
-                                  <Checkbox
-                                    className="chBox"
-                                    // onClick={() => {
-                                    //   SaveData(i, "", item?.language_id?._id);
-                                    // }}
-                                  >
-                                    Checkbox
-                                  </Checkbox>
-                                </ConfigProvider>
+                                ></ConfigProvider>
                               </div>
                             </div>
                             <div
