@@ -77,6 +77,7 @@ function AddNewProductsPage() {
   const [variationList, setVariationList] = useState([]);
   const [variationForm, setVariationForm] = useState([]);
   const navigate = useNavigate();
+  const [shoingLoader, setshoingLoader] = useState(false);
 
   const {
     data: productData,
@@ -246,9 +247,6 @@ function AddNewProductsPage() {
     val[value].category_id = [...ids];
   };
   const handleChange = (event, newValue) => {
-    debugger;
-    console.log(variationForm);
-    console.log(variationList);
     setValue(newValue);
   };
 
@@ -385,10 +383,10 @@ function AddNewProductsPage() {
   };
 
   const onchangeImgeHandler = async (e) => {
+    setshoingLoader(true);
     const inpVal = e.target.files;
     const images = new FormData();
-    let cloneAllData = [...val];
-
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     for (let ind = 0; ind < inpVal?.length; ind++) {
       try {
         const element0 = inpVal[ind];
@@ -406,10 +404,13 @@ function AddNewProductsPage() {
         } else {
           cloneAllData[value].meta_image = { ...obj };
         }
+        setshoingLoader(false);
       } catch (error) {
         console.log("Gallery Image not uploaded");
+        setshoingLoader(false);
       } finally {
         images.delete("image");
+        setshoingLoader(false);
       }
     }
     setVal(cloneAllData);
@@ -434,18 +435,11 @@ function AddNewProductsPage() {
     const filterdData = cloneAllData.filter((item) => {
       return item._id !== id;
     });
-    // cloneAllData.forEach((item) => {
-    //   item.variations = filterdData;
-    // });
-    // setVal(cloneAllData);
     setVariationList(filterdData);
-    // cloneAllData[value].variations = filterdData;
-    // setVal(cloneAllData);
   };
 
   const updateVarientPriceAndAttributes = (data) => {
     variationIdVsPricingAndAttributes.set(data._id, data);
-    debugger;
     const cloneAllData = JSON.parse(JSON.stringify(variationList));
     const selectedIndex = cloneAllData.findIndex((item) => {
       return item._id === data._id;
@@ -453,10 +447,6 @@ function AddNewProductsPage() {
     if (selectedIndex !== -1) {
       cloneAllData[selectedIndex] = data;
     }
-    // cloneAllData.forEach((item) => {
-    //   item.variations = variationList;
-    // });
-    // setVal(cloneAllData);
     setVariationList(cloneAllData);
   };
 
@@ -491,6 +481,14 @@ function AddNewProductsPage() {
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
+          </div>
+        )}
+        {shoingLoader && (
+          <div className="preloaderCount">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">ded</span>
+            </div>
+            <h6>Please Wait your Image in uploading</h6>
           </div>
         )}
         <Box sx={{ width: "100%", typography: "body1" }}>
@@ -563,8 +561,9 @@ function AddNewProductsPage() {
                                 onChangeHandler={onChangeHandler}
                               />
 
-                              {item.language_id._id ===
-                                "65111f1f78085e4cc5cce8ff" && (
+                              {item?.language_id?.name
+                                ?.toLowerCase()
+                                .includes("english") && (
                                 <SEOMetaTags
                                   item={item}
                                   onChangeHandler={onChangeHandler}
