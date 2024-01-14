@@ -212,10 +212,9 @@ function AddNewProductsPage() {
     };
   }, []);
   const changettriPro = (list) => {
-    debugger;
     const cloneValue = JSON.parse(JSON.stringify(val));
     let existingId = cloneValue[value].attributeList.map((item) => item._id);
-    let newAttribute = list.filter((item) => existingId.includes(item._id));
+    let newAttribute = list.filter((item) => !existingId.includes(item._id));
     cloneValue[value].attributeList = [
       ...cloneValue[value].attributeList,
       ...newAttribute,
@@ -257,7 +256,6 @@ function AddNewProductsPage() {
   };
 
   const onChangeHandler = async (e, id, bul) => {
-    console.log("id", id);
     let maped;
     if (typeof bul === "boolean") {
       maped = val?.map((item) => {
