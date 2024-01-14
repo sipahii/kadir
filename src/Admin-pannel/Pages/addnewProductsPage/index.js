@@ -172,14 +172,14 @@ function AddNewProductsPage() {
 
   function handleTagKeyDown(e) {
     if (e.key !== "Enter") return;
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     if (!e.target.value.trim()) return;
     cloneAllData[value].tags = [...cloneAllData[value]?.tags, e.target?.value];
     e.target.value = "";
     setVal(cloneAllData);
   }
   const removetagTag = (index) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     let remainingTags = cloneAllData[value].filter((item, i) => i !== index);
     cloneAllData[value].tags = remainingTags;
     setVal(cloneAllData);
@@ -212,13 +212,19 @@ function AddNewProductsPage() {
     };
   }, []);
   const changettriPro = (list) => {
-    const cloneValue = [...val];
-    cloneValue[value].attributeList = list;
+    debugger;
+    const cloneValue = JSON.parse(JSON.stringify(val));
+    let existingId = cloneValue[value].attributeList.map((item) => item._id);
+    let newAttribute = list.filter((item) => existingId.includes(item._id));
+    cloneValue[value].attributeList = [
+      ...cloneValue[value].attributeList,
+      ...newAttribute,
+    ];
     setVal(cloneValue);
   };
 
   const removeRowAt = (id, selectedIndex) => {
-    const cloneValue = [...val];
+    const cloneValue = JSON.parse(JSON.stringify(val));
     const filterd = cloneValue[value]?.attributeList[
       selectedIndex
     ]?.list?.filter((item) => item.attribute?._id !== id);
@@ -227,7 +233,7 @@ function AddNewProductsPage() {
   };
 
   const changeValues = (e, item) => {
-    const cloneValue = [...val];
+    const cloneValue = JSON.parse(JSON.stringify(val));
     const selectedIndex = e.target.id;
     const filterd = cloneValue[value]?.attributeList[selectedIndex]?.list?.map(
       (item) => {
@@ -320,7 +326,7 @@ function AddNewProductsPage() {
   };
 
   const freshDeals = (e) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     let modifiedObject = JSON.parse(JSON.stringify(cloneAllData[value]));
     modifiedObject.flashDeal[e.target.name] = e.target.value;
     cloneAllData[value] = modifiedObject;
@@ -377,7 +383,7 @@ function AddNewProductsPage() {
 
   const addNewAttributeData = async (e, id) => {
     e.preventDefault();
-    let clone2 = [...val];
+    let clone2 = JSON.parse(JSON.stringify(val));
     setspcOr(true);
     addFile(clone2, token);
   };
@@ -451,13 +457,13 @@ function AddNewProductsPage() {
   };
 
   const setFinalCatDIndus = (selectedIds) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     cloneAllData[value].industry_id = selectedIds;
     setVal(cloneAllData);
   };
 
   const handleCallBackData = (data) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     let modifiedObject = { ...cloneAllData[value] };
     modifiedObject.productDescription = data || "<p><br></p>";
     cloneAllData[value] = modifiedObject;
@@ -874,26 +880,6 @@ function AddNewProductsPage() {
                                   onChangeHandler(e, item?.language_id?._id);
                                 }}
                               />
-                            </div>
-                            <div
-                              className="col-md-3 form-group physical_product_show"
-                              id="shipping_cost"
-                            >
-                              <label className="title-color">
-                                Save Data !{" "}
-                              </label>
-
-                              <div>
-                                <ConfigProvider
-                                  theme={{
-                                    components: {
-                                      Checkbox: {
-                                        colorPrimary: "#ff4d4f",
-                                      },
-                                    },
-                                  }}
-                                ></ConfigProvider>
-                              </div>
                             </div>
                             <div
                               className="col-md-3 form-group physical_product_show"
