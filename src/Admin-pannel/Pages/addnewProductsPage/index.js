@@ -32,6 +32,7 @@ import Variation from "./partial/Variation";
 import ProductList from "./partial/ProductList";
 import INITIAL_STATE from "./partial/Constant";
 import { setDataDescription } from "../../Components/productDescriptionWrapper/textEditorSlice";
+import getProductById from "../../api/getProductById";
 
 const toastSuccessMessage = (message) => {
   toast.success(message, {
@@ -78,12 +79,7 @@ function AddNewProductsPage() {
   const [variationForm, setVariationForm] = useState([]);
   const navigate = useNavigate();
   const [shoingLoader, setshoingLoader] = useState(false);
-
-  const {
-    data: productData,
-    isSuccess,
-    isLoading: productLoading,
-  } = useGetProductByIdQuery({ id: params?.id, token: token });
+  const [productIsLoading, setProductIsLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -112,13 +108,33 @@ function AddNewProductsPage() {
     getCatData();
   }, [token]);
 
+  const getProduct = async (id) => {
+    try {
+      const data = await getProductById(id, token);
+
+      if (data && data.product && data.product.length > 0) {
+        const product = data.product[0];
+
+        setVal(data?.product || []);
+        setVariationForm(product.variation_Form || []);
+        setVariationList(product.variations || []);
+
+        product.variations.forEach((item) => {
+          variationIdVsPricingAndAttributes.set(item._id, item);
+        });
+      } else {
+        console.error("Product data or product array is empty.");
+      }
+      setProductIsLoading(false);
+    } catch (error) {
+      setProductIsLoading(false);
+      console.error("Error fetching product:", error.message);
+    }
+  };
+
   useEffect(() => {
     if (params?.id) {
-      if (productData) {
-        setVal(productData?.product || []);
-        setVariationForm(productData?.product[0]?.variation_Form || []);
-        setVariationList(productData?.product[0]?.variations || []);
-      }
+      getProduct(params.id);
     } else {
       if (data && currdata) {
         const maped = data.map((item) => {
@@ -140,9 +156,10 @@ function AddNewProductsPage() {
         setIsExistSlug(false);
         setspcOr(false);
         dispatch(setDataDescription("<p><br></p>"));
+        setProductIsLoading(false);
       }
     }
-  }, [data, currdata, productData, params?.id]);
+  }, [data, currdata, params?.id]);
 
   const setattributesVal = (data) => {
     setVariationForm(data || []);
@@ -180,7 +197,9 @@ function AddNewProductsPage() {
   }
   const removetagTag = (index) => {
     let cloneAllData = JSON.parse(JSON.stringify(val));
-    let remainingTags = cloneAllData[value].filter((item, i) => i !== index);
+    let remainingTags = cloneAllData[value]?.tags?.filter(
+      (item, i) => i !== index
+    );
     cloneAllData[value].tags = remainingTags;
     setVal(cloneAllData);
   };
@@ -471,14 +490,15 @@ function AddNewProductsPage() {
   return (
     <>
       <div className="aiz-main-content">
-        {spcOr && (
-          <div className="preloaderCount">
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">ded</span>
+        {spcOr ||
+          (productIsLoading && (
+            <div className="preloaderCount">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">ded</span>
+              </div>
+              <h6>please wait your product in uploading</h6>
             </div>
-            <h6>please wait your product in uploading</h6>
-          </div>
-        )}
+          ))}
 
         {isLoading && (
           <div className="preloaderCount">
@@ -833,6 +853,7 @@ function AddNewProductsPage() {
                                 placeholder="Quantity"
                                 name="total_quantity"
                                 className="form-control"
+                                value={item?.total_quantity}
                                 required
                                 fdprocessedid="gny5jm"
                                 onChange={(e) => {
@@ -872,6 +893,7 @@ function AddNewProductsPage() {
                                 placeholder="Shipping cost"
                                 name="shipping_cost"
                                 className="form-control"
+                                value={item?.shipping_cost}
                                 required
                                 fdprocessedid="pvn15"
                                 onChange={(e) => {
@@ -892,7 +914,7 @@ function AddNewProductsPage() {
                                   type="checkbox"
                                   name="Shipping_cost_multiply_with_quantity"
                                   checked={
-                                    item.Shipping_cost_multiply_with_quantity
+                                    item?.Shipping_cost_multiply_with_quantity
                                   }
                                   onChange={(e) => {
                                     onChangeHandler(
