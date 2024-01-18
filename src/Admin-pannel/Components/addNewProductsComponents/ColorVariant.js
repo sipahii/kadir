@@ -47,7 +47,6 @@ export const ColorVariant = ({
           "https://onlineparttimejobs.in/api/cloudinaryImage/addImage",
           images
         );
-        debugger;
         const obj = { public_id: res.data.public_id, url: res.data.url };
         if (e.target.name === "gallery_image") {
           if (cloneAllData?.images) {
