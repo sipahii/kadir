@@ -46,9 +46,12 @@ function AddNewBanner() {
 
     }
     const token = window.localStorage.getItem('token')
-    const imgHandle = (e) => {
-        setFile(e.target.files[0])
-        setInputval({ ...inputval, image: e.target.files[0] })
+    const imgHandle = async (e) => {
+        setFile(e.target.files[0]);
+        const formData = new FormData();
+        formData.append('image', e.target.files[0]);
+        const res = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, formData);
+        // setInputval({ ...inputval, image: e.target.files[0] })
     }
 
     const [loader, setLoader] = useState(false)
@@ -62,13 +65,20 @@ function AddNewBanner() {
 
     const getParamdata = async (id) => {
         try {
-            const res = await axios.get(`https://onlineparttimejobs.in/api/banner/${id}`)
-            setInputval({
-                SliderTopHeading: res.data.SliderTopHeading,
-                bottomText: res.data.bottomText,
-                url: res.data.url,
-                image: res.data.image,
-            })
+            const res = await axios.get(`https://onlineparttimejobs.in/api/banner/${id}`, {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log('res.data---M', res?.data)
+            setVal(res?.data?.list)
+            // setInputval({
+            //     SliderTopHeading: res.data.SliderTopHeading,
+            //     bottomText: res.data.bottomText,
+            //     url: res.data.url,
+            //     image: res.data.image,
+            // })
         } catch (error) {
             alert('Server Error')
         }
@@ -144,16 +154,16 @@ function AddNewBanner() {
         const images = new FormData();
         const clone = [...val]
         setLoader(true)
-        for (let i = 0; i < clone.length; i++) {
-            let element = clone[i];
-            if (element?.image) {
-                images.append('image', element?.image);
-                const res2 = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, images)
-                images.delete('image');
-                const obj = { ...element, image: { public_id: res2.data.public_id, url: res2.data.url } }
-                clone.splice(i, 1, obj)
-            }
-        }
+        // for (let i = 0; i < clone.length; i++) {
+        //     let element = clone[i];
+        //     if (element?.image) {
+        //         images.append('image', element?.image);
+        //         const res2 = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, images)
+        //         images.delete('image');
+        //         const obj = { ...element, image: { public_id: res2.data.public_id, url: res2.data.url } }
+        //         clone.splice(i, 1, obj)
+        //     }
+        // }
         if (params.id) {
             try {
                 const res = await axios.put(` https://onlineparttimejobs.in/api/banner/update/${params.id}`, { list: clone }, {
@@ -170,7 +180,7 @@ function AddNewBanner() {
             }
         } else {
             try {
-                const res = await axios.post(`https://onlineparttimejobs.in/api/banner/add`,  { list: clone }, {
+                const res = await axios.post(`https://onlineparttimejobs.in/api/banner/add`, { list: clone }, {
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",
                         Authorization: `Bearer ${token}`,

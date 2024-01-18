@@ -160,6 +160,8 @@ function AddJwelleryProductComp222() {
             setVal(maped);
         }
     };
+
+    
     const onChangeHandlePrice = async (e, languageId, countryName) => {
         if (e.target.name == 'sale_rate') {
             const blankArr = []

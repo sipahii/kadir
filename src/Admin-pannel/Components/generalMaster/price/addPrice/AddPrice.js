@@ -11,7 +11,8 @@ import AddPriceMultiLingual from "./AddPriceMultiLingual";
 
 function AddPrice() {
     const [data, setData] = useState();
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [showImageD, setShowImageD] = useState();
     const [inputval, setInputval] = useState({
         name: '',
     });
@@ -39,18 +40,57 @@ function AddPrice() {
 
     useEffect(() => {
         getData()
-    }, [])
+    }, []);
 
     const [val, setVal] = useState(data)
 
     useEffect(() => {
         if (data) {
             const maped = data.map((item) => {
-                return { name: "", min: '', max: '', description: '', language_id: item._id, isActive: false, lable: item.name }
+                return { name: "", min: '', max: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', language_id: item._id, isActive: false, lable: item.name }
             })
             setVal(maped)
         }
     }, [data]);
+
+    const onChangeThumbnailImage = async (e, id) => {
+        if (e.target.name == 'thumbnail_image') {
+            let balnkObj = {};
+            const fromData = new FormData();
+            fromData.append('image', e.target.files[0])
+            try {
+                // setImageLoading(true)
+                const res = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, fromData,);
+                setShowImageD(res.data);
+                balnkObj = res.data
+            } catch (error) {
+
+            };
+            // setImageLoading(false)
+            fromData.delete('image')
+
+            const maped = val.map((item) => {
+                if (item.language_id == id) {
+                    const obj = { ...item, [e.target.name]: balnkObj }
+                    return obj
+                } else {
+                    return item
+                }
+            })
+            setVal(maped);
+
+        } else {
+            const maped = val.map((item) => {
+                if (item.language_id == id) {
+                    const obj = { ...item, [e.target.name]: e.target.value }
+                    return obj
+                } else {
+                    return item
+                }
+            })
+            setVal(maped);
+        }
+    };
 
     const onChangeHandler = (e, id, bul) => {
         if (e.target.name == 'approve') {
@@ -162,7 +202,7 @@ function AddPrice() {
                     {val && val.map((item, i) => {
                         return <TabPanel value={i}>
                             <div className="card">
-                                <AddPriceMultiLingual setValue={setValue} data={val} params={params} item={item} i={i} sendData={sendData} onChangeHandler={onChangeHandler} />
+                                <AddPriceMultiLingual setValue={setValue} data={val} params={params} item={item} i={i} sendData={sendData} onChangeHandler={onChangeHandler} onChangeThumbnailImage={onChangeThumbnailImage} showImageD={showImageD} setShowImageD={setShowImageD} />
                             </div>
 
                         </TabPanel>
