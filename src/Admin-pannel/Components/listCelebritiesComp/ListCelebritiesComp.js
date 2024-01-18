@@ -96,7 +96,7 @@ function ListCelebritiesComp() {
                     <div className="card">
                         <form className id="sort_sellers" action method="GET">
 
-                            <div className="card-header row gutters-5">
+                            {/* <div className="card-header row gutters-5">
 
                                 <div className="col">
                                     <h5 className="mb-md-0 h6">Celebrities</h5>
@@ -135,11 +135,319 @@ function ListCelebritiesComp() {
                                             fdprocessedid="3vgavp"
                                         />
                                     </div>
-                                    {/* <Link to="add-celebrity" className="btn btn-success" style={{ marginTop: "10px", width: "150px" }}>Add Celebrities</Link> */}
+                                    <Link to="add-celebrity" className="btn btn-success" style={{ marginTop: "10px", width: "150px" }}>Add Celebrities</Link>
 
                                 </div>
 
-                            </div>
+                            </div> */}
+                            {/* <div className="col">
+                                    <h5 className="mb-md-0 h6">Celebrities</h5>
+                                </div> */}
+
+                            <section className="form-section p-5">
+                                <div className="row">
+                                    {/* <form action=""> */}
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Start Date</label>
+                                            <input type="date" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name='start_date' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">End Date</label>
+                                            <input type="date" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name='end_date' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">First Name</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name" name='firstname' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Last Name</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name" name='lastname' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Gender</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Gender" name='adharnumber' />
+                                        </div>
+                                    </div>
+
+                                    {/* <div className="col-lg-3">
+                                        <label htmlFor="">Gender</label>
+                                        <Multiselect
+                                            isObject={true}
+                                            displayValue="name"
+                                            options={categ}
+                                            showCheckbox
+                                            selectedValues={[]}
+                                            onRemove={(selectedCat) => {
+                                                const selectedIds = selectedCat.map((cat) => {
+                                                    return cat.name
+                                                })
+                                                setFinalCatD(selectedIds)
+                                            }}
+                                            onSelect={(selectedCat) => {
+                                                const selectedIds = selectedCat.map((cat) => {
+                                                    return cat.name
+                                                })
+                                                setFinalCatD(selectedIds)
+                                            }}
+                                        />
+                                    </div> */}
+
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Age</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Age" name='email' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Mobile</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mobile" name='mobile' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Email</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name='application' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Category</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Category" name='udid' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Industry</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Industry" name='minDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Index</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Index" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Skills</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Skills" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Country</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Country" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">City</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Zone</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zone" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Celebrity Grade</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Celebrity Grade" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Status</label>
+                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Status" name='maxDOB' />
+                                        </div>
+                                    </div>
+                                    {/* <div className="col-lg-3">
+                                        <label htmlFor="">Category</label>
+                                        <select className="form-select" aria-label="Default select example" name="category" onChange={handleChangeSearch}>
+                                            <option selected value={null}>Open this select menu</option>
+                                            {categoryy && categoryy?.map((item, i) => {
+                                                return <option value={item?._id} key={i}>{item?.name}</option>
+                                            })}
+                                        </select>
+                                    </div> */}
+                                    {/* {showCategoryInput &&
+                                        <div className="col-lg-3">
+                                            <div>
+                                                <label htmlFor="">Other Category</label>
+                                                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Other Category" name='otherBusiness' value={searchList.otherBusiness} onChange={handleChangeSearch} />
+                                            </div>
+                                        </div>
+                                    } */}
+
+                                    {/* <div className="col-lg-3">
+                                        <label htmlFor="">Status</label>
+                                        <select className="form-select" aria-label="Default select example" value={searchList.status} name="status" onChange={handleChangeSearch}>
+                                            <option selected value={null}>Open this select menu</option>
+                                            {statusList && statusList?.map((item, i) => {
+                                                return <option value={item?._id} key={i}>{item?.name}</option>
+                                            })}
+                                        </select>
+                                    </div> */}
+                                    {/* <div className="col-lg-3">
+                                        <label htmlFor="">Income</label>
+                                        <Multiselect
+                                            isObject={true}
+                                            displayValue="name"
+                                            options={categ}
+                                            showCheckbox
+                                            selectedValues={[]}
+                                            onRemove={(selectedCat) => {
+                                                const selectedIds = selectedCat.map((cat) => {
+                                                    return cat.name
+                                                })
+                                                setFinalCatD(selectedIds)
+                                            }}
+                                            onSelect={(selectedCat) => {
+                                                const selectedIds = selectedCat.map((cat) => {
+                                                    return cat.name
+                                                })
+                                                setFinalCatD(selectedIds)
+                                            }}
+                                        />
+                                    </div> */}
+                                    {/* <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Disability</label>
+                                            <input type="number" className="form-control" id="exampleInputEmail1" name='disability' />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Severe Disability</label>
+                                            <select className="form-select" aria-label="Default select example" name="severe_disability">
+                                                <option selected value={null}>Open this select menu</option>
+                                                <option value={true}>Yes</option>
+                                                <option value={false}>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">In Maharashtra </label>
+                                            <select className="form-select" aria-label="Default select example" name="state">
+                                                <option selected value={null}>Open this select menu</option>
+                                                <option value={1}>Permanent address state (in maharashtra)</option>
+                                                <option value={2}>Residental address state (in maharashtra)</option>
+                                                <option value={3}>Both (in maharashtra)</option>
+                                                <option value={4}>None of them in maharashtra</option>
+
+                                            </select>
+                                        </div>
+                                    </div> */}
+                                    {/* <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Division </label>
+                                            <Multiselect
+                                                isObject={true}
+                                                displayValue="title"
+
+                                                options={divisionData}
+                                                showCheckbox
+                                                selectedValues={[]}
+                                                onRemove={(selectedCat) => {
+                                                    const selectedIds = selectedCat.map((cat) => {
+                                                        return cat.uid
+                                                    })
+                                                    setFinalCatD2(selectedIds)
+                                                }}
+                                                onSelect={(selectedCat) => {
+                                                    const selectedIds = selectedCat.map((cat) => {
+                                                        return cat.uid
+                                                    })
+                                                    setFinalCatD2(selectedIds)
+                                                }}
+                                            />
+
+                                        </div>
+                                    </div> */}
+                                    {/* <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">District</label>
+                                            <Multiselect
+                                                isObject={true}
+                                                displayValue="title"
+
+                                                options={districtData}
+                                                showCheckbox
+                                                selectedValues={[]}
+                                                onRemove={(selectedCat) => {
+                                                    const selectedIds = selectedCat.map((cat) => {
+                                                        return cat.uid
+                                                    })
+                                                    setFinalCatD3(selectedIds)
+                                                }}
+                                                onSelect={(selectedCat) => {
+                                                    const selectedIds = selectedCat.map((cat) => {
+                                                        return cat.uid
+                                                    })
+                                                    setFinalCatD3(selectedIds)
+                                                }}
+                                            />
+                                        </div>
+                                    </div> */}
+                                    {/* <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Minimum Age</label>
+                                            <input type="number" placeholder="Enter number greater than 0" className="form-control" id="exampleInputEmail1" name='minAge'  />
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Maximum Age</label>
+                                            <input type="number" placeholder="Enter number less than 100" className="form-control" id="exampleInputEmail1" name='maxAge' value={''} />
+                                        </div>
+                                    </div> */}
+
+                                    {/* <div className="col-lg-3">
+                                        <div>
+                                            <label htmlFor="">Disability Type</label>
+                                            <Multiselect
+                                                isObject={true}
+                                                displayValue="name"
+
+                                                options={disabilityTypeData}
+                                                showCheckbox
+                                                selectedValues={[]}
+                                                onRemove={(selectedCat) => {
+                                                    const selectedIds = selectedCat.map((cat) => {
+                                                        return cat.name
+                                                    })
+                                                    setFinalDisabilityTypeD(selectedIds)
+                                                }}
+                                                onSelect={(selectedCat) => {
+                                                    const selectedIds = selectedCat.map((cat) => {
+                                                        return cat.name
+                                                    })
+                                                    setFinalDisabilityTypeD(selectedIds)
+                                                }}
+                                            />
+                                        </div>
+                                    </div> */}
+
+                                    <div className="col-lg-3 mt-3">
+                                        <button type="button" className="btn btn-primary mr-3 mt-2">Search</button>
+
+                                    </div>
+                                    {/* </form> */}
+                                </div>
+                            </section>
 
                             <div className="card-body">
 
