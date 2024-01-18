@@ -21,7 +21,7 @@ function ListDiamondShieves() {
 
     const deletData = async (id) => {
         try {
-            const res = await axios.delete(`https://onlineparttimejobs.in/api/seives/delete_Sieves/${id}`, {
+            const res = await axios.delete(`https://onlineparttimejobs.in/api/sieves/delete_Sieves/${id}`, {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     Authorization: `Bearer ${token}`,

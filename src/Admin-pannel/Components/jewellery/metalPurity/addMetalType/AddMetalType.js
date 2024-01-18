@@ -11,7 +11,8 @@ import AddMetalTypeMultiLingual from "./AddMetalTypeMultiLingual";
 
 function AddMetalType() {
     const [data, setData] = useState();
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [showImageD, setShowImageD] = useState();
     const [inputval, setInputval] = useState({
         name: '',
     });
@@ -46,11 +47,50 @@ function AddMetalType() {
     useEffect(() => {
         if (data) {
             const maped = data.map((item) => {
-                return { name: "", code: '', description: '', image: '', language_id: item._id, isActive: false, lable: item.name }
+                return { name: "", code: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', parent_id: '', image: '', language_id: item._id, isActive: false, lable: item.name }
             })
             setVal(maped)
         }
     }, [data]);
+
+    const onChangeThumbnailImage = async (e, id) => {
+        if (e.target.name == 'thumbnail_image') {
+            let balnkObj = {};
+            const fromData = new FormData();
+            fromData.append('image', e.target.files[0])
+            try {
+                // setImageLoading(true)
+                const res = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, fromData,);
+                setShowImageD(res.data);
+                balnkObj = res.data
+            } catch (error) {
+
+            };
+            // setImageLoading(false)
+            fromData.delete('image')
+
+            const maped = val.map((item) => {
+                if (item.language_id == id) {
+                    const obj = { ...item, [e.target.name]: balnkObj }
+                    return obj
+                } else {
+                    return item
+                }
+            })
+            setVal(maped);
+
+        } else {
+            const maped = val.map((item) => {
+                if (item.language_id == id) {
+                    const obj = { ...item, [e.target.name]: e.target.value }
+                    return obj
+                } else {
+                    return item
+                }
+            })
+            setVal(maped);
+        }
+    };
 
     const onChangeHandler = (e, id, bul) => {
         if (e.target.name == 'approve') {
@@ -77,23 +117,23 @@ function AddMetalType() {
     };
 
     const toastSuccessMessage1 = () => {
-        toast.success("Metal Type Updated", {
+        toast.success("Metal Purity Updated", {
             position: "top-center"
         })
     };
     const toastErrorMessage1 = () => {
-        toast.error("Metal Type Not Updated ", {
+        toast.error("Metal Purity Not Updated ", {
             position: "top-center"
         })
     };
 
     const toastSuccessMessage2 = () => {
-        toast.success("Metal Type Added", {
+        toast.success("Metal Purity Added", {
             position: "top-center"
         })
     };
     const toastErrorMessage2 = () => {
-        toast.error("Metal Type Not Added", {
+        toast.error("Metal Purity Not Added", {
             position: "top-center"
         })
     };
@@ -162,7 +202,7 @@ function AddMetalType() {
                     {val && val.map((item, i) => {
                         return <TabPanel value={i}>
                             <div className="card">
-                                <AddMetalTypeMultiLingual setValue={setValue} data={val} params={params} item={item} i={i} sendData={sendData} onChangeHandler={onChangeHandler} />
+                                <AddMetalTypeMultiLingual setValue={setValue} data={val} params={params} item={item} i={i} sendData={sendData} onChangeHandler={onChangeHandler} onChangeThumbnailImage={onChangeThumbnailImage} showImageD={showImageD} setShowImageD={setShowImageD} />
                             </div>
 
                         </TabPanel>

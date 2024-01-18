@@ -47,7 +47,7 @@ function ListBanner() {
 
     const deleteBrandData = async (id) => {
         try {
-            const res = await axios.delete(`https://onlineparttimejobs.in/api/banner/${id}`,{
+            const res = await axios.delete(`https://onlineparttimejobs.in/api/banner/${id}`, {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     Authorization: `Bearer ${token}`,
@@ -100,7 +100,7 @@ function ListBanner() {
                                 </td>
 
                                 <td className="text-right footable-last-visible" style={{ display: 'table-cell' }}>
-                                    <Link to={`bannerEdit/${item._id}`} className="btn btn-soft-primary btn-icon btn-circle btn-sm" title="Edit">
+                                    <Link to={`bannerEdit/${item.uid}`} className="btn btn-soft-primary btn-icon btn-circle btn-sm" title="Edit">
                                         <i className="las la-edit" />
                                     </Link>
                                     <button type="button" onClick={() => { deleteBrandData(item.uid) }} className="btn btn-soft-danger btn-icon btn-circle btn-sm">

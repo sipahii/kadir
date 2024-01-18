@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHandler, setValue }) {
+function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHandler, setValue, onChangeThumbnailImage, showImageD, setShowImageD, onChangeHandleExcel }) {
+
     const [selectShapeData, setSelectShapeData] = useState(null);
     const [selectCountryData, setSelectCountryShapeData] = useState(null);
 
@@ -31,6 +32,12 @@ function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHa
         getShapeSelectData();
     }, []);
 
+    useEffect(() => {
+        if (params?.uid) {
+            setShowImageD(item?.mainImage_url)
+        }
+    }, [params?.uid]);
+
     return (
         <>
             <div className="aiz-main-content">
@@ -57,11 +64,17 @@ function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHa
                                 <div className="row">
 
                                     <div className="col-lg-6">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Name
+                                        </label>
                                         <div>
                                             <input type="text" name="name" value={item?.name} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tittle*" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
                                         </div>
                                     </div>
                                     <div className="col-lg-6">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Select Country
+                                        </label>
                                         <select className="form-control form-select" name="country__id" value={item?.country__id} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
                                             <option selected>Select Country</option>
                                             {selectCountryData && selectCountryData.map((item, i) => {
@@ -69,7 +82,12 @@ function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHa
                                             })}
                                         </select>
                                     </div>
-                                    <div className="col-lg-6 mt-4">
+
+
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Select Shape
+                                        </label>
                                         <select className="form-control form-select" name="shape_id" value={item?.shape_id} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
                                             <option selected>Select Shape</option>
                                             {selectShapeData && selectShapeData.map((item, i) => {
@@ -77,21 +95,70 @@ function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHa
                                             })}
                                         </select>
                                     </div>
-                                    <div className="col-lg-12 mt-4">
+
+
+
+
+
+
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Sorting No
+                                        </label>
                                         <div>
-                                            <textarea type="text" name="description" value={item?.description} className="form-control" rows={5} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Description*" onChange={(e) => { onChangeHandler(e, item.language_id) }} >
-                                            </textarea>
+                                            <input type="number" name="sort_no" value={item?.sort_no} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="sorting_no" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Meta Title
+                                        </label>
+                                        <div>
+                                            <input type="text" name="meta_title" value={item?.meta_title} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="meta_title" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Meta Keyword
+                                        </label>
+                                        <div>
+                                            <input type="text" name="meta_keyword" value={item?.meta_keyword} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="meta_keyword" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                                        </div>
+                                    </div>
+
+
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Meta Description
+                                        </label>
+                                        <textarea id="w3review" className="form-control" name="meta_description" value={item?.meta_description} placeholder='Meta Description' rows={3} cols={''} onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                                    </div>
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Description
+                                        </label>
+                                        <textarea id="w3review" className="form-control" name="description" value={item?.description} placeholder='Description' rows={3} cols={''} onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                                    </div>
+
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Slug
+                                        </label>
+                                        <div>
+                                            <input type="text" name="slug" value={item?.slug} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="slug" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
                                         </div>
                                     </div>
 
                                     <div className="col-lg-12 mt-4">
                                         <label className='ms-3' style={{ fontSize: '14px' }}>Upload Excel<span style={{ color: 'red' }}>*</span></label>
-                                        <input type="file" name="image" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                                        <input type="file" name="excel" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => { onChangeHandleExcel(e, item.language_id) }} />
                                     </div>
 
 
                                     <div className="col-lg-6 mt-4">
-                                        <label className='ms-3' style={{ fontSize: '14px' }}>Status</label>
+                                        <label className='ms-3' style={{ fontSize: '14px' }}>Active</label>
                                         <select className="form-select form-control" name="isActive" value={item?.isActive} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
                                             <option selected>IS Active</option>
                                             <option value={true}>Yes</option>
@@ -107,7 +174,20 @@ function AddColorStoneMultiLingual({ data, item, i, params, sendData, onChangeHa
                                         </select>
                                     </div>
 
-                                    <div className="col-lg-3 mt-3">
+                                    <div className="col-lg-4 mt-3">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Icon
+                                        </label>
+                                        <div>
+                                            <input type="file" name="thumbnail_image" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Image*" onChange={(e) => { onChangeThumbnailImage(e, item.language_id) }} />
+                                        </div>
+
+                                        <div className='col-lg-12'>
+                                            <img src={showImageD?.url} style={{ width: '300px', height: '200px', objectFit: 'cover', marginTop: '10px', border: '1px solid black' }} />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-12 mt-3" style={{ display: 'flex', justifyContent: 'end' }}>
                                         {data.length == i + 1 ? <div className="form-group text-right mt-4">
                                             <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>Save</button>
                                             <button className="btn btn-danger ms-2">Cancel</button>
