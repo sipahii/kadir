@@ -1391,7 +1391,11 @@ export const productsApi = createApi({
         getSellerPackage: builder.query({
             query: () => ({
                 url: 'sellerPackage',
-                method: 'GET'
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('adminToken')
+                },
             })
         }),
 

@@ -63,6 +63,7 @@ function AddCelebrityPackageComp() {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            console.log('res.data--', res.data)
             setCountryD(res.data);
         } catch (error) {
 
@@ -194,7 +195,7 @@ function AddCelebrityPackageComp() {
 
                                 <div className="card-body">
                                     <div className="form-group row">
-                                        <label className="col-sm-2 col-from-label" htmlFor="name">Language</label>
+                                        <label className="col-sm-2 col-from-label" htmlFor="name">Name</label>
                                         <div className="col-sm-10">
                                             <input type="text" placeholder="language" name="name" value={inputVal?.name} className="form-control" required fdprocessedid="wle4vm" onChange={changeHandler} />
                                         </div>
@@ -204,7 +205,7 @@ function AddCelebrityPackageComp() {
                                     <h5 style={{ textAlign: 'center' }}>Countries</h5>
                                     {countryD && countryD?.map((item, i) => {
                                         return <div className="form-group row" key={i}>
-                                            <label className="col-sm-2 col-from-label" htmlFor="amount">{item?.country_id?.name}</label>
+                                            <label className="col-sm-2 col-from-label" htmlFor="amount">{item?.name}</label>
                                             <div className="col-sm-10">
                                                 <input type="text" placeholder="" name="countries" value={item?.amount} className="form-control" required fdprocessedid="2fzobh" onChange={(e) => changeHandlerCountry(i, item._id, e)} />
                                             </div>
