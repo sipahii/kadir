@@ -99,7 +99,7 @@ const Variation = ({
     form_variatio({
       data: {
         attributes: [...filteredData],
-        variations: [...variationForm],
+        variations: [...variations],
       },
       token: token,
     });
