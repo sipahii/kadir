@@ -47,7 +47,7 @@ function AddRingSize() {
     useEffect(() => {
         if (data) {
             const maped = data.map((item) => {
-                return { name: "", code: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', language_id: item._id, isActive: false, lable: item.name }
+                return { name: "", code: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', parent_id: '', language_id: item._id, isActive: false, lable: item.name }
             })
             setVal(maped)
         }

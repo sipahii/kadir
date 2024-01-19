@@ -737,6 +737,19 @@ import AddCelebritiesPackagePage from "./Admin-pannel/Pages/addCelebrityPackageP
 import ListCelebrityPackagePage from "./Admin-pannel/Pages/listCelebrityPackagePage";
 import EditCelebrityPackagePage from "./Admin-pannel/Pages/editCelebrityPackagePage";
 import CelebrityGoogleDashboardPage from "./Admin-pannel/Pages/celebrityGoogleDashboardPage";
+import ListStyleManagementPage from "./Admin-pannel/Pages/listStyleManagementPage";
+import EditStyleManagementPage from "./Admin-pannel/Pages/editStyleManagemnetPage";
+import ListCollectionManagementPage from "./Admin-pannel/Pages/listCollectionManagementPage";
+import EditCollectionManagementpage from "./Admin-pannel/Pages/editCollectionManagementPage";
+import AddMaterialJewelPage from "./Admin-pannel/Pages/addMeaterialJewelPage";
+import ListMaterialJewelPage from "./Admin-pannel/Pages/listMaterialJewelPage";
+import EditMaterialJewelPage from "./Admin-pannel/Pages/editMateralJewelPage";
+import AddGemstonePage from "./Admin-pannel/Pages/addGemstonePage";
+import ListGemstonePage from "./Admin-pannel/Pages/listGemstonePage";
+import EditGemStonePage from "./Admin-pannel/Pages/editGemstonePage";
+import AddThemeJewelPage from "./Admin-pannel/Pages/addThemeJewelPage";
+import ListThemePage from "./Admin-pannel/Pages/listThemePage";
+import EditThemeJewelPage from "./Admin-pannel/Pages/editThemeJewelPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -1821,6 +1834,16 @@ function App() {
             element={<EditColorStonepage />}
           />
           <Route path="add-color-stone" element={<AddColorStone />} />
+          <Route path="add-material" element={<AddMaterialJewelPage />} />
+          <Route path="list-material" element={<ListMaterialJewelPage />} />
+          <Route path="list-material/edit/:uid" element={<EditMaterialJewelPage />} />
+          <Route path="add-gemstone" element={<AddGemstonePage />} />
+          <Route path="list-gemstone" element={<ListGemstonePage />} />
+          <Route path="list-gemstone/edit/:uid" element={<EditGemStonePage />} />
+          <Route path="add-theme" element={<AddThemeJewelPage />} />
+          <Route path="list-theme" element={<ListThemePage />} />
+          <Route path="list-theme/edit/:uid" element={<EditThemeJewelPage />} />
+
           <Route
             path="add-labour-charge-type"
             element={<AddLabourChargeTypePage />}
@@ -1911,10 +1934,14 @@ function App() {
             element={<AddCategorySequencePage />}
           />
           <Route path="add-style" element={<AddStyleManagementPage />} />
+          <Route path="list-style" element={<ListStyleManagementPage />} />
+          <Route path="list-style/edit/:uid" element={<EditStyleManagementPage />} />
           <Route
             path="add-collection"
             element={<AddCollectionManagementPage />}
           />
+          <Route path="list-collection" element={<ListCollectionManagementPage />} />
+          <Route path="list-collection/edit/:uid" element={<EditCollectionManagementpage />} />
           <Route path="add-metal-type" element={<AddMetalTypePage />} />
           <Route path="metal-type" element={<MetalTypePage />} />
           <Route path="metal-type/edit/:uid" element={<EditMetalTypePage />} />

@@ -1,10 +1,27 @@
-import React, { useEffect } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 function AddRingSizeMultiLingual({ data, item, i, params, sendData, onChangeHandler, setValue, onChangeThumbnailImage, showImageD, setShowImageD }) {
+    const [category, setcategory] = useState();
+    const token = window.localStorage.getItem('adminToken');
+
+    const getCategoryD = async () => {
+        const res = await axios.get(`https://onlineparttimejobs.in/api/category/admin`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setcategory(res?.data);
+    };
+
+    useEffect(() => {
+        getCategoryD();
+    }, []);
 
     useEffect(() => {
         if (params?.uid) {
-            setShowImageD(item?.mainImage_url)
+            setShowImageD(item?.thumbnail_image)
         }
     }, [params?.uid]);
 
@@ -44,8 +61,19 @@ function AddRingSizeMultiLingual({ data, item, i, params, sendData, onChangeHand
                                             <input type="text" name="code" value={item.code} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Code*" onChange={(e) => { onChangeHandler(e, item.language_id) }} />
                                         </div>
                                     </div>
-
                                     <div className="col-lg-4">
+                                        <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
+                                            Select Category
+                                        </label>
+                                        <select className="form-control form-select" name="parent_id" value={item?.shape_id} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
+                                            <option selected>Select Category</option>
+                                            {category && category.map((item, i) => {
+                                                return <option value={item?.uid} key={i}>{item?.name}</option>
+                                            })}
+                                        </select>
+                                    </div>
+
+                                    <div className="col-lg-4 mt-3">
                                         <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
                                             Description
                                         </label>
