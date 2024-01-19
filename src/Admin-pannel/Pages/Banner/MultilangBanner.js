@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 
 
-function MultilangBanner({ params, addNewAttributeData, imgHandle, onChangeHandler, item, data, setValue, i }) {
+function MultilangBanner({ params, addNewAttributeData, imgHandle, onChangeHandler, item, data, setValue, i, showImageD, setShowImageD, }) {
+
+    useEffect(() => {
+        if (params?.uid) {
+            setShowImageD(item?.image)
+        }
+    }, [params?.uid]);
+
     return <div className="card">
         <div className="card-header">
             {params.id ? <h1 className="mb-0 h6">Edit Banner {item.lable}</h1> : <h1 className="mb-0 h6">Add New Banner {item.lable}</h1>}
@@ -19,10 +27,13 @@ function MultilangBanner({ params, addNewAttributeData, imgHandle, onChangeHandl
                                 <div className="input-group-text bg-soft-secondary">Browse</div>
                             </div>
                             <div className="form-control file-amount">
-                                <input type="file" name="image" className="selected-files" onChange={(e) => { onChangeHandler(e, item.language_id, 'img') }} />
+                                <input type="file" name="image" className="selected-files" onChange={(e) => { imgHandle(e, item.language_id, 'img') }} />
                             </div>
                         </div>
                         <div className="file-preview box sm" />
+                    </div>
+                    <div className='col-lg-12'>
+                        <img src={showImageD?.url} style={{ width: '300px', height: '200px', objectFit: 'cover', marginTop: '10px', border: '1px solid black' }} />
                     </div>
                 </div>
 
