@@ -9,14 +9,19 @@ function RingSize() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/ringSize', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        setLoading(false)
-        setgetListData(res.data)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/ringSize', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setLoading(false)
+            setgetListData(res.data)
+        } catch (error) {
+            setLoading(false)
+            alert('Server Error')
+        }
     };
 
     const deletData = async (id) => {

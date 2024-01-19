@@ -10,7 +10,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import MultilangBanner from "./MultilangBanner";
 function AddNewBanner() {
-
+    const [showImageD, setShowImageD] = useState();
     const [inputval, setInputval] = useState({
         SliderTopHeading: '',
         bottomText: '',
@@ -18,7 +18,44 @@ function AddNewBanner() {
         image: '',
 
     });
-    const [file, setFile] = useState()
+    const [file, setFile] = useState();
+
+    const imgHandle = async (e, id) => {
+        if (e.target.name == 'image') {
+            let balnkObj = {};
+            const fromData = new FormData();
+            fromData.append('image', e.target.files[0])
+            try {
+                const res = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, fromData,);
+                setShowImageD(res.data);
+                balnkObj = res.data
+            } catch (error) {
+
+            };
+            fromData.delete('image')
+
+            const maped = val.map((item) => {
+                if (item.language_id == id) {
+                    const obj = { ...item, [e.target.name]: balnkObj }
+                    return obj
+                } else {
+                    return item
+                }
+            })
+            setVal(maped);
+
+        } else {
+            const maped = val.map((item) => {
+                if (item.language_id == id) {
+                    const obj = { ...item, [e.target.name]: e.target.value }
+                    return obj
+                } else {
+                    return item
+                }
+            })
+            setVal(maped);
+        }
+    };
 
     const onChangeHandler = (e, id, bul) => {
         if (bul) {
@@ -45,14 +82,9 @@ function AddNewBanner() {
 
 
     }
-    const token = window.localStorage.getItem('token')
-    const imgHandle = async (e) => {
-        setFile(e.target.files[0]);
-        const formData = new FormData();
-        formData.append('image', e.target.files[0]);
-        const res = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, formData);
-        // setInputval({ ...inputval, image: e.target.files[0] })
-    }
+    const token = window.localStorage.getItem('token');
+
+
 
     const [loader, setLoader] = useState(false)
     const [errorFile, setError] = useState(false)
@@ -196,6 +228,7 @@ function AddNewBanner() {
         }
 
     };
+
     return <div className="aiz-main-content">
         <div className="px-15px px-lg-25px">
             <div className="row">
@@ -213,7 +246,7 @@ function AddNewBanner() {
                             {val && val.map((item, i) => {
                                 return <TabPanel value={i}>
                                     <div className="card">
-                                        <MultilangBanner params={params} setValue={setValue} data={val} item={item} i={i} addNewAttributeData={addNewAttributeData} onChangeHandler={onChangeHandler} imgHandle={imgHandle} />
+                                        <MultilangBanner params={params} setValue={setValue} data={val} item={item} i={i} addNewAttributeData={addNewAttributeData} onChangeHandler={onChangeHandler} imgHandle={imgHandle} showImageD={showImageD} setShowImageD={setShowImageD} />
                                     </div>
 
                                 </TabPanel>
