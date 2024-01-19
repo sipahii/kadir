@@ -32,6 +32,7 @@ import Variation from "./partial/Variation";
 import ProductList from "./partial/ProductList";
 import INITIAL_STATE from "./partial/Constant";
 import { setDataDescription } from "../../Components/productDescriptionWrapper/textEditorSlice";
+import getProductById from "../../api/getProductById";
 
 const toastSuccessMessage = (message) => {
   toast.success(message, {
@@ -77,12 +78,8 @@ function AddNewProductsPage() {
   const [variationList, setVariationList] = useState([]);
   const [variationForm, setVariationForm] = useState([]);
   const navigate = useNavigate();
-
-  const {
-    data: productData,
-    isSuccess,
-    isLoading: productLoading,
-  } = useGetProductByIdQuery({ id: params?.id, token: token });
+  const [shoingLoader, setshoingLoader] = useState(false);
+  const [productIsLoading, setProductIsLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -111,13 +108,33 @@ function AddNewProductsPage() {
     getCatData();
   }, [token]);
 
+  const getProduct = async (id) => {
+    try {
+      const data = await getProductById(id, token);
+
+      if (data && data.product && data.product.length > 0) {
+        const product = data.product[0];
+
+        setVal(data?.product || []);
+        setVariationForm(product.variation_Form || []);
+        setVariationList(product.variations || []);
+
+        product.variations.forEach((item) => {
+          variationIdVsPricingAndAttributes.set(item._id, item);
+        });
+      } else {
+        console.error("Product data or product array is empty.");
+      }
+      setProductIsLoading(false);
+    } catch (error) {
+      setProductIsLoading(false);
+      console.error("Error fetching product:", error.message);
+    }
+  };
+
   useEffect(() => {
     if (params?.id) {
-      if (productData) {
-        setVal(productData?.product || []);
-        setVariationForm(productData?.product[0]?.variation_Form || []);
-        setVariationList(productData?.product[0]?.variations || []);
-      }
+      getProduct(params.id);
     } else {
       if (data && currdata) {
         const maped = data.map((item) => {
@@ -139,9 +156,10 @@ function AddNewProductsPage() {
         setIsExistSlug(false);
         setspcOr(false);
         dispatch(setDataDescription("<p><br></p>"));
+        setProductIsLoading(false);
       }
     }
-  }, [data, currdata, productData, params?.id]);
+  }, [data, currdata, params?.id]);
 
   const setattributesVal = (data) => {
     setVariationForm(data || []);
@@ -171,15 +189,17 @@ function AddNewProductsPage() {
 
   function handleTagKeyDown(e) {
     if (e.key !== "Enter") return;
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     if (!e.target.value.trim()) return;
     cloneAllData[value].tags = [...cloneAllData[value]?.tags, e.target?.value];
     e.target.value = "";
     setVal(cloneAllData);
   }
   const removetagTag = (index) => {
-    let cloneAllData = [...val];
-    let remainingTags = cloneAllData[value].filter((item, i) => i !== index);
+    let cloneAllData = JSON.parse(JSON.stringify(val));
+    let remainingTags = cloneAllData[value]?.tags?.filter(
+      (item, i) => i !== index
+    );
     cloneAllData[value].tags = remainingTags;
     setVal(cloneAllData);
   };
@@ -211,13 +231,18 @@ function AddNewProductsPage() {
     };
   }, []);
   const changettriPro = (list) => {
-    const cloneValue = [...val];
-    cloneValue[value].attributeList = list;
+    const cloneValue = JSON.parse(JSON.stringify(val));
+    let existingId = cloneValue[value].attributeList.map((item) => item._id);
+    let newAttribute = list.filter((item) => !existingId.includes(item._id));
+    cloneValue[value].attributeList = [
+      ...cloneValue[value].attributeList,
+      ...newAttribute,
+    ];
     setVal(cloneValue);
   };
 
   const removeRowAt = (id, selectedIndex) => {
-    const cloneValue = [...val];
+    const cloneValue = JSON.parse(JSON.stringify(val));
     const filterd = cloneValue[value]?.attributeList[
       selectedIndex
     ]?.list?.filter((item) => item.attribute?._id !== id);
@@ -226,7 +251,7 @@ function AddNewProductsPage() {
   };
 
   const changeValues = (e, item) => {
-    const cloneValue = [...val];
+    const cloneValue = JSON.parse(JSON.stringify(val));
     const selectedIndex = e.target.id;
     const filterd = cloneValue[value]?.attributeList[selectedIndex]?.list?.map(
       (item) => {
@@ -246,14 +271,10 @@ function AddNewProductsPage() {
     val[value].category_id = [...ids];
   };
   const handleChange = (event, newValue) => {
-    debugger;
-    console.log(variationForm);
-    console.log(variationList);
     setValue(newValue);
   };
 
   const onChangeHandler = async (e, id, bul) => {
-    console.log("id", id);
     let maped;
     if (typeof bul === "boolean") {
       maped = val?.map((item) => {
@@ -322,7 +343,7 @@ function AddNewProductsPage() {
   };
 
   const freshDeals = (e) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     let modifiedObject = JSON.parse(JSON.stringify(cloneAllData[value]));
     modifiedObject.flashDeal[e.target.name] = e.target.value;
     cloneAllData[value] = modifiedObject;
@@ -379,16 +400,16 @@ function AddNewProductsPage() {
 
   const addNewAttributeData = async (e, id) => {
     e.preventDefault();
-    let clone2 = [...val];
+    let clone2 = JSON.parse(JSON.stringify(val));
     setspcOr(true);
     addFile(clone2, token);
   };
 
   const onchangeImgeHandler = async (e) => {
+    setshoingLoader(true);
     const inpVal = e.target.files;
     const images = new FormData();
-    let cloneAllData = [...val];
-
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     for (let ind = 0; ind < inpVal?.length; ind++) {
       try {
         const element0 = inpVal[ind];
@@ -406,10 +427,13 @@ function AddNewProductsPage() {
         } else {
           cloneAllData[value].meta_image = { ...obj };
         }
+        setshoingLoader(false);
       } catch (error) {
         console.log("Gallery Image not uploaded");
+        setshoingLoader(false);
       } finally {
         images.delete("image");
+        setshoingLoader(false);
       }
     }
     setVal(cloneAllData);
@@ -434,18 +458,11 @@ function AddNewProductsPage() {
     const filterdData = cloneAllData.filter((item) => {
       return item._id !== id;
     });
-    // cloneAllData.forEach((item) => {
-    //   item.variations = filterdData;
-    // });
-    // setVal(cloneAllData);
     setVariationList(filterdData);
-    // cloneAllData[value].variations = filterdData;
-    // setVal(cloneAllData);
   };
 
   const updateVarientPriceAndAttributes = (data) => {
     variationIdVsPricingAndAttributes.set(data._id, data);
-    debugger;
     const cloneAllData = JSON.parse(JSON.stringify(variationList));
     const selectedIndex = cloneAllData.findIndex((item) => {
       return item._id === data._id;
@@ -453,21 +470,17 @@ function AddNewProductsPage() {
     if (selectedIndex !== -1) {
       cloneAllData[selectedIndex] = data;
     }
-    // cloneAllData.forEach((item) => {
-    //   item.variations = variationList;
-    // });
-    // setVal(cloneAllData);
     setVariationList(cloneAllData);
   };
 
   const setFinalCatDIndus = (selectedIds) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     cloneAllData[value].industry_id = selectedIds;
     setVal(cloneAllData);
   };
 
   const handleCallBackData = (data) => {
-    let cloneAllData = [...val];
+    let cloneAllData = JSON.parse(JSON.stringify(val));
     let modifiedObject = { ...cloneAllData[value] };
     modifiedObject.productDescription = data || "<p><br></p>";
     cloneAllData[value] = modifiedObject;
@@ -477,20 +490,29 @@ function AddNewProductsPage() {
   return (
     <>
       <div className="aiz-main-content">
-        {spcOr && (
-          <div className="preloaderCount">
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">ded</span>
+        {spcOr ||
+          (productIsLoading && (
+            <div className="preloaderCount">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">ded</span>
+              </div>
+              <h6>please wait your product in uploading</h6>
             </div>
-            <h6>please wait your product in uploading</h6>
-          </div>
-        )}
+          ))}
 
         {isLoading && (
           <div className="preloaderCount">
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
+          </div>
+        )}
+        {shoingLoader && (
+          <div className="preloaderCount">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">ded</span>
+            </div>
+            <h6>Please Wait your Image in uploading</h6>
           </div>
         )}
         <Box sx={{ width: "100%", typography: "body1" }}>
@@ -563,8 +585,9 @@ function AddNewProductsPage() {
                                 onChangeHandler={onChangeHandler}
                               />
 
-                              {item.language_id._id ===
-                                "65111f1f78085e4cc5cce8ff" && (
+                              {item?.language_id?.name
+                                ?.toLowerCase()
+                                .includes("english") && (
                                 <SEOMetaTags
                                   item={item}
                                   onChangeHandler={onChangeHandler}
@@ -830,6 +853,7 @@ function AddNewProductsPage() {
                                 placeholder="Quantity"
                                 name="total_quantity"
                                 className="form-control"
+                                value={item?.total_quantity}
                                 required
                                 fdprocessedid="gny5jm"
                                 onChange={(e) => {
@@ -869,32 +893,13 @@ function AddNewProductsPage() {
                                 placeholder="Shipping cost"
                                 name="shipping_cost"
                                 className="form-control"
+                                value={item?.shipping_cost}
                                 required
                                 fdprocessedid="pvn15"
                                 onChange={(e) => {
                                   onChangeHandler(e, item?.language_id?._id);
                                 }}
                               />
-                            </div>
-                            <div
-                              className="col-md-3 form-group physical_product_show"
-                              id="shipping_cost"
-                            >
-                              <label className="title-color">
-                                Save Data !{" "}
-                              </label>
-
-                              <div>
-                                <ConfigProvider
-                                  theme={{
-                                    components: {
-                                      Checkbox: {
-                                        colorPrimary: "#ff4d4f",
-                                      },
-                                    },
-                                  }}
-                                ></ConfigProvider>
-                              </div>
                             </div>
                             <div
                               className="col-md-3 form-group physical_product_show"
@@ -909,7 +914,7 @@ function AddNewProductsPage() {
                                   type="checkbox"
                                   name="Shipping_cost_multiply_with_quantity"
                                   checked={
-                                    item.Shipping_cost_multiply_with_quantity
+                                    item?.Shipping_cost_multiply_with_quantity
                                   }
                                   onChange={(e) => {
                                     onChangeHandler(

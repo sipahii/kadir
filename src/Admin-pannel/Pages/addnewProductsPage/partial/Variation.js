@@ -59,7 +59,6 @@ const Variation = ({
   }, [variationForm]);
 
   const getAttributes = (attributes) => {
-    debugger;
     const updateExistingAttribute = attributes?.map((secondObj) => {
       const matchingObj = variationForm.find(
         (originalObj) => originalObj._id === secondObj._id
@@ -86,7 +85,6 @@ const Variation = ({
 
   const callVariationAPi = (currentAttr) => {
     const clone = [...variationForm];
-    debugger;
     const findIndex = clone.findIndex(({ _id }) => _id === currentAttr?.id);
 
     if (findIndex !== -1) {
@@ -101,7 +99,7 @@ const Variation = ({
     form_variatio({
       data: {
         attributes: [...filteredData],
-        variations: [...variationForm],
+        variations: [...variations],
       },
       token: token,
     });
