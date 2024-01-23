@@ -27,6 +27,10 @@ function AddJwelleryProductComp222() {
     const [finalSizeD, setfinalSizeD] = useState();
     const [finalDefaultSizeD, setfinalDefaultSizeD] = useState();
     const [finalShopForD, setfinalShopForD] = useState();
+    const [finalMaterialD, setfinalMaterialD] = useState();
+    const [finalGemstoneD, setfinalGemstoneD] = useState();
+    const [finalThemeD, setfinalThemeD] = useState();
+
     const [finalLookTagD, setfinalLooktagD] = useState();
     const [finalWearTagD, setfinalWeartagD] = useState();
     const [finalProductTagD, setfinalProducttagD] = useState();
@@ -89,7 +93,7 @@ function AddJwelleryProductComp222() {
     //     }
     // }, [data]);
 
-    console.log('Vall----', val)
+    // console.log('Vall----', val)
 
     const onchengePhotoHandel = async (e, id,) => {
         // setShowImageD(URL.createObjectURL(e.target.files[0]));
@@ -161,7 +165,7 @@ function AddJwelleryProductComp222() {
         }
     };
 
-    
+
     const onChangeHandlePrice = async (e, languageId, countryName) => {
         if (e.target.name == 'sale_rate') {
             const blankArr = []
@@ -256,6 +260,16 @@ function AddJwelleryProductComp222() {
     const bringShopFor = (shopFor) => {
         setfinalShopForD(shopFor)
     };
+    const bringMaterial = (material) => {
+        setfinalMaterialD(material)
+    }
+    const bringGemstone = (gemstone) => {
+        setfinalGemstoneD(gemstone)
+    }
+    const bringTheme = (theme) => {
+        setfinalThemeD(theme)
+    }
+
     const bringLookTag = (lookTag) => {
         setfinalLooktagD(lookTag)
     };
@@ -289,7 +303,7 @@ function AddJwelleryProductComp222() {
         }
         const maped = val.map((item) => {
             if (item.language_id == id) {
-                const obj = { ...item, categoryType: finalCategoryTypeD, category: finalCategoryD, subCategory: finalSubCategoryD, style: finalStyleD, Collection: finalCollectionD, labourChargeType: finalLabourChargetTypeD, occassions: finalOccassionD, ringSize: finalSizeD, defSize: finalDefaultSizeD, shopForModule: finalShopForD, lookTag: finalLookTagD, wearTag: finalWearTagD, productTag: finalProductTagD, metals: finalMetalData, stones: finalStoneData, diamonds: finalDiamondData, pairProducts: finalPairProductsData, setProducts: finalProductSetsData, prices: isPriceData }
+                const obj = { ...item, categoryType: finalCategoryTypeD, category: finalCategoryD, subCategory: finalSubCategoryD, style: finalStyleD, Collection: finalCollectionD, labourChargeType: finalLabourChargetTypeD, occassions: finalOccassionD, ringSize: finalSizeD, defSize: finalDefaultSizeD, shopForModule: finalShopForD, material: finalMaterialD, gemStone: finalGemstoneD, theme: finalThemeD, lookTag: finalLookTagD, wearTag: finalWearTagD, productTag: finalProductTagD, metals: finalMetalData, stones: finalStoneData, diamonds: finalDiamondData, pairProducts: finalPairProductsData, setProducts: finalProductSetsData, prices: isPriceData }
                 return obj
             } else {
                 return item
@@ -306,6 +320,9 @@ function AddJwelleryProductComp222() {
         setfinalSizeD([])
         setfinalDefaultSizeD([])
         setfinalShopForD([])
+        setfinalMaterialD([])
+        setfinalGemstoneD([])
+        setfinalThemeD([])
         setfinalLooktagD([])
         setfinalWeartagD([])
         setfinalProducttagD([])
@@ -319,7 +336,7 @@ function AddJwelleryProductComp222() {
         let clone2 = [...val]
         const maped = clone2.map((item) => {
             if (item.language_id == id) {
-                const obj = { ...item, categoryType: finalCategoryTypeD, category: finalCategoryD, subCategory: finalSubCategoryD, style: finalStyleD, Collection: finalCollectionD, labourChargeType: finalLabourChargetTypeD, occassions: finalOccassionD, ringSize: finalSizeD, defSize: finalDefaultSizeD, shopForModule: finalShopForD, lookTag: finalLookTagD, wearTag: finalWearTagD, productTag: finalProductTagD, metals: finalMetalData, stones: finalStoneData, diamonds: finalDiamondData, pairProducts: finalPairProductsData, setProducts: finalProductSetsData, prices: isPriceData }
+                const obj = { ...item, categoryType: finalCategoryTypeD, category: finalCategoryD, subCategory: finalSubCategoryD, style: finalStyleD, Collection: finalCollectionD, labourChargeType: finalLabourChargetTypeD, occassions: finalOccassionD, ringSize: finalSizeD, defSize: finalDefaultSizeD, shopForModule: finalShopForD, material: finalMaterialD, gemStone: finalGemstoneD, theme: finalThemeD, lookTag: finalLookTagD, wearTag: finalWearTagD, productTag: finalProductTagD, metals: finalMetalData, stones: finalStoneData, diamonds: finalDiamondData, pairProducts: finalPairProductsData, setProducts: finalProductSetsData, prices: isPriceData }
                 return obj
             } else {
                 return item
@@ -390,14 +407,14 @@ function AddJwelleryProductComp222() {
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
                             {data && data.map((item, i) => {
-                                return <Tab label={item?.name} value={i} />
+                                return <Tab label={item?.name} value={i} key={i} />
                             })}
                         </TabList>
                     </Box>
                     {val && val.map((item, i) => {
                         return <TabPanel value={i}>
                             <div className="card">
-                                <AddJwelleryProduct222MultiLingual setValue={setValue} data={val} params={params} item={item} i={i} onChangeHandler={onChangeHandler} bringCategoryType={bringCategoryType} bringCategory={bringCategory} bringSubCategory={bringSubCategory} bringStyle={bringStyle} bringCollection={bringCollection} bringLabourChargeType={bringLabourChargeType} bringOccassion={bringOccassion} bringSize={bringSize} bringDefaultSize={bringDefaultSize} bringShopFor={bringShopFor} bringLookTag={bringLookTag} bringWearTag={bringWearTag} bringProductTag={bringProductTag} bringMetalData={bringMetalData} bringStoneData={bringStoneData} bringDiamondData={bringDiamondData} bringPairProductsData={bringPairProductsData} bringProductSetsData={bringProductSetsData} setLoop={setLoop} addNewAttributeData={addNewAttributeData} countryData={countryData} onchengePhotoHandel={onchengePhotoHandel} onChangeHandlePrice={onChangeHandlePrice} showImageD={showImageD} setShowImageD={setShowImageD} showGallaryImageD={showGallaryImageD} imageLoading={imageLoading} imageLoading2={imageLoading2} />
+                                <AddJwelleryProduct222MultiLingual setValue={setValue} data={val} params={params} item={item} i={i} onChangeHandler={onChangeHandler} bringCategoryType={bringCategoryType} bringCategory={bringCategory} bringSubCategory={bringSubCategory} bringStyle={bringStyle} bringCollection={bringCollection} bringLabourChargeType={bringLabourChargeType} bringOccassion={bringOccassion} bringSize={bringSize} bringDefaultSize={bringDefaultSize} bringShopFor={bringShopFor} bringMaterial={bringMaterial} bringGemstone={bringGemstone} bringTheme={bringTheme} bringLookTag={bringLookTag} bringWearTag={bringWearTag} bringProductTag={bringProductTag} bringMetalData={bringMetalData} bringStoneData={bringStoneData} bringDiamondData={bringDiamondData} bringPairProductsData={bringPairProductsData} bringProductSetsData={bringProductSetsData} setLoop={setLoop} addNewAttributeData={addNewAttributeData} countryData={countryData} onchengePhotoHandel={onchengePhotoHandel} onChangeHandlePrice={onChangeHandlePrice} showImageD={showImageD} setShowImageD={setShowImageD} showGallaryImageD={showGallaryImageD} imageLoading={imageLoading} imageLoading2={imageLoading2} />
                             </div>
 
                         </TabPanel>

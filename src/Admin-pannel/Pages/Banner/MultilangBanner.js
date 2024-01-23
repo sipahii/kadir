@@ -4,10 +4,10 @@ import { useEffect } from "react";
 function MultilangBanner({ params, addNewAttributeData, imgHandle, onChangeHandler, item, data, setValue, i, showImageD, setShowImageD, }) {
 
     useEffect(() => {
-        if (params?.uid) {
+        if (params?.id) {
             setShowImageD(item?.image)
         }
-    }, [params?.uid]);
+    }, [params?.id]);
 
     return <div className="card">
         <div className="card-header">
@@ -33,7 +33,7 @@ function MultilangBanner({ params, addNewAttributeData, imgHandle, onChangeHandl
                         <div className="file-preview box sm" />
                     </div>
                     <div className='col-lg-12'>
-                        <img src={showImageD?.url} style={{ width: '300px', height: '200px', objectFit: 'cover', marginTop: '10px', border: '1px solid black' }} />
+                        <img src={item?.image?.url} style={{ width: '300px', height: '200px', objectFit: 'cover', marginTop: '10px', border: '1px solid black' }} />
                     </div>
                 </div>
 

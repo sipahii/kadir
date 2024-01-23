@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useGetLanguagesQuery } from "../../Components/all-products/allproductsApi/allProductsApi";
 import Box from '@mui/material/Box';
@@ -11,14 +11,18 @@ import TabPanel from '@mui/lab/TabPanel';
 import MultilangBanner from "./MultilangBanner";
 function AddNewBanner() {
     const [showImageD, setShowImageD] = useState();
-    const [inputval, setInputval] = useState({
-        SliderTopHeading: '',
-        bottomText: '',
-        url: '',
-        image: '',
+    const token = window.localStorage.getItem('token');
 
-    });
-    const [file, setFile] = useState();
+    const { data, refetch } = useGetLanguagesQuery(token);
+
+    const [val, setVal] = useState(data);
+    const [value, setValue] = useState(0);
+    const [loader, setLoader] = useState(false);
+    const [errorFile, setError] = useState(false);
+    const [isSusses, setIssusses] = useState(false);
+
+    const params = useParams();
+    const navigate = useNavigate();
 
     const imgHandle = async (e, id) => {
         if (e.target.name == 'image') {
@@ -27,7 +31,7 @@ function AddNewBanner() {
             fromData.append('image', e.target.files[0])
             try {
                 const res = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, fromData,);
-                setShowImageD(res.data);
+                // setShowImageD(res.data);
                 balnkObj = res.data
             } catch (error) {
 
@@ -81,19 +85,11 @@ function AddNewBanner() {
         }
 
 
-    }
-    const token = window.localStorage.getItem('token');
+    };
 
-
-
-    const [loader, setLoader] = useState(false)
-    const [errorFile, setError] = useState(false)
-    const [isSusses, setIssusses] = useState(false)
-
-
-
-
-    const params = useParams()
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     const getParamdata = async (id) => {
         try {
@@ -103,24 +99,19 @@ function AddNewBanner() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log('res.data---M', res?.data)
+            console.log('getByID----', res?.data)
             setVal(res?.data?.list)
-            // setInputval({
-            //     SliderTopHeading: res.data.SliderTopHeading,
-            //     bottomText: res.data.bottomText,
-            //     url: res.data.url,
-            //     image: res.data.image,
-            // })
+            // setShowImageD(res?.data?.list?.image)
         } catch (error) {
             alert('Server Error')
         }
-    }
+    };
 
     useEffect(() => {
         if (params.id) {
             getParamdata(params.id)
         }
-    }, [])
+    }, []);
 
     const toastSuccessMessage = () => {
         if (params.id) {
@@ -156,17 +147,12 @@ function AddNewBanner() {
         if (errorFile === true) {
             toastErrorMessage()
         };
-    }, [errorFile])
-    const [value, setValue] = useState(0);
+    }, [errorFile]);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
-    const { data, refetch } = useGetLanguagesQuery(token);
-    const [val, setVal] = useState(data)
+
     useEffect(() => {
-        if (data) {
+        if (data && !params?.id) {
             const maped = data.map((item) => {
                 return {
                     SliderTopHeading: '',
@@ -179,23 +165,13 @@ function AddNewBanner() {
             })
             setVal(maped)
         }
-    }, [data])
+    }, [data]);
 
     const addNewAttributeData = async (e) => {
         e.preventDefault();
-        const images = new FormData();
+        // const images = new FormData();
         const clone = [...val]
         setLoader(true)
-        // for (let i = 0; i < clone.length; i++) {
-        //     let element = clone[i];
-        //     if (element?.image) {
-        //         images.append('image', element?.image);
-        //         const res2 = await axios.post(`https://onlineparttimejobs.in/api/cloudinaryImage/addImage`, images)
-        //         images.delete('image');
-        //         const obj = { ...element, image: { public_id: res2.data.public_id, url: res2.data.url } }
-        //         clone.splice(i, 1, obj)
-        //     }
-        // }
         if (params.id) {
             try {
                 const res = await axios.put(` https://onlineparttimejobs.in/api/banner/update/${params.id}`, { list: clone }, {
@@ -205,7 +181,13 @@ function AddNewBanner() {
                     },
                 })
                 setLoader(false)
-                setIssusses(true)
+                setIssusses(true);
+                setTimeout(() => {
+                    setVal(
+                        []
+                    )
+                    navigate('../list_banner')
+                }, 5000);
             } catch (error) {
                 setLoader(false)
                 setError(true)
@@ -220,6 +202,12 @@ function AddNewBanner() {
                 })
                 setLoader(false)
                 setIssusses(true)
+                setTimeout(() => {
+                    setVal(
+                        []
+                    )
+                    navigate('../list_banner')
+                }, 5000);
             } catch (error) {
                 setLoader(false)
                 setError(true)
@@ -243,7 +231,7 @@ function AddNewBanner() {
 
                                 </TabList>
                             </Box>
-                            {val && val.map((item, i) => {
+                            {!!val?.length && val?.map((item, i) => {
                                 return <TabPanel value={i}>
                                     <div className="card">
                                         <MultilangBanner params={params} setValue={setValue} data={val} item={item} i={i} addNewAttributeData={addNewAttributeData} onChangeHandler={onChangeHandler} imgHandle={imgHandle} showImageD={showImageD} setShowImageD={setShowImageD} />
