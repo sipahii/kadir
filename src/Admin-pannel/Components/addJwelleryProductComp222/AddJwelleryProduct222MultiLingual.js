@@ -7,7 +7,7 @@ import axios from "axios";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 
-function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, params, setValue, bringCategoryType, bringCategory, bringSubCategory, bringStyle, bringCollection, bringLabourChargeType, bringOccassion, bringSize, bringDefaultSize, bringShopFor, bringLookTag, bringWearTag, bringProductTag, bringMetalData, bringStoneData, bringDiamondData, bringPairProductsData, bringProductSetsData, setLoop, addNewAttributeData, countryData, onchengePhotoHandel, onChangeHandlePrice, showImageD, setShowImageD, showGallaryImageD, imageLoading, imageLoading2 }) {
+function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, params, setValue, bringCategoryType, bringCategory, bringSubCategory, bringStyle, bringCollection, bringLabourChargeType, bringOccassion, bringSize, bringDefaultSize, bringShopFor, bringMaterial, bringGemstone, bringTheme, bringLookTag, bringWearTag, bringProductTag, bringMetalData, bringStoneData, bringDiamondData, bringPairProductsData, bringProductSetsData, setLoop, addNewAttributeData, countryData, onchengePhotoHandel, onChangeHandlePrice, showImageD, setShowImageD, showGallaryImageD, imageLoading, imageLoading2 }) {
 
     // console.log('showGallaryImageD---', showGallaryImageD)
 
@@ -54,6 +54,20 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
     const [shopFor, setShopFor] = useState([]);
     const [finalShopForD, setFinalShopForD] = useState();
     bringShopFor(finalShopForD)
+
+    const [material, setMaterial] = useState([]);
+    const [finalMaterialD, setFinalMaterialD] = useState();
+    bringMaterial(finalMaterialD)
+
+    const [gemstone, setGemstone] = useState([]);
+    const [finalGemstoneD, setFinalGemstoneD] = useState();
+    bringGemstone(finalGemstoneD)
+
+    const [theme, setTheme] = useState([]);
+    const [finalThemeD, setFinalThemeD] = useState();
+    bringTheme(finalThemeD)
+
+
 
     const [lookTag, setLooktag] = useState([]);
     const [finalLookTagD, setFinalLooktagD] = useState();
@@ -157,348 +171,361 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
     };
 
 
-    useEffect(() => {
-        const getCategoryTypeData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/categoryType/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id, uid: reqData.data[i]?.uid })
-            };
-            if (getCategoryName.length) {
-                setCategoryType(getCategoryName);
-            }
+    const getCategoryTypeData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/categoryType/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id, uid: reqData.data[i]?.uid })
+        };
+        if (getCategoryName.length) {
+            setCategoryType(getCategoryName);
         }
+    };
+    const getCatData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get("https://onlineparttimejobs.in/api/categoryType", {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setCateg(getCategoryName);
+        }
+    };
+    const getSubCategoryData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get("https://onlineparttimejobs.in/api/categoryType", {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setSubCategory(getCategoryName);
+        }
+    };
+    const getStyleData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/style/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setSTyle(getCategoryName);
+        }
+    };
+    const getCollectionData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/collection/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setCollection(getCategoryName);
+        }
+    };
+    const getLabourChargeTpeData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/labourChargeType/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setLabourChargeType(getCategoryName);
+        }
+    };
+    const getOccassionData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/occasion`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setOccassion(getCategoryName);
+        }
+    };
+    const getSizeData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/ringsize`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setSize(getCategoryName);
+        }
+    };
+    const getDefaultSizeData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get("https://onlineparttimejobs.in/api/ringsize", {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setDefaultSize(getCategoryName);
+        }
+    };
+    const getShopForData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/shopForModule`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setShopFor(getCategoryName);
+        }
+    };
+    const getMaterialData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/material`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setMaterial(getCategoryName);
+        }
+    };
+    const getGemstoneData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/gemStone`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setGemstone(getCategoryName);
+        }
+    };
+    const getThemeData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/themeJewel`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setTheme(getCategoryName);
+        }
+    };
+    const getLookTagData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/lookTag`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setLooktag(getCategoryName);
+        }
+    };
+    const getWearTagData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/wearTag`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setWeartag(getCategoryName);
+        }
+    };
+    const getProductTagData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/productTag`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setProductTag(getCategoryName);
+        }
+    };
+    const getPairProductsData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get("https://onlineparttimejobs.in/api/product/jewel/admin", {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setPairProducts(getCategoryName);
+        }
+    };
+    const getProductsSetsData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get("https://onlineparttimejobs.in/api/product/jewel/admin", {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
+        };
+        if (getCategoryName.length) {
+            setProductsSets(getCategoryName);
+        }
+    };
+    const getPriceTypeData = async () => {
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/priceType/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setPriceType(reqData.data)
+    };
+    const getShapeData = async () => {
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/shape/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setShape(reqData.data)
+    };
+    const getColorStoneData = async () => {
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/colorStone/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setColorStone(reqData.data)
+    };
+    const getQualityData = async () => {
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/quality/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setQuality(reqData.data)
+    };
+    const getSievesData = async () => {
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/sieves/lang/${item.language_id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setSieves(reqData.data)
+    };
+
+    useEffect(() => {
         getCategoryTypeData();
-    }, []);
-    useEffect(() => {
-        const getCatData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get("https://onlineparttimejobs.in/api/categoryType", {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setCateg(getCategoryName);
-            }
-        }
         getCatData();
-    }, []);
-    useEffect(() => {
-        const getSubCategoryData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get("https://onlineparttimejobs.in/api/categoryType", {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setSubCategory(getCategoryName);
-            }
-        }
         getSubCategoryData();
-    }, []);
-    useEffect(() => {
-        const getStyleData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/style/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setSTyle(getCategoryName);
-            }
-        }
         getStyleData();
-    }, []);
-    useEffect(() => {
-        const getCollectionData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/collection/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setCollection(getCategoryName);
-            }
-        }
         getCollectionData();
-    }, []);
-    useEffect(() => {
-        const getLabourChargeTpeData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/labourChargeType/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setLabourChargeType(getCategoryName);
-            }
-        }
         getLabourChargeTpeData();
-    }, []);
-    useEffect(() => {
-        const getOccassionData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/occasion/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setOccassion(getCategoryName);
-            }
-        }
         getOccassionData();
-    }, []);
-    useEffect(() => {
-        const getSizeData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/ringsize/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setSize(getCategoryName);
-            }
-        }
         getSizeData();
-    }, []);
-    useEffect(() => {
-        const getDefaultSizeData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get("https://onlineparttimejobs.in/api/ringsize", {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setDefaultSize(getCategoryName);
-            }
-        }
         getDefaultSizeData();
-    }, []);
-    useEffect(() => {
-        const getShopForData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/shopForModule/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setShopFor(getCategoryName);
-            }
-        }
         getShopForData();
-    }, []);
-    useEffect(() => {
-        const getLookTagData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/lookTag/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setLooktag(getCategoryName);
-            }
-        }
+        getMaterialData();
+        getGemstoneData();
+        getThemeData();
         getLookTagData();
-    }, []);
-    useEffect(() => {
-        const getWearTagData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/wearTag/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setWeartag(getCategoryName);
-            }
-        }
         getWearTagData();
-    }, []);
-    useEffect(() => {
-        const getProductTagData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/productTag/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setProductTag(getCategoryName);
-            }
-        }
         getProductTagData();
-    }, []);
-    useEffect(() => {
-        const getPairProductsData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get("https://onlineparttimejobs.in/api/product/jewel/admin", {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setPairProducts(getCategoryName);
-            }
-        }
         getPairProductsData();
-    }, []);
-    useEffect(() => {
-        const getProductsSetsData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get("https://onlineparttimejobs.in/api/product/jewel/admin", {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id })
-            };
-            if (getCategoryName.length) {
-                setProductsSets(getCategoryName);
-            }
-        }
         getProductsSetsData();
-    }, []);
-
-    useEffect(() => {
-        const getPriceTypeData = async () => {
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/priceType/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setPriceType(reqData.data)
-        }
         getPriceTypeData();
-    }, []);
-    useEffect(() => {
-        const getShapeData = async () => {
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/shape/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setShape(reqData.data)
-        }
         getShapeData();
-    }, []);
-    useEffect(() => {
-        const getColorStoneData = async () => {
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/colorStone/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setColorStone(reqData.data)
-        }
         getColorStoneData();
-    }, []);
-    useEffect(() => {
-        const getQualityData = async () => {
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/quality/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setQuality(reqData.data)
-        }
         getQualityData();
-    }, []);
-    useEffect(() => {
-        const getSievesData = async () => {
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/sieves/lang/${item.language_id}`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setSieves(reqData.data)
-        }
         getSievesData();
     }, []);
 
@@ -574,9 +601,6 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
         }
     }, [params?.uid]);
 
-    // const getUpdata = (e, item) => {
-    //     onChangeHandlePrice(e, item._id, item.name)
-    // }
 
     const getSellerData = async () => {
         const reqData = await axios.get(`https://onlineparttimejobs.in/api/sellerList/admin`, {
@@ -590,6 +614,8 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
     useEffect(() => {
         getSellerData()
     }, []);
+
+
 
     return (
         <>
@@ -693,14 +719,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.category}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalCatD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalCatD(selectedIds)
                                                             }}
@@ -721,14 +747,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.subCategory}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalSubCategoryD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalSubCategoryD(selectedIds)
                                                             }}
@@ -747,14 +773,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.style}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalStyleD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalStyleD(selectedIds)
                                                             }}
@@ -773,14 +799,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.Collection}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalCollectionD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalCollectionD(selectedIds)
                                                             }}
@@ -801,14 +827,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.labourChargeType}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalLabourChargeTypeD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalLabourChargeTypeD(selectedIds)
                                                             }}
@@ -827,14 +853,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.occassions}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalOccassionD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalOccassionD(selectedIds)
                                                             }}
@@ -852,14 +878,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.ringSize}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalSizeD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalSizeD(selectedIds)
                                                             }}
@@ -880,14 +906,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.defSize}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalDefaultSizeD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalDefaultSizeD(selectedIds)
                                                             }}
@@ -911,14 +937,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.shopForModule}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalShopForD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalShopForD(selectedIds)
                                                             }}
@@ -928,6 +954,94 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                             </div>
 
                                             <div className="row">
+                                                <div className="form-group col-md-4">
+                                                    <label className="col-md-12 col-from-label">Material<span className="text-danger">*</span></label>
+                                                    <div id="category">
+                                                        <Multiselect
+                                                            isObject={true}
+                                                            displayValue="name"
+                                                            options={material}
+                                                            showCheckbox
+                                                            selectedValues={item?.material}
+                                                            onRemove={(selectedCat) => {
+                                                                const selectedIds = selectedCat.map((cat) => {
+                                                                    return cat.uid
+                                                                })
+                                                                setFinalMaterialD(selectedIds)
+                                                            }}
+                                                            onSelect={(selectedCat) => {
+                                                                // setFinalCatD(event)
+                                                                const selectedIds = selectedCat.map((cat) => {
+                                                                    return cat.uid
+                                                                })
+                                                                setFinalMaterialD(selectedIds)
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="form-group col-md-4">
+                                                    <label className="col-md-12 col-from-label">Gemstone<span className="text-danger">*</span></label>
+                                                    <div id="category">
+                                                        <Multiselect
+                                                            isObject={true}
+                                                            displayValue="name"
+                                                            options={gemstone}
+                                                            showCheckbox
+                                                            selectedValues={item?.gemstone}
+                                                            onRemove={(selectedCat) => {
+                                                                const selectedIds = selectedCat.map((cat) => {
+                                                                    return cat.uid
+                                                                })
+                                                                setFinalGemstoneD(selectedIds)
+                                                            }}
+                                                            onSelect={(selectedCat) => {
+                                                                // setFinalCatD(event)
+                                                                const selectedIds = selectedCat.map((cat) => {
+                                                                    return cat.uid
+                                                                })
+                                                                setFinalGemstoneD(selectedIds)
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="form-group col-md-4">
+                                                    <label className="col-md-12 col-from-label">Theme<span className="text-danger">*</span></label>
+                                                    <div id="category">
+                                                        <Multiselect
+                                                            isObject={true}
+                                                            displayValue="name"
+                                                            options={theme}
+                                                            showCheckbox
+                                                            selectedValues={item?.theme}
+                                                            onRemove={(selectedCat) => {
+                                                                const selectedIds = selectedCat.map((cat) => {
+                                                                    return cat.uid
+                                                                })
+                                                                setFinalThemeD(selectedIds)
+                                                            }}
+                                                            onSelect={(selectedCat) => {
+                                                                // setFinalCatD(event)
+                                                                const selectedIds = selectedCat.map((cat) => {
+                                                                    return cat.uid
+                                                                })
+                                                                setFinalThemeD(selectedIds)
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    {/* {Tags Section Start} */}
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <h5 className="mb-0 h6">Tags</h5>
+                                        </div>
+                                        <div className="card-body">
+                                            <div className="form-group row">
                                                 <div className="form-group col-md-4">
                                                     <label className="col-md-12 col-from-label">Look Tag<span className="text-danger">*</span></label>
                                                     <div id="category">
@@ -939,14 +1053,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.lookTag}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalLooktagD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalLooktagD(selectedIds)
                                                             }}
@@ -965,14 +1079,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.wearTag}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalWeartagD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalWeartagD(selectedIds)
                                                             }}
@@ -990,14 +1104,14 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                             selectedValues={item?.productTag}
                                                             onRemove={(selectedCat) => {
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalProductTagD(selectedIds)
                                                             }}
                                                             onSelect={(selectedCat) => {
                                                                 // setFinalCatD(event)
                                                                 const selectedIds = selectedCat.map((cat) => {
-                                                                    return cat._id
+                                                                    return cat.uid
                                                                 })
                                                                 setFinalProductTagD(selectedIds)
                                                             }}
@@ -1092,7 +1206,7 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                         </div>
                                         <div className="card-body mt-4">
                                             {metalRowData?.map((val, i) => {
-                                                return <div className="row mt-2">
+                                                return <div className="row mt-2" key={i}>
                                                     <div className="col-lg-2">
                                                         <label className="col-md-12 col-from-label">Price Type</label>
                                                         <select className="form-select" aria-label="Default select example" value={val?.priceType?._id ? val?.priceType?._id : val?.priceType} name="priceType" onChange={(e) => handleChangeMetal(e, i)}>
@@ -1145,7 +1259,7 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                         </div>
                                         <div className="card-body mt-4">
                                             {stoneRowData.map((val, i) => {
-                                                return <div className="row mt-2">
+                                                return <div className="row mt-2" key={i}>
                                                     <div className="col-md-2">
                                                         <label className="col-md-12 col-from-label">Shape</label>
                                                         <select className="form-select" aria-label="Default select example" value={val?.shape?._id ? val?.shape?._id : val?.shape} name="shape" onChange={(e) => handleChangeStone(e, i)}>

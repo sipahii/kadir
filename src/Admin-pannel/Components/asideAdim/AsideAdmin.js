@@ -113,8 +113,6 @@ function AsideAdmin() {
   const [jwelleryProduct, setJwelleryProduct] = useState(false);
 
   const idShow = window.localStorage.getItem("adminId");
-  console.log('idShow---', idShow)
-
 
   const adminIslogin = window.localStorage.getItem("adminIslogin");
 
@@ -815,851 +813,11 @@ function AsideAdmin() {
 
             {/* {swistonJeweladmin@gmail.com} */}
 
-            {/* {idShow == "65a6165b19c212e3602b482a" && (
-              <>
-                <li className="aiz-side-nav-item">
-                  <Link
-                    to="#"
-                    className="aiz-side-nav-link"
-                    onClick={() => {
-                      setJwell(!jwell);
-                    }}
-                  >
-                    <i className="las la-backward aiz-side-nav-icon" />
-                    <span className="aiz-side-nav-text">Jewellery</span>
-                    <span className="aiz-side-nav-arrow" />
-                  </Link>
-                  <ul
-                    className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
-                      }`}
-                    id="product"
-                  >
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setdimand(!dimand);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">
-                          Diamond Masters
-                        </span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                    
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-clarity"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Clarity
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-clarity"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Clarity
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-Quality"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Quality
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-Quality"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Quality
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-shape"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Shape
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-shape"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Shape
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-sieves"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Sieves
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-sieves"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Sieves
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
 
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setgenral(!genral);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">
-                          General Masters
-                        </span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <Link to="color-stone" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Color Stone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="labour-charge-type"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="labour-charge-type">
-                              Labour Charge Type
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="labour-charge"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="labour-charge">Labour Charge</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="price" className="aiz-side-nav-link ">
-                            <span className="labour-charge">Price</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="shop-for-modules"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="labour-charge">
-                              Shop For Module
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="occasion" className="aiz-side-nav-link ">
-                            <span className="labour-charge">Occasion</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="ring-size" className="aiz-side-nav-link ">
-                            <span className="labour-charge">Ring Size</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="jwellery/categoryType"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="labour-charge">Category Type</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-category-sequence"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="labour-charge">
-                              Add Category Sequence
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setMetal(!metal);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">Metel Masters</span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <li className="aiz-side-nav-item">
-                            <Link
-                              to="metal-type"
-                              className="aiz-side-nav-link "
-                            >
-                              <span className="aiz-side-nav-text">
-                                Metal Type
-                              </span>
-                            </Link>
-                          </li>
-                          <Link
-                            to="metal-purity"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Metal Purity
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="metal-weight"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              MetalWeight
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="metal-priceType"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Metal Price Type
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setRateCard(!rateCard);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">Rate Card</span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <li className="aiz-side-nav-item">
-                            <Link
-                              to="metal-rate"
-                              className="aiz-side-nav-link "
-                            >
-                              <span className="aiz-side-nav-text">Metal</span>
-                            </Link>
-                          </li>
-                          <Link
-                            to="diamond-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">Diamond</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="colorStone-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Color Stone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="labourCharge-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Labour Charge
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setJwelleryProduct(!jwelleryProduct);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">
-                          Jewellery Product Master
-                        </span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-jwellery-produt"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Jewellery Product
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-jwellery-products"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Jewellery Product
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="productWear-tag"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Product Wear Tag
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="productLook-tag"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Product Look Tag
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="product-tag" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Product Tag
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="size-jwells" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Jwells Size
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-style" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">Add Style</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-collection"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Collection
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </>
-            )} */}
 
             {/* {swistonJeweladmin@gmail.com} */}
 
-            {/* {idShow == "65a6165d19c212e3602b4847" && (
-              <>
-                <li className="aiz-side-nav-item">
-                  <Link
-                    to="#"
-                    className="aiz-side-nav-link"
-                    onClick={() => {
-                      setJwell(!jwell);
-                    }}
-                  >
-                    <i className="las la-backward aiz-side-nav-icon" />
-                    <span className="aiz-side-nav-text">Jewellery</span>
-                    <span className="aiz-side-nav-arrow" />
-                  </Link>
-                  <ul
-                    className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
-                      }`}
-                    id="product"
-                  >
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setdimand(!dimand);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">
-                          Diamond Masters
-                        </span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                      
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-clarity"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Clarity
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-clarity"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Clarity
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-Quality"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Quality
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-Quality"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Quality
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-shape"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Shape
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-shape"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Shape
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-diamond-sieves"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Diamond Sieves
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-diamond-sieves"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Diamond Sieves
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
 
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setgenral(!genral);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">
-                          General Masters
-                        </span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <Link to="color-stone" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Color Stone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="labour-charge-type"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="labour-charge-type">
-                              Labour Charge Type
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="labour-charge"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="labour-charge">Labour Charge</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="price" className="aiz-side-nav-link ">
-                            <span className="labour-charge">Price</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="shop-for-modules"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="labour-charge">
-                              Shop For Module
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="occasion" className="aiz-side-nav-link ">
-                            <span className="labour-charge">Occasion</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="ring-size" className="aiz-side-nav-link ">
-                            <span className="labour-charge">Ring Size</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="jwellery/categoryType"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="labour-charge">Category Type</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-category-sequence"
-                            className="aiz-side-nav-link"
-                          >
-                            <span className="labour-charge">
-                              Add Category Sequence
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setMetal(!metal);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">Metel Masters</span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <li className="aiz-side-nav-item">
-                            <Link
-                              to="metal-type"
-                              className="aiz-side-nav-link "
-                            >
-                              <span className="aiz-side-nav-text">
-                                Metal Type
-                              </span>
-                            </Link>
-                          </li>
-                          <Link
-                            to="metal-purity"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Metal Purity
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="metal-weight"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              MetalWeight
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="metal-priceType"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Metal Price Type
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setRateCard(!rateCard);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">Rate Card</span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <li className="aiz-side-nav-item">
-                            <Link
-                              to="metal-rate"
-                              className="aiz-side-nav-link "
-                            >
-                              <span className="aiz-side-nav-text">Metal</span>
-                            </Link>
-                          </li>
-                          <Link
-                            to="diamond-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">Diamond</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="colorStone-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Color Stone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="labourCharge-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Labour Charge
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-
-                    <li className="aiz-side-nav-item">
-                      <Link
-                        to="#"
-                        className="aiz-side-nav-link "
-                        onClick={() => {
-                          setJwelleryProduct(!jwelleryProduct);
-                        }}
-                      >
-                        <span className="aiz-side-nav-text">
-                          Jewellery Product Master
-                        </span>
-                        <span className="aiz-side-nav-arrow" />
-                      </Link>
-                      <ul
-                        style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
-                          }`}
-                        id="product"
-                      >
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-jwellery-produt"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Jewellery Product
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="list-jwellery-products"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              List Jewellery Product
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="productWear-tag"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Product Wear Tag
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="productLook-tag"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Product Look Tag
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="product-tag" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Product Tag
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="size-jwells" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Jwells Size
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-style" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">Add Style</span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="add-collection"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Add Collection
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </>
-            )} */}
 
             {idShow == "65140107a714fa1ed75778f7" && (
               <>
@@ -2009,48 +1167,7 @@ function AsideAdmin() {
                         </li>
 
 
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-material" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Add Material
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="list-material" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              List Material
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-gemstone" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Add Gemstone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="list-gemstone" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              List Gemstone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-theme" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Add Theme
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="list-theme" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              List Theme
-                            </span>
-                          </Link>
-                        </li>
+
 
                         <li className="aiz-side-nav-item">
                           <Link
@@ -2144,13 +1261,13 @@ function AsideAdmin() {
                         <li className="aiz-side-nav-item">
                           <Link to="size-jwells" className="aiz-side-nav-link ">
                             <span className="aiz-side-nav-text">
-                              Jwells Size
+                              Jewellery Size
                             </span>
                           </Link>
                         </li>
                         <li className="aiz-side-nav-item">
                           <Link to="add-style" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">Add Style</span>
+                            <span className="aiz-side-nav-text">Style</span>
                           </Link>
                         </li>
                         <li className="aiz-side-nav-item">
@@ -2164,7 +1281,7 @@ function AsideAdmin() {
                             className="aiz-side-nav-link "
                           >
                             <span className="aiz-side-nav-text">
-                              Add Collection
+                              Collection
                             </span>
                           </Link>
                         </li>
@@ -2528,48 +1645,7 @@ function AsideAdmin() {
                           </Link>
                         </li>
 
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-material" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Add Material
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="list-material" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              List Material
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-gemstone" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Add Gemstone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="list-gemstone" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              List Gemstone
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="add-theme" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              Add Theme
-                            </span>
-                          </Link>
-                        </li>
-                        <li className="aiz-side-nav-item">
-                          <Link to="list-theme" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">
-                              List Theme
-                            </span>
-                          </Link>
-                        </li>
+
 
                         <li className="aiz-side-nav-item">
                           <Link
@@ -2663,13 +1739,13 @@ function AsideAdmin() {
                         <li className="aiz-side-nav-item">
                           <Link to="size-jwells" className="aiz-side-nav-link ">
                             <span className="aiz-side-nav-text">
-                              Jwells Size
+                              Jewellery Size
                             </span>
                           </Link>
                         </li>
                         <li className="aiz-side-nav-item">
                           <Link to="add-style" className="aiz-side-nav-link ">
-                            <span className="aiz-side-nav-text">Add Style</span>
+                            <span className="aiz-side-nav-text">Style</span>
                           </Link>
                         </li>
                         <li className="aiz-side-nav-item">
@@ -2683,7 +1759,7 @@ function AsideAdmin() {
                             className="aiz-side-nav-link "
                           >
                             <span className="aiz-side-nav-text">
-                              Add Collection
+                              Collection
                             </span>
                           </Link>
                         </li>
@@ -7766,48 +6842,7 @@ function AsideAdmin() {
                             </Link>
                           </li>
 
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Theme
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Theme
-                              </span>
-                            </Link>
-                          </li>
+
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -7907,14 +6942,14 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                Jwells Size
+                                Jewellery Size
                               </span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">
-                                Add Style
+                                Style
                               </span>
                             </Link>
                           </li>
@@ -7929,7 +6964,7 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                Add Collection
+                                Collection
                               </span>
                             </Link>
                           </li>
@@ -8305,48 +7340,7 @@ function AsideAdmin() {
                             </Link>
                           </li>
 
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Theme
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Theme
-                              </span>
-                            </Link>
-                          </li>
+
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -8446,14 +7440,14 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                Jwells Size
+                                Jewellery Size
                               </span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">
-                                Add Style
+                                Style
                               </span>
                             </Link>
                           </li>
@@ -8468,7 +7462,7 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                Add Collection
+                                Collection
                               </span>
                             </Link>
                           </li>
@@ -8834,48 +7828,7 @@ function AsideAdmin() {
                             </Link>
                           </li>
 
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Theme
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Theme
-                              </span>
-                            </Link>
-                          </li>
+
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -8969,13 +7922,13 @@ function AsideAdmin() {
                           <li className="aiz-side-nav-item">
                             <Link to="size-jwells" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">
-                                Jwells Size
+                                Jewellery Size
                               </span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">Add Style</span>
+                              <span className="aiz-side-nav-text">Style</span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
@@ -8984,7 +7937,7 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                Add Collection
+                                Collection
                               </span>
                             </Link>
                           </li>
@@ -9344,48 +8297,7 @@ function AsideAdmin() {
                             </Link>
                           </li>
 
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-material" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Material
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-gemstone" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Gemstone
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="add-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Add Theme
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="aiz-side-nav-item">
-                            <Link to="list-theme" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                List Theme
-                              </span>
-                            </Link>
-                          </li>
+
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -9479,13 +8391,13 @@ function AsideAdmin() {
                           <li className="aiz-side-nav-item">
                             <Link to="size-jwells" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">
-                                Jwells Size
+                                Jewellery Size
                               </span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">Add Style</span>
+                              <span className="aiz-side-nav-text">Style</span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
@@ -9494,7 +8406,7 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                Add Collection
+                                Collection
                               </span>
                             </Link>
                           </li>
@@ -13502,479 +12414,13 @@ function AsideAdmin() {
                       </span>
                     </Link>
                   </li>
+
+
                 </ul>
               </li>
 
 
-              {/* <li className="aiz-side-nav-item">
-                <Link
-                  to="#"
-                  className="aiz-side-nav-link"
-                  onClick={() => {
-                    setJwell(!jwell);
-                  }}
-                >
-                  <i className="las la-backward aiz-side-nav-icon" />
-                  <span className="aiz-side-nav-text">Jewellery</span>
-                  <span className="aiz-side-nav-arrow" />
-                </Link>
-                <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
-                    }`}
-                  id="product"
-                >
-                  <li className="aiz-side-nav-item">
-                    <Link
-                      to="#"
-                      className="aiz-side-nav-link "
-                      onClick={() => {
-                        setdimand(!dimand);
-                      }}
-                    >
-                      <span className="aiz-side-nav-text">
-                        Diamond Masters
-                      </span>
-                      <span className="aiz-side-nav-arrow" />
-                    </Link>
-                    <ul
-                      style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
-                        }`}
-                      id="product"
-                    >
-                     
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-diamond-clarity"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            Add Diamond Clarity
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="list-diamond-clarity"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            List Diamond Clarity
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-diamond-Quality"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            Add Diamond Quality
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="list-diamond-Quality"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            List Diamond Quality
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-diamond-shape"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            Add Diamond Shape
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="list-diamond-shape"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            List Diamond Shape
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-diamond-sieves"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            Add Diamond Sieves
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="list-diamond-sieves"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="aiz-side-nav-text">
-                            List Diamond Sieves
-                          </span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
 
-                  <li className="aiz-side-nav-item">
-                    <Link
-                      to="#"
-                      className="aiz-side-nav-link "
-                      onClick={() => {
-                        setgenral(!genral);
-                      }}
-                    >
-                      <span className="aiz-side-nav-text">
-                        General Masters
-                      </span>
-                      <span className="aiz-side-nav-arrow" />
-                    </Link>
-                    <ul
-                      style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
-                        }`}
-                      id="product"
-                    >
-                      <li className="aiz-side-nav-item">
-                        <Link to="add-material" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            Add Material
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="list-material" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            List Material
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="add-gemstone" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            Add Gemstone
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="list-gemstone" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            List Gemstone
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="add-theme" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            Add Theme
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="list-theme" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            List Theme
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="color-stone" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            Color Stone
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="labour-charge-type"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="labour-charge-type">
-                            Labour Charge Type
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="labour-charge"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="labour-charge">Labour Charge</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="price" className="aiz-side-nav-link ">
-                          <span className="labour-charge">Price</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="shop-for-modules"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="labour-charge">
-                            Shop For Module
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="occasion" className="aiz-side-nav-link ">
-                          <span className="labour-charge">Occasion</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="ring-size" className="aiz-side-nav-link ">
-                          <span className="labour-charge">Ring Size</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="jwellery/categoryType"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="labour-charge">Category Type</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-category-sequence"
-                          className="aiz-side-nav-link"
-                        >
-                          <span className="labour-charge">
-                            Add Category Sequence
-                          </span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="aiz-side-nav-item">
-                    <Link
-                      to="#"
-                      className="aiz-side-nav-link "
-                      onClick={() => {
-                        setMetal(!metal);
-                      }}
-                    >
-                      <span className="aiz-side-nav-text">Metel Masters</span>
-                      <span className="aiz-side-nav-arrow" />
-                    </Link>
-                    <ul
-                      style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
-                        }`}
-                      id="product"
-                    >
-                      <li className="aiz-side-nav-item">
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="metal-type"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">
-                              Metal Type
-                            </span>
-                          </Link>
-                        </li>
-                        <Link
-                          to="metal-purity"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Metal Purity
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="metal-weight"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            MetalWeight
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="metal-priceType"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Metal Price Type
-                          </span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li className="aiz-side-nav-item">
-                    <Link
-                      to="#"
-                      className="aiz-side-nav-link "
-                      onClick={() => {
-                        setRateCard(!rateCard);
-                      }}
-                    >
-                      <span className="aiz-side-nav-text">Rate Card</span>
-                      <span className="aiz-side-nav-arrow" />
-                    </Link>
-                    <ul
-                      style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
-                        }`}
-                      id="product"
-                    >
-                      <li className="aiz-side-nav-item">
-                        <li className="aiz-side-nav-item">
-                          <Link
-                            to="metal-rate"
-                            className="aiz-side-nav-link "
-                          >
-                            <span className="aiz-side-nav-text">Metal</span>
-                          </Link>
-                        </li>
-                        <Link
-                          to="diamond-rate"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">Diamond</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="colorStone-rate"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Color Stone
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="labourCharge-rate"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Labour Charge
-                          </span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li className="aiz-side-nav-item">
-                    <Link
-                      to="#"
-                      className="aiz-side-nav-link "
-                      onClick={() => {
-                        setJwelleryProduct(!jwelleryProduct);
-                      }}
-                    >
-                      <span className="aiz-side-nav-text">
-                        Jewellery Product Master
-                      </span>
-                      <span className="aiz-side-nav-arrow" />
-                    </Link>
-                    <ul
-                      style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
-                        }`}
-                      id="product"
-                    >
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-jwellery-produt"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Add Jewellery Product
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="list-jwellery-products"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            List Jewellery Product
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="productWear-tag"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Product Wear Tag
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="productLook-tag"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Product Look Tag
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="product-tag" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            Product Tag
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="size-jwells" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">
-                            Jwells Size
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="add-style" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">Add Style</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="list-style" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">List Style</span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link
-                          to="add-collection"
-                          className="aiz-side-nav-link "
-                        >
-                          <span className="aiz-side-nav-text">
-                            Add Collection
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="aiz-side-nav-item">
-                        <Link to="list-collection" className="aiz-side-nav-link ">
-                          <span className="aiz-side-nav-text">List Collection</span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li> */}
 
 
 
