@@ -6,12 +6,7 @@ function ProductDescriptionWrapper({ productDescription, callBackWithHtml }) {
   const handleData = (htmlValue) => {
     callBackWithHtml(htmlValue);
   };
-  useEffect(() => {
-    setData(productDescription);
-    return () => {
-      setData("<p><br></p>");
-    };
-  }, [productDescription]);
+
   return (
     <div className="row">
       <div className="card mt-2 rest-part physical_product_show">
@@ -22,7 +17,10 @@ function ProductDescriptionWrapper({ productDescription, callBackWithHtml }) {
           className="col-lg-12"
           style={{ padding: 25 + "px", margin: 5 + "px" }}
         >
-          <TextEditor handleData={handleData} productDescription={data} />
+          <TextEditor
+            handleData={handleData}
+            productDescription={productDescription}
+          />
         </div>
       </div>
     </div>
