@@ -12090,6 +12090,16 @@ function AsideAdmin() {
                   }`}
                 >
                   <li className="aiz-side-nav-item">
+                    <Link className="aiz-side-nav-link " to="creat-company">
+                      <span className="aiz-side-nav-text">Create Company</span>
+                    </Link>
+                  </li>
+                  <li className="aiz-side-nav-item">
+                    <Link className="aiz-side-nav-link " to="show-company">
+                      <span className="aiz-side-nav-text">All CompanyList</span>
+                    </Link>
+                  </li>
+                  <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="account-dashbord">
                       <span className="aiz-side-nav-text">
                         Accounts Dashboard

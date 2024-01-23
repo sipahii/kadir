@@ -750,6 +750,8 @@ import EditGemStonePage from "./Admin-pannel/Pages/editGemstonePage";
 import AddThemeJewelPage from "./Admin-pannel/Pages/addThemeJewelPage";
 import ListThemePage from "./Admin-pannel/Pages/listThemePage";
 import EditThemeJewelPage from "./Admin-pannel/Pages/editThemeJewelPage";
+import CreateCompany from "./Admin-pannel/Pages/accounts/company/CreateCompany";
+import AllCompanyList from "./Admin-pannel/Pages/accounts/company/AllCompanyList";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -1636,6 +1638,8 @@ function App() {
           <Route path="add-company" element={<AddCompanys />} />
           <Route path="company_edit/:id" element={<AddCompanys />} />
           <Route path="list-company" element={<ListCompany />} />
+          <Route path="creat-company" element={<CreateCompany />} />
+          <Route path="show-company" element={<AllCompanyList />} />
           <Route
             path="/admin/rp_balance_report_sheet"
             element={<Rpblancesheetcomprasion />}
@@ -1836,10 +1840,16 @@ function App() {
           <Route path="add-color-stone" element={<AddColorStone />} />
           <Route path="add-material" element={<AddMaterialJewelPage />} />
           <Route path="list-material" element={<ListMaterialJewelPage />} />
-          <Route path="list-material/edit/:uid" element={<EditMaterialJewelPage />} />
+          <Route
+            path="list-material/edit/:uid"
+            element={<EditMaterialJewelPage />}
+          />
           <Route path="add-gemstone" element={<AddGemstonePage />} />
           <Route path="list-gemstone" element={<ListGemstonePage />} />
-          <Route path="list-gemstone/edit/:uid" element={<EditGemStonePage />} />
+          <Route
+            path="list-gemstone/edit/:uid"
+            element={<EditGemStonePage />}
+          />
           <Route path="add-theme" element={<AddThemeJewelPage />} />
           <Route path="list-theme" element={<ListThemePage />} />
           <Route path="list-theme/edit/:uid" element={<EditThemeJewelPage />} />
@@ -1935,13 +1945,22 @@ function App() {
           />
           <Route path="add-style" element={<AddStyleManagementPage />} />
           <Route path="list-style" element={<ListStyleManagementPage />} />
-          <Route path="list-style/edit/:uid" element={<EditStyleManagementPage />} />
+          <Route
+            path="list-style/edit/:uid"
+            element={<EditStyleManagementPage />}
+          />
           <Route
             path="add-collection"
             element={<AddCollectionManagementPage />}
           />
-          <Route path="list-collection" element={<ListCollectionManagementPage />} />
-          <Route path="list-collection/edit/:uid" element={<EditCollectionManagementpage />} />
+          <Route
+            path="list-collection"
+            element={<ListCollectionManagementPage />}
+          />
+          <Route
+            path="list-collection/edit/:uid"
+            element={<EditCollectionManagementpage />}
+          />
           <Route path="add-metal-type" element={<AddMetalTypePage />} />
           <Route path="metal-type" element={<MetalTypePage />} />
           <Route path="metal-type/edit/:uid" element={<EditMetalTypePage />} />

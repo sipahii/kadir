@@ -10848,3 +10848,9 @@ table tbody tr .show-table {
   justify-content: end;
   
 }
+.tableHeader{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+
+}
