@@ -820,31 +820,26 @@ function AsideAdmin() {
 
             {/* {swistonJeweladmin@gmail.com} */}
 
-
-
             {/* {swistonJeweladmin@gmail.com} */}
 
-
-
-            <li className="aiz-side-nav-item">
-              {/* onMouseOut={() => { setWholsale(false) }}
-                onMouseOver={() => setWholsale(true)} */}
-
-              <Link
-                to="#"
-                className="aiz-side-nav-link"
-                onClick={() => {
-                  setWholsale(!wholeSale);
-                }}
-              >
-                <i className="las la-shopping-cart aiz-side-nav-icon" />
-                <span className="aiz-side-nav-text">Wholesale Products</span>
-                <span className="aiz-side-nav-arrow" />
-              </Link>
-              {/*Submenu*/}
+            {idShow == "65140107a714fa1ed75778f7" && (
+              <>
+                <li className="aiz-side-nav-item">
+                  <Link
+                    to="#"
+                    className="aiz-side-nav-link"
+                    onClick={() => {
+                      setJwell(!jwell);
+                    }}
+                  >
+                    <i className="las la-backward aiz-side-nav-icon" />
+                    <span className="aiz-side-nav-text">Jewellery</span>
+                    <span className="aiz-side-nav-arrow" />
+                  </Link>
                   <ul
-                    className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
-                      }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${
+                      jwell ? "mm-show" : "extra"
+                    }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -1187,9 +1182,6 @@ function AsideAdmin() {
                             <span className="aiz-side-nav-text">Diamond</span>
                           </Link>
                         </li>
-
-
-
 
                         <li className="aiz-side-nav-item">
                           <Link
@@ -1688,8 +1680,6 @@ function AsideAdmin() {
                           </Link>
                         </li>
 
-
-
                         <li className="aiz-side-nav-item">
                           <Link
                             to="colorStone-rate"
@@ -1863,14 +1853,6 @@ function AsideAdmin() {
                     to="wholesale/all-products"
                     className="aiz-side-nav-link "
                   >
-=======
-                </li>
-                <li className="aiz-side-nav-item">
-                  <Link
-                    to="wholesale/all-products"
-                    className="aiz-side-nav-link "
-                  >
->>>>>>> ec09054c4390effad16b11e3beb830877afd7f75
                     <span className="aiz-side-nav-text">
                       All Wholesale Products
                     </span>
@@ -6991,8 +6973,6 @@ function AsideAdmin() {
                             </Link>
                           </li>
 
-
-
                           <li className="aiz-side-nav-item">
                             <Link
                               to="colorStone-rate"
@@ -7098,9 +7078,7 @@ function AsideAdmin() {
                           </li>
                           <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Style
-                              </span>
+                              <span className="aiz-side-nav-text">Style</span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
@@ -7517,13 +7495,8 @@ function AsideAdmin() {
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">Diamond</span>
-<<<<<<< HEAD
                             </Link>
                           </li>
-
-
-
-
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -7630,9 +7603,7 @@ function AsideAdmin() {
                           </li>
                           <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
-                              <span className="aiz-side-nav-text">
-                                Style
-                              </span>
+                              <span className="aiz-side-nav-text">Style</span>
                             </Link>
                           </li>
                           <li className="aiz-side-nav-item">
@@ -8049,8 +8020,6 @@ function AsideAdmin() {
                               <span className="aiz-side-nav-text">Diamond</span>
                             </Link>
                           </li>
-
-
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -8552,8 +8521,6 @@ function AsideAdmin() {
                               <span className="aiz-side-nav-text">Diamond</span>
                             </Link>
                           </li>
-
-
 
                           <li className="aiz-side-nav-item">
                             <Link
@@ -12123,11 +12090,6 @@ function AsideAdmin() {
                   }`}
                 >
                   <li className="aiz-side-nav-item">
-                    <Link className="aiz-side-nav-link " to="create-company">
-                      <span className="aiz-side-nav-text">Create Company</span>
-                    </Link>
-                  </li>
-                  <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="account-dashbord">
                       <span className="aiz-side-nav-text">
                         Accounts Dashboard
@@ -12534,7 +12496,6 @@ function AsideAdmin() {
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="benchmark">
                       <span className="aiz-side-nav-text">Benchmark</span>
-<<<<<<< HEAD
                     </Link>
                   </li>
                   <li className="aiz-side-nav-item">
@@ -12701,69 +12662,55 @@ function AsideAdmin() {
                   <li className="aiz-side-nav-item">
                     <Link to="#" className="aiz-side-nav-link ">
                       <span className="aiz-side-nav-text"> CRM Others</span>
-=======
->>>>>>> ec09054c4390effad16b11e3beb830877afd7f75
                     </Link>
                   </li>
                   <li className="aiz-side-nav-item">
-                    <Link className="aiz-side-nav-link" to="expenses">
-                      <span className="aiz-side-nav-text">Expenses</span>
+                    <Link to="#" className="aiz-side-nav-link ">
+                      <span className="aiz-side-nav-text"> Setup</span>
                     </Link>
                   </li>
-
-
                 </ul>
-              </li> */}
+              </li>
+
               <li className="aiz-side-nav-item">
                 <Link
+                  to="#"
                   className="aiz-side-nav-link"
-                  to=""
                   onClick={() => {
-                    setLogistic(!logistic);
+                    setChiragFoundation(!chiragFoundation);
                   }}
                 >
                   <i className="las la-user-tie aiz-side-nav-icon" />
-                  <span className="aiz-side-nav-text">Logistics</span>
+                  <span className="aiz-side-nav-text">Chirag Foundation</span>
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${chiragFoundation ? "mm-show" : "extra"
-                    }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${
+                    chiragFoundation ? "mm-show" : "extra"
+                  }`}
                 >
                   <li className="aiz-side-nav-item">
-                    <Link className="aiz-side-nav-link" to="purchase ">
-                      <span className="aiz-side-nav-text">Purchase</span>
-                    </Link>
-                  </li>
-                  <li className="aiz-side-nav-item">
-                    <Link className="aiz-side-nav-link" to="venders ">
-                      <span className="aiz-side-nav-text">Vendors</span>
-                    </Link>
-                  </li>
-                  <li className="aiz-side-nav-item">
-                    <Link className="aiz-side-nav-link" to="inventory ">
-                      <span className="aiz-side-nav-text">
-                        Inventory On Hand
+                    <Link
+                      to="list-chiragFoundation-customers"
+                      className="aiz-side-nav-link "
+                    >
+                      <span className="labour-charge-type">
+                        All Foundation Customers
                       </span>
                     </Link>
                   </li>
                   <li className="aiz-side-nav-item">
-                    <Link className="aiz-side-nav-link" to="inventory-flow ">
-                      <span className="aiz-side-nav-text">Inventory Flow</span>
+                    <Link
+                      to="list-chiragFoundation-orders"
+                      className="aiz-side-nav-link "
+                    >
+                      <span className="labour-charge-type">
+                        All Foundation Orders
+                      </span>
                     </Link>
                   </li>
-
-
                 </ul>
               </li>
-
-
-
-
-
-
-
-
 
               {/* <li className="aiz-side-nav-item">
                 <Link to="#" className="aiz-side-nav-link" onClick={() => { setIndexGroup(!indexGroup) }}>
