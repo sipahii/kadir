@@ -5,6 +5,7 @@ import {
   ContentState,
   RichUtils,
   convertFromHTML,
+  Modifier,
 } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
 import "draft-js/dist/Draft.css";
@@ -12,8 +13,7 @@ import "./TextEditor.css";
 
 const TextEditor = ({ productDescription, handleData }) => {
   const [editorState, setEditorState] = useState(() => {
-    const defaultHtml = productDescription || "";
-    const blocksFromHTML = convertFromHTML(defaultHtml);
+    const blocksFromHTML = convertFromHTML(productDescription || "");
     const initialContentState = ContentState.createFromBlockArray(
       blocksFromHTML.contentBlocks,
       blocksFromHTML.entityMap
@@ -29,24 +29,52 @@ const TextEditor = ({ productDescription, handleData }) => {
     handleData(htmlValue);
   };
 
-  const handleKeyCommand = (command) => {
+  const handleKeyCommand = (command, editorState) => {
+    if (command === "delete") {
+      // Handle the "Delete" key
+      const selection = editorState.getSelection();
+      const contentState = editorState.getCurrentContent();
+      const currentBlock = contentState.getBlockForKey(selection.getStartKey());
+
+      if (currentBlock) {
+        const startOffset = selection.getStartOffset();
+        const endOffset = selection.getEndOffset();
+
+        if (startOffset === 0 && endOffset === currentBlock.getLength()) {
+          // If the whole content is selected, clear the content
+          const newContentState = Modifier.removeRange(
+            contentState,
+            selection,
+            "forward"
+          );
+
+          const newEditorState = EditorState.push(
+            editorState,
+            newContentState,
+            "remove-range"
+          );
+          onChange(newEditorState);
+        } else {
+          // Handle other cases as needed
+          // For simplicity, we can just use RichUtils.handleKeyCommand
+          const newState = RichUtils.handleKeyCommand(editorState, command);
+          if (newState) {
+            setEditorState(newState);
+          }
+        }
+
+        return "handled";
+      }
+    }
+
+    // Handle other key commands as needed
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
-      onChange(newState);
-      return true;
+      setEditorState(newState);
+      return "handled";
     }
-    return false;
-  };
 
-  const mapKeyToEditorCommand = (e) => {
-    if (e.keyCode === 9 /* TAB */) {
-      const newEditorState = RichUtils.onTab(e, editorState, 4 /* maxDepth */);
-      if (newEditorState !== editorState) {
-        onChange(newEditorState);
-      }
-      return;
-    }
-    // return getDefaultKeyBinding(e);
+    return "not-handled";
   };
 
   const toggleBlockType = (blockType) => {
@@ -56,13 +84,6 @@ const TextEditor = ({ productDescription, handleData }) => {
   const toggleInlineStyle = (inlineStyle) => {
     onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
   };
-
-  useEffect(() => {
-    return () => {
-      // Reset the state on component unmount
-      setEditorState(EditorState.createEmpty());
-    };
-  }, []);
 
   const editorRef = React.createRef();
 
@@ -95,11 +116,12 @@ const TextEditor = ({ productDescription, handleData }) => {
           customStyleMap={styleMap}
           editorState={editorState}
           handleKeyCommand={handleKeyCommand}
-          keyBindingFn={mapKeyToEditorCommand}
+          // keyBindingFn={mapKeyToEditorCommand}
           onChange={onChange}
-          placeholder="Tell a story..."
+          // placeholder="Tell a story..."
           ref={editorRef}
           spellCheck={true}
+          placeholder="Type here..."
         />
       </div>
     </div>

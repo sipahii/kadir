@@ -10837,3 +10837,14 @@ table tbody tr .show-table {
 .ant-pagination-options-size-changer{
   display: none !important;
 }
+.componnetsWrapper{
+  display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+.buttonBottom{
+  display: flex;
+  justify-content: end;
+  
+}
