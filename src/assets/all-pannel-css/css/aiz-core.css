@@ -6159,7 +6159,7 @@ input[type="number"] {
 /* xl */
 @media (min-width: 1200px) {
     .aiz-content-wrapper {
-        padding-left: 265px;
+        padding-left: 80px;
     }
     [dir="rtl"] .aiz-content-wrapper {
         padding-left: 0;
@@ -6212,8 +6212,8 @@ input[type="number"] {
 /* xl */
 @media (min-width: 1200px) {
     .aiz-topbar {
-        width: calc(100% - 265px);
-        left: 265px;
+         width: calc(100% - 45px);
+        left: 45px;
     }
     [dir="rtl"] .aiz-topbar {
         left: auto;
@@ -6325,7 +6325,7 @@ input[type="number"] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    color: #7a7c9e;
+    color: #fff;
     margin-right: 6px;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
@@ -6432,7 +6432,7 @@ input[type="number"] {
 /* xl */
 @media (min-width: 1200px) {
     .aiz-sidebar.left {
-        left: 0px;
+        left: 45px;
     }
     [dir="rtl"] .aiz-sidebar.left {
         left: auto;
@@ -13473,7 +13473,7 @@ input[type="number"] {
 /* xl */
 @media (min-width: 1200px) {
     .aiz-content-wrapper {
-        padding-left: 265px;
+        padding-left: 80px;
     }
     [dir="rtl"] .aiz-content-wrapper {
         padding-left: 0;
@@ -13527,8 +13527,8 @@ input[type="number"] {
 /* xl */
 @media (min-width: 1200px) {
     .aiz-topbar {
-        width: calc(100% - 265px);
-        left: 265px;
+         width: calc(100% - 45px);
+        left: 45px;
     }
     [dir="rtl"] .aiz-topbar {
         left: auto;
@@ -13631,7 +13631,7 @@ input[type="number"] {
     padding: 10px 25px;
     font-size: 0.875rem;
     font-weight: 400;
-    color: #252E4D;
+    color: hsla(0,0%,100%,.7);
 }
 .aiz-side-nav-list .aiz-side-nav-icon {
     display: -webkit-box;
@@ -13640,7 +13640,7 @@ input[type="number"] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    color: #7a7c9e;
+    color: #fff;
     margin-right: 6px;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
@@ -13748,7 +13748,7 @@ input[type="number"] {
 /* xl */
 @media (min-width: 1200px) {
     .aiz-sidebar.left {
-        left: 0px;
+        left: 45px;
     }
     [dir="rtl"] .aiz-sidebar.left {
         left: auto;

@@ -7,7 +7,7 @@ import {
 import "./AsideAdmin.css";
 import { AiOutlineBarChart } from "react-icons/ai";
 
-function AsideAdmin() {
+function AsideAdmin({ isActive }) {
   const [Sales2, setSales2] = useState(false);
   const [state, setState] = useState(false);
   const [agreement, setAgreement] = useState(false);
@@ -115,7 +115,7 @@ function AsideAdmin() {
   const idShow = window.localStorage.getItem("adminId");
 
   const adminIslogin = window.localStorage.getItem("adminIslogin");
-
+  console.log(idShow);
   if (idShow == "65487ea9410b557887eef2e9") {
     return (
       <div
@@ -6034,7 +6034,10 @@ function AsideAdmin() {
       <>
         <div
           className="aiz-sidebar left c-scrollbar c-scrollbar-2"
-          style={{ backgroundColor: "#e1e1db" }}
+          style={{
+            backgroundColor: "#1e1e1e",
+            left: isActive ? "45px" : "-265px",
+          }}
         >
           <div className="aiz-side-nav-logo-wrap">
             <a

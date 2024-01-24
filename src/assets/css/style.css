@@ -10854,3 +10854,61 @@ table tbody tr .show-table {
   padding-bottom: 20px;
 
 }
+.navigation-drawer{
+  background-color: #212121;
+  z-index: 99;
+  height: 100%;
+  position: fixed;
+
+}
+.navigation-drawer .content{
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.navigation-drawer .content hr{
+  border-color: hsla(0,0%,100%,.12);
+  border-image: linear-gradient(transparent,#7a7a7a) 0 100%;
+  border-width: 1px;
+  border: 2px solid;
+  height: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.navigation-drawer .content div{
+  border-radius: 20px;
+    outline-style: solid;
+    outline-color: #fff;
+    outline-width: 2px;
+    background: hsla(0,0%,100%,.08);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-right: 4px;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-lr;
+    color: #c6ae7c;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    padding: 50px 5px;
+}
+.overLayScreen{
+    opacity: 0.46;
+    background-color: rgb(33, 33, 33);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
