@@ -120,7 +120,10 @@ function AsideAdmin({ isActive }) {
     return (
       <div
         className="aiz-sidebar left c-scrollbar c-scrollbar-2"
-        style={{ backgroundColor: "#e1e1db" }}
+        style={{
+          backgroundColor: "#1e1e1e",
+          left: isActive ? "45px" : "-265px",
+        }}
       >
         <div className="aiz-side-nav-logo-wrap">
           <a
@@ -239,7 +242,10 @@ function AsideAdmin({ isActive }) {
     return (
       <div
         className="aiz-sidebar left c-scrollbar c-scrollbar-2"
-        style={{ backgroundColor: "#e1e1db" }}
+        style={{
+          backgroundColor: "#1e1e1e",
+          left: isActive ? "45px" : "-265px",
+        }}
       >
         <div className="aiz-side-nav-logo-wrap">
           <a href="https://mmslfashions.in/admin" className="d-block text-left">
@@ -5409,7 +5415,10 @@ function AsideAdmin({ isActive }) {
     return (
       <div
         className="aiz-sidebar left c-scrollbar c-scrollbar-2"
-        style={{ backgroundColor: "#e1e1db" }}
+        style={{
+          backgroundColor: "#1e1e1e",
+          left: isActive ? "45px" : "-265px",
+        }}
       >
         <div className="aiz-side-nav-logo-wrap">
           <a href="https://mmslfashions.in/admin" className="d-block text-left">
@@ -5565,7 +5574,10 @@ function AsideAdmin({ isActive }) {
       <>
         <div
           className="aiz-sidebar left c-scrollbar c-scrollbar-2"
-          style={{ backgroundColor: "#e1e1db" }}
+          style={{
+            backgroundColor: "#1e1e1e",
+            left: isActive ? "45px" : "-265px",
+          }}
         >
           <div className="aiz-side-nav-logo-wrap">
             <a
@@ -12757,7 +12769,10 @@ function AsideAdmin({ isActive }) {
       <>
         <div
           className="aiz-sidebar left c-scrollbar c-scrollbar-2"
-          style={{ backgroundColor: "#e1e1db" }}
+          style={{
+            backgroundColor: "#1e1e1e",
+            left: isActive ? "45px" : "-265px",
+          }}
         >
           <div className="aiz-side-nav-logo-wrap">
             <a

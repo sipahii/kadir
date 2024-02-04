@@ -473,6 +473,19 @@ function AddNewProductsPage() {
     setVariationList(cloneAllData);
   };
 
+  const coppiedPriceToAllVarient = (data) => {
+    const cloneAllData = JSON.parse(JSON.stringify(variationList));
+    cloneAllData?.forEach((item) => {
+      item.prices = data;
+    });
+    setVariationList(cloneAllData);
+  };
+
+  const deleteAllRow = () => {
+    setVariationList([]);
+    setVariationForm([]);
+  };
+
   const setFinalCatDIndus = (selectedIds) => {
     let cloneAllData = JSON.parse(JSON.stringify(val));
     cloneAllData[value].industry_id = selectedIds;
@@ -825,6 +838,7 @@ function AddNewProductsPage() {
                             />
                             <ProductList
                               onChangeHandler={onChangeHandler}
+                              deleteAllRow={deleteAllRow}
                               item={{
                                 ...item,
                                 variations: variationList,
@@ -837,6 +851,9 @@ function AddNewProductsPage() {
                               deleteRow={deleteRow}
                               updateVarientPriceAndAttributes={
                                 updateVarientPriceAndAttributes
+                              }
+                              coppiedPriceToAllVarient={
+                                coppiedPriceToAllVarient
                               }
                             />
                           </div>

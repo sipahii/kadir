@@ -32257,3 +32257,21 @@ a {
 .extra {
   display: none !important;
 }
+
+
+@media print {
+  body {
+    background-color: #fff;
+  }
+  .hideOnPrint {
+    display: none;
+    
+  }
+  .aiz-topbar,.navigation-drawer {
+    visibility: hidden;
+    position: absolute;
+  }
+  .printWrapper{
+    display: flex;
+  }
+}

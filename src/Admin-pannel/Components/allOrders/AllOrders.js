@@ -1,37 +1,60 @@
 import { Link, useNavigate } from "react-router-dom";
-import { GrUnorderedList } from 'react-icons/gr';
-import { useDeleteOrderMutation, useGetOrdersQuery } from "../all-products/allproductsApi/allProductsApi";
+import { GrUnorderedList } from "react-icons/gr";
+import {
+  useDeleteOrderMutation,
+  useGetOrdersQuery,
+} from "../all-products/allproductsApi/allProductsApi";
 import { useEffect, useState } from "react";
 import Actions from "../allSeller/Actions";
 
 function AllOrders() {
-
-
-
-  const token = window.localStorage.getItem('token')
+  const token = window.localStorage.getItem("token");
 
   const { isLoading, data } = useGetOrdersQuery(token);
+  const [orderList, setOrderList] = useState(data);
 
   const [deleteOrder, response] = useDeleteOrderMutation();
 
   const deleteOrderData = (id) => {
-    deleteOrder(id)
+    deleteOrder(id);
   };
-
-
+  useEffect(() => {
+    if (data) {
+      let result = JSON.parse(JSON.stringify(data));
+      console.log("result", result);
+      const sortedArray = result.sort((a, b) => {
+        const dateA = Date.parse(
+          a.createdAt.replace(
+            /(\d{2})\/(\d{2})\/(\d{4}), (\d{2}:\d{2}:\d{2})/,
+            "$2/$1/$3 $4"
+          )
+        );
+        const dateB = Date.parse(
+          b.createdAt.replace(
+            /(\d{2})\/(\d{2})\/(\d{4}), (\d{2}:\d{2}:\d{2})/,
+            "$2/$1/$3 $4"
+          )
+        );
+        return dateB - dateA;
+      });
+      console.log("result2", sortedArray);
+      setOrderList(sortedArray);
+    }
+  }, [data]);
+  console.log("data", data);
 
   useEffect(() => {
     if (response.isSuccess === true) {
-      alert('Order deleted Successfully')
+      alert("Order deleted Successfully");
     }
-  }, [response])
+  }, [response]);
 
-  window.localStorage.setItem("invoice", "")
+  window.localStorage.setItem("invoice", "");
 
   let allTotal = 0;
   const navigate = useNavigate();
 
-  console.log('allOrdrsData----', data);
+  console.log("allOrdrsData----", data);
 
   return (
     <>
@@ -53,7 +76,10 @@ function AllOrders() {
                   </select>
                 </div>
                 <div className="col-lg-2 ml-auto">
-                  <select className="form-select" aria-label="Default select example">
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                  >
                     <option>Filter by Delivery Status</option>
                     <option value="1">Pending</option>
                     <option value="2">Confirmed</option>
@@ -63,8 +89,11 @@ function AllOrders() {
                 </div>
 
                 <div className="col-lg-2 ml-auto">
-                  <select className="form-select" aria-label="Default select example">
-                    <option >Filter by Payment Status</option>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option>Filter by Payment Status</option>
                     <option value="1">Paid</option>
                     <option value="2">Un-Paid</option>
                   </select>
@@ -72,7 +101,17 @@ function AllOrders() {
 
                 <div className="col-lg-2">
                   <div className="form-group mb-0">
-                    <input type="text" className="aiz-date-range form-control" name="date" placeholder="Filter by date" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autoComplete="off" fdprocessedid="sq6vu7" />
+                    <input
+                      type="text"
+                      className="aiz-date-range form-control"
+                      name="date"
+                      placeholder="Filter by date"
+                      data-format="DD-MM-Y"
+                      data-separator=" to "
+                      data-advanced-range="true"
+                      autoComplete="off"
+                      fdprocessedid="sq6vu7"
+                    />
                   </div>
                 </div>
 
@@ -101,12 +140,15 @@ function AllOrders() {
                 </div>
               </div>
               <div className="card-body">
-
-                {isLoading ? <h2>Loading...</h2>
-                  : <table className="table table-responsive aiz-table mb-0 footable footable-1 breakpoint-xl" style={{ height: "700px" }} >
+                {isLoading ? (
+                  <h2>Loading...</h2>
+                ) : (
+                  <table
+                    className="table table-responsive aiz-table mb-0 footable footable-1 breakpoint-xl"
+                    style={{ height: "700px" }}
+                  >
                     <thead>
                       <tr className="footable-header">
-
                         <th
                           className="footable-first-visible"
                           style={{ display: "table-cell" }}
@@ -197,93 +239,124 @@ function AllOrders() {
                           Delivery Type
                         </th> */}
 
-                        <th
-                          className="footable-last-visible"
-                          style={{}}
-                        >
+                        <th className="footable-last-visible" style={{}}>
                           Options
                         </th>
-
                       </tr>
                     </thead>
 
                     <tbody>
-
-                      {data && data?.map((item, i) => {
-                        if (item?.grandTotal) {
-                          allTotal = allTotal + +item?.grandTotal
-                        }
-                        console.log(item);
-                        return <tr key={item._id} style={{ cursor: "pointer" }}
-                        //  onClick={()=>{navigate(`/admin/all_orders/order-Details/${item._id}`)}}
-                        >
-                          <td
-                            className="footable-first-visible"
-                            style={{ display: "table-cell" }}
-                          >
-                            {i + 1}
-                          </td>
-                          {/* <td style={{ display: "table-cell" }}>
+                      {orderList &&
+                        orderList?.map((item, i) => {
+                          if (item?.grandTotal) {
+                            allTotal = allTotal + +item?.grandTotal;
+                          }
+                          console.log(item);
+                          return (
+                            <tr
+                              key={item._id}
+                              style={{ cursor: "pointer" }}
+                              //  onClick={()=>{navigate(`/admin/all_orders/order-Details/${item._id}`)}}
+                            >
+                              <td
+                                className="footable-first-visible"
+                                style={{ display: "table-cell" }}
+                              >
+                                {i + 1}
+                              </td>
+                              {/* <td style={{ display: "table-cell" }}>
                             {item.parent_id}
                           </td> */}
-                          <td style={{ display: "table-cell" }}>
-                            {item._id}
-                          </td>
-                          <td style={{ display: "table-cell" }}>
-                            {item?.referenceNo}
-                          </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item._id}
+                              </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.referenceNo}
+                              </td>
 
+                              <td style={{ display: "table-cell" }}>
+                                {item.createdAt}
+                              </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.user?.firstname +
+                                  " " +
+                                  item?.user?.lastname}
+                              </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.contactDetail}
+                              </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.seller_id?.firstname}{" "}
+                                {item?.seller_id?.lastname}
+                              </td>
 
-                          <td style={{ display: "table-cell" }}>{item.createdAt}</td>
-                          <td style={{ display: "table-cell" }}>
-                            {item?.user?.firstname + " " + item?.user?.lastname}
-                          </td>
-                          <td style={{ display: "table-cell" }}>{item?.contactDetail}</td>
-                          <td style={{ display: "table-cell" }}>
-                            {item?.seller_id?.firstname}  {item?.seller_id?.lastname}
-                          </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.currency?.symbol
+                                  ? item?.currency?.symbol
+                                  : "ZK"}{" "}
+                                {item.grandTotal}
+                              </td>
 
-                          <td style={{ display: "table-cell" }}>
-                            {item?.currency?.symbol ? item?.currency?.symbol : 'ZK'} {item.grandTotal}
-                          </td>
+                              <td style={{ display: "table-cell" }}>COD</td>
 
-                          <td style={{ display: "table-cell" }}>COD</td>
+                              <td style={{ display: "table-cell" }}>
+                                {
+                                  item?.status[item.status.length - 1]
+                                    ?.orderStatusName
+                                }
+                              </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.Paid}
+                              </td>
 
-                          <td style={{ display: "table-cell" }}>
-                            {item?.status[item.status.length - 1]?.orderStatusName}
-                          </td>
-                          <td style={{ display: "table-cell" }}>
-                            {item?.Paid}
-                          </td>
+                              <td style={{ display: "table-cell" }}>
+                                <span
+                                  className={`badge badge-inline ${
+                                    item?.Payment_Status?.paymentStatusName ===
+                                    "Not Paid"
+                                      ? "badge-danger"
+                                      : "badge-success"
+                                  }`}
+                                >
+                                  {item?.Payment_Status?.paymentStatusName}
+                                </span>
+                              </td>
 
-                          <td style={{ display: "table-cell" }}>
-                            <span className={`badge badge-inline ${item?.Payment_Status?.paymentStatusName === 'Not Paid' ? 'badge-danger' : 'badge-success'}`}>{item?.Payment_Status?.paymentStatusName}</span>
-                          </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item?.Balance}
+                              </td>
+                              <td style={{ display: "table-cell" }}>
+                                {item.pickupAddress
+                                  ? "Pick Up Piont" +
+                                    " " +
+                                    item.pickupAddress.pickupPoint_name
+                                  : "HOME DELEVERY"}
+                              </td>
 
-                          <td style={{ display: "table-cell" }}>
-                            {item?.Balance}
-                          </td>
-                          <td style={{ display: "table-cell" }}>
-                            {item.pickupAddress ? "Pick Up Piont" + " " + item.pickupAddress.pickupPoint_name : "HOME DELEVERY"}
-                          </td>
-
-
-
-                          <td
-                            className="text-right footable-last-visible"
-                            style={{ display: "inline-flex" }}
-                          >
-
-                            <Actions item={item} deleteOrderData={deleteOrderData} />
-
-                          </td>
-                        </tr>
-                      })}
-
+                              <td
+                                className="text-right footable-last-visible"
+                                style={{ display: "inline-flex" }}
+                              >
+                                <Actions
+                                  item={item}
+                                  deleteOrderData={deleteOrderData}
+                                />
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
-                    <div style={{ fontSize: "medium", display: "flex", justifyContent: "center" }}>Total Net Amount : ZK {allTotal}</div>
+                    <div
+                      style={{
+                        fontSize: "medium",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      Total Net Amount : ZK {allTotal}
+                    </div>
                   </table>
-                }
+                )}
 
                 <div className="aiz-pagination"></div>
               </div>

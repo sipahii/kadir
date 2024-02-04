@@ -14,6 +14,7 @@ export const ColorVariant = ({
   index,
   sellerD,
   updateVarientDetails,
+  coppiedPriceToAllVarient,
 }) => {
   const [formData, setFormData] = useState(data);
   const [prices, setprices] = useState(data.prices);
@@ -202,6 +203,7 @@ export const ColorVariant = ({
           setData={setData}
           sellerD={sellerD}
           index={index}
+          coppiedPriceToAllVarient={coppiedPriceToAllVarient}
         />
       )}
     </tr>

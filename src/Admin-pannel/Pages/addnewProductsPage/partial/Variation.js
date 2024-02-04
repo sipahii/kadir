@@ -34,16 +34,6 @@ const Variation = ({
       setVariantsData(variationLists);
     }
   }, [variationsData]);
-
-  useEffect(() => {
-    console.log("variationForm", variationForm);
-    console.log("variationForm2", variations);
-    return () => {
-      console.log("variationForm", variationForm);
-      console.log("variationForm2", variations);
-    };
-  }, []);
-
   useEffect(() => {
     const prevAllAttributes = prevAllAttributesRef?.current;
     if (prevAllAttributes?.length > variationForm?.length) {

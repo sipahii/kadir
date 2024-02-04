@@ -1,3 +1,6 @@
+import { AiTwotoneDelete } from "react-icons/ai";
+import { Button, Popconfirm } from "antd";
+import { DatabaseFilled, QuestionCircleOutlined } from "@ant-design/icons";
 import { ColorVariant } from "../../../Components/addNewProductsComponents/ColorVariant";
 
 const ProductList = ({
@@ -9,6 +12,8 @@ const ProductList = ({
   sellerD,
   pickUp,
   updateVarientPriceAndAttributes,
+  deleteAllRow,
+  coppiedPriceToAllVarient,
 }) => {
   return (
     <div className="card mt-2 rest-part col-lg-12">
@@ -57,6 +62,29 @@ const ProductList = ({
             </label>
           </div>
         </div>
+        <div>
+          <Popconfirm
+            title="Are you sure to delete All Variations?"
+            description="Are you sure to delete All Variations?"
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+            onConfirm={deleteAllRow}
+          >
+            <Button
+              danger
+              className="d-flex align-items-center gap-10"
+              style={{ gap: "10px", marginBottom: "10px" }}
+            >
+              <AiTwotoneDelete /> Delete All Variation
+            </Button>
+          </Popconfirm>
+        </div>
+
         <div className="row align-items-end">
           <div
             className="col-12 sku_combination table-responsive form-group"
@@ -115,6 +143,7 @@ const ProductList = ({
                         pickUp={pickUp}
                         index={i}
                         updateVarientDetails={updateVarientPriceAndAttributes}
+                        coppiedPriceToAllVarient={coppiedPriceToAllVarient}
                       />
                     );
                   })}

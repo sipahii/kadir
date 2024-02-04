@@ -82,6 +82,9 @@ function PriceModal(props) {
     });
     setVal(filterdData);
   };
+  const coppyToAllVarient = () => {
+    props.coppiedPriceToAllVarient(val);
+  };
   return (
     <Modal
       {...props}
@@ -414,6 +417,16 @@ function PriceModal(props) {
               <td colSpan={4}>
                 <button type="button" class="btn btn-success" onClick={coped}>
                   Copy Price To All
+                </button>
+              </td>
+
+              <td colSpan={4}>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  onClick={coppyToAllVarient}
+                >
+                  Copy Price To All Variations
                 </button>
               </td>
             </tr>
