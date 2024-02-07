@@ -247,18 +247,26 @@ function OrderDetails() {
     htmlToPDF(fileName);
   };
 
+  const convertDate = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString);
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, "0");
+    const day = String(dateTime.getDate()).padStart(2, "0");
+    return `${day}-${month}-${year}`;
+  };
+
   const createRow = () => {
     let row = "";
-    debugger;
     data[0].products.forEach((item, i) => {
       row += `<tr key={i}>
           <td>${i + 1}</td>
           <td>${item.productId?.name}</td>
+          <td> ${item.sku} </td>
           <td>${item?.qty}</td>
-          <td>${item?.price?.sale_rate}</td>
-          <td>${item?.subTotal}</td>
-          <td>${item?.tax}</td>
-          <td>${item?.total}</td>
+          <td> ${data[0]?.currency?.symbol} ${item?.price?.sale_rate}</td>
+          <td> ${data[0]?.currency?.symbol} ${item?.subTotal}</td>
+          <td> ${data[0]?.currency?.symbol} ${item?.tax}</td>
+          <td> ${data[0]?.currency?.symbol} ${item?.total}</td>
         </tr>`;
     });
     return row;
@@ -274,13 +282,14 @@ function OrderDetails() {
       <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
       <style>
         table, td,th,tr{
-            border: 1px solid;
+            border: 1px solid gray;
             border-collapse: collapse;
         }
         th{
-            background-color: #5e0c36;
+            background-color: gray;
             color: #fff;
-            border: 1px #5e0c36;
+            border: 1px solid gray;
+            border-collapse: collapse;
         }
         td, th{
             padding: 10px;
@@ -289,37 +298,44 @@ function OrderDetails() {
         table{
             padding: 10px
         }
+        img{
+          height:50px;
+        }
+        .invoice-details{
+          margin-bottom:10px;
+        }
       </style>
     </head>
     <body style="font-family: Arial, sans-serif;">
     
-      <div class="invoice-container" style="width: 80%; margin: 0 auto; border: 1px solid #ccc;">
-        <div class="invoice-header" style="text-align: center;  display: flex; justify-content: space-between; padding:0 20px; align-items: center;">
-          <h1>Invoice</h1>
-          <img src="/images/logo.png" alt="My Image" height="50" style={height:50px}>
-        </div>
+      <div class="invoice-container" style="width: 100%; margin: 0 auto; border: 1px solid gray;">
+        <div class="invoice-header" style="text-align: center;  display: flex; justify-content: space-between; padding:10px 20px; align-items: center;">
+      <div style="display: flex; gap: 10px; align-items: center;">
+      <img src="/images/logo.png" alt="My Image" height="50" style={height:50px}>
+      <div style="display: flex;flex-direction: column;gap: 5px;align-items: baseline;" ><h5 class="m-0 " style="color: rgb(94, 12, 54); text-transform: uppercase;margin: 0; ">Mamastycoon</h5><span>First Steps</span></div>
+    </div>
+    <span  style="padding: 10px; font-size: 16px;display: block;text-align: justify;line-height: 20px;">Office No 106, Bin Alshaikh Holding, Bank Street,Doha,Qatar <br> <span style="color:#5e0c36"> Mobile:- 974 6636 2210<br> Website:- https://mamastycoon.com</span></span>
+    </div>
     
-        <div class="invoice-details" style="display: flex; justify-content: space-between; flex-direction: column; padding: 0 20px; background-color: #5e0c36; color: #fff;">
-          <div class="invoice" style="padding: 0;">
-            <h4 style="color: #fff; padding: 10px;"><strong>Invoice Number:</strong> ${
+        <div class="invoice-details" style="display: flex; justify-content: space-between; flex-direction: column; padding: 0 10px; background-color: gray; color: #fff;">
+          <div class="invoice" style="padding: 5px 0;">
+            <h6 style="color: #fff;"><strong>Invoice Number:</strong> ${
               data[0]?.invoiceNo
-            }</h4>
-            <h4 style="color: #fff; padding: 10px;"><strong>Invoice Date:</strong> ${
+            }</h6>
+            <h6 style="color: #fff;"><strong>Order No:</strong> ${
+              data[0]?.order_referenceNo
+            }</h6>
+            <h6 style="color: #fff;"><strong>Order Date:</strong> ${convertDate(
               data[0]?.invoiceDate
-            }</h4>
+            )}</h6>
           </div>
         </div>
     
         <div class="wrapper">
           <div class="billing-address" style="display: flex; justify-content: space-between; padding: 0;">
-            
-            <div class="sold" style="flex:1">
-                <h4  style="background-color: #5e0c36; color: #fff; padding: 10px;">Sold To:</h4>
-                <span  style="padding: 10px; font-size: 16px;display: block; "><strong>Mamastycoon:</strong> Office No 106, Bin Alshaikh Holding, Bank Street,Doha,Qatar <br> <span style="color:#5e0c36"> Mobile:- 974 6636 2210</span></span>
-            </div>
+         
             <div style="padding: 0; flex:1">
-                <h4  style="background-color: #5e0c36; color: #fff; padding: 10px;">Ship To:</h4>
-                <span style="padding: 10px; font-size: 16px;display: block;"><strong>Shipping Address:</strong> <strong>Address Line 1:</strong>
+                <h5  style="background-color: gray; color: #fff; padding: 10px;">Ship To:</h5>
                 <ul>
                           <li>
                             <strong>Address Line 1:</strong>
@@ -334,41 +350,11 @@ function OrderDetails() {
                             </span>
                           </li>
                           <li>
-                            <strong> Address Line 2: </strong>
-                            <span>
-                            ${
-                              data[0]?.shipping?.addressLine2 ??
-                              data[0]?.shipping?.baddressLine2 ??
-                              "N/A"
-                            }
-                            </span>
-                          </li>
-                          <li>
                             <strong>City:</strong>
                             <span>
                             ${
                               data[0]?.shipping?.city ??
                               data[0]?.shipping?.bcity ??
-                              "N/A"
-                            }
-                            </span>
-                          </li>
-                          <li>
-                            <strong> State:</strong>
-                            <span>
-                            ${
-                              data[0]?.shipping?.state ??
-                              data[0]?.billing?.bstate ??
-                              "N/A"
-                            }
-                            </span>
-                          </li>
-                          <li>
-                            <strong>Province:</strong>
-                            <span>
-                            ${
-                              data[0]?.shipping?.province ??
-                              data[0]?.billing?.bprovince ??
                               "N/A"
                             }
                             </span>
@@ -382,15 +368,6 @@ function OrderDetails() {
                               data[0]?.billing?.bcountry ??
                               "N/A"
                             }
-                            </span>
-                          </li>
-
-                          <li>
-                            <strong>Name:</strong>
-                            <span>
-                            ${data[0]?.shipping?.bfirstname ?? ""} ${
-      data[0]?.shipping?.blastname ?? ""
-    }
                             </span>
                           </li>
                           <li>
@@ -407,21 +384,36 @@ function OrderDetails() {
                             <strong>Phone:</strong>
                             <span>
                             ${
-                              data[0].shipping?.phone ??
-                              data[0].billing?.bphone ??
+                              data[0].contactDetail ??
+                              data[0].billing?.contactDetail ??
                               "N/A"
                             }
                             </span>
                           </li>
                         </ul>
               </div>
+
+              <div style="padding: 0; flex:1">
+              <h5  style="background-color: gray; color: #fff; padding: 10px;">Payment Method:</h5>
+              <ul>
+                        <li>
+                          <span>
+                            <span>
+                            Cash on Delivery
+                            </span>
+                          </span>
+                        </li>
+                      </ul>
+            </div>
+              
           </div>
           <div style="padding: 10px;">
-          <table style="width: 100%;">
+          <table style="width: 100%; border-collapse: collapse">
             <thead>
                 <tr>
                 <th>S.No</th>
                 <th>Product</th>
+                <th>SKU</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>
                 <th>Sub Total</th>
@@ -429,13 +421,35 @@ function OrderDetails() {
                 <th>Total</th>
             </tr>
            ${createRow()}
+           <tr>
+            <th colspan="6">Sub Total</th>
+               <td colspan="2"> ${data[0]?.currency?.symbol}  ${
+      data[0].basePrice
+    }</td>
+          </tr>
+
+        
+
+     ${
+       data[0].discount &&
+       `  <tr> <td style="padding:5px"></td> </tr><tr>
+          <th colspan="6">Discount Amount</th>
+              <td colspan="2"> ${data[0]?.currency?.symbol}  ${data[0].discount}</td>`
+     }
+      </tr>
+        <tr> <td style="padding:5px"></td> </tr>
             <tr>
-                <th colspan="6">Shiping Charge</th>
-                <td colspan="2">  ${data[0].shippingCost}</td>
+                <th colspan="6">Shipping and Handling</th>
+                <td colspan="2"> ${data[0]?.currency?.symbol}  ${
+      data[0].shippingCost
+    }</td>
             </tr>
+            <tr> <td style="padding:5px"></td> </tr>
             <tr>
-                <th colspan="6">Total</th>
-                <td colspan="2">  ${data[0].grandTotal} </td>
+                <th colspan="6">Grand Total</th>
+                <td colspan="2"> ${data[0]?.currency?.symbol}  ${
+      data[0].grandTotal
+    } </td>
             </tr>
             </thead>
           </table>
@@ -451,9 +465,21 @@ function OrderDetails() {
       margin: 10,
       filename: fileName || "invoice.pdf",
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 1 }, // Adjust the scale as needed
-      jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+      jsPDF: { unit: "mm", format: "a4" },
+      html2canvas: {
+        scale: 0.75,
+        addStyle: (doc) => {
+          const tables = doc.querySelectorAll("table");
+          tables.forEach((table) => {
+            table.style.borderCollapse = "collapse";
+            table.querySelectorAll("th, td").forEach((cell) => {
+              cell.style.borderCollapse = "collapse";
+            });
+          });
+        },
+      }, // Adjust the scale to fit content within A4 page
     };
+
     html2pdf(html, options)
       .outputPdf()
       .get("pdf")
@@ -548,7 +574,7 @@ function OrderDetails() {
                     <div className="small-text-wraper">
                       <div className="customerName">
                         Customer Contact No:{" "}
-                        <span>{data[0]?.contactDetail}</span>
+                        <span>{data[0]?.billing?.contactDetail}</span>
                       </div>
                     </div>
 
@@ -863,9 +889,9 @@ function OrderDetails() {
                           <li>
                             <strong>Phone:</strong>
                             <span>
-                              {data[0].shipping?.phone
-                                ? data[0].shipping?.phone
-                                : data[0].billing?.bphone}
+                              {data[0].contactDetail
+                                ? data[0]?.contactDetail
+                                : data[0]?.contactDetail}
                             </span>
                           </li>
                         </ul>
@@ -1295,7 +1321,7 @@ function OrderDetails() {
                       className="btn btn-primary"
                       onClick={printInvoice}
                     >
-                      Print Invoice
+                      Download Invoice
                     </button>
                   </div>
                 </div>
