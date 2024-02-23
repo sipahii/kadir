@@ -265,21 +265,32 @@ function OrderDetails() {
           <td>${item?.qty}</td>
           <td> ${data[0]?.currency?.symbol} ${item?.price?.sale_rate}</td>
           <td> ${data[0]?.currency?.symbol} ${item?.subTotal}</td>
-          <td> ${data[0]?.currency?.symbol} ${item?.tax}</td>
           <td> ${data[0]?.currency?.symbol} ${item?.total}</td>
         </tr>`;
     });
     return row;
   };
 
+  const discountValue = () => {
+    if (data[0].discount) {
+      return `  <tr> <td style="padding:5px"></td> </tr><tr>
+       <th colspan="6">Discount Amount</th>
+           <td colspan="2"> ${data[0]?.currency?.symbol}  ${data[0].discount}</td>`;
+    } else {
+      return "";
+    }
+  };
   const htmlToPDF = (fileName) => {
-    const html = `<!DOCTYPE html>
+    const logo = new Image();
+    logo.src = "/images/logo.png";
+
+    logo.onload = function () {
+      const html = `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Invoice</title>
-      <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
       <style>
         table, td,th,tr{
             border: 1px solid gray;
@@ -304,6 +315,9 @@ function OrderDetails() {
         .invoice-details{
           margin-bottom:10px;
         }
+        table.invoice-table {
+          border-collapse: collapse;
+        }
       </style>
     </head>
     <body style="font-family: Arial, sans-serif;">
@@ -311,7 +325,7 @@ function OrderDetails() {
       <div class="invoice-container" style="width: 100%; margin: 0 auto; border: 1px solid gray;">
         <div class="invoice-header" style="text-align: center;  display: flex; justify-content: space-between; padding:10px 20px; align-items: center;">
       <div style="display: flex; gap: 10px; align-items: center;">
-      <img src="/images/logo.png" alt="My Image" height="50" style={height:50px}>
+      <img src="${logo.src}" alt="My Image" height="50" style={height:50px}>
       <div style="display: flex;flex-direction: column;gap: 5px;align-items: baseline;" ><h5 class="m-0 " style="color: rgb(94, 12, 54); text-transform: uppercase;margin: 0; ">Mamastycoon</h5><span>First Steps</span></div>
     </div>
     <span  style="padding: 10px; font-size: 16px;display: block;text-align: justify;line-height: 20px;">Office No 106, Bin Alshaikh Holding, Bank Street,Doha,Qatar <br> <span style="color:#5e0c36"> Mobile:- 974 6636 2210<br> Website:- https://mamastycoon.com</span></span>
@@ -337,6 +351,15 @@ function OrderDetails() {
             <div style="padding: 0; flex:1">
                 <h5  style="background-color: gray; color: #fff; padding: 10px;">Ship To:</h5>
                 <ul>
+
+                <li>
+                <strong>Name:</strong>
+                <span>
+                  <span>
+                  ${fileName ?? "N/A"}
+                  </span>
+                </span>
+              </li>
                           <li>
                             <strong>Address Line 1:</strong>
                             <span>
@@ -417,73 +440,85 @@ function OrderDetails() {
                 <th>Quantity</th>
                 <th>Unit Price</th>
                 <th>Sub Total</th>
-                <th>Tax</th>
                 <th>Total</th>
             </tr>
            ${createRow()}
            <tr>
-            <th colspan="6">Sub Total</th>
-               <td colspan="2"> ${data[0]?.currency?.symbol}  ${
-      data[0].basePrice
-    }</td>
+            <th colspan="4">Sub Total</th>
+               <td colspan="3"> ${data[0]?.currency?.symbol}  ${
+        data[0].basePrice
+      }</td>
           </tr>
 
         
 
-     ${
-       data[0].discount &&
-       `  <tr> <td style="padding:5px"></td> </tr><tr>
-          <th colspan="6">Discount Amount</th>
-              <td colspan="2"> ${data[0]?.currency?.symbol}  ${data[0].discount}</td>`
-     }
+     ${discountValue()}
       </tr>
         <tr> <td style="padding:5px"></td> </tr>
             <tr>
-                <th colspan="6">Shipping and Handling</th>
-                <td colspan="2"> ${data[0]?.currency?.symbol}  ${
-      data[0].shippingCost
-    }</td>
+                <th colspan="4">Shipping and Handling</th>
+                <td colspan="3"> ${data[0]?.currency?.symbol}  ${
+        data[0].shippingCost
+      }</td>
             </tr>
             <tr> <td style="padding:5px"></td> </tr>
             <tr>
-                <th colspan="6">Grand Total</th>
-                <td colspan="2"> ${data[0]?.currency?.symbol}  ${
-      data[0].grandTotal
-    } </td>
+                <th colspan="4">Grand Total</th>
+                <td colspan="3"> ${data[0]?.currency?.symbol}  ${
+        data[0].grandTotal
+      } </td>
             </tr>
             </thead>
           </table>
         </div>
         </div>
       </div>
+      <script>
+      // Preload image
+      var logo = new Image();
+      logo.src = "/images/logo.png";
+      logo.onload = function() {
+        console.log("Logo image loaded successfully");
+      };
+      logo.onerror = function(error) {
+        console.error("Error loading logo image:", error);
+      };
+    </script>
     </body>
     </html>
     
     `;
-    const options = {
-      useCORS: true,
-      margin: 10,
-      filename: fileName || "invoice.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      jsPDF: { unit: "mm", format: "a4" },
-      html2canvas: {
-        scale: 0.75,
-        addStyle: (doc) => {
-          const tables = doc.querySelectorAll("table");
-          tables.forEach((table) => {
-            table.style.borderCollapse = "collapse";
-            table.querySelectorAll("th, td").forEach((cell) => {
-              cell.style.borderCollapse = "collapse";
+      const options = {
+        useCORS: true,
+        margin: 10,
+        filename: fileName || "invoice.pdf",
+        image: { type: "jpeg", quality: 1 },
+        jsPDF: { unit: "mm", format: "a4" },
+        html2canvas: {
+          scale: 2,
+          addStyle: (doc) => {
+            const tables = doc.querySelectorAll("table");
+            tables.forEach((table) => {
+              table.style.borderSpacing = "0"; // Set border spacing to zero
+              table.querySelectorAll("th, td").forEach((cell) => {
+                cell.style.border = "1px solid gray"; // Add border to cells
+                cell.style.padding = "10px"; // Add padding to cells
+                cell.style.textAlign = "center"; // Center-align content
+              });
             });
-          });
-        },
-      }, // Adjust the scale to fit content within A4 page
-    };
+          },
+        }, // Adjust the scale to fit content within A4 page
+      };
 
-    html2pdf(html, options)
-      .outputPdf()
-      .get("pdf")
-      .then(async (outputData) => {});
+      html2pdf(html, options)
+        .outputPdf()
+        .get("pdf")
+        .then(async (outputData) => {});
+    };
+    logo.onerror = function (error) {
+      console.error("Error loading logo image:", error);
+      // Handle error if image loading fails
+    };
   };
 
   console.log("orderdetailData--", data);
