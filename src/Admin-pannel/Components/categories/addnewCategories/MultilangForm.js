@@ -12,6 +12,7 @@ function MultilangForm({
   onChangeHandler,
   setValue,
   onChangeHandlesr,
+  onImageChangeHandler,
 }) {
   const { data: valDAta } = useGetCategoriesQuery(token);
   const idShow = window.localStorage.getItem("adminId");
@@ -132,7 +133,7 @@ function MultilangForm({
                       name="banner"
                       className="selected-files"
                       onChange={(e) => {
-                        onChangeHandler(e, item.language_id, "img");
+                        onImageChangeHandler(e, item.language_id, "banner");
                       }}
                     />
                   </div>
@@ -164,7 +165,7 @@ function MultilangForm({
                       name="icon"
                       className="selected-files"
                       onChange={(e) => {
-                        onChangeHandler(e, item.language_id, "imgicon");
+                        onImageChangeHandler(e, item.language_id, "icon");
                       }}
                     />
                   </div>
