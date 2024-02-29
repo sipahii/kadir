@@ -14,6 +14,7 @@ const ProductList = ({
   updateVarientPriceAndAttributes,
   deleteAllRow,
   coppiedPriceToAllVarient,
+  deleteImage,
 }) => {
   return (
     <div className="card mt-2 rest-part col-lg-12">
@@ -144,6 +145,7 @@ const ProductList = ({
                         index={i}
                         updateVarientDetails={updateVarientPriceAndAttributes}
                         coppiedPriceToAllVarient={coppiedPriceToAllVarient}
+                        deleteImage={deleteImage}
                       />
                     );
                   })}

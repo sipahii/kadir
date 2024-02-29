@@ -4,6 +4,7 @@ import { Button, Popconfirm } from "antd";
 import { AiTwotoneDelete } from "react-icons/ai";
 import AttributeModal from "./AttributeModal";
 import { GiPriceTag } from "react-icons/gi";
+import { MdDelete } from "react-icons/md";
 import PriceModal from "./PriceModal";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -15,6 +16,8 @@ export const ColorVariant = ({
   sellerD,
   updateVarientDetails,
   coppiedPriceToAllVarient,
+  item,
+  deleteImage,
 }) => {
   const [formData, setFormData] = useState(data);
   const [prices, setprices] = useState(data.prices);
@@ -28,6 +31,7 @@ export const ColorVariant = ({
 
   const [shoing, setShping] = useState(false);
   const [shoingLoader, setshoingLoader] = useState(false);
+  const token = window.localStorage.getItem("token");
 
   useEffect(() => {
     updateVarientDetails(formData);
@@ -90,6 +94,23 @@ export const ColorVariant = ({
   //     setData(data);
   //     updateVarientDetails(data);
   //   };
+
+  const deleteImages = async (types, publicUrl) => {
+    let cloneAllData = JSON.parse(JSON.stringify(formData));
+    if (types === "gallary") {
+      if (cloneAllData?.images) {
+        let data = cloneAllData?.images.filter(
+          (item) => item.public_id !== publicUrl
+        );
+        cloneAllData.images = data;
+      }
+    } else {
+      cloneAllData.mainImage_url = {};
+    }
+    deleteImage?.(types, publicUrl, false, data._id);
+    setFormData(cloneAllData);
+  };
+
   return (
     <tr className="sizzings">
       {shoingLoader && (
@@ -152,11 +173,17 @@ export const ColorVariant = ({
           data?.images?.map((item) => {
             return (
               // eslint-disable-next-line jsx-a11y/alt-text
-              <img
-                key={item.url}
-                style={{ width: "100px", height: "100px" }}
-                src={item?.url}
-              />
+              <>
+                <img
+                  key={item.url}
+                  style={{ width: "100px", height: "100px" }}
+                  src={item?.url}
+                />
+                <MdDelete
+                  style={{ cursor: "pointer" }}
+                  onClick={() => deleteImages("gallary", item?.public_id)}
+                />
+              </>
             );
           })}
         <input
@@ -171,10 +198,18 @@ export const ColorVariant = ({
       <td>
         {!!data?.mainImage_url?.url && (
           // eslint-disable-next-line jsx-a11y/alt-text
-          <img
-            style={{ width: "100px", height: "100px" }}
-            src={data?.mainImage_url?.url}
-          />
+          <>
+            <img
+              style={{ width: "100px", height: "100px" }}
+              src={data?.mainImage_url?.url}
+            />
+            <MdDelete
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                deleteImages("thumbnail", data?.mainImage_url?.public_id)
+              }
+            />
+          </>
         )}
         <input
           type="file"

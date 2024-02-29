@@ -33,6 +33,7 @@ import ProductList from "./partial/ProductList";
 import INITIAL_STATE from "./partial/Constant";
 import { setDataDescription } from "../../Components/productDescriptionWrapper/textEditorSlice";
 import getProductById from "../../api/getProductById";
+import deleteProductImage from "../../api/deleteProductImage";
 
 const toastSuccessMessage = (message) => {
   toast.success(message, {
@@ -461,6 +462,50 @@ function AddNewProductsPage() {
     setVariationList(filterdData);
   };
 
+  const deleteImage = async (types, publicUrl, isGlobal, id) => {
+    let cloneAllData = JSON.parse(JSON.stringify(val));
+    if (params?.id) {
+      let payLoad = {
+        productId: params?.id,
+        isGlobal: isGlobal,
+        variantId: id,
+        public_id: publicUrl,
+        type: types === "gallary" ? "Gallery" : "mainImage",
+      };
+      try {
+        const deletedData = await deleteProductImage(payLoad, token);
+        if (deletedData) {
+          toastSuccessMessage("Image deleted successfully.");
+          console.log("Delete successful:", deletedData);
+        }
+      } catch (error) {
+        console.error("Error deleting image:", error);
+        toastErrorMessage("Error deleting image");
+      }
+      if (!id) {
+        if (types === "gallary") {
+          let filterImage = cloneAllData[value].images.filter(
+            (item) => item.public_id !== publicUrl
+          );
+          cloneAllData[value].images = filterImage;
+        } else {
+          cloneAllData[value].mainImage_url = {};
+        }
+        setVal(cloneAllData);
+      }
+    } else {
+      if (types === "gallary") {
+        let filterImage = cloneAllData[value].images.filter(
+          (item) => item.public_id !== publicUrl
+        );
+        cloneAllData[value].images = filterImage;
+      } else {
+        cloneAllData[value].mainImage_url = {};
+      }
+      setVal(cloneAllData);
+    }
+  };
+
   const updateVarientPriceAndAttributes = (data) => {
     variationIdVsPricingAndAttributes.set(data._id, data);
     const cloneAllData = JSON.parse(JSON.stringify(variationList));
@@ -591,6 +636,7 @@ function AddNewProductsPage() {
                                 proAtt={item?.attributeList}
                                 changeValues={changeValues}
                                 removeRowAt={removeRowAt}
+                                deleteImage={deleteImage}
                               />
 
                               <ProductVideo
@@ -855,6 +901,7 @@ function AddNewProductsPage() {
                               coppiedPriceToAllVarient={
                                 coppiedPriceToAllVarient
                               }
+                              deleteImage={deleteImage}
                             />
                           </div>
                           <div className="row">

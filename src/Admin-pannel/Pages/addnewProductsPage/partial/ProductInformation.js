@@ -1,8 +1,9 @@
 import Multiselect from "multiselect-react-dropdown";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import { MdDelete } from "react-icons/md";
 
 const ProductInforamation = ({
   item,
@@ -26,10 +27,13 @@ const ProductInforamation = ({
   proAtt,
   changeValues,
   removeRowAt,
+  deleteImage,
 }) => {
   const [sel, setSel] = useState([]);
   const [finalCatD, setFinalCatD] = useState();
   const [selectedIds, setSelectedIds] = useState([]);
+
+  console.log("images", item);
   useEffect(() => {
     if (proAtt) {
       const maped = proAtt?.map((item) => {
@@ -61,6 +65,10 @@ const ProductInforamation = ({
       { id: finalCatD }
     );
     changettriPro(res?.data);
+  };
+
+  const deleteImages = (types, publicUrl) => {
+    deleteImage?.(types, publicUrl, true, null);
   };
   return (
     <div className="card">
@@ -319,12 +327,20 @@ const ProductInforamation = ({
             <>
               <div className="col-md-3"></div>
               <div className="col-md-9">
-                <img
-                  src={item.images[0]?.url}
-                  height={"100"}
-                  width={"100"}
-                  alt="gallaryImage"
-                />
+                {item.images?.map((item2) => (
+                  <React.Fragment key={item2?.publicUrl}>
+                    <img
+                      src={item2?.url}
+                      height={"100"}
+                      width={"100"}
+                      alt="gallaryImage"
+                    />
+                    <MdDelete
+                      style={{ cursor: "pointer" }}
+                      onClick={() => deleteImages("gallary", item2?.public_id)}
+                    />
+                  </React.Fragment>
+                ))}
               </div>
             </>
           )}
@@ -352,6 +368,12 @@ const ProductInforamation = ({
                   height={"100"}
                   width={"100"}
                   alt="mainImage_url"
+                />
+                <MdDelete
+                  style={{ cursor: "pointer" }}
+                  onClick={() =>
+                    deleteImages("thumbnail", item?.mainImage_url?.public_id)
+                  }
                 />
               </div>
             </>
