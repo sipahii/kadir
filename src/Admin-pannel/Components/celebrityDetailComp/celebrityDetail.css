@@ -1,0 +1,88 @@
+.main-Wrapper {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px gray;
+}
+
+.profile-sec {
+    /* padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px gray; */
+    display: flex;
+}
+
+.profile-sec .profile-img-text {
+    width: 50%;
+    display: flex;
+    /* border: 1px solid gray; */
+}
+
+.profile-sec .profile-img-text img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid gray;
+}
+
+.prof-text-sec {
+    margin-left: 20px;
+    /* margin-top: 10px; */
+}
+
+.prof-text-sec h5 {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    /* text-transform: capitalize; */
+    font-family: monospace;
+    /* letter-spacing: 1px; */
+}
+
+.prof-text-sec h5 span {
+    color: gray;
+    font-weight: normal;
+}
+
+.address-sec h4 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.address-sec h5 {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    /* text-transform: capitalize; */
+    font-family: monospace;
+    /* letter-spacing: 1px; */
+}
+
+.address-sec h5 span {
+    color: gray;
+    font-weight: normal;
+}
+.total-status-sec{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.purchase-pckage-sec {
+    width: 50%;
+}
+.purchase-pckage-sec h5 {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    /* text-transform: capitalize; */
+    font-family: monospace;
+    /* letter-spacing: 1px; */
+}
+.purchase-pckage-sec {
+    margin: 20px 0 15px 20px;
+}
+.purchase-pckage-sec h5 span {
+    color: gray;
+    font-weight: normal;
+}
+.celeb-tab-sec{
+    margin-top: 25px;
+    padding: 0 25px;
+}

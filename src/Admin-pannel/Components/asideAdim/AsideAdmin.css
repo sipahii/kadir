@@ -1,0 +1,33 @@
+/* .aiz-side-nav-wrap.list {
+    width: 100%;
+}
+
+#dropdownList {
+    position: relative;
+}
+
+#dropdownList a {
+    color: #333;
+    padding: 6px 12px;
+}
+
+#dropdownList .dropdownMenu {
+    position: absolute;
+    top: -100%;
+    left: 50;
+    width: 100%;
+    background: darkgrey;
+    opacity: 0;
+    transition: .4s ease-in-out;
+}
+
+#dropdownList .dropdownMenu ul li {
+    color: #333;
+    padding: 6px 12px;
+    list-style: none;
+}
+
+#dropdownList:hover .dropdownMenu {
+    top: 0;
+    opacity: 1;
+} */

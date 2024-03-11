@@ -1,0 +1,38 @@
+{
+  "user": {
+    "userName": "admin",
+    "password": "admin",
+    "isLogin": true
+  },
+  "dropdown":[
+    {
+      "íd":1,
+      "title":"All account"
+    },
+    {
+      "íd":2,
+      "userid":"DE00000008",
+      "title":"BCI TEST_Update20 Reversal"
+    },
+    {
+      "íd":3,
+      "userid":"DE00000008",
+      "title":"BCI TEST_Update20 Reversal"
+    },
+    {
+      "íd":4,
+      "userid":"DE00000986",
+      "title":"KattyA"
+    },
+    {
+      "íd":5,
+      "userid":"DE00000966",
+      "title":"KattyB"
+    },
+    {
+      "íd":6,
+      "userid":"DE00000967",
+      "title":"KattyC"
+    }
+  ]
+}

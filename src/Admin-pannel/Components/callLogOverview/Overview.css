@@ -1,0 +1,8 @@
+.table-box{
+    border: 2px solid gray;
+}
+.borderNone{
+    border-left: 1px solid white !important;
+    background-color: aqua;
+    border-left: none;
+}
