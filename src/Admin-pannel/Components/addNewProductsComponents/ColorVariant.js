@@ -107,7 +107,7 @@ export const ColorVariant = ({
     } else {
       cloneAllData.mainImage_url = {};
     }
-    deleteImage?.(types, publicUrl, false, data._id);
+    deleteImage?.(types, publicUrl, false, data?.uid);
     setFormData(cloneAllData);
   };
 
