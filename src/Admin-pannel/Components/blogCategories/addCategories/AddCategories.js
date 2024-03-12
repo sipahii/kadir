@@ -47,7 +47,7 @@ function AddCategories() {
   useEffect(() => {
     if (data) {
       const maped = data.map((item) => {
-        return { name: "", language_id: item._id, approve: false, lable: item.name }
+        return { name: "", slug:'', language_id: item._id, approve: false, lable: item.name }
       })
       setVal(maped)
     }
@@ -102,6 +102,12 @@ function AddCategories() {
                               <label className="col-md-3 col-form-label">Name</label>
                               <div className="col-md-9">
                                 <input type="text" placeholder="Name" id="category_name" name="name" className="form-control" value={item?.name} required onChange={(e) => { onChangeHandler(e, item.language_id) }} />
+                              </div>
+                            </div>
+                            <div className="form-group row">
+                              <label className="col-md-3 col-form-label">Slug</label>
+                              <div className="col-md-9">
+                                <input type="text" placeholder="Slug" id="category_name" name="slug" className="form-control" value={item?.slug} required onChange={(e) => { onChangeHandler(e, item.language_id) }} />
                               </div>
                             </div>
                             {data.length == i + 1 ? <div className="form-group mb-3 text-right">

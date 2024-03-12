@@ -22,14 +22,14 @@ function MultiLangIndustry({ data, item, i, addNewAttributeData, onChangeHandler
                 <input type="hidden" name="_token" defaultValue="JX7Efxc0fWnjgSTDtnGEP5Yd23Vk7icCfLqqxizf" />
 
                 <div className="form-group row">
-                    <label className="col-md-3 col-form-label">Name</label>
+                    <label className="col-md-3 col-form-label">Name<span style={{color:'red'}}>*</span></label>
                     <div className="col-md-9">
                         <input type="text" placeholder="Name" name="name" value={item?.name} className="form-control" onChange={(e) => { onChangeHandler(e, item.language_id) }} required />
                     </div>
                 </div>
 
                 <div className="form-group row">
-                    <label className="col-md-3 col-form-label">Parent Category</label>
+                    <label className="col-md-3 col-form-label">Parent Category<span style={{color:'red'}}>*</span></label>
 
                     <div className="col-md-9">
                         <select className="form-select" name='parent_id' value={item?.parent_id} onChange={(e) => { onChangeHandler(e, item.language_id) }} required>
@@ -44,7 +44,7 @@ function MultiLangIndustry({ data, item, i, addNewAttributeData, onChangeHandler
 
                 <div className="form-group row">
                     <label className="col-md-3 col-form-label">
-                        Ordering Number
+                        Ordering Number<span style={{color:'red'}}>*</span>
                     </label>
                     <div className="col-md-9">
                         <input type="number" name="order_level" value={item?.order_level} className="form-control" placeholder="Order Level" onChange={(e) => { onChangeHandler(e, item.language_id) }} required />
@@ -109,7 +109,7 @@ function MultiLangIndustry({ data, item, i, addNewAttributeData, onChangeHandler
                     </div>
                 </div>
                 {i == 0 && <div className="form-group row">
-                    <label className="col-md-3 col-form-label">Slug *</label>
+                    <label className="col-md-3 col-form-label">Slug<span style={{color:'red'}}>*</span></label>
                     <div className="col-md-9">
                         <input type="text" className="form-control" name="slug" value={item?.slug} placeholder="Slug" onChange={(e) => { onChangeHandler(e, item.language_id) }} required />
                     </div>
@@ -146,7 +146,7 @@ function MultiLangIndustry({ data, item, i, addNewAttributeData, onChangeHandler
                 </div>
 
                 <div className="form-group row">
-                    <label className="col-md-3 col-form-label">Commission Rate</label>
+                    <label className="col-md-3 col-form-label">Commission Rate<span style={{color:'red'}}>*</span></label>
                     <div className="col-md-9 input-group">
                         <input type="number" lang="en" min={0} step="0.01" placeholder="Commission Rate" value={item?.commision_rate} id="commision_rate" name="commision_rate" className="form-control" onChange={(e) => { onChangeHandler(e, item.language_id) }} required />
                         <div className="input-group-append">
@@ -168,7 +168,7 @@ function MultiLangIndustry({ data, item, i, addNewAttributeData, onChangeHandler
                 </div> */}
 
                 <div className="form-group row">
-                    <label className="col-md-3 col-form-label">Level</label>
+                    <label className="col-md-3 col-form-label">Level<span style={{color:'red'}}>*</span></label>
                     <div className="col-md-9">
                         <input type="number" className="form-control" name="level" placeholder="level" value={item?.level} onChange={(e) => { onChangeHandler(e, item.language_id) }} required />
                     </div>
@@ -186,7 +186,7 @@ function MultiLangIndustry({ data, item, i, addNewAttributeData, onChangeHandler
                 </div>
 
                 <div className="form-group row">
-                    <label className="col-md-3 col-form-label">Featured</label>
+                    <label className="col-md-3 col-form-label">Featured<span style={{color:'red'}}>*</span></label>
                     <div className="col-md-9">
                         <select className="form-select" name='featured' value={item?.featured} onChange={(e) => { onChangeHandler(e, item.language_id, 'bul') }} required>
                             <option value={false}>NO </option>

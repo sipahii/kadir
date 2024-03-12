@@ -6,30 +6,24 @@ import { Link, useParams } from "react-router-dom"
 const token = window.localStorage.getItem('token')
 
 function RoboticMaster() {
-
+    const param = useParams();
+    // console.log('params--', param)
     const [add, setAdd] = useState({
         userid: '',
         categoryPermit: '',
         productPermit: ''
-    })
+    });
 
     const [select, setSelect] = useState(null)
-
     const [style, setSTyle] = useState([]);
-    // console.log('style', style);
     const [finalStyleD, setFinalStyleD] = useState();
-    const [products, setProducts] = useState();
 
-    // console.log('finalStyleD', finalStyleD);
+    const [industyCateg, setIndustryCateg] = useState([]);
+    const [finalIndustryCateg, setFinalIndustryCategD] = useState();
 
+    const [blogCateg, setBlogcateg] = useState([]);
+    const [finalBlogcategD, setFinalBlogcategD] = useState();
 
-    const [style2, setSTyle2] = useState([]);
-    // console.log('style', style2);
-    const [finalStyleD2, setFinalStyleD2] = useState();
-
-    const param = useParams()
-
-    console.log('finalStyleD2', finalStyleD2);
 
     const handleChange = (e) => {
         const clone = { ...add }
@@ -37,7 +31,7 @@ function RoboticMaster() {
         const name = e.target.name
         clone[name] = val
         setAdd(clone)
-    }
+    };
 
     const selectCat = async () => {
         const res = await axios.get(`https://onlineparttimejobs.in/api/customerPermit/user`, {
@@ -46,58 +40,91 @@ function RoboticMaster() {
                 Authorization: `Bearer ${token}`,
             },
         })
-        setSelect(res.data)
-    }
+        console.log('resSelect---', res?.data)
+        setSelect(res?.data)
+    };
+
+    const getStyleData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/category/admin`,
+            {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id, uid: reqData.data[i]?.uid })
+        };
+        if (getCategoryName.length) {
+            setSTyle(getCategoryName);
+        }
+    };
+    const getIndustryCategData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/industry/admin`,
+            {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id, uid: reqData.data[i]?.uid })
+        };
+        if (getCategoryName.length) {
+            setIndustryCateg(getCategoryName);
+        }
+    };
+    const getBlogCategData = async () => {
+        const getCategoryName = []
+        const reqData = await axios.get(`https://onlineparttimejobs.in/api/blogscat`,
+            {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        for (let i = 0; i < reqData.data.length; i++) {
+            getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id, uid: reqData.data[i]?.uid })
+        };
+        if (getCategoryName.length) {
+            setBlogcateg(getCategoryName);
+        }
+    };
 
     useEffect(() => {
         selectCat()
-    }, [])
-
-    useEffect(() => {
-        const getStyleData = async () => {
-            const getCategoryName = []
-            const reqData = await axios.get(`https://onlineparttimejobs.in/api/category/admin`,
-                {
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
-            for (let i = 0; i < reqData.data.length; i++) {
-                getCategoryName.push({ name: reqData.data[i]?.name, _id: reqData.data[i]?._id, uid: reqData.data[i]?.uid })
-            };
-            if (getCategoryName.length) {
-                setSTyle(getCategoryName);
-            }
-        }
         getStyleData();
+        getIndustryCategData();
+        getBlogCategData();
     }, []);
 
+    const getByIdData = async () => {
+        const res = await axios.get(`https://onlineparttimejobs.in/api/customerPermit/user/${param?.id}`, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        setAdd(res?.data)
+        setSTyle(res?.data?.categSet)
+        setIndustryCateg(res?.data?.indusSet)
+        setBlogcateg(res?.data?.blogCatSet)
+        console.log('res.Daaata----', res?.data?.user?.email)
+    };
 
     useEffect(() => {
-        if (finalStyleD?.length) {
-            const getStyleData = async () => {
-                const getCategoryName = []
-                const reqData = await axios.post(`https://onlineparttimejobs.in/api/customerPermit/category`, { categoryList: finalStyleD },
-                    {
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8",
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+        getByIdData();
+    }, [param?.id])
 
-
-                setProducts(reqData.data);
-            }
-            getStyleData();
-        }
-    }, [finalStyleD]);
 
     const postData = async () => {
-        const obj = { userid: add.userid, categoryPermit: finalStyleD, productPermit: finalStyleD2 }
+        const obj = { userid: add.userid, categoryPermit: finalStyleD, industryPermit: finalIndustryCateg, blogsCatPermit: finalBlogcategD }
         const postApi = await axios.put(`https://onlineparttimejobs.in/api/customerPermit/user`, obj,
             {
                 headers: {
@@ -107,13 +134,11 @@ function RoboticMaster() {
             }
         )
         console.log(postApi);
-    }
+    };
 
     const handleAdd = () => {
         postData(add)
-    }
-
-
+    };
 
 
     return (
@@ -123,33 +148,26 @@ function RoboticMaster() {
                     <div className="aiz-titlebar text-left mt-2 mb-3">
                         <div className="row align-items-center">
                             <div className="col-md-6">
-                                <h1 className="h3">Add Robotic SubCategories</h1>
+                                <h1 className="h3">{param?.id ? 'Edit' : 'Add'} Robotic SubCategories</h1>
                             </div>
-                            {/* <div className="col-md-6 text-md-right">
-                                <Link to="/admin/roles/create" className="btn btn-circle btn-info">
-                                    <span>Add New Role</span>
-                                </Link>
-                            </div> */}
                         </div>
                     </div>
                     <div className="card">
                         <div className="card-header">
-                            <h5 className="mb-0 h6">Add Robotic  SubCategories</h5>
+                            <h5 className="mb-0 h6">{param?.id ? 'Edit' : 'Add'} Robotic  SubCategories</h5>
                         </div>
                         <div className="card">
-
                             <div className="card-body card-body-2">
-
                                 <section className="form-section">
+
                                     <div className="row">
-                                        {/* <form action=""> */}
+                                        <h5>Robotics</h5>
                                         <div className="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">User Customer Email</label>
                                                 <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
                                                     <option selected>Open this select menu</option>
                                                     {select && select.map((item) => {
-                                                        console.log('item', item);
                                                         return <option key={item?._id} value={item?._id}>{item?.email}</option>
                                                     })}
                                                 </select>
@@ -157,13 +175,13 @@ function RoboticMaster() {
                                         </div>
                                         <div className="col-lg-4">
                                             <div className="">
-                                                <label for="exampleFormControlInput1" class="form-label">Choose Category</label>
+                                                <label for="exampleFormControlInput1" class="form-label">Choose Product Category</label>
                                                 <Multiselect
                                                     isObject={true}
                                                     displayValue="name"
                                                     options={style}
+                                                    selectedValues={[style]}
                                                     showCheckbox
-                                                    // selectedValues={item?.style}
                                                     onRemove={(selectedCat) => {
                                                         const selectedIds = selectedCat.map((cat) => {
                                                             return cat.uid
@@ -171,8 +189,6 @@ function RoboticMaster() {
                                                         setFinalStyleD(selectedIds)
                                                     }}
                                                     onSelect={(selectedCat) => {
-                                                        // setFinalCatD(event)
-                                                        console.log('selectedCat', selectedCat);
                                                         const selectedIds = selectedCat.map((cat) => {
                                                             console.log('cat', cat);
                                                             return cat.uid
@@ -182,36 +198,89 @@ function RoboticMaster() {
                                                 />
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <h5>Solutions</h5>
+                                        <div className="col-lg-4">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">User Customer Email</label>
+                                                <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
+                                                    <option selected>Open this select menu</option>
+                                                    {select && select.map((item) => {
+                                                        return <option key={item?._id} value={item?._id}>{item?.email}</option>
+                                                    })}
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div className="col-lg-4">
                                             <div className="">
-                                                <label for="exampleFormControlInput1" class="form-label">Choose Products</label>
+                                                <label for="exampleFormControlInput1" class="form-label">Choose Industry Category</label>
                                                 <Multiselect
                                                     isObject={true}
                                                     displayValue="name"
-                                                    options={products}
+                                                    options={industyCateg}
+                                                    selectedValues={[industyCateg]}
                                                     showCheckbox
-                                                    // selectedValues={item?.style}
                                                     onRemove={(selectedCat) => {
                                                         const selectedIds = selectedCat.map((cat) => {
                                                             return cat.uid
                                                         })
-                                                        setFinalStyleD2(selectedIds)
+                                                        setFinalIndustryCategD(selectedIds)
                                                     }}
                                                     onSelect={(selectedCat) => {
-                                                        // setFinalCatD(event)
                                                         const selectedIds = selectedCat.map((cat) => {
                                                             return cat.uid
                                                         })
-                                                        setFinalStyleD2(selectedIds)
+                                                        setFinalIndustryCategD(selectedIds)
                                                     }}
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-lg-12 m-4">
-                                            <button className="btn btn-primary mr-3" type="button" onClick={handleAdd}>Save</button>
-                                            {/* <Link to="/admin/asset-category" className="btn  rounded-2 btn-danger">Close</Link> */}
+                                    </div>
+
+                                    <div className="row">
+                                        <h5>Blogs</h5>
+                                        <div className="col-lg-4">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">User Customer Email</label>
+                                                <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
+                                                    <option selected>Open this select menu</option>
+                                                    {select && select.map((item) => {
+                                                        return <option key={item?._id} value={item?._id}>{item?.email}</option>
+                                                    })}
+                                                </select>
+                                            </div>
                                         </div>
-                                        {/* </form> */}
+                                        <div className="col-lg-4">
+                                            <div className="">
+                                                <label for="exampleFormControlInput1" class="form-label">Choose Blog Category</label>
+                                                <Multiselect
+                                                    isObject={true}
+                                                    displayValue="name"
+                                                    options={blogCateg}
+                                                    selectedValues={[blogCateg]}
+                                                    showCheckbox
+                                                    onRemove={(selectedCat) => {
+                                                        const selectedIds = selectedCat.map((cat) => {
+                                                            return cat.uid
+                                                        })
+                                                        setFinalBlogcategD(selectedIds)
+                                                    }}
+                                                    onSelect={(selectedCat) => {
+                                                        const selectedIds = selectedCat.map((cat) => {
+                                                            return cat.uid
+                                                        })
+                                                        setFinalBlogcategD(selectedIds)
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-lg-12 m-4">
+                                        <button className="btn btn-primary mr-3" type="button" onClick={handleAdd}>{param?.id ? 'Edit' : 'Add'}</button>
+                                        {/* <Link to="/admin/asset-category" className="btn  rounded-2 btn-danger">Close</Link> */}
                                     </div>
                                 </section>
                                 <div className="aiz-pagination">

@@ -300,6 +300,10 @@ export const productsApi = createApi({
       query: () => ({
         url: "blogsCat",
         method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + window.localStorage.getItem('token'),
+        },
       }),
     }),
 
@@ -779,6 +783,10 @@ export const productsApi = createApi({
       query: (id) => ({
         url: `blogs/delete_Blogs/${id}`,
         method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + window.localStorage.getItem('token'),
+        },
       }),
     }),
 
@@ -805,6 +813,10 @@ export const productsApi = createApi({
       query: (id) => ({
         url: `blogsCat/delete_blogCat/${id}`,
         method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + window.localStorage.getItem('token'),
+        },
       }),
     }),
 

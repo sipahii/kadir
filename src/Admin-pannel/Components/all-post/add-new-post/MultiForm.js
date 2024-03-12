@@ -1,5 +1,28 @@
+import axios from "axios";
+import { useEffect, useState } from "react"
 
 function MultiForm({ data, item, i, addNewAttributeData, onChangeHandler, setValue }) {
+
+    const [categoryD, setCategoryD] = useState();
+    const token = window.localStorage.getItem('token')
+
+    const getData = async () => {
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/blogscat', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setCategoryD(res?.data);
+        } catch (error) {
+
+        }
+    };
+    useEffect(() => {
+        getData();
+    }, []);
+
     return <div className="card">
         <div className="card-header">
             <h5 className="mb-0 h6">Blog Information ({item?.lable})</h5>
@@ -24,6 +47,21 @@ function MultiForm({ data, item, i, addNewAttributeData, onChangeHandler, setVal
                         <input type="text" placeholder="Slug" name="slug" value={item?.slug} id="slug" className="form-control" required onChange={(e) => { onChangeHandler(e, item.language_id) }} />
                     </div>
                 </div>}
+
+                <div className="form-group row">
+                    <label className="col-md-3 col-form-label">
+                        Category
+                        <span className="text-danger">*</span>
+                    </label>
+                    <div className="col-md-9">
+                        <select className="form-select" name="category_id" value={item?.category_id} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
+                            <option selected>Select Category</option>
+                            {categoryD && categoryD.map((item, i) => {
+                                return <option value={item?.uid} key={i}>{item?.name}</option>
+                            })}
+                        </select>
+                    </div>
+                </div>
 
                 <div className="form-group row">
                     <label className="col-md-3 col-form-label" htmlFor="signinSrEmail">

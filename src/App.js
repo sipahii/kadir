@@ -752,6 +752,8 @@ import ListThemePage from "./Admin-pannel/Pages/listThemePage";
 import EditThemeJewelPage from "./Admin-pannel/Pages/editThemeJewelPage";
 import CreateCompany from "./Admin-pannel/Pages/accounts/company/CreateCompany";
 import AllCompanyList from "./Admin-pannel/Pages/accounts/company/AllCompanyList";
+import AddEditBlogPage from "./Admin-pannel/Pages/AddEditBlogPage";
+import EditBlogNewPage from "./Admin-pannel/Pages/editBlogNewPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -1072,9 +1074,12 @@ function App() {
             element={<RefundConfigurationPage />}
           />
           <Route path="blog" element={<AllPostPage />} />
-          <Route path="blog/edit/:id" element={<EditAllBlogsPost />} />
+          {/* <Route path="blog/edit/:id" element={<EditAllBlogsPost />} /> */}
+          <Route path="blog/edit/:uid" element={<EditBlogNewPage />} />
 
-          <Route path="blog/create" element={<AddNewPost />} />
+          {/* <Route path="blog/create" element={<AddNewPost />} /> */}
+          <Route path="blog/create" element={<AddEditBlogPage />} />
+
           <Route path="blog-category" element={<BlogCategoriesPage />} />
           <Route path="blog-category/edit/:id" element={<EditBlogCategory />} />
           <Route path="blog-category/create" element={<AddCategories />} />

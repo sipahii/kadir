@@ -25,7 +25,6 @@ function AddNewPost() {
   const [addNewBlog, { isSuccess, isError }] = useAddNewBlogsMutation();
 
   const onChangeHandler = (e, id, bul) => {
-
     if (bul) {
       if (bul == 'meta') {
         const maped = val.map((item) => {
@@ -109,14 +108,13 @@ function AddNewPost() {
 
     }
     // console.log(clone)
-    addNewBlog({ data: {list:clone}, token: token })
+    addNewBlog({ data: { list: clone }, token: token })
     // document.getElementById("create-course-form").reset();
     setspcOr(false)
   };
 
 
   const [value, setValue] = useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -136,6 +134,7 @@ function AddNewPost() {
           return {
             language_id: item._id,
             title: '',
+            category_id: '',
             lable: item.name,
             slug: '',
             banner: '',
@@ -151,6 +150,7 @@ function AddNewPost() {
           return {
             language_id: item._id,
             title: '',
+            category_id: '',
             lable: item.name,
             slug: '',
             banner: '',
@@ -215,14 +215,6 @@ function AddNewPost() {
 
                     </TabContext>
                   </Box>
-
-
-
-
-
-
-
-
                 </div>
               </div>
             </div>

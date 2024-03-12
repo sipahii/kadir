@@ -10,7 +10,7 @@ const token = window.localStorage.getItem('token')
 function RoboticList() {
 
     const [list, setList] = useState()
-    console.log(list);
+    console.log('list----', list);
 
     const getData = async () => {
         const res = await axios.get(`${base_Url}customerPermit/user`, {
@@ -66,6 +66,9 @@ function RoboticList() {
                                             <th>Id</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
+                                            <th>Product Category</th>
+                                            <th>Industry Category</th>
+                                            <th>Blog Category</th>
                                             <th>Email</th>
                                             <th>Action</th>
                                         </tr>
@@ -77,6 +80,15 @@ function RoboticList() {
                                                 <td>{item?._id}</td>
                                                 <td>{item?.firstname}</td>
                                                 <td>{item?.lastname}</td>
+                                                <td>{item?.categoryPermit?.map((item, i) => {
+                                                    return <span key={i}>{item}</span>
+                                                })}</td>
+                                                <td>{item?.industryPermit?.map((item, i) => {
+                                                    return <span key={i}>{item}</span>
+                                                })}</td>
+                                                <td>{item?.blogsCatPermit?.map((item, i) => {
+                                                    return <span key={i}>{item}</span>
+                                                })}</td>
                                                 <td>{item?.email}</td>
                                                 <td>
                                                     <td>

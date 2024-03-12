@@ -16,6 +16,8 @@ function AllPost() {
     alert('Blog deleted Successfully')
   }
 
+  console.log('dataBlogAllPost--', data)
+
   return (
     <>
       <div className="aiz-main-content" style={{ backgroundColor: "#F2F3F8", marginTop: "0px" }}>
@@ -66,9 +68,9 @@ function AllPost() {
                       return <tr key={item._id}>
                         <td className="footable-first-visible" style={{ display: 'table-cell' }} key={item._id}>{i + 1}</td>
 
-                        <td style={{ display: 'table-cell' }}>{item.short_description}</td>
+                        <td style={{ display: 'table-cell' }}>{item?.title}</td>
 
-                        <td style={{ display: 'table-cell' }}>hello</td>
+                        <td style={{ display: 'table-cell' }}>{item?.category_id[0]?.name}</td>
                         <td style={{ display: 'table-cell' }}>{item.short_description}</td>
                         <td style={{ display: 'table-cell' }}>{item.description && item.description}</td>
 
@@ -76,7 +78,7 @@ function AllPost() {
                           <Link to="#" className="btn btn-soft-success btn-icon btn-circle btn-sm">
                             <i className="las la-eye" />
                           </Link>
-                          <Link to={`edit/${item._id}`} className="btn btn-soft-primary btn-icon btn-circle btn-sm">
+                          <Link to={`edit/${item.uid}`} className="btn btn-soft-primary btn-icon btn-circle btn-sm">
                             <i className="las la-edit" />
                           </Link>
                           <button type="button" onClick={() => deleteBlogsData(item._id)} className="btn btn-soft-danger btn-icon btn-circle btn-sm">
