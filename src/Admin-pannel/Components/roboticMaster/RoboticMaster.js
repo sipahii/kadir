@@ -10,10 +10,10 @@ function RoboticMaster() {
     // console.log('params--', param)
     const [add, setAdd] = useState({
         userid: '',
-        categoryPermit: '',
-        productPermit: ''
+        // categoryPermit: '',
+        // productPermit: ''
     });
-
+    const [selctedEmail, setSelctedEmail] = useState();
     const [select, setSelect] = useState(null)
     const [style, setSTyle] = useState([]);
     const [finalStyleD, setFinalStyleD] = useState();
@@ -98,7 +98,13 @@ function RoboticMaster() {
     };
 
     useEffect(() => {
-        selectCat()
+        if (param?.id) {
+            setTimeout(() => {
+                getByIdData()
+            }, 1000)
+        } else {
+            selectCat()
+        }
         getStyleData();
         getIndustryCategData();
         getBlogCategData();
@@ -111,16 +117,19 @@ function RoboticMaster() {
                 Authorization: `Bearer ${token}`,
             },
         })
-        setAdd(res?.data)
-        setSTyle(res?.data?.categSet)
-        setIndustryCateg(res?.data?.indusSet)
-        setBlogcateg(res?.data?.blogCatSet)
+        setSelctedEmail(res?.data?.user?.email)
+        console.log('res.Data???---', res?.data)
+        // setSelect([res?.data?.user?.email])
+        // setAdd(res?.data)
+        setFinalStyleD(res?.data?.categSet)
+        setFinalIndustryCategD(res?.data?.user?.industryPermit)
+        setFinalBlogcategD(res?.data?.user?.blogsCatPermit)
         console.log('res.Daaata----', res?.data?.user?.email)
     };
 
-    useEffect(() => {
-        getByIdData();
-    }, [param?.id])
+    // useEffect(() => {
+    //     getByIdData();
+    // }, [param?.id])
 
 
     const postData = async () => {
@@ -165,12 +174,12 @@ function RoboticMaster() {
                                         <div className="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">User Customer Email</label>
-                                                <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
+                                                {!param?.id ? <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
                                                     <option selected>Open this select menu</option>
                                                     {select && select.map((item) => {
                                                         return <option key={item?._id} value={item?._id}>{item?.email}</option>
                                                     })}
-                                                </select>
+                                                </select> : <input type="email" value={selctedEmail} />}
                                             </div>
                                         </div>
                                         <div className="col-lg-4">
@@ -180,7 +189,7 @@ function RoboticMaster() {
                                                     isObject={true}
                                                     displayValue="name"
                                                     options={style}
-                                                    selectedValues={[style]}
+                                                    selectedValues={finalStyleD}
                                                     showCheckbox
                                                     onRemove={(selectedCat) => {
                                                         const selectedIds = selectedCat.map((cat) => {
@@ -205,12 +214,12 @@ function RoboticMaster() {
                                         <div className="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">User Customer Email</label>
-                                                <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
+                                                {!param?.id ? <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
                                                     <option selected>Open this select menu</option>
                                                     {select && select.map((item) => {
                                                         return <option key={item?._id} value={item?._id}>{item?.email}</option>
                                                     })}
-                                                </select>
+                                                </select> : <input type="email" value={selctedEmail} />}
                                             </div>
                                         </div>
                                         <div className="col-lg-4">
@@ -220,7 +229,7 @@ function RoboticMaster() {
                                                     isObject={true}
                                                     displayValue="name"
                                                     options={industyCateg}
-                                                    selectedValues={[industyCateg]}
+                                                    selectedValues={finalIndustryCateg}
                                                     showCheckbox
                                                     onRemove={(selectedCat) => {
                                                         const selectedIds = selectedCat.map((cat) => {
@@ -244,12 +253,12 @@ function RoboticMaster() {
                                         <div className="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="exampleFormControlInput1" class="form-label">User Customer Email</label>
-                                                <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
+                                                {!param?.id ? <select className="form-select" aria-label="Default select example" name="userid" value={add.userid} onChange={handleChange}>
                                                     <option selected>Open this select menu</option>
                                                     {select && select.map((item) => {
                                                         return <option key={item?._id} value={item?._id}>{item?.email}</option>
                                                     })}
-                                                </select>
+                                                </select> : <input type="email" value={selctedEmail} />}
                                             </div>
                                         </div>
                                         <div className="col-lg-4">
@@ -259,7 +268,7 @@ function RoboticMaster() {
                                                     isObject={true}
                                                     displayValue="name"
                                                     options={blogCateg}
-                                                    selectedValues={[blogCateg]}
+                                                    selectedValues={['test1']}
                                                     showCheckbox
                                                     onRemove={(selectedCat) => {
                                                         const selectedIds = selectedCat.map((cat) => {

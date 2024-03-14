@@ -7,10 +7,9 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-// import AddGemstoneMultiLang from "./AddGemstoneMultiLang";
-import MultiLangForm from "./MultiLangForm";
+import MultiLangFormBlogCateg from "./MultiLangFormBlogCateg";
 
-function AddEditBlogComp() {
+function AddEditBlogCategoryComp() {
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(false)
     const [showImageD, setShowImageD] = useState();
@@ -45,7 +44,7 @@ function AddEditBlogComp() {
         if (data) {
             const maped = data.map((item) => {
                 return {
-                    title: '', category_id: '', slug: '', banner: '', short_description: '', meta_title: '', meta_img: '', description: '', language_id: item._id, lable: item.name
+                    name: "", slug: '', language_id: item._id, approve: false, lable: item.name
                 }
             })
             setVal(maped)
@@ -155,28 +154,28 @@ function AddEditBlogComp() {
     };
 
     const toastSuccessMessage1 = () => {
-        toast.success("Blog Updated", {
+        toast.success("Blog Category Updated", {
             position: "top-center"
         })
     };
     const toastErrorMessage1 = () => {
-        toast.error("Blog Not Updated ", {
+        toast.error("Blog Category Not Updated ", {
             position: "top-center"
         })
     };
     const toastSuccessMessage2 = () => {
-        toast.success("Blog Added", {
+        toast.success("Blog Category Added", {
             position: "top-center"
         })
     };
     const toastErrorMessage2 = () => {
-        toast.error("Blog Not Added", {
+        toast.error("Blog Category Not Added", {
             position: "top-center"
         })
     };
 
     const getByIdData = async () => {
-        const res = await axios.get(`https://onlineparttimejobs.in/api/blogs/admin/${params?.uid}`, {
+        const res = await axios.get(`https://onlineparttimejobs.in/api/blogsCat/${params?.uid}`, {
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 Authorization: `Bearer ${token}`,
@@ -197,7 +196,7 @@ function AddEditBlogComp() {
     const sendData = async () => {
         if (params?.uid) {
             try {
-                const res = await axios.put(`https://onlineparttimejobs.in/api/blogs/update_Blogs/${params?.uid}`, finalSendingD, {
+                const res = await axios.put(`https://onlineparttimejobs.in/api/blogsCat/update_blogCat/${params?.uid}`, finalSendingD, {
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",
                         Authorization: `Bearer ${token}`,
@@ -210,7 +209,7 @@ function AddEditBlogComp() {
 
         } else {
             try {
-                const res = await axios.post(`https://onlineparttimejobs.in/api/blogs/add_Blogs`, finalSendingD, {
+                const res = await axios.post(`https://onlineparttimejobs.in/api/blogsCat/add_blogCat`, finalSendingD, {
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",
                         Authorization: `Bearer ${token}`,
@@ -241,7 +240,7 @@ function AddEditBlogComp() {
                         {val && val.map((item, i) => {
                             return <TabPanel value={i}>
                                 <div className="card">
-                                    <MultiLangForm setValue={setValue} data={val} params={params} item={item} i={i} sendData={sendData} onChangeHandler={onChangeHandler} onChangeThumbnailImage={onChangeThumbnailImage} showImageD={showImageD} setShowImageD={setShowImageD} onChangeHandleExcel={onChangeHandleExcel} />
+                                    <MultiLangFormBlogCateg setValue={setValue} data={val} params={params} item={item} i={i} sendData={sendData} onChangeHandler={onChangeHandler} onChangeThumbnailImage={onChangeThumbnailImage} showImageD={showImageD} setShowImageD={setShowImageD} onChangeHandleExcel={onChangeHandleExcel} />
                                 </div>
 
                             </TabPanel>
@@ -254,5 +253,5 @@ function AddEditBlogComp() {
         </>
     )
 }
-export default AddEditBlogComp
+export default AddEditBlogCategoryComp
 

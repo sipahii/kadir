@@ -754,6 +754,8 @@ import CreateCompany from "./Admin-pannel/Pages/accounts/company/CreateCompany";
 import AllCompanyList from "./Admin-pannel/Pages/accounts/company/AllCompanyList";
 import AddEditBlogPage from "./Admin-pannel/Pages/AddEditBlogPage";
 import EditBlogNewPage from "./Admin-pannel/Pages/editBlogNewPage";
+import AddEditBlogCategoryPage from "./Admin-pannel/Pages/AddEditBlogCategoryPage";
+import EditBlogCategorryPage from "./Admin-pannel/Pages/editBlogCategorryPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -1081,8 +1083,10 @@ function App() {
           <Route path="blog/create" element={<AddEditBlogPage />} />
 
           <Route path="blog-category" element={<BlogCategoriesPage />} />
-          <Route path="blog-category/edit/:id" element={<EditBlogCategory />} />
-          <Route path="blog-category/create" element={<AddCategories />} />
+          {/* <Route path="blog-category/edit/:id" element={<EditBlogCategory />} /> */}
+          <Route path="blog-category/edit/:uid" element={<EditBlogCategorryPage />} />
+          {/* <Route path="blog-category/create" element={<AddCategories />} /> */}
+          <Route path="blog-category/create" element={<AddEditBlogCategoryPage />} />
           <Route
             path="set-share-reward-points"
             element={<ShareRewardPointsPage />}

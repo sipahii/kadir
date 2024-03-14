@@ -78,7 +78,7 @@ function BlogCategories() {
                         </td> */}
 
                         <td className="text-right footable-last-visible" style={{ display: 'table-cell' }}>
-                          <Link to={`edit/${item._id}`} className="btn btn-soft-info btn-icon btn-circle btn-sm" title="Approved">
+                          <Link to={`edit/${item.uid}`} className="btn btn-soft-info btn-icon btn-circle btn-sm" title="Approved">
                             <i className="las la-edit" />
                           </Link>
 
