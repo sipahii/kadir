@@ -5,8 +5,9 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
 function ModalProducts(props) {
-    let selectedVariants = []
-    const [values, setValues] = useState(props?.cartData?.variations)
+    let selectedVariants = [];
+    const [values, setValues] = useState(props?.cartData?.variations);
+
     const sendData = (data, i) => {
         console.log(data);
         let flag = false
@@ -34,7 +35,7 @@ function ModalProducts(props) {
             if (item._id === i.target.id) {
                 const obj = { ...item, qty: +i.target.value }
                 return obj
-            }else{
+            } else {
                 return item
             }
         })
@@ -56,7 +57,6 @@ function ModalProducts(props) {
         <Modal.Body>
             <table className="table table-bordered physical_product_show">
                 <thead>
-
                     <tr>
                         <td><label className="control-label">#</label></td>
                         <td><label className="control-label">Product Name</label></td>
@@ -65,12 +65,10 @@ function ModalProducts(props) {
                         <td><label className="control-label">Actual Rate</label></td>
                         <td><label className="control-label">Quantity</label></td>
                     </tr>
-
                 </thead>
-
                 <tbody>
-
                     {values && values?.map((item, i) => {
+                        console.log('ModalQtyItem---', item)
                         return <tr>
                             <td>
                                 <Form>
@@ -96,7 +94,7 @@ function ModalProducts(props) {
                                 <input type="text" disabled value={item?.mrp} name="actual_rate" className="form-control" />
                             </td>
                             <td>
-                            <input type="text" value={item?.qty} name="qty" id={item?._id} onChange={setQty} className="form-control" />
+                                <input type="text" value={item?.qty} name="qty" id={item?._id} onChange={setQty} className="form-control" />
                             </td>
 
                         </tr>

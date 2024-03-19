@@ -19,7 +19,7 @@ button {
 }
 
 .topInp input {
-    width: 70%;
+    width: 100%;
     padding: 5px;
     border: 1px solid gray;
 }
@@ -94,7 +94,7 @@ button {
 }
 
 .table_wrapper table {
-    width: 98%;
+    width: 100%;
 }
 
 .table_wrapper table th {
@@ -115,7 +115,7 @@ button {
 .table_wrapper table .fixedheight {
     height: 270px;
     width: 100%;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     visibility: hidden;
 }
 
@@ -125,7 +125,8 @@ button {
 }
 
 .bg-black {
-    width: 560px;
+    width: 100%;
+    /* width: 560px; */
     padding: 5px;
     background-color: #333;
     display: flex;
@@ -141,7 +142,7 @@ button {
 }
 
 .colorfulTable {
-    width: 99%;
+    width: 100%;
     text-align: center;
 }
 
@@ -391,13 +392,16 @@ button {
 
 .orderListSec {
     position: relative;
+    border: 1px solid gray;
 }
-.third-inp-btn{
+
+.third-inp-btn {
     border-color: gray;
     position: absolute;
     right: 0;
     top: 0;
 }
-.modal-dialog.productManualModal{
+
+.modal-dialog.productManualModal {
     max-width: 50%;
 }

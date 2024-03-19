@@ -24,6 +24,7 @@ import { token } from '../../../common/TokenArea';
 import ModalProducts from './ModalProducts';
 
 function AddPosComp() {
+  const [usernameD, setUserNameD] = useState();
   const [viewCustomerD, setViewCustomerD] = useState();
   const [modalShow, setModalShow] = useState(false)
   const [showCombo, setShowCombo] = useState([])
@@ -34,7 +35,8 @@ function AddPosComp() {
   const [bringedDiscountVal, setBringedDiscountVal] = useState({ discount: '', discount_type: '' });
   const [bringedOrderTaxVal, setBringedOrderTaxVal] = useState({ order_tax: '' });
 
-  const token = window.localStorage.getItem('token')
+  const token = window.localStorage.getItem('token');
+
   const handDown = async (e) => {
     if (e.key === 'Enter') {
       const clone = e.target.value
@@ -45,14 +47,25 @@ function AddPosComp() {
             'Authorization': 'Bearer ' + token
           },
         })
-        setViewCustomerD(res.data)
+        setViewCustomerD(res?.data)
         setSmShow(true)
       } catch (error) {
-        alert('Some went wrong')
+        alert('Something went wrong')
         setSmShow(false)
       }
     }
+  };
+
+  const handleChangeUserD = (e) => {
+    setUserNameD(e.target.value)
   }
+
+  const sendDataCus = (item) => {
+    debugger
+    console.log('sendDataCus', item)
+    setUserNameD(item?.firstname + " " + item?.lastname)
+    setSmShow(false)
+  };
 
   const [setCart, { isLoading, data: cartData, isError: isCartsError }] = useAddPurchaseCartMutation();
 
@@ -69,7 +82,7 @@ function AddPosComp() {
       debugger
       const arr = [...showCombo?.cart?.products]
       const aaa = arr.map((item) => {
-        return { productId: item.productId, variantId: item.variantId,qty:item.qty }
+        return { productId: item.productId, variantId: item.uid, qty: 1 }
       })
       const resp = await axios.post('https://onlineparttimejobs.in/api/pos/cart/get', { products: aaa, shippingCost: 0, discount_type: bringedDiscountVal.discount_type, discount: bringedDiscountVal.discount, order_tax: bringedOrderTaxVal.order_tax },
         {
@@ -82,10 +95,11 @@ function AddPosComp() {
       setShowCombo(resp.data)
     } else {
       setModalShow(false)
-      console.log(showCombo , val);
+      // console.log(showCombo, val);
       const arr = [...showCombo, ...val]
       const aaa = arr.map((item) => {
-        return { productId: item.productId, variantId: item.variantId,qty:item.qty }
+        console.log('itemProdIDCheck----', item)
+        return { productId: item.productId, variantId: item.uid, qty: 1 }
       })
       const resp = await axios.post('https://onlineparttimejobs.in/api/pos/cart/get',
         { products: aaa, shippingCost: 0, discount_type: bringedDiscountVal.discount_type, discount: bringedDiscountVal.discount, order_tax: bringedOrderTaxVal.order_tax },
@@ -99,18 +113,16 @@ function AddPosComp() {
       setShowCombo(resp.data.cart.products)
       setShowCombo2(resp.data)
     }
+  };
 
-  }
   let totalPosProductsItem = 0;
   let totalPosProductsPrice = 0;
   for (let i = 0; i < showCombo?.cart?.products?.length; i++) {
     totalPosProductsItem = totalPosProductsItem + showCombo?.cart?.products[i]?.count;
     totalPosProductsPrice = totalPosProductsPrice + showCombo?.cart?.products[i]?.variant_id?.sale_rate
-  }
+  };
 
-  const sendDataCus = (item) => {
-    setSmShow(false)
-  }
+
 
   return (
     <>
@@ -118,38 +130,27 @@ function AddPosComp() {
         <div className='leftside'>
           <form>
             <div className='topInp'>
-
-              <input type='text' name='user' placeholder='type here' onKeyDown={handDown}></input>
-
-
-
+              <input type='text' placeholder='Type here' name='UsernameD' onKeyDown={handDown} onChange={handleChangeUserD} value={usernameD}></input>
+              {/* <input type='text' name='user' placeholder='Type here' onKeyDown={handDown}></input> */}
               <span className='bg-gray'>
                 <button type='button'>
                   <FaPencilAlt />
                 </button>
               </span>
-
               <ViewComp viewCustomerD={viewCustomerD} />
               <AddCustomer />
-
             </div>
-
-
             {smShow && viewCustomerD.map((item, i) => {
-              return <span onClick={() => sendDataCus(item)} style={{ backgroundColor: 'gainsboro', padding: '2px', marginTop: '2px', marginBottom: '2px', border: '1px solid black', display: 'block', width: '90%', cursor: 'pointer' }}>{item.firstname + " " + item.lastname}</span>
+              return <span onClick={() => sendDataCus(item)} style={{ backgroundColor: 'gainsboro', padding: '5px', marginTop: '4px', marginBottom: '5px', border: '1px solid black', display: 'block', width: '100%', cursor: 'pointer' }}>{item.firstname + " " + item.lastname}</span>
             })}
-
             {/* <div className='secInp'>
               <select className="form-select" aria-label="Default select example">
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
             </div> */}
-
             <ThirdInput setCart={setCart} setcartData={setcartData} setModalShow={setModalShow} setShow={setShow} />
           </form>
-
-
           {modalShow && <ModalProducts
             show={modalShow}
             onHide={() => setModalShow(false)}
@@ -157,12 +158,7 @@ function AddPosComp() {
             SaveData={SaveData}
             showCombo={showCombo2}
           />}
-
-
           <div className='table_wrapper'>
-
-
-
             <table className='table'>
               <thead>
                 <tr>
@@ -172,9 +168,6 @@ function AddPosComp() {
                   <th>Subtotal</th>
                   <th>
                     <RiDeleteBin6Line />
-                    {/* <button className='del-btn'>
-                     
-                    </button> */}
                   </th>
                 </tr>
               </thead>
@@ -190,10 +183,8 @@ function AddPosComp() {
                     <td className='txt-bold ps-1' style={{ display: 'table-cell' }}></td>
                   </tr>
                 })}
-
               </tbody>
             </table>
-
             <table className='font-bold'>
               <tr>
                 <td>Items</td>
@@ -201,22 +192,16 @@ function AddPosComp() {
                 <td>Total</td>
                 <td className='text-right'>{totalPosProductsPrice}</td>
               </tr>
-
               <tr>
                 <OrderTax SaveData={SaveData} bringOrderTaxInpVal={bringOrderTaxInpVal} showCombo={showCombo2} />
                 <Discount SaveData={SaveData} bringDiscountInpVal={bringDiscountInpVal} showCombo={showCombo2} />
               </tr>
-
             </table>
             <TotalPayableComp showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} />
           </div>
-
           <ColorFulTable showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} totalPosProductsItem={totalPosProductsItem} viewCustomerD={viewCustomerD} />
-
         </div>
-
         <RightSection />
-
       </div>
     </>
   )

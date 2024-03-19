@@ -22,15 +22,13 @@ function RightSection() {
     return (
         <>
             <div className='rightside'>
-
                 <div className='list_wrapper'>
-                    <ul style={{cursor:"pointer"}}>
+                    <ul style={{ cursor: "pointer" }}>
                         <li onClick={() => setShowCategoryBox(true)}>Category</li>
                         <li onClick={() => setShowSubCategoryBox(true)}>Sub Category</li>
                         <li onClick={() => setShowBrandsBox(true)}>Brands</li>
                     </ul>
                 </div>
-
                 <PosCategory bringPosCategoryId={bringPosCategoryId} showCategoryBox={showCategoryBox} setShowCategoryBox={setShowCategoryBox} />
                 <POSSubCategory sendPoscategoryId={sendPoscategoryId} showSubCategoryBox={showSubCategoryBox} setShowSubCategoryBox={setShowSubCategoryBox} />
                 <POSBrands showBrandsBox={showBrandsBox} setShowBrandsBox={setShowBrandsBox} />
@@ -44,13 +42,10 @@ function RightSection() {
                         <li>
                             <button><AiFillCaretLeft /></button>
                         </li>
-
                         <SellGiftCard />
-
                         <li>
                             <button> <AiFillCaretRight /></button>
                         </li>
-
                     </ul>
                 </div>
 

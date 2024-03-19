@@ -10,19 +10,14 @@ import { token } from '../../../common/TokenArea';
 
 
 function ThirdInput({ setCart, setcartData, setModalShow }) {
-
     // const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
     const [showData, setShowData] = useState([])
-
-
     const [show, setShow] = useState(false)
-    const [searchs, setSearch] = useState('')
-    const { data: searchPro } = useGetProductSearchQuery({ token: token, paylode: searchs })
+    const [searchs, setSearch] = useState('');
 
+    const { data: searchPro } = useGetProductSearchQuery({ token: token, paylode: searchs })
 
     const handelChange = (e) => {
         if (e.key === 'Enter') {
@@ -30,39 +25,33 @@ function ThirdInput({ setCart, setcartData, setModalShow }) {
             setSearch(clone);
             setShow(true)
         }
-    }
+    };
 
     const setTableItem = async (item) => {
         setcartData(item);
         setModalShow(true)
         setShow(false)
-    }
-
+    };
 
 
     return (
         <>
-
-            <div className="container">
-                <div className="row">
-                    <div className="col ps-0">
-                        <div className='orderListSec mb-2'>
-                            <input className="form-control" onKeyDown={handelChange} placeholder="Please add products to order list" />
-                            {show && searchPro?.getSearchedProduct?.length > 0 && <div className="showList">
-                                <div style={{ fontSize: "19px" }} onClick={() => { setShow(false) }}><RxCross1 /></div>
-                                {searchPro?.getSearchedProduct.map((item) => {
-                                    return <h6 key={item._id} style={{ cursor: "pointer" }} onClick={() => setTableItem(item)}>{item.name}</h6>
-                                })}
-                            </div>}
-                            {/* <button type='button' className='third-inp-btn' onClick={handleShow} style={{borderColor: "gray"}}>
+            <div className="row">
+                <div className="col">
+                    <div className='orderListSec mb-2'>
+                        <input className="form-control" onKeyDown={handelChange} placeholder="Please add products to order list" />
+                        {show && searchPro?.getSearchedProduct?.length > 0 && <div className="showList">
+                            <div style={{ fontSize: "19px" }} onClick={() => { setShow(false) }}><RxCross1 /></div>
+                            {searchPro?.getSearchedProduct.map((item) => {
+                                return <h6 key={item._id} style={{ cursor: "pointer" }} onClick={() => setTableItem(item)}>{item.name}</h6>
+                            })}
+                        </div>}
+                        {/* <button type='button' className='third-inp-btn' onClick={handleShow} style={{borderColor: "gray"}}>
                             <AiFillPlusSquare />
                         </button> */}
-                        </div>
-
                     </div>
-                    {/* <span className='bg-gray'>
-                        
-
+                </div>
+                {/* <span className='bg-gray'>
                         <Modal show={show} onHide={handleClose} animation={false} dialogClassName='productManualModal'>
                             <Modal.Header closeButton>
                                 <Modal.Title>ADD PRODUCT MANUALLY</Modal.Title>
@@ -143,13 +132,7 @@ function ThirdInput({ setCart, setcartData, setModalShow }) {
                                 </Button>
                             </Modal.Footer>
                         </Modal>
-
-
                     </span> */}
-                </div>
-
-
-
             </div>
         </>
     )
