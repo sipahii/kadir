@@ -163,9 +163,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  megocartpro ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${megocartpro ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="" className="aiz-side-nav-link ">
@@ -284,9 +283,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  megocartpro ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${megocartpro ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="" className="aiz-side-nav-link ">
@@ -350,9 +348,8 @@ function AsideAdmin({ isActive }) {
               </Link>
 
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  dashbord ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${dashbord ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -381,9 +378,8 @@ function AsideAdmin({ isActive }) {
                   </Link>
                   <ul
                     style={{ marginLeft: "15px" }}
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      crm ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${crm ? "mm-show" : "extra"
+                      }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -417,9 +413,8 @@ function AsideAdmin({ isActive }) {
                   </Link>
                   <ul
                     style={{ marginLeft: "15px" }}
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      saless ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${saless ? "mm-show" : "extra"
+                      }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -471,9 +466,8 @@ function AsideAdmin({ isActive }) {
                   </Link>
                   <ul
                     style={{ marginLeft: "15px" }}
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      finince ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${finince ? "mm-show" : "extra"
+                      }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -512,9 +506,8 @@ function AsideAdmin({ isActive }) {
                   </Link>
                   <ul
                     style={{ marginLeft: "15px" }}
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      logistic ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${logistic ? "mm-show" : "extra"
+                      }`}
                   >
                     <li className="aiz-side-nav-item">
                       <Link className="aiz-side-nav-link" to="purchase ">
@@ -563,9 +556,8 @@ function AsideAdmin({ isActive }) {
                   </Link>
                   <ul
                     style={{ marginLeft: "15px" }}
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      website2 ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${website2 ? "mm-show" : "extra"
+                      }`}
                   >
                     <li className="aiz-side-nav-item">
                       <Link className="aiz-side-nav-link" to="ecommerse ">
@@ -655,9 +647,8 @@ function AsideAdmin({ isActive }) {
 
               <div className="dropdownMenu">
                 <ul
-                  className={`aiz-side-nav-list dropdownMenu level-2 mm-collapse ${
-                    products ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list dropdownMenu level-2 mm-collapse ${products ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -843,9 +834,8 @@ function AsideAdmin({ isActive }) {
                     <span className="aiz-side-nav-arrow" />
                   </Link>
                   <ul
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      jwell ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
+                      }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -863,9 +853,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          dimand ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -966,9 +955,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          genral ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1106,9 +1094,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          metal ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1167,9 +1154,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          rateCard ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1227,9 +1213,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          jwelleryProduct ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1340,9 +1325,8 @@ function AsideAdmin({ isActive }) {
                     <span className="aiz-side-nav-arrow" />
                   </Link>
                   <ul
-                    className={`aiz-side-nav-list level-2 mm-collapse ${
-                      jwell ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
+                      }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -1360,9 +1344,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          dimand ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1463,9 +1446,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          genral ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1603,9 +1585,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          metal ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1664,9 +1645,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          rateCard ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1724,9 +1704,8 @@ function AsideAdmin({ isActive }) {
                       </Link>
                       <ul
                         style={{ marginLeft: "15px" }}
-                        className={`aiz-side-nav-list level-2 mm-collapse ${
-                          jwelleryProduct ? "mm-show" : "extra"
-                        }`}
+                        className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
+                          }`}
                         id="product"
                       >
                         <li className="aiz-side-nav-item">
@@ -1839,9 +1818,8 @@ function AsideAdmin({ isActive }) {
               </Link>
               {/*Submenu*/}
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  wholeSale ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${wholeSale ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -1890,9 +1868,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  deliveryBoy ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${deliveryBoy ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -1973,9 +1950,8 @@ function AsideAdmin({ isActive }) {
               </Link>
               {/*Submenu*/}
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  productsManagement ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${productsManagement ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2017,9 +1993,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  purchase ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${purchase ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2048,9 +2023,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  quotations ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${quotations ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="list_quotation" className="aiz-side-nav-link ">
@@ -2220,9 +2194,8 @@ function AsideAdmin({ isActive }) {
               </Link>
               {/*Submenu*/}
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  front ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${front ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2289,9 +2262,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  member ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${member ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2321,9 +2293,8 @@ function AsideAdmin({ isActive }) {
               </Link>
               {/*Submenu*/}
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  wholeSale ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${wholeSale ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2371,9 +2342,8 @@ function AsideAdmin({ isActive }) {
               </Link>
               {/*Submenu*/}
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  crmspages ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${crmspages ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2409,9 +2379,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  reports ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${reports ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2612,9 +2581,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  refunds ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${refunds ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -2659,9 +2627,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  sellers ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${sellers ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="seller/form" className="aiz-side-nav-link ">
@@ -2746,9 +2713,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  customers ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${customers ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="customer-list" className="aiz-side-nav-link ">
@@ -2775,9 +2741,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  blogSystem ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${blogSystem ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="blog" className="aiz-side-nav-link ">
@@ -2804,9 +2769,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  marketing ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${marketing ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="flash_deals" className="aiz-side-nav-link ">
@@ -2849,9 +2813,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  support ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${support ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="support_ticket" className="aiz-side-nav-link ">
@@ -2909,9 +2872,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  affiliate ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${affiliate ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="affiliate" className="aiz-side-nav-link ">
@@ -2976,9 +2938,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  clubPointsystem ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${clubPointsystem ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3017,9 +2978,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  rewardPoints ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${rewardPoints ? "mm-show" : "extra"
+                  }`}
                 id="product"
               >
                 <li className="aiz-side-nav-item">
@@ -3060,9 +3020,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  otpSystem ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${otpSystem ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="otp-configuration" className="aiz-side-nav-link">
@@ -3103,9 +3062,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  posSystem ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${posSystem ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="add-pos" className="aiz-side-nav-link">
@@ -3135,9 +3093,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  socialMediaSystem ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${socialMediaSystem ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3180,9 +3137,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  africanPayment ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${africanPayment ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3217,9 +3173,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  setupConfiguration ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${setupConfiguration ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="general-setting" className="aiz-side-nav-link">
@@ -3298,9 +3253,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  allStaffs ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${allStaffs ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="staffs" className="aiz-side-nav-link ">
@@ -3335,9 +3289,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  allStaff ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${allStaff ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="system_settings" className="aiz-side-nav-link ">
@@ -3470,9 +3423,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  booking ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${booking ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="booking-list" className="aiz-side-nav-link ">
@@ -3546,9 +3498,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  assetModule ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${assetModule ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="asset-request" className="aiz-side-nav-link ">
@@ -3578,9 +3529,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  assetDashboard ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${assetDashboard ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="assets-dashboard" className="aiz-side-nav-link ">
@@ -3603,9 +3553,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  roboticmaster ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${roboticmaster ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="robotic-master" className="aiz-side-nav-link ">
@@ -3616,6 +3565,13 @@ function AsideAdmin({ isActive }) {
                   <Link to="robotic-master-list" className="aiz-side-nav-link ">
                     <span className="labour-charge-type">
                       Robotic-Master-List
+                    </span>
+                  </Link>
+                </li>
+                <li className="aiz-side-nav-item">
+                  <Link to="robotic-master/pending-list" className="aiz-side-nav-link ">
+                    <span className="labour-charge-type">
+                      Pending Applications
                     </span>
                   </Link>
                 </li>
@@ -3637,9 +3593,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  assetMaster ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${assetMaster ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3703,9 +3658,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  complaint ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${complaint ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3733,9 +3687,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  departmentMaster ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${departmentMaster ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="department" className="aiz-side-nav-link ">
@@ -3768,9 +3721,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  etsySettings ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${etsySettings ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3803,9 +3755,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  amazon ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${amazon ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="amazon-account-info">
@@ -3853,9 +3804,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  dropship ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${dropship ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="drop-ship">
@@ -3931,9 +3881,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  challan ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${challan ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -3971,9 +3920,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  agreement ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${agreement ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="AddAgreement" className="aiz-side-nav-link ">
@@ -4001,9 +3949,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  quotation ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${quotation ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -4037,9 +3984,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  vpurchase ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${vpurchase ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -4075,9 +4021,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  vstock ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${vstock ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -4116,9 +4061,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  leadFilters ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${leadFilters ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="lead-filters">
@@ -4191,9 +4135,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  Sales2 ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${Sales2 ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="proposal-sales">
@@ -4226,9 +4169,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  rentVtech ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${rentVtech ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="v-tech-rent-product" className="aiz-side-nav-link ">
@@ -4256,9 +4198,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  reportMaster ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${reportMaster ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="reports-status" className="aiz-side-nav-link ">
@@ -4289,9 +4230,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  calls ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${calls ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link
@@ -4325,9 +4265,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  emailMarketing ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${emailMarketing ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="email-mark">
@@ -4451,9 +4390,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  myToDo ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${myToDo ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="to-do-list">
@@ -4520,9 +4458,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  salesgstreport ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${salesgstreport ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="serial-code-tracking">
@@ -4616,9 +4553,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  manufacturing ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${manufacturing ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="bills-of-material">
@@ -4675,9 +4611,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  hrRecords ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${hrRecords ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="job-descriptions">
@@ -4728,9 +4663,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  billingBook ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${billingBook ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="sales-tax-report">
@@ -4833,9 +4767,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  Accounts ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${Accounts ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="account-dashbord">
@@ -5031,9 +4964,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  timeslote ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${timeslote ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="time-slote">
@@ -5060,9 +4992,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  alltasks ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${alltasks ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="all-tasks">
@@ -5110,9 +5041,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  training ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${training ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="training">
@@ -5145,9 +5075,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  Sales ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${Sales ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="sales">
@@ -5194,9 +5123,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  leads ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${leads ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="lead-crm">
@@ -5256,9 +5184,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  logistic ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${logistic ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link" to="purchase ">
@@ -5296,9 +5223,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  projectDash ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${projectDash ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link className="aiz-side-nav-link " to="task-project-dash">
@@ -5336,9 +5262,8 @@ function AsideAdmin({ isActive }) {
                 <span className="aiz-side-nav-arrow" />
               </Link>
               <ul
-                className={`aiz-side-nav-list level-2 mm-collapse ${
-                  reportMaster ? "mm-show" : "extra"
-                }`}
+                className={`aiz-side-nav-list level-2 mm-collapse ${reportMaster ? "mm-show" : "extra"
+                  }`}
               >
                 <li className="aiz-side-nav-item">
                   <Link to="staffs-new" className="aiz-side-nav-link ">
@@ -5932,9 +5857,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    support ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${support ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="support_ticket" className="aiz-side-nav-link ">
@@ -5970,9 +5894,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    assetMaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${assetMaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="my-assets" className="aiz-side-nav-link ">
@@ -6093,9 +6016,8 @@ function AsideAdmin({ isActive }) {
 
                 {/*Submenu*/}
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    dashbord ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${dashbord ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -6124,9 +6046,8 @@ function AsideAdmin({ isActive }) {
                     </Link>
                     <ul
                       style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        crm ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${crm ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -6160,9 +6081,8 @@ function AsideAdmin({ isActive }) {
                     </Link>
                     <ul
                       style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        saless ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${saless ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -6220,9 +6140,8 @@ function AsideAdmin({ isActive }) {
                     </Link>
                     <ul
                       style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        finince ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${finince ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -6261,9 +6180,8 @@ function AsideAdmin({ isActive }) {
                     </Link>
                     <ul
                       style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        logistic ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${logistic ? "mm-show" : "extra"
+                        }`}
                     >
                       <li className="aiz-side-nav-item">
                         <Link className="aiz-side-nav-link" to="purchase ">
@@ -6318,9 +6236,8 @@ function AsideAdmin({ isActive }) {
                     </Link>
                     <ul
                       style={{ marginLeft: "15px" }}
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        website2 ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${website2 ? "mm-show" : "extra"
+                        }`}
                     >
                       <li className="aiz-side-nav-item">
                         <Link className="aiz-side-nav-link" to="ecommerse ">
@@ -6414,9 +6331,8 @@ function AsideAdmin({ isActive }) {
 
                 <div className="dropdownMenu">
                   <ul
-                    className={`aiz-side-nav-list dropdownMenu level-2 mm-collapse ${
-                      products ? "mm-show" : "extra"
-                    }`}
+                    className={`aiz-side-nav-list dropdownMenu level-2 mm-collapse ${products ? "mm-show" : "extra"
+                      }`}
                     id="product"
                   >
                     <li className="aiz-side-nav-item">
@@ -6623,9 +6539,8 @@ function AsideAdmin({ isActive }) {
                       <span className="aiz-side-nav-arrow" />
                     </Link>
                     <ul
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        jwell ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -6643,9 +6558,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            dimand ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           {/* <li className="aiz-side-nav-item">
@@ -6751,9 +6665,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            genral ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -6905,9 +6818,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            metal ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -6966,9 +6878,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            rateCard ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7026,9 +6937,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            jwelleryProduct ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7148,9 +7058,8 @@ function AsideAdmin({ isActive }) {
                       <span className="aiz-side-nav-arrow" />
                     </Link>
                     <ul
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        jwell ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -7168,9 +7077,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            dimand ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           {/* <li className="aiz-side-nav-item">
@@ -7276,9 +7184,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            genral ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7430,9 +7337,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            metal ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7491,9 +7397,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            rateCard ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7551,9 +7456,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            jwelleryProduct ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7675,9 +7579,8 @@ function AsideAdmin({ isActive }) {
                       <span className="aiz-side-nav-arrow" />
                     </Link>
                     <ul
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        jwell ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -7695,9 +7598,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            dimand ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7798,9 +7700,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            genral ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -7953,9 +7854,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            metal ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8014,9 +7914,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            rateCard ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8074,9 +7973,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            jwelleryProduct ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8176,9 +8074,8 @@ function AsideAdmin({ isActive }) {
                       <span className="aiz-side-nav-arrow" />
                     </Link>
                     <ul
-                      className={`aiz-side-nav-list level-2 mm-collapse ${
-                        jwell ? "mm-show" : "extra"
-                      }`}
+                      className={`aiz-side-nav-list level-2 mm-collapse ${jwell ? "mm-show" : "extra"
+                        }`}
                       id="product"
                     >
                       <li className="aiz-side-nav-item">
@@ -8196,9 +8093,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            dimand ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${dimand ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8299,9 +8195,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            genral ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${genral ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8454,9 +8349,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            metal ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${metal ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8515,9 +8409,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            rateCard ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${rateCard ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8575,9 +8468,8 @@ function AsideAdmin({ isActive }) {
                         </Link>
                         <ul
                           style={{ marginLeft: "15px" }}
-                          className={`aiz-side-nav-list level-2 mm-collapse ${
-                            jwelleryProduct ? "mm-show" : "extra"
-                          }`}
+                          className={`aiz-side-nav-list level-2 mm-collapse ${jwelleryProduct ? "mm-show" : "extra"
+                            }`}
                           id="product"
                         >
                           <li className="aiz-side-nav-item">
@@ -8679,9 +8571,8 @@ function AsideAdmin({ isActive }) {
                 </Link>
                 {/*Submenu*/}
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    wholeSale ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${wholeSale ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -8730,9 +8621,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    deliveryBoy ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${deliveryBoy ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -8816,9 +8706,8 @@ function AsideAdmin({ isActive }) {
                 </Link>
                 {/*Submenu*/}
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    productsManagement ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${productsManagement ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -8865,9 +8754,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    purchase ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${purchase ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -8896,9 +8784,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    quotations ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${quotations ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="list_quotation" className="aiz-side-nav-link ">
@@ -9071,9 +8958,8 @@ function AsideAdmin({ isActive }) {
                 </Link>
                 {/*Submenu*/}
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    front ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${front ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -9152,9 +9038,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    member ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${member ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -9184,9 +9069,8 @@ function AsideAdmin({ isActive }) {
                 </Link>
                 {/*Submenu*/}
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    wholeSale ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${wholeSale ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -9237,9 +9121,8 @@ function AsideAdmin({ isActive }) {
                 </Link>
                 {/*Submenu*/}
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    crmspages ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${crmspages ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -9275,9 +9158,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    reports ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${reports ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -9494,9 +9376,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    refunds ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${refunds ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -9548,9 +9429,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    sellers ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${sellers ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="seller/form" className="aiz-side-nav-link ">
@@ -9704,9 +9584,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    celebrities ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${celebrities ? "mm-show" : "extra"
+                    }`}
                 >
                   {/* <li className="aiz-side-nav-item">
                     <Link to="add-celebrity" className="aiz-side-nav-link ">
@@ -9891,9 +9770,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    customers ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${customers ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="customer-list" className="aiz-side-nav-link ">
@@ -9920,9 +9798,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    blogSystem ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${blogSystem ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="blog" className="aiz-side-nav-link ">
@@ -9949,9 +9826,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    marketing ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${marketing ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="flash_deals" className="aiz-side-nav-link ">
@@ -9994,9 +9870,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    support ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${support ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="support_ticket" className="aiz-side-nav-link ">
@@ -10058,9 +9933,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    affiliate ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${affiliate ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="affiliate" className="aiz-side-nav-link ">
@@ -10125,9 +9999,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    clubPointsystem ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${clubPointsystem ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -10168,9 +10041,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    rewardPoints ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${rewardPoints ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -10211,9 +10083,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    otpSystem ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${otpSystem ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="otp-configuration" className="aiz-side-nav-link">
@@ -10254,9 +10125,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    posSystem ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${posSystem ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="add-pos" className="aiz-side-nav-link">
@@ -10286,9 +10156,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    socialMediaSystem ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${socialMediaSystem ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -10331,9 +10200,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    africanPayment ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${africanPayment ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -10368,9 +10236,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    setupConfiguration ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${setupConfiguration ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="general-setting" className="aiz-side-nav-link">
@@ -10462,9 +10329,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    allStaffs ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${allStaffs ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="staffs" className="aiz-side-nav-link ">
@@ -10501,9 +10367,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    allStaff ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${allStaff ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="system_settings" className="aiz-side-nav-link ">
@@ -10638,9 +10503,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    booking ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${booking ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="booking-list" className="aiz-side-nav-link ">
@@ -10720,9 +10584,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    assetModule ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${assetModule ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="asset-request" className="aiz-side-nav-link ">
@@ -10752,9 +10615,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    assetDashboard ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${assetDashboard ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="assets-dashboard" className="aiz-side-nav-link ">
@@ -10779,9 +10641,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    roboticmaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${roboticmaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="robotic-master" className="aiz-side-nav-link ">
@@ -10795,6 +10656,13 @@ function AsideAdmin({ isActive }) {
                     >
                       <span className="labour-charge-type">
                         Robotic-Master-List
+                      </span>
+                    </Link>
+                  </li>
+                  <li className="aiz-side-nav-item">
+                    <Link to="robotic-master/pending-list" className="aiz-side-nav-link ">
+                      <span className="labour-charge-type">
+                        Pending Applications
                       </span>
                     </Link>
                   </li>
@@ -10816,9 +10684,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    assetMaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${assetMaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -10888,9 +10755,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    complaint ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${complaint ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -10918,9 +10784,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    departmentMaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${departmentMaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="department" className="aiz-side-nav-link ">
@@ -10956,9 +10821,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    etsySettings ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${etsySettings ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -10993,9 +10857,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    amazon ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${amazon ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11054,9 +10917,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    dropship ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${dropship ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="drop-ship">
@@ -11132,9 +10994,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    challan ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${challan ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11172,9 +11033,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    agreement ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${agreement ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="AddAgreement" className="aiz-side-nav-link ">
@@ -11204,9 +11064,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    quotation ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${quotation ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11245,9 +11104,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    vpurchase ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${vpurchase ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11286,9 +11144,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    vstock ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${vstock ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11327,9 +11184,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    leadFilters ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${leadFilters ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="lead-filters">
@@ -11402,9 +11258,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    Sales2 ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${Sales2 ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="proposal-sales">
@@ -11437,9 +11292,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    rentVtech ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${rentVtech ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11474,9 +11328,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    reportMaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${reportMaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="reports-status" className="aiz-side-nav-link ">
@@ -11510,9 +11363,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    calls ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${calls ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11546,9 +11398,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    emailMarketing ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${emailMarketing ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="email-mark">
@@ -11672,9 +11523,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    myToDo ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${myToDo ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="to-do-list">
@@ -11741,9 +11591,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    salesgstreport ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${salesgstreport ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -11848,9 +11697,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    manufacturing ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${manufacturing ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="bills-of-material">
@@ -11916,9 +11764,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    hrRecords ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${hrRecords ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="job-descriptions">
@@ -11975,9 +11822,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    billingBook ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${billingBook ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="sales-tax-report">
@@ -12100,9 +11946,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    Accounts ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${Accounts ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="creat-company">
@@ -12320,9 +12165,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    timeslote ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${timeslote ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="time-slote">
@@ -12349,9 +12193,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    alltasks ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${alltasks ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="all-tasks">
@@ -12399,9 +12242,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    training ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${training ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="training">
@@ -12434,9 +12276,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    Sales ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${Sales ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="sales">
@@ -12483,9 +12324,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    leads ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${leads ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="lead-crm">
@@ -12545,9 +12385,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    logistic ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${logistic ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link" to="purchase ">
@@ -12587,9 +12426,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    projectDash ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${projectDash ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link className="aiz-side-nav-link " to="task-project-dash">
@@ -12627,9 +12465,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    reportMaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${reportMaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="staffs-new" className="aiz-side-nav-link ">
@@ -12710,9 +12547,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    chiragFoundation ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${chiragFoundation ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link
@@ -12929,9 +12765,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    deliveryBoy ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${deliveryBoy ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -12966,9 +12801,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    supports ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${supports ? "mm-show" : "extra"
+                    }`}
                   id="product"
                 >
                   <li className="aiz-side-nav-item">
@@ -13000,9 +12834,8 @@ function AsideAdmin({ isActive }) {
                   <span className="aiz-side-nav-arrow" />
                 </Link>
                 <ul
-                  className={`aiz-side-nav-list level-2 mm-collapse ${
-                    assetMaster ? "mm-show" : "extra"
-                  }`}
+                  className={`aiz-side-nav-list level-2 mm-collapse ${assetMaster ? "mm-show" : "extra"
+                    }`}
                 >
                   <li className="aiz-side-nav-item">
                     <Link to="my-assets" className="aiz-side-nav-link ">

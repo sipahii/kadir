@@ -6,23 +6,46 @@ import Modal from 'react-bootstrap/Modal';
 import { useAddPurchaseCartMutation, useGetProductSearchQuery } from '../../all-products/allproductsApi/allProductsApi';
 import { RxCross1 } from "react-icons/rx"
 import { token } from '../../../common/TokenArea';
+import axios from 'axios';
 
 
 
 function ThirdInput({ setCart, setcartData, setModalShow }) {
     // const [show, setShow] = useState(false);
+    const [spinn, setSpinn] = useState(false)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [showData, setShowData] = useState([])
     const [show, setShow] = useState(false)
     const [searchs, setSearch] = useState('');
+    const [searchPro, setSearPro] = useState();
 
-    const { data: searchPro } = useGetProductSearchQuery({ token: token, paylode: searchs })
+    const token = window.localStorage.getItem('token');
+
+    // const { data: searchPro } = useGetProductSearchQuery({ token: token, paylode: searchs });
+
+    const searchProduct = async (payload) => {
+        setSpinn(true)
+        try {
+            const resp = await axios.get(`https://onlineparttimejobs.in/api/product/admin/search/${payload}`, {
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    'Authorization': 'Bearer ' + token
+                },
+            });
+            setSearPro(resp?.data)
+            setSpinn(false)
+        } catch (error) {
+            setSpinn(false)
+            alert('Server !Error')
+        }
+    }
 
     const handelChange = (e) => {
         if (e.key === 'Enter') {
-            const clone = e.target.value
-            setSearch(clone);
+            const clone = e.target.value;
+            searchProduct(clone)
+            // setSearch(clone);
             setShow(true)
         }
     };
@@ -37,6 +60,11 @@ function ThirdInput({ setCart, setcartData, setModalShow }) {
     return (
         <>
             <div className="row">
+                {spinn && <div className="preloaderCount">
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>}
                 <div className="col">
                     <div className='orderListSec mb-2'>
                         <input className="form-control" onKeyDown={handelChange} placeholder="Please add products to order list" />

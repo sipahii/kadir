@@ -12,6 +12,9 @@ function ViewComp({ viewCustomerD }) {
 
     const { isLoading, data: CustomerDetailData } = useGetPOSUserDetailIdQuery({ id: viewCustomerD && viewCustomerD[0]?._id, token: window.localStorage.getItem('token') });
 
+    // console.log('viewCustomerD---', viewCustomerD)
+    // console.log('CustomerDetailData---', CustomerDetailData)
+
     return (
         <>
             <span className='bg-gray'>
@@ -24,7 +27,6 @@ function ViewComp({ viewCustomerD }) {
                         <Modal.Title style={{ textTransform: 'capitalize' }}>
                             <img style={{ width: '70px', height: '70px', marginRight: '20px' }} src={CustomerDetailData?.profilePhoto?.url}></img>
                             {CustomerDetailData?.firstname + " " + CustomerDetailData?.lastname}
-
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -32,7 +34,6 @@ function ViewComp({ viewCustomerD }) {
                             <tr>
                                 <td className='bold-td-text'>Name</td>
                                 <td>{CustomerDetailData?.firstname + " " + CustomerDetailData?.lastname} </td>
-
                             </tr>
                             <tr>
                                 <td className='bold-td-text'>Email</td>
@@ -44,7 +45,7 @@ function ViewComp({ viewCustomerD }) {
                             </tr>
                             <tr>
                                 <td className='bold-td-text'>Customer Group</td>
-                                <td>General</td>
+                                <td>{CustomerDetailData?.role_id?.customerRole_name}</td>
                             </tr>
 
                             <tr>

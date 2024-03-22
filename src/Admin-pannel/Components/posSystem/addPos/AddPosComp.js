@@ -24,6 +24,7 @@ import { token } from '../../../common/TokenArea';
 import ModalProducts from './ModalProducts';
 
 function AddPosComp() {
+  const [spinn, setSpinn] = useState(false);
   const [usernameD, setUserNameD] = useState();
   const [viewCustomerD, setViewCustomerD] = useState();
   const [modalShow, setModalShow] = useState(false)
@@ -39,7 +40,8 @@ function AddPosComp() {
 
   const handDown = async (e) => {
     if (e.key === 'Enter') {
-      const clone = e.target.value
+      const clone = e.target.value;
+      setSpinn(true);
       try {
         const res = await axios.get(`https://onlineparttimejobs.in/api/user/search/${clone}`, {
           headers: {
@@ -48,10 +50,12 @@ function AddPosComp() {
           },
         })
         setViewCustomerD(res?.data)
-        setSmShow(true)
+        setSmShow(true);
+        setSpinn(false);
       } catch (error) {
         alert('Something went wrong')
         setSmShow(false)
+        setSpinn(false);
       }
     }
   };
@@ -61,7 +65,6 @@ function AddPosComp() {
   }
 
   const sendDataCus = (item) => {
-    debugger
     console.log('sendDataCus', item)
     setUserNameD(item?.firstname + " " + item?.lastname)
     setSmShow(false)
@@ -79,44 +82,58 @@ function AddPosComp() {
   const SaveData = async (val) => {
     if (!val) {
       setModalShow(false)
-      debugger
       const arr = [...showCombo?.cart?.products]
       const aaa = arr.map((item) => {
-        return { productId: item.productId, variantId: item.uid, qty: 1 }
-      })
-      const resp = await axios.post('https://onlineparttimejobs.in/api/pos/cart/get', { products: aaa, shippingCost: 0, discount_type: bringedDiscountVal.discount_type, discount: bringedDiscountVal.discount, order_tax: bringedOrderTaxVal.order_tax },
-        {
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer ' + token
-          },
-        }
-      )
-      setShowCombo(resp.data)
+        return { productId: item.productId, variantId: item.uid, qty: 1, sku: item?.prices?.sku, seller_id: item?.prices?.seller_id }
+      });
+      try {
+        setSpinn(true)
+        const resp = await axios.post('https://onlineparttimejobs.in/api/pos/cart/get', { products: aaa, shippingCost: 0, discount_type: bringedDiscountVal.discount_type, discount: bringedDiscountVal.discount, order_tax: bringedOrderTaxVal.order_tax },
+          {
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+              'Authorization': 'Bearer ' + token
+            },
+          }
+        );
+        setShowCombo(resp.data)
+        setSpinn(false)
+      } catch (error) {
+        setSpinn(false)
+        alert("Server !Error")
+      }
     } else {
       setModalShow(false)
-      // console.log(showCombo, val);
       const arr = [...showCombo, ...val]
       const aaa = arr.map((item) => {
         console.log('itemProdIDCheck----', item)
-        return { productId: item.productId, variantId: item.uid, qty: 1 }
-      })
-      const resp = await axios.post('https://onlineparttimejobs.in/api/pos/cart/get',
-        { products: aaa, shippingCost: 0, discount_type: bringedDiscountVal.discount_type, discount: bringedDiscountVal.discount, order_tax: bringedOrderTaxVal.order_tax },
-        {
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer ' + token
-          },
-        }
-      )
-      setShowCombo(resp.data.cart.products)
-      setShowCombo2(resp.data)
+        return { productId: item.productId, variantId: item.uid, qty: 1, sku: item?.prices?.sku, seller_id: item?.prices?.seller_id }
+      });
+
+      try {
+        setSpinn(true)
+        const resp = await axios.post('https://onlineparttimejobs.in/api/pos/cart/get',
+          { products: aaa, shippingCost: 0, discount_type: bringedDiscountVal.discount_type, discount: bringedDiscountVal.discount, order_tax: bringedOrderTaxVal.order_tax },
+          {
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+              'Authorization': 'Bearer ' + token
+            },
+          }
+        );
+        setShowCombo(resp?.data?.cart?.products);
+        setShowCombo2(resp?.data);
+        setSpinn(false)
+      } catch (error) {
+        setSpinn(false)
+        alert("Server !Error")
+      }
     }
   };
 
   let totalPosProductsItem = 0;
   let totalPosProductsPrice = 0;
+  console.log('--------showCombo---------', showCombo)
   for (let i = 0; i < showCombo?.cart?.products?.length; i++) {
     totalPosProductsItem = totalPosProductsItem + showCombo?.cart?.products[i]?.count;
     totalPosProductsPrice = totalPosProductsPrice + showCombo?.cart?.products[i]?.variant_id?.sale_rate
@@ -128,9 +145,14 @@ function AddPosComp() {
     <>
       <div className='main_pos_wrapper'>
         <div className='leftside'>
+          {spinn && <div className="preloaderCount">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>}
           <form>
             <div className='topInp'>
-              <input type='text' placeholder='Type here' name='UsernameD' onKeyDown={handDown} onChange={handleChangeUserD} value={usernameD}></input>
+              <input type='text' placeholder='Type here' name='UsernameD' autoComplete='off' onKeyDown={handDown} onChange={handleChangeUserD} value={usernameD}></input>
               {/* <input type='text' name='user' placeholder='Type here' onKeyDown={handDown}></input> */}
               <span className='bg-gray'>
                 <button type='button'>
@@ -175,9 +197,9 @@ function AddPosComp() {
                 {showCombo && showCombo?.map((item, i) => {
                   return <tr key={i}>
                     <td style={{ display: 'table-cell' }}>
-                      <span className='txt-bold ps-1'>{item.name}</span>
+                      <span className='txt-bold ps-1'>{item?.productName}</span>
                     </td>
-                    <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.price?.sale_rate}</td>
+                    <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.sale_rate}</td>
                     <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.qty}</td>
                     <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.subtotal}</td>
                     <td className='txt-bold ps-1' style={{ display: 'table-cell' }}></td>

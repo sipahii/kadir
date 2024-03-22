@@ -24,12 +24,12 @@ function POSBrands({ showBrandsBox, setShowBrandsBox }) {
                 <div className='rel-box'>
                     <ul className='categ_prod_wrapper'>
                         {data && data.map((item, i) => {
-                            return <li key={i} onClick={() => showPosBrand(item._id)}>
+                            return <li key={i} onClick={() => showPosBrand(item?._id)}>
                                 <figure>
-                                    <img src={item.logo.url} alt='brand-image'></img>
+                                    <img src={item?.logo?.url} alt='brand-image'></img>
                                 </figure>
                                 <figcaption>
-                                    <p>{item.name}</p>
+                                    <p>{item?.name}</p>
                                 </figcaption>
                             </li>
                         })}
@@ -41,12 +41,12 @@ function POSBrands({ showBrandsBox, setShowBrandsBox }) {
             {abc && <div>
                 <ul className='categ_prod_wrapper'>
                     {PosBrandData && PosBrandData?.map((item, i) => {
-                        return <li key={i} onClick={() => showPosBrand(item._id)}>
+                        return <li key={i} onClick={() => showPosBrand(item?._id)}>
                             <figure>
-                                <img src={item.mainimage_url?.url} alt='brand-image'></img>
+                                <img src={item?.mainimage_url?.url} alt='brand-image'></img>
                             </figure>
                             <figcaption>
-                                <span>{item.name}</span>
+                                <span>{item?.name}</span>
                             </figcaption>
                         </li>
                     })}

@@ -756,6 +756,8 @@ import AddEditBlogPage from "./Admin-pannel/Pages/AddEditBlogPage";
 import EditBlogNewPage from "./Admin-pannel/Pages/editBlogNewPage";
 import AddEditBlogCategoryPage from "./Admin-pannel/Pages/AddEditBlogCategoryPage";
 import EditBlogCategorryPage from "./Admin-pannel/Pages/editBlogCategorryPage";
+import RoboticsPendingApplicationPage from "./Admin-pannel/Pages/roboticsPendingApplicationPage";
+import RoboticsPendingApplicationListPage from "./Admin-pannel/Pages/roboticsPendingApplicationListPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -795,6 +797,15 @@ function App() {
           <Route
             path="robotic-master/edit/:id"
             element={<RoboticMasterEdit />}
+          />
+          <Route
+            path="robotic-master/pending-list"
+            element={<RoboticsPendingApplicationListPage />}
+          />
+
+          <Route
+            path="robotic-master/pending-list/edit/:id"
+            element={<RoboticsPendingApplicationPage />}
           />
 
           <Route path="task-project-dash" element={<ProjectDashBord />} />

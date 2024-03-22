@@ -6,50 +6,44 @@ import { ToastContainer, toast } from "react-toastify";
 import { token } from "../../common/TokenArea";
 function CustomerList() {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const { isLoading, data } = useGetCustomersQuery(token);
 
-  const [deleteCustomer, response] = useDeleteCustomerMutation();
 
+
+
+
+  const [deleteCustomer, response] = useDeleteCustomerMutation();
   const deleteCustomerData = (id) => {
     deleteCustomer({ id: id, token: token })
   };
-
   useEffect(() => {
     if (response.isSuccess === true) {
       alert('customer successfully deleted')
     }
   }, [response.isSuccess])
-
-
   const [updateCustomer, { isSuccess, isError }] = useCustomerActiveMutation()
   const changeStatus = (item) => {
     const obj = { id: item._id, data: { approve: !item.approve } }
     updateCustomer(obj)
   }
-
-
   const toastSuccessMessage = () => {
     toast.success("Customer Updated Successfully", {
       position: "top-center"
     })
   };
-
   const toastErrorMessage = () => {
     toast.error("Customer Update Faild..", {
       position: "top-center"
     })
   };
-
   useEffect(() => {
     if (isSuccess === true) {
       toastSuccessMessage()
     };
   }, [isSuccess]);
-
   useEffect(() => {
     if (isError === true) {
       toastErrorMessage()
