@@ -2761,6 +2761,10 @@ export const productsApi = createApi({
         url: `pos/order`,
         method: "POST",
         body: data,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + window.localStorage.getItem('token'),
+        },
       }),
       invalidatesTags: ["Pos"],
     }),

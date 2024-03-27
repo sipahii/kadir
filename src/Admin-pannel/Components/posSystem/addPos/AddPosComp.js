@@ -25,6 +25,7 @@ import ModalProducts from './ModalProducts';
 
 function AddPosComp() {
   const [spinn, setSpinn] = useState(false);
+  const [cutomerId, setCustomerId] = useState();
   const [usernameD, setUserNameD] = useState();
   const [viewCustomerD, setViewCustomerD] = useState();
   const [modalShow, setModalShow] = useState(false)
@@ -49,6 +50,7 @@ function AddPosComp() {
             'Authorization': 'Bearer ' + token
           },
         })
+        console.log('setViewCustomerD', res?.data)
         setViewCustomerD(res?.data)
         setSmShow(true);
         setSpinn(false);
@@ -62,11 +64,11 @@ function AddPosComp() {
 
   const handleChangeUserD = (e) => {
     setUserNameD(e.target.value)
-  }
+  };
 
   const sendDataCus = (item) => {
-    console.log('sendDataCus', item)
     setUserNameD(item?.firstname + " " + item?.lastname)
+    setCustomerId(item?._id)
     setSmShow(false)
   };
 
@@ -96,7 +98,7 @@ function AddPosComp() {
             },
           }
         );
-        setShowCombo(resp.data)
+        setShowCombo(resp?.data)
         setSpinn(false)
       } catch (error) {
         setSpinn(false)
@@ -106,7 +108,7 @@ function AddPosComp() {
       setModalShow(false)
       const arr = [...showCombo, ...val]
       const aaa = arr.map((item) => {
-        console.log('itemProdIDCheck----', item)
+        // console.log('itemProdIDCheck----', item)
         return { productId: item.productId, variantId: item.uid, qty: 1, sku: item?.prices?.sku, seller_id: item?.prices?.seller_id }
       });
 
@@ -121,7 +123,8 @@ function AddPosComp() {
             },
           }
         );
-        setShowCombo(resp?.data?.cart?.products);
+        // setShowCombo(resp?.data?.cart?.products);
+        setShowCombo(resp?.data);
         setShowCombo2(resp?.data);
         setSpinn(false)
       } catch (error) {
@@ -133,12 +136,10 @@ function AddPosComp() {
 
   let totalPosProductsItem = 0;
   let totalPosProductsPrice = 0;
-  console.log('--------showCombo---------', showCombo)
   for (let i = 0; i < showCombo?.cart?.products?.length; i++) {
-    totalPosProductsItem = totalPosProductsItem + showCombo?.cart?.products[i]?.count;
-    totalPosProductsPrice = totalPosProductsPrice + showCombo?.cart?.products[i]?.variant_id?.sale_rate
+    totalPosProductsItem = totalPosProductsItem + showCombo?.cart?.products[i]?.qty;
+    totalPosProductsPrice = totalPosProductsPrice + showCombo?.cart?.products[i]?.sale_rate
   };
-
 
 
   return (
@@ -159,11 +160,11 @@ function AddPosComp() {
                   <FaPencilAlt />
                 </button>
               </span>
-              <ViewComp viewCustomerD={viewCustomerD} />
+              <ViewComp viewCustomerD={viewCustomerD} cutomerId={cutomerId} />
               <AddCustomer />
             </div>
-            {smShow && viewCustomerD.map((item, i) => {
-              return <span onClick={() => sendDataCus(item)} style={{ backgroundColor: 'gainsboro', padding: '5px', marginTop: '4px', marginBottom: '5px', border: '1px solid black', display: 'block', width: '100%', cursor: 'pointer' }}>{item.firstname + " " + item.lastname}</span>
+            {smShow && viewCustomerD?.map((item, i) => {
+              return <span onClick={() => sendDataCus(item)} style={{ backgroundColor: 'gainsboro', padding: '5px', marginTop: '4px', marginBottom: '5px', border: '1px solid black', display: 'block', width: '100%', cursor: 'pointer' }}>{item?.firstname + " " + item?.lastname}</span>
             })}
             {/* <div className='secInp'>
               <select className="form-select" aria-label="Default select example">
@@ -185,6 +186,7 @@ function AddPosComp() {
               <thead>
                 <tr>
                   <th>Product</th>
+                  <th>Variant</th>
                   <th>Price</th>
                   <th>Qty</th>
                   <th>Subtotal</th>
@@ -194,10 +196,14 @@ function AddPosComp() {
                 </tr>
               </thead>
               <tbody style={{ height: '310px' }}>
-                {showCombo && showCombo?.map((item, i) => {
+                {showCombo && showCombo?.cart?.products?.map((item, i) => {
+                  console.log("getApi----", item)
                   return <tr key={i}>
                     <td style={{ display: 'table-cell' }}>
                       <span className='txt-bold ps-1'>{item?.productName}</span>
+                    </td>
+                    <td style={{ display: 'table-cell' }}>
+                      {/* <span className='txt-bold ps-1'></span> */}{item?.variant?.weight}
                     </td>
                     <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.sale_rate}</td>
                     <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.qty}</td>
@@ -221,7 +227,7 @@ function AddPosComp() {
             </table>
             <TotalPayableComp showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} />
           </div>
-          <ColorFulTable showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} totalPosProductsItem={totalPosProductsItem} viewCustomerD={viewCustomerD} />
+          <ColorFulTable showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} totalPosProductsItem={totalPosProductsItem} viewCustomerD={viewCustomerD} cutomerId={cutomerId} />
         </div>
         <RightSection />
       </div>

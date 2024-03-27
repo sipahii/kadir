@@ -18,7 +18,7 @@ function OrderTax({ bringOrderTaxInpVal, showCombo, SaveData }) {
 
     const submitOrderTaxVal = () => {
         bringOrderTaxInpVal(inputVal)
-        SaveData()
+        // SaveData()
         setSmShow(false)
     }
 

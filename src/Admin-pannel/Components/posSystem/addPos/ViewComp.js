@@ -5,15 +5,17 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useGetPOSUserDetailIdQuery } from '../../all-products/allproductsApi/allProductsApi';
 
-function ViewComp({ viewCustomerD }) {
+function ViewComp({ viewCustomerD, cutomerId }) {
     const [showSec, setShowSec] = useState(false);
     const handleCloseSec = () => setShowSec(false);
     const handleShowSec = () => setShowSec(true);
 
-    const { isLoading, data: CustomerDetailData } = useGetPOSUserDetailIdQuery({ id: viewCustomerD && viewCustomerD[0]?._id, token: window.localStorage.getItem('token') });
+    // const { isLoading, data: CustomerDetailData } = useGetPOSUserDetailIdQuery({ id: viewCustomerD && viewCustomerD[0]?._id, token: window.localStorage.getItem('token') });
 
-    // console.log('viewCustomerD---', viewCustomerD)
-    // console.log('CustomerDetailData---', CustomerDetailData)
+    const { isLoading, data: CustomerDetailData } = useGetPOSUserDetailIdQuery({ id: cutomerId, token: window.localStorage.getItem('token') });
+
+    console.log('cutomerId---', cutomerId)
+    console.log('CustomerDetailData---', CustomerDetailData)
 
     return (
         <>

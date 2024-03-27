@@ -7,7 +7,6 @@ import POSBrands from '../POSBrands';
 
 
 function RightSection() {
-
     const [showCategoryBox, setShowCategoryBox] = useState(false);
     const [showSubCategoryBox, setShowSubCategoryBox] = useState(false);
     const [showBrandsBox, setShowBrandsBox] = useState(false);
@@ -17,7 +16,6 @@ function RightSection() {
         // console.log('laayaahuwaId---', id)
         setsendPoscategoryId(id)
     };
-
 
     return (
         <>

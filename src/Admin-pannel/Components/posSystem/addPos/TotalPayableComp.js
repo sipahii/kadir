@@ -16,9 +16,9 @@ function TotalPayableComp({ totalPosProductsPrice, bringedDiscountVal, bringedOr
             <div className='bg-black'>
                 <div>
                     Total Payable
-                    <button onClick={() => setSmShow3(true)} className="me-2">
+                    {/* <button onClick={() => setSmShow3(true)} className="me-2">
                         <AiFillPlusSquare />
-                    </button>
+                    </button> */}
 
                     <Modal
                         size="sm"

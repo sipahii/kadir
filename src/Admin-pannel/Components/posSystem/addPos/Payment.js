@@ -12,8 +12,8 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
     let amountVal = totalPosProductsPrice - bringedDiscountVal?.discount + calculatedOrderTaxAmount;
     let discountVall = bringedDiscountVal && bringedDiscountVal.discount;
     let orderTaxVall = bringedOrderTaxVal && bringedOrderTaxVal.order_tax;
-    console.log('viewCustomerDisccc------id--', discountVall)
-    console.log('viewCustomerorrr------id--', orderTaxVall)
+    // console.log('viewCustomerDisccc------id--', discountVall)
+    // console.log('viewCustomerorrr------id--', orderTaxVall)
 
     const [smShow, setSmShow] = useState(false);
     const [state, setState] = useState({ cash: true, giftCard: false, creditCard: false, cheque: false });
@@ -46,7 +46,7 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
     const [addPayment, response] = useAddPosPaymentMutation()
 
     const submitPayment = () => {
-        console.log('inputVal-----', inputVal)
+        // console.log('inputVal-----', inputVal)
         const finalAddPymentClone = { ...inputVal, discount_type: discountVall, order_tax: orderTaxVall, products: showCombo?.cart?.products }
         addPayment(finalAddPymentClone)
         setSmShow(false)
@@ -63,19 +63,16 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
             position: "top-center"
         })
     };
-
     useEffect(() => {
         if (response.isSuccess === true) {
             toastSuccessMessage()
         }
     }, [response]);
-
     useEffect(() => {
         if (response.isError === true) {
             toastErrorMessage()
         }
     }, [response])
-
 
 
     return (

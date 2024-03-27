@@ -4,8 +4,10 @@ import "lightbox.js-react/dist/index.css";
 import "lightbox.js-react/dist/index.css";
 import { Link } from "react-router-dom";
 import { useDeleteSellerListMutation, useGetSellersQuery, useSellerActiveMutation } from "../all-products/allproductsApi/allProductsApi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { Pagination } from "antd";
 
 // const image = [
 //   {
@@ -27,45 +29,76 @@ import { ToastContainer, toast } from "react-toastify";
 // ];
 
 function AllSeller() {
+  const [isLoadingg, setIsLoadingg] = useState();
+  const [data, setData] = useState();
+  const [totalCount, setTotalCount] = useState();
+  const [pageIndex, setPageIndex] = useState(0)
+  const [countToShowInTable, setCountToShowInTable] = useState(10)
+
   const token = window.localStorage.getItem('token')
-  const { data } = useGetSellersQuery(token);
+  // const { data } = useGetSellersQuery(token);
+
+
+  const getAllProductsList = async (pageNo) => {
+    try {
+      setIsLoadingg(true)
+      const res = await axios.get(`https://onlineparttimejobs.in/api/sellerList/page/${pageNo}`, {
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ' + token
+        }
+      });
+      setIsLoadingg(false)
+      console.log('AllSellersREs---', res?.data)
+      setData(res?.data?.allSellers)
+      setTotalCount(res?.data?.count)
+    } catch (error) {
+      setIsLoadingg(false)
+    }
+  };
+
+  useEffect(() => {
+    getAllProductsList(0);
+  }, []);
+
+  const onChangeVal = (e) => {
+    getAllProductsList(e - 1)
+    setPageIndex(e - 1)
+  };
+
 
 
   const [deleteItem, { isLoading }] = useDeleteSellerListMutation()
-
   const deleteData = (id) => {
     deleteItem(id)
-  }
+  };
   const [updateStatus, { isError, isLoading: updateLoading, isSuccess }] = useSellerActiveMutation()
-
   const changeStatus = (item) => {
     const obj = { id: item._id, data: { approve: !item.approve } }
     updateStatus(obj)
-  }
-
+  };
   const toastSuccessMessage = () => {
     toast.success("Seller Update Successfully", {
       position: "top-center"
     })
   };
-
   const toastErrorMessage = () => {
     toast.error("Seller Update Faild..", {
       position: "top-center"
     })
   };
-
   useEffect(() => {
     if (isSuccess === true) {
       toastSuccessMessage()
     };
   }, [isSuccess]);
-
   useEffect(() => {
     if (isError === true) {
       toastErrorMessage()
     };
-  }, [isError])
+  }, [isError]);
+
+
 
   return (
     <>
@@ -85,7 +118,7 @@ function AllSeller() {
             </div>
           </div>} */}
 
-          {isLoading && <div className="preloaderCount">
+          {isLoadingg && <div className="preloaderCount">
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
@@ -146,6 +179,7 @@ function AllSeller() {
                 >
                   <thead>
                     <tr className="footable-header">
+                      <th style={{ display: "table-cell" }}>#</th>
                       <th
                         className="footable-first-visible"
                         style={{ display: "table-cell" }}
@@ -221,6 +255,9 @@ function AllSeller() {
 
                     {data ? data.map((item, i) => {
                       return <tr key={i}>
+                         <td style={{ display: "table-cell",display: "inline-block", marginTop:'5px' }}>
+                          {(pageIndex * countToShowInTable) + i + 1}
+                        </td>
                         <td
                           className="footable-first-visible"
                           style={{ display: "table-cell" }}
@@ -304,7 +341,11 @@ function AllSeller() {
 
                   </tbody>
                 </table>
-                <div className="aiz-pagination"></div>
+                <div className="aiz-pagination">
+                  <nav>
+                    {totalCount && <Pagination onChange={onChangeVal} total={totalCount} showQuickJumper />}
+                  </nav>
+                </div>
               </div>
             </form>
 

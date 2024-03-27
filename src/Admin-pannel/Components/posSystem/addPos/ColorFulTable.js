@@ -5,7 +5,7 @@ import Payment from './Payment'
 import Cancel from './Cancel'
 import Bill from './Bill'
 
-function ColorFulTable({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, totalPosProductsItem, viewCustomerD }) {
+function ColorFulTable({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, totalPosProductsItem, viewCustomerD, cutomerId }) {
     return (
         <>
             <table className='colorfulTable'>
@@ -16,7 +16,7 @@ function ColorFulTable({ showCombo, totalPosProductsPrice, bringedDiscountVal, b
                 </tr>
                 <tr>
                     <Cancel />
-                    <Bill showCombo={showCombo} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} viewCustomerD={viewCustomerD} />
+                    <Bill showCombo={showCombo} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} viewCustomerD={viewCustomerD} cutomerId={cutomerId} />
                 </tr>
             </table>
         </>

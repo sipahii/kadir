@@ -5,28 +5,29 @@ import { useReactToPrint } from 'react-to-print';
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 
-function Bill({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, viewCustomerD }) {
-
+function Bill({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, viewCustomerD, cutomerId }) {
     // const [smShow, setSmShow] = useState(false);
 
     const componentRef = useRef();
-
     const handleReactToPrint = useReactToPrint({
         content: () => componentRef.current,
     });
-
     const handlePrint = () => {
+        console.log('viewCustomerD--PrintD--', viewCustomerD)
         handleReactToPrint()
-    }
+    };
+
+
+
 
     return (
         <>
             <td className='bg-deepblue'>
                 <div style={{ display: 'none' }}>
-                    <ComponentToPrint showCombo={showCombo} totalPosProductsPrice={totalPosProductsPrice} bringedOrderTaxVal={bringedOrderTaxVal} bringedDiscountVal={bringedDiscountVal} viewCustomerD={viewCustomerD} ref={componentRef} />
+                    <ComponentToPrint showCombo={showCombo} totalPosProductsPrice={totalPosProductsPrice} bringedOrderTaxVal={bringedOrderTaxVal} bringedDiscountVal={bringedDiscountVal} viewCustomerD={viewCustomerD} cutomerId={cutomerId} ref={componentRef} />
                 </div>
-                <button>Bill</button>
-                {/* onClick={handlePrint} */}
+                <button onClick={handlePrint}>Bill</button>
+
             </td>
 
             {/* <Modal

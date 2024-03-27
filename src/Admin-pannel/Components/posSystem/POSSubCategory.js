@@ -14,14 +14,13 @@ function POSSubCategory({ sendPoscategoryId, showSubCategoryBox, setShowSubCateg
                         {data && data.map((item, i) => {
                             return <li>
                                 <figure>
-                                    <img src={item.icon?.url}></img>
+                                    <img src={item?.icon?.url}></img>
                                 </figure>
                                 <figcaption>
-                                    <p>{item.name}</p>
+                                    <p>{item?.name}</p>
                                 </figcaption>
                             </li>
                         })}
-
                     </ul>
                     <button type='button' onClick={() => setShowSubCategoryBox(false)} className='cross'>X</button>
                 </div>

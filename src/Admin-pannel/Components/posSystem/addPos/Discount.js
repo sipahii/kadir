@@ -20,7 +20,7 @@ function Discount({ bringDiscountInpVal, showCombo, SaveData }) {
 
     const submitOrderDiscountVal = () => {
         bringDiscountInpVal(inputVal)
-        SaveData()
+        // SaveData()
         setSmShow2(false)
     }
 

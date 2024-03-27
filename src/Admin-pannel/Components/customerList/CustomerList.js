@@ -4,12 +4,48 @@ import { Link } from "react-router-dom";
 import { useCustomerActiveMutation, useDeleteCustomerMutation, useGetCustomersQuery } from "../all-products/allproductsApi/allProductsApi";
 import { ToastContainer, toast } from "react-toastify";
 import { token } from "../../common/TokenArea";
+import { Pagination } from "antd";
+import axios from "axios";
 function CustomerList() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { isLoading, data } = useGetCustomersQuery(token);
+  const [isLoading, setIsLoading] = useState();
+  const [data, setData] = useState();
+  const [totalCount, setTotalCount] = useState();
+  const [pageIndex, setPageIndex] = useState(0)
+  const [countToShowInTable, setCountToShowInTable] = useState(10)
+
+
+  // const { isLoading, data } = useGetCustomersQuery(token);
+
+  const getAllProductsList = async (pageNo) => {
+    try {
+      setIsLoading(true)
+      const res = await axios.get(`https://onlineparttimejobs.in/api/customer/page/${pageNo}`, {
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ' + token
+        }
+      });
+      setIsLoading(false)
+      console.log('AllPRDRESSSSS---', res?.data)
+      setData(res?.data?.allCustomers)
+      setTotalCount(res?.data?.page)
+    } catch (error) {
+      setIsLoading(false)
+    }
+  };
+
+  useEffect(() => {
+    getAllProductsList(0);
+  }, []);
+
+  const onChangeVal = (e) => {
+    getAllProductsList(e - 1)
+    setPageIndex(e - 1)
+  };
 
 
 
@@ -110,7 +146,9 @@ function CustomerList() {
 
                       {data && data.map((item, i) => {
                         return <tr key={item._id}>
-                          <td style={{ display: 'table-cell' }}>{i + 1}</td>
+                          <td style={{ display: "table-cell",display: "inline-block", marginTop:'5px' }}>
+                          {(pageIndex * countToShowInTable) + i + 1}
+                        </td>
                           <td style={{ display: 'table-cell' }}>{item.firstname}</td>
                           <td style={{ display: 'table-cell' }}>{item.lastname}</td>
                           <td style={{ display: 'table-cell' }}>{item.email}</td>
@@ -121,7 +159,7 @@ function CustomerList() {
                               <input
                                 onChange={() => { changeStatus(item) }}
                                 type="checkbox"
-                                checked={item.approve}
+                                checked={item?.approve}
                               />
                               <span className="slider round" />
                             </label>
@@ -147,6 +185,9 @@ function CustomerList() {
                   </table>
                 }
                 <div className="aiz-pagination">
+                  <nav>
+                    {totalCount && <Pagination onChange={onChangeVal} total={totalCount} showQuickJumper />}
+                  </nav>
                 </div>
               </div>
             </form>
