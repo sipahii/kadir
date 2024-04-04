@@ -141,6 +141,14 @@ function AddnewCategories() {
     });
     setVal(maped);
   };
+  const handleDescription = (data) => {
+    const clone = JSON.parse(JSON.stringify(val));
+    if (clone[value]) {
+      clone[value].description = data;
+      setVal(clone);
+    }
+  };
+
   const [spcOr, setspcOr] = useState(false);
   const submitEditCategoryData = async (data) => {
     const url = `https://onlineparttimejobs.in/api/category/${params.id}`;
@@ -187,7 +195,6 @@ function AddnewCategories() {
   const onImageChangeHandler = async (e, id, type) => {
     setshoingLoader(true);
     const inpVal = e.target.files;
-    debugger;
     const images = new FormData();
     let cloneAllData = JSON.parse(JSON.stringify(val));
     for (let ind = 0; ind < inpVal?.length; ind++) {
@@ -322,6 +329,7 @@ function AddnewCategories() {
                               onChangeHandler={onChangeHandler}
                               onChangeHandlesr={onChangeHandlesr}
                               onImageChangeHandler={onImageChangeHandler}
+                              handleDescription={handleDescription}
                             />
                           </div>
                         </TabPanel>

@@ -13,6 +13,7 @@ function MultilangForm({
   setValue,
   onChangeHandlesr,
   onImageChangeHandler,
+  handleDescription,
 }) {
   const { data: valDAta } = useGetCategoriesQuery(token);
   const idShow = window.localStorage.getItem("adminId");
@@ -242,7 +243,10 @@ function MultilangForm({
           </div>
           {idShow == "652918c6deec37bc9005abe3" && (
             <div className="form-group row">
-              <ProductDescriptionWrapper />
+              <ProductDescriptionWrapper
+                productDescription={item?.description}
+                callBackWithHtml={handleDescription}
+              />
               <label className="col-md-3 col-form-label"></label>
               <div className="col-md-9">
                 <div key={`default-checkbox`} className="mb-3">

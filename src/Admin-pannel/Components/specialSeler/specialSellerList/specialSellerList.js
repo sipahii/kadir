@@ -363,7 +363,6 @@ function SpecialSellerList() {
     let flag = false;
     let indexflag = false;
     let index;
-    // debugger
     if (arrCat.length == 0) {
       arrCat.push(id);
       clone.sellers = arrCat;
