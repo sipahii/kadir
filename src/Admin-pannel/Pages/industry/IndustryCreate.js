@@ -152,17 +152,23 @@ function IndustryCreate() {
     }
   };
 
-  const onChangeHandlesr = (id) => {
-    const maped = val.map((item) => {
-      if (item.language_id == id) {
-        const obj = { ...item, description: productDescription };
-        return obj;
-      } else {
-        return item;
-      }
-    });
-    setVal(maped);
+  const callBackWithHtml = (data) => {
+    let clone = JSON.parse(JSON.stringify(val));
+    clone[value].description = data;
+    setVal(clone);
   };
+
+  // const onChangeHandlesr = (id) => {
+  //   const maped = val.map((item) => {
+  //     if (item.language_id == id) {
+  //       const obj = { ...item, description: productDescription };
+  //       return obj;
+  //     } else {
+  //       return item;
+  //     }
+  //   });
+  //   setVal(maped);
+  // };
   const [spcOr, setspcOr] = useState(false);
   const submitEditCategoryData = async (data) => {
     const url = `https://onlineparttimejobs.in/api/industry/${params.id}`;
@@ -371,7 +377,8 @@ function IndustryCreate() {
                               i={i}
                               addNewAttributeData={addNewAttributeData}
                               onChangeHandler={onChangeHandler}
-                              onChangeHandlesr={onChangeHandlesr}
+                              // onChangeHandlesr={onChangeHandlesr}
+                              callBackWithHtml={callBackWithHtml}
                             />
                           </div>
                         </TabPanel>

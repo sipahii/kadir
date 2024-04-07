@@ -16,6 +16,7 @@ function MultiLangIndustry({
   onChangeHandler,
   setValue,
   onChangeHandlesr,
+  callBackWithHtml,
 }) {
   const token = window.localStorage.getItem("token");
   const { isLoading, data: indusData } = useGetIndustryQuery(token);
@@ -236,6 +237,10 @@ function MultiLangIndustry({
               />
             </div>
           </div>
+          <ProductDescriptionWrapper
+            productDescription={item?.description}
+            callBackWithHtml={callBackWithHtml}
+          />
           {/* {idShow == '652918c6deec37bc9005abe3' && <div className="form-group row">
                     <ProductDescriptionWrapper />
                     <label className="col-md-3 col-form-label"></label>
