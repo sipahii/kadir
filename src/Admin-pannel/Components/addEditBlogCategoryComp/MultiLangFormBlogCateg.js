@@ -17,7 +17,8 @@ function MultiLangFormBlogCateg({
     <div className="card">
       <div className="card-header">
         <h5 className="mb-0 h6">
-          {params?.uid ? "Update" : "Add"} Blog Information ({item?.lable})
+          {params?.uid ? "Update" : "Add"} Blog Information ssddee (
+          {item?.lable})
         </h5>
       </div>
       <div className="card-body">

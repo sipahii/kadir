@@ -15,27 +15,9 @@ function MultiLangForm({
   setShowImageD,
   onChangeHandleExcel,
   callBackWithHtml,
+  categoryD,
 }) {
-  const [categoryD, setCategoryD] = useState();
   const token = window.localStorage.getItem("token");
-
-  const getData = async () => {
-    try {
-      const res = await axios.get(
-        "https://onlineparttimejobs.in/api/blogscat",
-        {
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setCategoryD(res?.data);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className="card">
@@ -132,6 +114,9 @@ function MultiLangForm({
               {/* <small>(1300x650)</small> */}
             </label>
             <div className="col-md-9">
+              {!!item?.banner?.url && (
+                <img src={item?.banner?.url} height="50" width="50"></img>
+              )}
               <div className="input-group" data-type="image">
                 <div className="input-group-prepend">
                   <div className="input-group-text bg-soft-secondary font-weight-medium">
@@ -177,7 +162,7 @@ function MultiLangForm({
               <span className="text-danger">*</span>
             </label>
             <ProductDescriptionWrapper
-              description={item?.description}
+              productDescription={item?.description}
               callBackWithHtml={callBackWithHtml}
             />
           </div>

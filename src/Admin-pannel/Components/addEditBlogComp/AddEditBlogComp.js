@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { json, useParams } from "react-router-dom";
+import { json, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -15,7 +15,9 @@ function AddEditBlogComp() {
   const [isLoading, setIsLoading] = useState(false);
   const [showImageD, setShowImageD] = useState();
   const token = window.localStorage.getItem("adminToken");
+  const [categoryD, setCategoryD] = useState();
   const params = useParams();
+  const navigate = useNavigate();
 
   const [value, setValue] = useState(0);
 
@@ -23,24 +25,35 @@ function AddEditBlogComp() {
     setValue(newValue);
   };
 
-  const getData = async () => {
+  const fetchData = async () => {
     setIsLoading(true);
-    const res = await axios.get(
-      `https://onlineparttimejobs.in/api/language/admin`,
-      {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    setIsLoading(false);
-    setData(res.data);
+    try {
+      const [adminDataRes, categoryDataRes] = await Promise.all([
+        axios.get(`https://onlineparttimejobs.in/api/language/admin`, {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        axios.get(`https://onlineparttimejobs.in/api/blogscat`, {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+      ]);
+      setCategoryD(categoryDataRes.data);
+      setData(adminDataRes.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const [val, setVal] = useState(data);
 
@@ -195,21 +208,37 @@ function AddEditBlogComp() {
   };
 
   const getByIdData = async () => {
-    const res = await axios.get(
-      `https://onlineparttimejobs.in/api/blogs/admin/${params?.uid}`,
-      {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    setVal(res.data);
+    try {
+      const [blogDataRes, categoryDataRes] = await Promise.all([
+        axios.get(
+          `https://onlineparttimejobs.in/api/blogs/admin/${params?.uid}`,
+          {
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
+        axios.get(`https://onlineparttimejobs.in/api/blogscat`, {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+      ]);
+
+      setVal(blogDataRes.data);
+      setCategoryD(categoryDataRes.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
     if (params?.uid) {
       getByIdData();
+    } else {
+      fetchData();
     }
   }, [params?.uid]);
 
@@ -248,6 +277,9 @@ function AddEditBlogComp() {
         toastErrorMessage2();
       }
     }
+    setTimeout(() => {
+      navigate("../blog");
+    }, 5000);
     console.log("val---", val);
   };
 
@@ -288,6 +320,7 @@ function AddEditBlogComp() {
                           setShowImageD={setShowImageD}
                           onChangeHandleExcel={onChangeHandleExcel}
                           callBackWithHtml={callBackWithHtml}
+                          categoryD={categoryD}
                         />
                       </div>
                     </TabPanel>
