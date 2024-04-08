@@ -98,6 +98,7 @@ function RoboticsPendingApplicationComp() {
     const postData = async () => {
         const obj = {
             contactId: userData.contactId,
+            // email: userData.email,
             password: userData.password,
             message: userData.message,
             categoryPermit: finalStyleD,
