@@ -108,8 +108,8 @@ function AddNewBanner() {
     };
 
     useEffect(() => {
-        if (params.id) {
-            getParamdata(params.id)
+        if (params?.id) {
+            getParamdata(params?.id)
         }
     }, []);
 

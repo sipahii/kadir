@@ -744,7 +744,7 @@ function SpecialSellerList() {
 
     if (url != undefined && url != null && url?.slice(-3) == "pdf") {
       url =
-        "https://stagingapi.mshfdc.co.in/api/cloudinaryimage/pdf2image/" +
+        "https://onlineparttimejobs.in/api/cloudinaryimage/pdf2image/" +
         url?.slice(49);
     }
 

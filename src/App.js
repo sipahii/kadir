@@ -758,6 +758,8 @@ import AddEditBlogCategoryPage from "./Admin-pannel/Pages/AddEditBlogCategoryPag
 import EditBlogCategorryPage from "./Admin-pannel/Pages/editBlogCategorryPage";
 import RoboticsPendingApplicationPage from "./Admin-pannel/Pages/roboticsPendingApplicationPage";
 import RoboticsPendingApplicationListPage from "./Admin-pannel/Pages/roboticsPendingApplicationListPage";
+import EmailCredentialsSettingPage from "./Admin-pannel/Pages/emailCredentialsSettingPage";
+import ListPosPage from "./Admin-pannel/Pages/listPosPage";
 
 function App() {
   const [show, setshow] = useState(true);
@@ -792,6 +794,7 @@ function App() {
 
           {/* Mustafa Works */}
           <Route path="login_setting" element={<LoginSetting />} />
+          <Route path="email-credential" element={<EmailCredentialsSettingPage />} />
           <Route path="robotic-master" element={<RoboticMaster />} />
           <Route path="robotic-master-list" element={<RoboticList />} />
           <Route
@@ -1379,6 +1382,7 @@ function App() {
           <Route path="output_sale_tax_report" element={<OutputPurchase />} />
 
           <Route path="add-pos" element={<AddPos />} />
+          <Route path="list-pos" element={<ListPosPage />} />
 
           <Route path="add-stock-transfer" element={<AddStock />} />
           <Route path="list-stock-transfer" element={<ListStock />} />

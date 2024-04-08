@@ -1,0 +1,67 @@
+.comp-logo-wrapper {
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comp-logo-wrapper .log-secs {
+    width: 36%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.log-secs .comp-name {
+    color: rgb(94, 12, 54);
+}
+
+.comp-logo-wrapper .log-secs .logo-image {
+    /* width: 100%; */
+    height: 50px;
+    object-fit: cover;
+}
+
+.comp-logo-wrapper .comp-info-sec {
+    width: 53%;
+}
+
+.comp-logo-wrapper .comp-info-sec .info-text {
+    color: rgb(94, 12, 54);
+    margin-bottom: 10px;
+}
+
+.print-comp-table-sec table,
+td,
+th,
+tr {
+    /* border: 1px solid gray; */
+    border-collapse: collapse;
+}
+
+.print-comp-table-sec th {
+    background-color: gray;
+    color: #fff;
+    /* border: 1px solid gray; */
+    border-collapse: collapse;
+}
+
+.print-comp-table-sec td,
+th {
+    padding: 10px;
+    text-align: center;
+}
+
+/* table {
+    padding: 10px
+} */
+
+
+.invoice-details {
+    margin-bottom: 10px;
+}
+
+/* table.invoice-table {
+    border-collapse: collapse;
+} */

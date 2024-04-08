@@ -5,17 +5,18 @@ import Modal from 'react-bootstrap/Modal';
 import { AiFillPlusSquare } from 'react-icons/ai';
 import { useAddPOSCustomerMutation, useGetPOSCustomerGroupQuery } from '../../all-products/allproductsApi/allProductsApi';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 function AddCustomer() {
+    const [spinn, setSpinn] = useState(false);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const { isLoading, data: customerGroupData } = useGetPOSCustomerGroupQuery();
-
     const [inputVal, setinputVal] = useState({
-        country: '', firstname: '', city: '', state: '', lastname: '', mobile: '', zip: '', landmark: '', province: '', email: '', company: '', addressLine1: '', addressLine2: '', role_id: ''
+        firstname: '', city: '', state: '', lastname: '', mobile: '', zip: '', landmark: '', province: '', email: '', company: '', addressLine1: '', addressLine2: ''
     })
+    // const { isLoading, data: customerGroupData } = useGetPOSCustomerGroupQuery();
+    const token = window.localStorage.getItem('token');
 
     const onChangeHandler = (e) => {
         const inpName = e.target.name;
@@ -25,38 +26,34 @@ function AddCustomer() {
         setinputVal(clonedObj)
     };
 
-    const [addPOSCustomerD, response] = useAddPOSCustomerMutation();
-
-    const submitAddCustomerData = () => {
-        const clone = { ...inputVal };
-        addPOSCustomerD(clone);
-        handleClose()
-    };
-
-
     const toastSuccessMessage = () => {
         toast.success("Customer added Successfully", {
             position: "top-center"
         })
     };
-
     const toasterroeMessage = () => {
         toast.error('Customer not added', {
             position: 'top-center'
         })
-    }
+    };
 
-    useEffect(() => {
-        if (response.isSuccess === true) {
+    const submitAddCustomerData = async () => {
+        const clone = { ...inputVal };
+        try {
+            setSpinn(true)
+            const res = await axios.post(`https://onlineparttimejobs.in/api/pos/userRegister`, clone, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            setSpinn(false)
             toastSuccessMessage()
-        };
-    }, [response]);
-
-    useEffect(() => {
-        if (response.isError === true) {
+        } catch (error) {
+            setSpinn(false)
             toasterroeMessage()
-        };
-    }, [response])
+        }
+        handleClose()
+    };
 
 
     return (
@@ -65,8 +62,13 @@ function AddCustomer() {
                 <button type='button' onClick={handleShow}>
                     <AiFillPlusSquare />
                 </button>
-
                 <Modal show={show} onHide={handleClose}>
+                    {spinn && <div className="preloaderCount">
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div>}
+
                     <Modal.Header closeButton>
                         <Modal.Title>Add Customer</Modal.Title>
                     </Modal.Header>
@@ -78,7 +80,7 @@ function AddCustomer() {
                                 <div className="row">
                                     <div className="col-lg-6 mx-auto">
                                         <div className="card">
-                                            <form className="form-horizontal" id="create-course-form" onSubmit={submitAddCustomerData}>
+                                            <form className="form-horizontal" id="create-course-form">
                                                 <div className="card-body">
 
                                                     <div className="form-group row">
@@ -95,7 +97,7 @@ function AddCustomer() {
                                                         </div>
                                                     </div>
 
-                                                    <div className="form-group row">
+                                                    {/* <div className="form-group row">
                                                         <label className="col-sm-3 col-from-label" htmlFor="first name">Customer Group *</label>
                                                         <div className="col-sm-9">
                                                             <select className="form-select" name='role_id' aria-label="Default select example" onChange={onChangeHandler}>
@@ -105,12 +107,12 @@ function AddCustomer() {
 
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
 
                                                     <div className="form-group row">
                                                         <label className="col-sm-3 col-from-label" htmlFor="password">Company</label>
                                                         <div className="col-sm-9">
-                                                            <input type="email" placeholder="COmpany" name="company" className="form-control" required onChange={onChangeHandler} />
+                                                            <input type="email" placeholder="Company" name="company" className="form-control" required onChange={onChangeHandler} />
                                                         </div>
                                                     </div>
 

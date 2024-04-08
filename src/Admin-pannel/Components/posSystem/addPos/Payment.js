@@ -6,7 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 import { useAddPosPaymentMutation } from '../../all-products/allproductsApi/allProductsApi';
 import { toast, ToastContainer } from 'react-toastify';
 
-function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, totalPosProductsItem, viewCustomerD }) {
+function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, totalPosProductsItem, viewCustomerD, bringPaymnetresponseData }) {
+
+    const [spinn, setSpinn] = useState(false);
     const customerId = viewCustomerD && viewCustomerD[0]?._id
     const calculatedOrderTaxAmount = totalPosProductsPrice * bringedOrderTaxVal?.order_tax / 100;
     let amountVal = totalPosProductsPrice - bringedDiscountVal?.discount + calculatedOrderTaxAmount;
@@ -43,15 +45,7 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
         getPaymentData()
     }, []);
 
-    const [addPayment, response] = useAddPosPaymentMutation()
-
-    const submitPayment = () => {
-        // console.log('inputVal-----', inputVal)
-        const finalAddPymentClone = { ...inputVal, discount_type: discountVall, order_tax: orderTaxVall, products: showCombo?.cart?.products }
-        addPayment(finalAddPymentClone)
-        setSmShow(false)
-    };
-
+    // const [addPayment, response] = useAddPosPaymentMutation();
 
     const toastSuccessMessage = () => {
         toast.success("Paymnet Successfull", {
@@ -63,16 +57,26 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
             position: "top-center"
         })
     };
-    useEffect(() => {
-        if (response.isSuccess === true) {
-            toastSuccessMessage()
+
+    const submitPayment = async () => {
+        const finalAddPymentClone = { ...inputVal, discount_type: discountVall, order_tax: orderTaxVall, products: showCombo?.cart?.products }
+        try {
+            setSpinn(true)
+            const res = await axios.post(`https://onlineparttimejobs.in/api/pos/order`, finalAddPymentClone, {
+                headers: {
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+                },
+            });
+            bringPaymnetresponseData(res?.data)
+            setSpinn(false)
+            toastSuccessMessage();
+        } catch (error) {
+            setSpinn(false)
+            toastErrorMessage();
         }
-    }, [response]);
-    useEffect(() => {
-        if (response.isError === true) {
-            toastErrorMessage()
-        }
-    }, [response])
+        // addPayment(finalAddPymentClone)
+        setSmShow(false)
+    };
 
 
     return (
@@ -87,6 +91,11 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
                 onHide={() => setSmShow(false)}
                 aria-labelledby="example-modal-sizes-title-sm"
             >
+                {spinn && <div className="preloaderCount">
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>}
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
                         <p>FINALIZE SALE</p>
@@ -97,8 +106,9 @@ function Payment({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringed
                     <form className='row'>
                         <div className='col-lg-12 mb-3'>
                             <select className="form-select" name="biller" aria-label="Default select example" onChange={changeHandle}>
-                                <option value="ETG">ETG</option>
-                                <option value="ETG">ETG</option>
+                                {/* <option selected>Select Biller</option> */}
+                                <option value="mego-seller">Mego Seller</option>
+                                <option value="mego-seller">Mego Seller</option>
                                 {/* <option value="2">Two</option>
                                 <option value="3">Three</option> */}
                             </select>

@@ -14,8 +14,8 @@ function ViewComp({ viewCustomerD, cutomerId }) {
 
     const { isLoading, data: CustomerDetailData } = useGetPOSUserDetailIdQuery({ id: cutomerId, token: window.localStorage.getItem('token') });
 
-    console.log('cutomerId---', cutomerId)
-    console.log('CustomerDetailData---', CustomerDetailData)
+    // console.log('cutomerId---', cutomerId)
+    // console.log('CustomerDetailData---', CustomerDetailData)
 
     return (
         <>

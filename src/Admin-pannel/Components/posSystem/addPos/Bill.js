@@ -5,7 +5,7 @@ import { useReactToPrint } from 'react-to-print';
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 
-function Bill({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, viewCustomerD, cutomerId }) {
+function Bill({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrderTaxVal, viewCustomerD, cutomerId, sellerDetailD, finalpaymentResponseD }) {
     // const [smShow, setSmShow] = useState(false);
 
     const componentRef = useRef();
@@ -13,7 +13,6 @@ function Bill({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrd
         content: () => componentRef.current,
     });
     const handlePrint = () => {
-        console.log('viewCustomerD--PrintD--', viewCustomerD)
         handleReactToPrint()
     };
 
@@ -24,9 +23,9 @@ function Bill({ showCombo, totalPosProductsPrice, bringedDiscountVal, bringedOrd
         <>
             <td className='bg-deepblue'>
                 <div style={{ display: 'none' }}>
-                    <ComponentToPrint showCombo={showCombo} totalPosProductsPrice={totalPosProductsPrice} bringedOrderTaxVal={bringedOrderTaxVal} bringedDiscountVal={bringedDiscountVal} viewCustomerD={viewCustomerD} cutomerId={cutomerId} ref={componentRef} />
+                    <ComponentToPrint showCombo={showCombo} totalPosProductsPrice={totalPosProductsPrice} bringedOrderTaxVal={bringedOrderTaxVal} bringedDiscountVal={bringedDiscountVal} viewCustomerD={viewCustomerD} cutomerId={cutomerId} ref={componentRef} sellerDetailD={sellerDetailD} finalpaymentResponseD={finalpaymentResponseD} />
                 </div>
-                <button onClick={handlePrint}>Bill</button>
+                <button onClick={handlePrint} disabled={!finalpaymentResponseD}>Bill</button>
 
             </td>
 

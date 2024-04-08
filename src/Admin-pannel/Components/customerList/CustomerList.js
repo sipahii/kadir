@@ -144,7 +144,7 @@ function CustomerList() {
                     </thead>
                     <tbody>
 
-                      {data && data.map((item, i) => {
+                      {data && data?.map((item, i) => {
                         return <tr key={item._id}>
                           <td style={{ display: "table-cell",display: "inline-block", marginTop:'5px' }}>
                           {(pageIndex * countToShowInTable) + i + 1}
