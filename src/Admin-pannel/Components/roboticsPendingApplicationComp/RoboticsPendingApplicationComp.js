@@ -15,6 +15,7 @@ function RoboticsPendingApplicationComp() {
         password: '',
         categoryPermit: "",
         productPermit: "",
+        status: "",
     });
 
     const [selectData, setSelectData] = useState([]);
@@ -97,11 +98,13 @@ function RoboticsPendingApplicationComp() {
     const postData = async () => {
         const obj = {
             contactId: userData.contactId,
+            // email: userData.email,
             password: userData.password,
             message: userData.message,
             categoryPermit: finalStyleD,
             industryPermit: finalIndustryCateg,
             blogsCatPermit: finalBlogCateg,
+            status: userData.status
         };
         console.log('paylodOBJ--', obj)
         if (id) {
@@ -381,7 +384,7 @@ function RoboticsPendingApplicationComp() {
 
                             <div className="row mt-3">
 
-                                {/* <div className="col-lg-4">
+                                <div className="col-lg-4">
                                     <div className="mb-3">
                                         <label htmlFor="userEmail" className="form-label">
                                             Status
@@ -400,7 +403,7 @@ function RoboticsPendingApplicationComp() {
                                             <option value={'Rejected'}>Rejected</option>
                                         </select>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
 
                             <div className="row mt-3">
@@ -423,7 +426,7 @@ function RoboticsPendingApplicationComp() {
                                     </button>
                                 </div>
                             </div>
-                            
+
                         </section>
                         <div className="aiz-pagination"></div>
                     </div>

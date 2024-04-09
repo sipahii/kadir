@@ -23,6 +23,7 @@ function PosCategory({ bringPosCategoryId, showCategoryBox, setShowCategoryBox }
                 <div className='rel-box'>
                     <ul className='categ_prod_wrapper' style={{ height: "600px", overflow: "auto" }}>
                         {data && data.map((item, i) => {
+                            console.log("Right Categ D---", item)
                             return <li style={{ cursor: "pointer" }} key={i} onClick={() => showProd(item?.uid)}>
                                 <figure>
                                     <img src={item?.icon?.url}></img>
@@ -40,6 +41,7 @@ function PosCategory({ bringPosCategoryId, showCategoryBox, setShowCategoryBox }
             {abc && <div>
                 <ul className='categ_prod_wrapper' style={{ height: "600px", overflow: "auto" }}>
                     {categoryProducts && categoryProducts.map((item, i) => {
+                        console.log("Right Categ D---", item)
                         return <li style={{ cursor: "pointer" }} key={i} onClick={() => showProd(item?.uid)}>
                             <figure>
                                 <img src={item?.variations[0]?.mainImage_url?.url}></img>

@@ -63,7 +63,8 @@ function CustomerList() {
   const [updateCustomer, { isSuccess, isError }] = useCustomerActiveMutation()
   const changeStatus = (item) => {
     const obj = { id: item._id, data: { approve: !item.approve } }
-    updateCustomer(obj)
+    updateCustomer(obj);
+
   }
   const toastSuccessMessage = () => {
     toast.success("Customer Updated Successfully", {
@@ -78,6 +79,7 @@ function CustomerList() {
   useEffect(() => {
     if (isSuccess === true) {
       toastSuccessMessage()
+      getAllProductsList(0);
     };
   }, [isSuccess]);
   useEffect(() => {
@@ -144,11 +146,11 @@ function CustomerList() {
                     </thead>
                     <tbody>
 
-                      {data && data.map((item, i) => {
+                      {data && data?.map((item, i) => {
                         return <tr key={item._id}>
-                          <td style={{ display: "table-cell",display: "inline-block", marginTop:'5px' }}>
-                          {(pageIndex * countToShowInTable) + i + 1}
-                        </td>
+                          <td style={{ display: "table-cell", display: "inline-block", marginTop: '5px' }}>
+                            {(pageIndex * countToShowInTable) + i + 1}
+                          </td>
                           <td style={{ display: 'table-cell' }}>{item.firstname}</td>
                           <td style={{ display: 'table-cell' }}>{item.lastname}</td>
                           <td style={{ display: 'table-cell' }}>{item.email}</td>

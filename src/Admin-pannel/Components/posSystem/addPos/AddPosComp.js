@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -22,6 +22,7 @@ import { AiFillAmazonCircle } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import { token } from '../../../common/TokenArea';
 import ModalProducts from './ModalProducts';
+import UpdateCustomer from './UpdateCustomer';
 
 function AddPosComp() {
   const [spinn, setSpinn] = useState(false);
@@ -36,15 +37,18 @@ function AddPosComp() {
   const [smShow, setSmShow] = useState(false);
   const [bringedDiscountVal, setBringedDiscountVal] = useState({ discount: '', discount_type: '' });
   const [bringedOrderTaxVal, setBringedOrderTaxVal] = useState({ order_tax: '' });
+  const [sellerDetailD, setSellerDetailD] = useState();
 
   const token = window.localStorage.getItem('token');
+  const sellerID = window.localStorage.getItem('isSellerId');
+  const isSellerLogin = window.localStorage.getItem("isSellerLogin");
 
   const handDown = async (e) => {
     if (e.key === 'Enter') {
       const clone = e.target.value;
       setSpinn(true);
       try {
-        const res = await axios.get(`https://onlineparttimejobs.in/api/user/search/${clone}`, {
+        const res = await axios.get(`https://onlineparttimejobs.in/api/customer/search/${clone}`, {
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer ' + token
@@ -61,26 +65,21 @@ function AddPosComp() {
       }
     }
   };
-
   const handleChangeUserD = (e) => {
     setUserNameD(e.target.value)
   };
-
   const sendDataCus = (item) => {
     setUserNameD(item?.firstname + " " + item?.lastname)
     setCustomerId(item?._id)
     setSmShow(false)
   };
-
   const [setCart, { isLoading, data: cartData, isError: isCartsError }] = useAddPurchaseCartMutation();
-
   const bringDiscountInpVal = (discountVal) => {
     setBringedDiscountVal(discountVal)
   };
   const bringOrderTaxInpVal = (orderTaxVal) => {
     setBringedOrderTaxVal(orderTaxVal)
   };
-
   const SaveData = async (val) => {
     if (!val) {
       setModalShow(false)
@@ -133,13 +132,40 @@ function AddPosComp() {
       }
     }
   };
-
   let totalPosProductsItem = 0;
   let totalPosProductsPrice = 0;
   for (let i = 0; i < showCombo?.cart?.products?.length; i++) {
     totalPosProductsItem = totalPosProductsItem + showCombo?.cart?.products[i]?.qty;
     totalPosProductsPrice = totalPosProductsPrice + showCombo?.cart?.products[i]?.sale_rate
   };
+
+
+  const getSellerdetailDataForAdmin = async () => {
+    const res = await axios.get(`https://onlineparttimejobs.in/api/sellerList/65ce27b41e8c7bc1a1065ba9`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    console.log('SellerDetailForAdmin--', res?.data)
+    setSellerDetailD(res?.data)
+  };
+
+  // const getSellerdetailDataForSeller = () => {
+  //   const res = axios.get(`https://onlineparttimejobs.in/api/sellerList/${sellerID}`, {
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`
+  //     }
+  //   });
+  //   console.log('SellerDetailForSeller--', res?.data)
+  //   setSellerDetailD(res?.data)
+  // };
+
+  useEffect(() => {
+    // if (isSellerLogin === true) {
+    //   getSellerdetailDataForSeller();
+    // }
+    getSellerdetailDataForAdmin();
+  }, []);
 
 
   return (
@@ -155,11 +181,7 @@ function AddPosComp() {
             <div className='topInp'>
               <input type='text' placeholder='Type here' name='UsernameD' autoComplete='off' onKeyDown={handDown} onChange={handleChangeUserD} value={usernameD}></input>
               {/* <input type='text' name='user' placeholder='Type here' onKeyDown={handDown}></input> */}
-              <span className='bg-gray'>
-                <button type='button'>
-                  <FaPencilAlt />
-                </button>
-              </span>
+              <UpdateCustomer viewCustomerD={viewCustomerD} cutomerId={cutomerId} />
               <ViewComp viewCustomerD={viewCustomerD} cutomerId={cutomerId} />
               <AddCustomer />
             </div>
@@ -182,38 +204,41 @@ function AddPosComp() {
             showCombo={showCombo2}
           />}
           <div className='table_wrapper'>
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Variant</th>
-                  <th>Price</th>
-                  <th>Qty</th>
-                  <th>Subtotal</th>
-                  <th>
-                    <RiDeleteBin6Line />
-                  </th>
-                </tr>
-              </thead>
-              <tbody style={{ height: '310px' }}>
-                {showCombo && showCombo?.cart?.products?.map((item, i) => {
-                  console.log("getApi----", item)
-                  return <tr key={i}>
-                    <td style={{ display: 'table-cell' }}>
-                      <span className='txt-bold ps-1'>{item?.productName}</span>
-                    </td>
-                    <td style={{ display: 'table-cell' }}>
-                      {/* <span className='txt-bold ps-1'></span> */}{item?.variant?.weight}
-                    </td>
-                    <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.sale_rate}</td>
-                    <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.qty}</td>
-                    <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.subtotal}</td>
-                    <td className='txt-bold ps-1' style={{ display: 'table-cell' }}></td>
+            <div style={{ height: '380px' }}>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Variant</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                    <th>
+                      <RiDeleteBin6Line />
+                    </th>
                   </tr>
-                })}
-              </tbody>
-            </table>
-            <table className='font-bold'>
+                </thead>
+                {/* <tbody style={{ height: '310px' }} > */}
+                <tbody>
+                  {showCombo && showCombo?.cart?.products?.map((item, i) => {
+                    console.log("getApi----", item)
+                    return <tr key={i}>
+                      <td style={{ display: 'table-cell' }}>
+                        <span className='txt-bold ps-1'>{item?.productName}</span>
+                      </td>
+                      <td style={{ display: 'table-cell' }}>
+                        {/* <span className='txt-bold ps-1'></span> */}{item?.variant?.weight}
+                      </td>
+                      <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.sale_rate}</td>
+                      <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.qty}</td>
+                      <td className='txt-bold ps-1 text-end' style={{ display: 'table-cell' }}>{item?.subtotal}</td>
+                      <td className='txt-bold ps-1' style={{ display: 'table-cell' }}></td>
+                    </tr>
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <table className='font-bold' >
               <tr>
                 <td>Items</td>
                 <td>{totalPosProductsItem}</td>
@@ -227,10 +252,10 @@ function AddPosComp() {
             </table>
             <TotalPayableComp showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} />
           </div>
-          <ColorFulTable showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} totalPosProductsItem={totalPosProductsItem} viewCustomerD={viewCustomerD} cutomerId={cutomerId} />
+          <ColorFulTable showCombo={showCombo2} totalPosProductsPrice={totalPosProductsPrice} bringedDiscountVal={bringedDiscountVal} bringedOrderTaxVal={bringedOrderTaxVal} totalPosProductsItem={totalPosProductsItem} viewCustomerD={viewCustomerD} cutomerId={cutomerId} sellerDetailD={sellerDetailD} />
         </div>
         <RightSection />
-      </div>
+      </div >
     </>
   )
 }

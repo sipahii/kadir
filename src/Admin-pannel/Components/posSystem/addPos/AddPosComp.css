@@ -113,7 +113,7 @@ button {
 }
 
 .table_wrapper table .fixedheight {
-    height: 270px;
+    /* height: 270px; */
     width: 100%;
     border: 1px solid red;
     visibility: hidden;
@@ -380,7 +380,7 @@ button {
 }
 
 .self-card-scroll {
-    height: calc(100vh - 60px);
+    /* height: calc(100vh - 60px); */
     overflow-x: scroll;
     overflow-y: scroll;
 }
@@ -404,5 +404,6 @@ button {
 }
 
 .modal-dialog.productManualModal {
-    max-width: 50%;
+    max-width: 80%;
+    max-height: 80%;
 }

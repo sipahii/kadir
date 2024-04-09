@@ -3071,7 +3071,7 @@ function AsideAdmin({ isActive }) {
                   </Link>
                 </li>
                 <li className="aiz-side-nav-item">
-                  <Link to="#" className="aiz-side-nav-link">
+                  <Link to="list-pos" className="aiz-side-nav-link">
                     <span className="aiz-side-nav-text">List Pos</span>
                   </Link>
                 </li>
@@ -3300,6 +3300,11 @@ function AsideAdmin({ isActive }) {
                 <li className="aiz-side-nav-item">
                   <Link to="login_setting" className="aiz-side-nav-link ">
                     <span className="aiz-side-nav-text">Login Setting</span>
+                  </Link>
+                </li>
+                <li className="aiz-side-nav-item">
+                  <Link to="email-credential" className="aiz-side-nav-link ">
+                    <span className="aiz-side-nav-text">Email Credential Setting</span>
                   </Link>
                 </li>
                 <li className="aiz-side-nav-item">
@@ -10134,7 +10139,7 @@ function AsideAdmin({ isActive }) {
                     </Link>
                   </li>
                   <li className="aiz-side-nav-item">
-                    <Link to="#" className="aiz-side-nav-link">
+                    <Link to="list-pos" className="aiz-side-nav-link">
                       <span className="aiz-side-nav-text">List Pos</span>
                     </Link>
                   </li>
@@ -10378,6 +10383,11 @@ function AsideAdmin({ isActive }) {
                   <li className="aiz-side-nav-item">
                     <Link to="login_setting" className="aiz-side-nav-link ">
                       <span className="aiz-side-nav-text">Login Setting</span>
+                    </Link>
+                  </li>
+                  <li className="aiz-side-nav-item">
+                    <Link to="email-credential" className="aiz-side-nav-link ">
+                      <span className="aiz-side-nav-text">Email Credential Setting</span>
                     </Link>
                   </li>
                   <li className="aiz-side-nav-item">

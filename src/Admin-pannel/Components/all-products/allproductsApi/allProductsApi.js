@@ -1900,6 +1900,10 @@ export const productsApi = createApi({
         url: `customer/updateCustomerStatus/${val.id}`,
         method: "PUT",
         body: val.data,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + window.localStorage.getItem('token'),
+        },
       }),
       invalidatesTags: ["customer"],
     }),
