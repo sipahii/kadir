@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -15,7 +15,9 @@ function AddEditBlogCategoryComp() {
   const [showImageD, setShowImageD] = useState();
   const token = window.localStorage.getItem("adminToken");
   const params = useParams();
+  const navigate = useNavigate();
   const [category, setCategory] = useState([]);
+  const [shoingLoader, setshoingLoader] = useState(false);
 
   const [value, setValue] = useState(0);
 
@@ -60,54 +62,108 @@ function AddEditBlogCategoryComp() {
       const maped = data.map((item) => {
         return {
           name: "",
-          slug: "",
           language_id: item._id,
-          approve: false,
+          parent_id: "",
           lable: item.name,
+          order_level: "",
+          type: "",
+          banner: {},
+          icon: {},
+          meta_title: "",
+          meta_description: "",
+          commision_rate: "",
+          level: "",
+          top: false,
+          featured: false,
+          meta_keyword: "",
+          slug: "",
+          description: "",
+          video: "",
         };
       });
       setVal(maped);
     }
   }, [data]);
 
-  const onChangeThumbnailImage = async (e, id) => {
-    if (e.target.name == "banner") {
-      let balnkObj = {};
-      const fromData = new FormData();
-      fromData.append("image", e.target.files[0]);
+  const onImageChangeHandler = async (e, id, type) => {
+    setshoingLoader(true);
+    const inpVal = e.target.files;
+    const images = new FormData();
+    let cloneAllData = JSON.parse(JSON.stringify(val));
+    for (let ind = 0; ind < inpVal?.length; ind++) {
       try {
-        // setImageLoading(true)
-        const res = await axios.post(
-          `https://onlineparttimejobs.in/api/cloudinaryImage/addImage`,
-          fromData
-        );
-        setShowImageD(res.data);
-        balnkObj = res.data;
-      } catch (error) {}
-      // setImageLoading(false)
-      fromData.delete("image");
+        const element0 = inpVal[ind];
+        images.set("image", element0);
 
-      const maped = val.map((item) => {
-        if (item.language_id == id) {
-          const obj = { ...item, [e.target.name]: balnkObj };
-          return obj;
+        const res = await axios.post(
+          "https://onlineparttimejobs.in/api/cloudinaryImage/addImage",
+          images
+        );
+        const obj = { public_id: res.data.public_id, url: res.data.url };
+        if (type == "icon") {
+          cloneAllData[value].icon = { ...obj };
         } else {
-          return item;
+          cloneAllData[value].banner = { ...obj };
         }
-      });
-      setVal(maped);
-    } else {
-      const maped = val.map((item) => {
-        if (item.language_id == id) {
-          const obj = { ...item, [e.target.name]: e.target.value };
-          return obj;
-        } else {
-          return item;
-        }
-      });
-      setVal(maped);
+
+        setshoingLoader(false);
+      } catch (error) {
+        console.log("Gallery Image not uploaded");
+        setshoingLoader(false);
+      } finally {
+        images.delete("image");
+        setshoingLoader(false);
+      }
+    }
+    setVal(cloneAllData);
+  };
+
+  const handleDescription = (data) => {
+    const clone = JSON.parse(JSON.stringify(val));
+    if (clone[value]) {
+      clone[value].description = data;
+      setVal(clone);
     }
   };
+
+  // const onChangeThumbnailImage = async (e, id) => {
+  //   if (e.target.name == "banner") {
+  //     let balnkObj = {};
+  //     const fromData = new FormData();
+  //     fromData.append("image", e.target.files[0]);
+  //     try {
+  //       // setImageLoading(true)
+  //       const res = await axios.post(
+  //         `https://onlineparttimejobs.in/api/cloudinaryImage/addImage`,
+  //         fromData
+  //       );
+  //       setShowImageD(res.data);
+  //       balnkObj = res.data;
+  //     } catch (error) {}
+  //     // setImageLoading(false)
+  //     fromData.delete("image");
+
+  //     const maped = val.map((item) => {
+  //       if (item.language_id == id) {
+  //         const obj = { ...item, [e.target.name]: balnkObj };
+  //         return obj;
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //     setVal(maped);
+  //   } else {
+  //     const maped = val.map((item) => {
+  //       if (item.language_id == id) {
+  //         const obj = { ...item, [e.target.name]: e.target.value };
+  //         return obj;
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //     setVal(maped);
+  //   }
+  // };
 
   const onChangeHandleExcel = async (e, id) => {
     if (e.target.name == "excel") {
@@ -176,6 +232,10 @@ function AddEditBlogCategoryComp() {
     toast.success("Blog Category Updated", {
       position: "top-center",
     });
+    setTimeout(() => {
+      setVal([]);
+      navigate("../blog-category");
+    }, 5000);
   };
   const toastErrorMessage1 = () => {
     toast.error("Blog Category Not Updated ", {
@@ -186,6 +246,10 @@ function AddEditBlogCategoryComp() {
     toast.success("Blog Category Added", {
       position: "top-center",
     });
+    setTimeout(() => {
+      setVal([]);
+      navigate("../blog-category");
+    }, 5000);
   };
   const toastErrorMessage2 = () => {
     toast.error("Blog Category Not Added", {
@@ -278,6 +342,14 @@ function AddEditBlogCategoryComp() {
 
   return (
     <>
+      {shoingLoader && (
+        <div className="preloaderCount">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">ded</span>
+          </div>
+          <h6>Please Wait your Image in uploading</h6>
+        </div>
+      )}
       <div style={{ width: "800px", marginLeft: "auto", marginRight: "auto" }}>
         {isLoading ? (
           <h3>Loading...</h3>
@@ -308,11 +380,12 @@ function AddEditBlogCategoryComp() {
                           i={i}
                           sendData={sendData}
                           onChangeHandler={onChangeHandler}
-                          onChangeThumbnailImage={onChangeThumbnailImage}
                           showImageD={showImageD}
                           setShowImageD={setShowImageD}
                           onChangeHandleExcel={onChangeHandleExcel}
                           category={category}
+                          onImageChangeHandler={onImageChangeHandler}
+                          handleDescription={handleDescription}
                         />
                       </div>
                     </TabPanel>
