@@ -45,7 +45,7 @@ function AddDiamondSieves() {
     const [val, setVal] = useState(data)
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', isActive: false, language_id: item._id, lable: item?.name }
 

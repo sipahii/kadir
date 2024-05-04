@@ -44,7 +44,7 @@ function AddProductTagComp() {
     const [val, setVal] = useState(data)
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', description: '', color: '', default: false, language_id: item._id, isActive: false, lable: item.name }
             })

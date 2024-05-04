@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useBrandActiveMutation, useDeleteBrandMutation, useGetBrandsQuery } from "../all-products/allproductsApi/allProductsApi"
 import { ToastContainer, toast } from "react-toastify";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function Brands() {
     const [inputVal, setInputVal] = useState({ search: '' });
     const token = window.localStorage.getItem('token')
-    const { isLoading, data ,refetch } = useGetBrandsQuery(token);
+    const { isLoading, data, refetch } = useGetBrandsQuery(token);
     const copiedData = { ...data }
     const [blankArr, setBlankArr] = useState([])
 
@@ -78,11 +80,12 @@ function Brands() {
         <>
             <div className=" col-lg-10 ">
                 <div className="card">
-                    <div className="card-header row gutters-5">
+
+                    {/* <div className="card-header row gutters-5">
                         <div className="col text-center text-md-left">
                             <h5 className="mb-md-0 h6">Brands</h5>
                         </div>
-                        <ToastContainer />
+
                         <div className="col-md-4">
                             <form >
                                 <div className="input-group input-group-sm">
@@ -91,10 +94,42 @@ function Brands() {
                                 </div>
                             </form>
                         </div>
+                    </div> */}
+
+                    <div className="card-header row gutters-5">
+                        <div className="col-lg-6 text-center text-md-left">
+                            <h5 className="mb-md-0 h6">Brands</h5>
+                        </div>
+                        {blankArr && <div className="col-lg-2" >
+                            <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                                <ReactHTMLTableToExcel
+                                    style={{ margin: '0' }}
+                                    id="test-table-xls-button"
+                                    className="download-table-xls-button cusxel"
+                                    table="table-to-xlsx"
+                                    filename="tablexls"
+                                    sheet="tablexls"
+                                    buttonText="Download Excel sheet" />
+                            </button>
+                        </div>}
+                        {blankArr && < div className="col-lg-2 text-md-right">
+                            <ExportDataInPdf />
+                        </div>}
+
+                        <div className="col-lg-2">
+                            <form >
+                                <div className="input-group input-group-sm">
+                                    <input type="text" className="form-control" id="search" name="search" placeholder="Type" fdprocessedid="jv5p0d" onChange={onChangeHandler} />
+                                    <button type="button" onClick={searchData} className="btn btn-primary" style={{ padding: '0 10px' }} >Search</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+
                     <div className="card-body">
+                        <ToastContainer />
                         {isLoading ? <h2>Loading...</h2>
-                            : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{}}>
+                            : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf" style={{}}>
                                 <thead>
                                     <tr className="footable-header">
                                         <th className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
@@ -144,6 +179,36 @@ function Brands() {
                         </div>
                     </div>
                 </div>
+
+                <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" id="table-to-xlsx" style={{ display: 'none' }}>
+                    <thead>
+                        <tr className="footable-header">
+                            <th className="footable-first-visible" style={{ display: 'table-cell', textAlign: 'left' }}>#</th>
+                            <th style={{ display: 'table-cell', textAlign: 'left' }}>Name</th>
+                            <th style={{ display: 'table-cell', textAlign: 'left' }}>Block</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {blankArr && blankArr?.map((item, i) => {
+                            return <tr key={item._id}>
+                                <td className="footable-first-visible" style={{ display: 'table-cell' }}>{i + 1}</td>
+                                <td style={{ display: 'table-cell' }}>{item.name || item.brand}</td>
+                                <td style={{ display: "table-cell" }}>
+                                    <label className="aiz-switch aiz-switch-success mb-0">
+                                        <input
+                                            onChange={() => { changeStatus(item) }}
+                                            type="checkbox"
+                                            checked={item.active}
+                                        />
+                                        <span className="slider round" />
+                                    </label>
+                                </td>
+                            </tr>
+                        })}
+
+                    </tbody>
+                </table>
             </div>
         </>
     )

@@ -10,6 +10,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import MultiLangUnit from "./MultiLangUnit";
 import { token } from "../../common/TokenArea";
 import { useDeleteUnitMutation, useGetLanguagesQuery, useGetUnitQuery, usePostUnitMutation } from "../../Components/all-products/allproductsApi/allProductsApi";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function UnitPage() {
 
@@ -119,22 +121,42 @@ function UnitPage() {
                     <>
 
                         <div className="card">
-                            <div className="card-header row gutters-5">
-                                <div className="col text-center text-md-left">
-                                    <h5 className="mb-md-0 h6">All Units</h5>
-                                </div>
-                                <div className="col-md-4">
-                                    <form id="sort_currencies">
-                                        <div className="input-group input-group-sm">
-                                            <input type="text" className="form-control" id="search" name="search" placeholder="Type name & Enter" fdprocessedid="skb3yv" />
-                                        </div>
-                                    </form>
+
+                            <div className="card-header row">
+                                <div className="row align-items-center">
+                                    <div className="col-lg-5 text-center text-md-left">
+                                        <h5 className="mb-md-0 h6">All Units</h5>
+                                    </div>
+                                    {data && <div className="col-lg-2" >
+                                        <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                                            <ReactHTMLTableToExcel
+                                                style={{ margin: '0' }}
+                                                id="test-table-xls-button"
+                                                className="download-table-xls-button cusxel"
+                                                table="table-to-xlsx"
+                                                filename="tablexls"
+                                                sheet="tablexls"
+                                                buttonText="Download Excel sheet" />
+                                        </button>
+                                    </div>}
+                                    {data && <div className="col-lg-2 text-md-right">
+                                        <ExportDataInPdf />
+                                    </div>}
+
+                                    <div className="col-lg-3">
+                                        <form id="sort_currencies">
+                                            <div className="input-group input-group-sm">
+                                                <input type="text" className="form-control" id="search" name="search" placeholder="Type name & Enter" fdprocessedid="skb3yv" />
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+
                             <div className="card-body">
 
                                 {isLoading ? <h2>Loading...</h2>
-                                    : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{}}>
+                                    : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf" style={{}}>
                                         <thead>
                                             <tr className="footable-header">
                                                 <th data-breakpoints="lg" className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
@@ -176,6 +198,24 @@ function UnitPage() {
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                     {/*p class="mb-0">&copy;  v6.3.3</p*/}
                 </div>
+
+                <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" id="table-to-xlsx" style={{ display: 'none' }}>
+                    <thead>
+                        <tr className="footable-header">
+                            <th className="footable-first-visible" style={{ display: 'table-cell', textAlign: 'left' }}>#</th>
+                            <th className="footable-first-visible" style={{ display: 'table-cell', textAlign: 'left' }}>Unit name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {data && data?.map((item, i) => {
+                            return <tr key={item._id}>
+                                <td style={{ display: 'table-cell' }}>{i + 1}</td>
+                                <td style={{ display: 'table-cell' }}>{item.name}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
             </div>
 
 

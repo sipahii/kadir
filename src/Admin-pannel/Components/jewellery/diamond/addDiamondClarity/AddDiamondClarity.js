@@ -35,7 +35,7 @@ function AddDiamondClarity() {
             },
         });
         setIsLoading(false)
-        setData(res.data)
+        setData(res?.data)
     };
 
     useEffect(() => {
@@ -45,13 +45,14 @@ function AddDiamondClarity() {
     const [val, setVal] = useState(data)
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', language_id: item._id, isActive: false, lable: item.name }
             })
             setVal(maped)
         }
     }, [data]);
+
 
     const onChangeThumbnailImage = async (e, id) => {
         if (e.target.name == 'thumbnail_image') {
@@ -157,11 +158,29 @@ function AddDiamondClarity() {
         if (params?.uid) {
             getByIdData()
         }
-    }, [params?.uid])
+    }, [params?.uid]);
+
+    // useEffect(() => {
+    //     if (data && !params?.uid) {
+    //         const maped = data.map((item) => {
+    //             return {
+    //                 name: '',
+    //                 code: '',
+    //                 description: '',
+    //                 slug: '',
+    //                 meta_title:'',
+    //                 meta_keyword:'',
+    //                 meta_description:'',
+    //                 sort_no:'',
+    //                 language_id: item._id,
+    //                 lable: item.name
+    //             }
+    //         })
+    //         setVal(maped)
+    //     }
+    // }, [data]);
 
     const finalSendingD = { list: val };
-
-
     const sendData = async () => {
         if (params?.uid) {
             try {

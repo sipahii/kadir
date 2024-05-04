@@ -150,7 +150,6 @@ function AddNewBanner() {
     }, [errorFile]);
 
 
-
     useEffect(() => {
         if (data && !params?.id) {
             const maped = data.map((item) => {

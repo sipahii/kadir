@@ -1271,19 +1271,19 @@ function AsideAdmin({ isActive }) {
                             </span>
                           </Link>
                         </li>
-                        <li className="aiz-side-nav-item">
+                        {/* <li className="aiz-side-nav-item">
                           <Link to="add-style" className="aiz-side-nav-link ">
                             <span className="aiz-side-nav-text">Style</span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li className="aiz-side-nav-item">
                           <Link to="list-style" className="aiz-side-nav-link ">
                             <span className="aiz-side-nav-text">
-                              List Style
+                              Style
                             </span>
                           </Link>
                         </li>
-                        <li className="aiz-side-nav-item">
+                        {/* <li className="aiz-side-nav-item">
                           <Link
                             to="add-collection"
                             className="aiz-side-nav-link "
@@ -1292,7 +1292,7 @@ function AsideAdmin({ isActive }) {
                               Collection
                             </span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li className="aiz-side-nav-item">
                           <Link
                             to="list-collection"
@@ -1762,19 +1762,19 @@ function AsideAdmin({ isActive }) {
                             </span>
                           </Link>
                         </li>
-                        <li className="aiz-side-nav-item">
+                        {/* <li className="aiz-side-nav-item">
                           <Link to="add-style" className="aiz-side-nav-link ">
                             <span className="aiz-side-nav-text">Style</span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li className="aiz-side-nav-item">
                           <Link to="list-style" className="aiz-side-nav-link ">
                             <span className="aiz-side-nav-text">
-                              List Style
+                              Style
                             </span>
                           </Link>
                         </li>
-                        <li className="aiz-side-nav-item">
+                        {/* <li className="aiz-side-nav-item">
                           <Link
                             to="add-collection"
                             className="aiz-side-nav-link "
@@ -1783,7 +1783,7 @@ function AsideAdmin({ isActive }) {
                               Collection
                             </span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li className="aiz-side-nav-item">
                           <Link
                             to="list-collection"
@@ -7006,22 +7006,22 @@ function AsideAdmin({ isActive }) {
                               </span>
                             </Link>
                           </li>
-                          <li className="aiz-side-nav-item">
+                          {/* <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">Style</span>
                             </Link>
-                          </li>
+                          </li> */}
                           <li className="aiz-side-nav-item">
                             <Link
                               to="list-style"
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                List Style
+                                Style
                               </span>
                             </Link>
                           </li>
-                          <li className="aiz-side-nav-item">
+                          {/* <li className="aiz-side-nav-item">
                             <Link
                               to="add-collection"
                               className="aiz-side-nav-link "
@@ -7030,7 +7030,7 @@ function AsideAdmin({ isActive }) {
                                 Collection
                               </span>
                             </Link>
-                          </li>
+                          </li> */}
                           <li className="aiz-side-nav-item">
                             <Link
                               to="list-collection"
@@ -7525,22 +7525,22 @@ function AsideAdmin({ isActive }) {
                               </span>
                             </Link>
                           </li>
-                          <li className="aiz-side-nav-item">
+                          {/* <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">Style</span>
                             </Link>
-                          </li>
+                          </li> */}
                           <li className="aiz-side-nav-item">
                             <Link
                               to="list-style"
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
-                                List Style
+                                Style
                               </span>
                             </Link>
                           </li>
-                          <li className="aiz-side-nav-item">
+                          {/* <li className="aiz-side-nav-item">
                             <Link
                               to="add-collection"
                               className="aiz-side-nav-link "
@@ -7549,7 +7549,7 @@ function AsideAdmin({ isActive }) {
                                 Collection
                               </span>
                             </Link>
-                          </li>
+                          </li> */}
                           <li className="aiz-side-nav-item">
                             <Link
                               to="list-collection"
@@ -8042,14 +8042,31 @@ function AsideAdmin({ isActive }) {
                               </span>
                             </Link>
                           </li>
-                          <li className="aiz-side-nav-item">
+                          {/* <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">Style</span>
                             </Link>
-                          </li>
+                          </li> */}
                           <li className="aiz-side-nav-item">
+                            <Link to="list-style" className="aiz-side-nav-link ">
+                              <span className="aiz-side-nav-text">
+                                Style
+                              </span>
+                            </Link>
+                          </li>
+                          {/* <li className="aiz-side-nav-item">
                             <Link
                               to="add-collection"
+                              className="aiz-side-nav-link "
+                            >
+                              <span className="aiz-side-nav-text">
+                                Collection
+                              </span>
+                            </Link>
+                          </li> */}
+                          <li className="aiz-side-nav-item">
+                            <Link
+                              to="list-collection"
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">
@@ -8537,14 +8554,31 @@ function AsideAdmin({ isActive }) {
                               </span>
                             </Link>
                           </li>
-                          <li className="aiz-side-nav-item">
+                          {/* <li className="aiz-side-nav-item">
                             <Link to="add-style" className="aiz-side-nav-link ">
                               <span className="aiz-side-nav-text">Style</span>
                             </Link>
-                          </li>
+                          </li> */}
                           <li className="aiz-side-nav-item">
+                            <Link to="list-style" className="aiz-side-nav-link ">
+                              <span className="aiz-side-nav-text">
+                                Style
+                              </span>
+                            </Link>
+                          </li>
+                          {/* <li className="aiz-side-nav-item">
                             <Link
                               to="add-collection"
+                              className="aiz-side-nav-link "
+                            >
+                              <span className="aiz-side-nav-text">
+                                Collection
+                              </span>
+                            </Link>
+                          </li> */}
+                          <li className="aiz-side-nav-item">
+                            <Link
+                              to="list-collection"
                               className="aiz-side-nav-link "
                             >
                               <span className="aiz-side-nav-text">

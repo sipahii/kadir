@@ -6,6 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { token } from "../../common/TokenArea";
 import { Pagination } from "antd";
 import axios from "axios";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
+
 function CustomerList() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -93,11 +97,31 @@ function CustomerList() {
     <>
       <div className="aiz-main-content">
         <div className="px-15px px-lg-25px">
+
           <div className="aiz-titlebar text-left mt-2 mb-3">
-            <div className="align-items-center">
-              <h1 className="h3">All Customers</h1>
+            <div className="row align-items-center">
+              <div className="col-lg-8">
+                <h1 className="h3 p-2">All Customers</h1>
+              </div>
+              {data?.length ? <div className="col-lg-2" >
+                <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px', margin: '0' }}>
+                  <ReactHTMLTableToExcel
+                    style={{ margin: '0' }}
+                    id="test-table-xls-button"
+                    className="download-table-xls-button cusxel"
+                    table="table-to-xlsx"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download Excel sheet" />
+                </button>
+              </div> : null}
+              {data?.length ? <div className="col-lg-2 text-md-right">
+                <ExportDataInPdf />
+              </div> : null}
             </div>
           </div>
+
+
           <div className="card">
             <ToastContainer />
             <form>
@@ -130,7 +154,7 @@ function CustomerList() {
 
                 {isLoading ? <h2>Loading...</h2>
 
-                  : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{}}>
+                  : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf" style={{}}>
                     <thead>
                       <tr className="footable-header">
                         <th style={{ display: 'table-cell' }}>#</th>
@@ -246,6 +270,38 @@ function CustomerList() {
             </Button>
           </Modal.Footer>
         </Modal>
+
+
+
+        <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" id="table-to-xlsx" style={{ display: 'none' }}>
+          <thead>
+            <tr className="footable-header">
+              <th style={{ display: 'table-cell' }}>#</th>
+              <th style={{ display: 'table-cell' }}>First Name</th>
+              <th style={{ display: 'table-cell' }}>Last Name</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell' }}>Email Address</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell' }}>Phone</th>
+              {/* <th data-breakpoints="lg" style={{ display: 'table-cell' }}>Package</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell' }}>Wallet Balance</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {data && data?.map((item, i) => {
+              return <tr key={item._id}>
+                <td style={{ display: "table-cell", display: "inline-block", marginTop: '5px' }}>
+                  {(pageIndex * countToShowInTable) + i + 1}
+                </td>
+                <td style={{ display: 'table-cell' }}>{item?.firstname}</td>
+                <td style={{ display: 'table-cell' }}>{item?.lastname}</td>
+                <td style={{ display: 'table-cell' }}>{item?.email}</td>
+                <td style={{ display: 'table-cell' }} >{item?.mobile}</td>
+                {/* <td style={{ display: 'table-cell' }}>0</td>
+                <td style={{ display: 'table-cell' }}>0</td> */}
+              </tr>
+            })}
+
+          </tbody>
+        </table>
       </div>
 
     </>

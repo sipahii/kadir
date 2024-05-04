@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCatagaryActiveMutation, useDeleteCategoryMutation, useDeleteIndustryMutation, useGetCategoriesQuery, useGetIndustryQuery } from "../../Components/all-products/allproductsApi/allProductsApi";
 import { ToastContainer, toast } from "react-toastify";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+// import ExportDataInPdf from "../../common/exportDataInPdf/ExportDataInPdf";
+
 function IndustryMaster() {
   const [inputVal, setInputVal] = useState({ search: '' });
   const [blankArr, setBlankArr] = useState([]);
 
   const token = window.localStorage.getItem('token')
-  const { isLoading, data ,refetch } = useGetIndustryQuery(token);
+  const { isLoading, data, refetch } = useGetIndustryQuery(token);
 
   const onChangeHandler = (e) => {
     const inpVal = e.target.value;
@@ -34,7 +38,7 @@ function IndustryMaster() {
   const [deleteCategory, res] = useDeleteIndustryMutation();
 
   function deleteCategoryData(id) {
-    deleteCategory({id,token})
+    deleteCategory({ id, token })
   };
 
   useEffect(() => {
@@ -80,19 +84,38 @@ function IndustryMaster() {
     <>
       <div className="aiz-main-content">
         <div className="px-15px px-lg-25px">
+
           <div className="aiz-titlebar text-left mt-2 mb-3">
             <div className="row align-items-center">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <h1 className="h3">All Industry</h1>
               </div>
-              <div className="col-md-6 text-md-right">
+              {blankArr?.length ? <div className="col-lg-2" >
+                <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                  <ReactHTMLTableToExcel
+                    style={{ margin: '0' }}
+                    id="test-table-xls-button"
+                    className="download-table-xls-button cusxel"
+                    table="table-to-xlsx"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download Excel sheet" />
+                </button>
+              </div> : null}
+              {blankArr?.length ? <div className="col-lg-2 text-md-right">
+                <ExportDataInPdf />
+                {/* <button className="btn btn-primary" onClick={handleDownloadPDF}>Download PDF</button> */}
+              </div> : null}
+              <div className="col-lg-2 text-md-right">
                 <Link to="create_industryMaster" className="btn btn-primary">
                   <span>Add New Industry</span>
                 </Link>
               </div>
-
             </div>
           </div>
+
+
+
           <div className="card">
             <ToastContainer />
             <div className="card-header d-block d-md-flex">
@@ -110,7 +133,7 @@ function IndustryMaster() {
             <div className="card-body">
 
               {isLoading ? <h2>Loading...</h2>
-                : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{}}>
+                : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf" style={{}}>
                   <thead>
                     <tr className="footable-header">
                       <th data-breakpoints="lg" className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
@@ -151,7 +174,7 @@ function IndustryMaster() {
                           <img src={item?.banner?.url} alt="Banner" className="h-60px" />
                         </td>
                         <td style={{ display: 'table-cell' }}>
-                        <img src={item?.icon?.url} alt="Icon"  className="h-60px" />
+                          <img src={item?.icon?.url} alt="Icon" className="h-60px" />
                         </td>
                         <td style={{ display: 'table-cell' }}>
                           <label className="aiz-switch aiz-switch-success mb-0">
@@ -197,6 +220,31 @@ function IndustryMaster() {
         <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
           {/*p class="mb-0">&copy;  v6.3.3</p*/}
         </div>
+
+        <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{ display: 'none' }} id="table-to-xlsx" >
+          <thead>
+            <tr className="footable-header">
+              <th data-breakpoints="lg" className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
+              <th style={{ display: 'table-cell', textAlign: 'left' }}>Ctegory Name</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Parent Category</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Order Level</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Level</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Commission</th>
+            </tr>
+          </thead>
+          <tbody>
+            {blankArr && blankArr.map((item, i) => {
+              return <tr key={item._id}>
+                <td className="footable-first-visible" style={{ display: 'table-cell' }}>{i + 1}</td>
+                <td style={{ display: 'table-cell' }}>{item?.name}</td>
+                <td style={{ display: 'table-cell' }}>{item?.parent_id && (item.parent_id.name)}</td>
+                <td style={{ display: 'table-cell' }}>{item?.order_level}</td>
+                <td style={{ display: 'table-cell' }}>{item?.level}</td>
+                <td style={{ display: 'table-cell' }}>{item?.commision_rate}</td>
+              </tr>
+            })}
+          </tbody>
+        </table>
       </div>
 
     </>

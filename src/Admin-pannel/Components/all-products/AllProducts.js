@@ -7,6 +7,8 @@ import { useDeleteProductMutation, useGetAllProductsQuery, useGetCategoriesQuery
 import { ToastContainer, toast } from "react-toastify";
 import { BsFillPrinterFill } from 'react-icons/bs';
 import axios from 'axios';
+import ExportDataInPdf from '../../../common/exportDataInPdf/ExportDataInPdf';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function AllProducts() {
   const [inputVal, setInputVal] = useState('');
@@ -100,21 +102,38 @@ function AllProducts() {
     <>
       <div className="aiz-main-content">
         <div className="px-15px px-lg-25px">
+
           <div className="aiz-titlebar text-left mt-2 mb-3">
             <div className="row align-items-center">
-              <div className="col-auto">
+              <div className="col-lg-6">
                 <h1 className="h3">All products</h1>
               </div>
-              <ToastContainer />
-              <div className="col text-right">
+              {bArr && <div className="col-lg-2" >
+                <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                  <ReactHTMLTableToExcel
+                    style={{ margin: '0' }}
+                    id="test-table-xls-button"
+                    className="download-table-xls-button cusxel"
+                    table="table-to-xlsx"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download Excel sheet" />
+                </button>
+              </div>}
+              {bArr && <div className="col-lg-2 text-md-right">
+                <ExportDataInPdf />
+              </div>}
+              <div className="col-lg-2 text-right">
                 <Link to="/admin/products/all/products/create" className="btn btn-circle btn-info">
                   <span>Add New Product</span>
                 </Link>
               </div>
             </div>
           </div>
+
           <br />
 
+          <ToastContainer />
           {isLoading ? <h2>Loading...</h2>
             : <div className="card">
               <form id="sort_products">
@@ -148,7 +167,7 @@ function AllProducts() {
                 </div>
                 <div className="card-body" style={{ overflowX: "auto" }}>
 
-                  <table className="table aiz-table mb-0 footable footable-1 breakpoint breakpoint-lg">
+                  <table className="table aiz-table mb-0 footable footable-1 breakpoint breakpoint-lg exppdf">
                     <thead>
                       <tr className="footable-header">
                         <th className="footable-first-visible" style={{ display: 'table-cell' }}># </th>
@@ -300,6 +319,54 @@ function AllProducts() {
 
         </div>
         <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto"></div>
+
+        <table className="table aiz-table mb-0 footable footable-1 breakpoint breakpoint-lg" id='table-to-xlsx' style={{ display: 'none' }}>
+          <thead>
+            <tr className="footable-header">
+              <th className="footable-first-visible" style={{ display: 'table-cell' }}># </th>
+              <th style={{ display: 'table-cell' }}>Product</th>
+              <th style={{ display: 'table-cell' }}>Category</th>
+              <th style={{ display: 'table-cell' }}>Brand</th>
+              <th style={{ display: 'table-cell' }}>Seller</th>
+              <th data-breakpoints="sm" style={{ display: 'table-cell' }}>Info</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {bArr?.map((item, i) => {
+              return <tr key={i}>
+                <td className="footable-first-visible" style={{ display: 'table-cell' }}>
+                  {/* {(pageIndex * countToShowInTable) + i + 1} */}
+                  {i + 1}
+                </td>
+                <td style={{ display: 'table-cell' }}>
+                  <div className="row gutters-5 w-200px w-md-300px mw-100">
+                    <div className="col">
+                      <span className="text-muted text-truncate-2" style={{ fontSize: "18px", marginBottom: "10px" }}>{item?.product?.name}</span>
+                      <span className="text-muted text-truncate-2">Languages : {item?.languages}</span>
+                    </div>
+                  </div>
+                </td>
+                <td style={{ display: 'table-cell' }}>
+                  {item?.categories && item?.categories?.map((catItem, i) => {
+                    return <span>{catItem.name}</span>
+                  })}
+                </td>
+                <td style={{ display: 'table-cell' }}>
+                  {item?.product?.brand_id && item?.product?.brand_id.name}
+                </td>
+                <td style={{ display: 'table-cell' }}>
+                  {item?.product?.seller_id && item?.product?.seller_id?.firstname + " " + item?.product?.seller_id && item?.product?.seller_id?.lastname}
+                </td>
+                <td style={{ display: 'table-cell' }}>
+                  <strong>Num of Sale:</strong> 0 Times <br />
+                  <strong>Base Price:</strong>{item.unit_price}<br />
+                  <strong>Rating:</strong> 0 <br />
+                </td>
+              </tr>
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   )

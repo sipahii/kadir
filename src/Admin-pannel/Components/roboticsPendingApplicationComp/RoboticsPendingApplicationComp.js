@@ -125,7 +125,9 @@ function RoboticsPendingApplicationComp() {
                     navigate('../robotic-master-list')
                 }, 5000);
             } catch (error) {
-                toastErrorMessage('Not Updated')
+                console.log('ERROR---Block', error)
+                console.log('ERROR---.DATA---', error?.response?.data?.message)
+                toastErrorMessage(error?.response?.data?.message)
             }
         } else {
             try {

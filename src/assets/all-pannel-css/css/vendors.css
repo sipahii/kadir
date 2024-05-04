@@ -278,34 +278,43 @@ select.selectOptions {
   border-radius: 4px;
   color: #4b4b4b;
 }
-.addressDetailInfo h6{  
+
+.addressDetailInfo h6 {
   margin-top: 10px;
 }
-.addressDetailInfo ul{
+
+.addressDetailInfo ul {
   padding: 0 10px;
 }
-.addressDetailInfo ul li{
+
+.addressDetailInfo ul li {
   line-height: 28px
 }
-.customerName{
+
+.customerName {
   text-transform: capitalize;
 }
-.customerName span{
+
+.customerName span {
   color: #5f4cdc;
 }
-.orderStatus label{
+
+.orderStatus label {
   white-space: nowrap;
   margin: 0 10px 0 0;
 }
-.card-header.topCardHeader h6{
+
+.card-header.topCardHeader h6 {
   font-size: 15px;
 }
+
 .addressDetailInfo ul li span {
   font-size: 16px;
   display: inline-block;
   margin-left: 10px;
   color: #797979;
 }
+
 /* Custom End */
 
 
@@ -339,6 +348,8 @@ button {
 [type="submit"]:not(:disabled),
 button:not(:disabled) {
   cursor: pointer;
+  margin: 0;
+  color: white;
 }
 
 [type="button"]::-moz-focus-inner,
@@ -32263,15 +32274,19 @@ a {
   body {
     background-color: #fff;
   }
+
   .hideOnPrint {
     display: none;
-    
+
   }
-  .aiz-topbar,.navigation-drawer {
+
+  .aiz-topbar,
+  .navigation-drawer {
     visibility: hidden;
     position: absolute;
   }
-  .printWrapper{
+
+  .printWrapper {
     display: flex;
   }
 }

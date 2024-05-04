@@ -44,7 +44,7 @@ function AddProductLookTagComp() {
     const [val, setVal] = useState(data)
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', description: '', default: false, language_id: item._id, isActive: false, lable: item.name }
             })

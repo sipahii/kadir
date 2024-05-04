@@ -6,6 +6,9 @@ import {
   useGetCategoriesQuery,
 } from "../all-products/allproductsApi/allProductsApi";
 import { ToastContainer, toast } from "react-toastify";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 function CategoriesAdmin() {
   const [inputVal, setInputVal] = useState({ search: "" });
   const [blankArr, setBlankArr] = useState([]);
@@ -83,18 +86,36 @@ function CategoriesAdmin() {
     <>
       <div className="aiz-main-content">
         <div className="px-15px px-lg-25px">
+
           <div className="aiz-titlebar text-left mt-2 mb-3">
             <div className="row align-items-center">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <h1 className="h3">All categories</h1>
               </div>
-              <div className="col-md-6 text-md-right">
+              {blankArr && <div className="col-lg-2" >
+                <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                  <ReactHTMLTableToExcel
+                    style={{ margin: '0' }}
+                    id="test-table-xls-button"
+                    className="download-table-xls-button cusxel"
+                    table="table-to-xlsx"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download Excel sheet" />
+                </button>
+              </div>}
+              {blankArr && <div className="col-lg-2 text-md-right">
+                <ExportDataInPdf />
+              </div>}
+
+              <div className="col-lg-2 text-md-right">
                 <Link to="create" className="btn btn-primary">
                   <span>Add New category</span>
                 </Link>
               </div>
             </div>
           </div>
+
           <div className="card">
             <ToastContainer />
             <div className="card-header d-block d-md-flex">
@@ -129,7 +150,7 @@ function CategoriesAdmin() {
                 <h2>Loading...</h2>
               ) : (
                 <table
-                  className="table aiz-table mb-0 footable footable-1 breakpoint-xl"
+                  className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf"
                   style={{}}
                 >
                   <thead>
@@ -201,7 +222,7 @@ function CategoriesAdmin() {
                   </thead>
                   <tbody>
                     {blankArr &&
-                      blankArr.map((item, i) => {
+                      blankArr?.map((item, i) => {
                         return (
                           <tr key={item._id}>
                             <td
@@ -325,6 +346,32 @@ function CategoriesAdmin() {
         <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
           {/*p class="mb-0">&copy;  v6.3.3</p*/}
         </div>
+
+        <table style={{ display: "none" }} className="table aiz-table mb-0 footable footable-1 breakpoint-xl" id="table-to-xlsx">
+          <thead>
+            <tr className="footable-header">
+              <th data-breakpoints="lg" className="footable-first-visible" style={{ display: 'table-cell', textAlign: 'left' }}>#</th>
+              <th style={{ display: 'table-cell', textAlign: 'left' }}>Ctegory Name</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Parent Category</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Order Level</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Level</th>
+              <th data-breakpoints="lg" style={{ display: 'table-cell', textAlign: 'left' }}>Commission</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {blankArr && blankArr.map((item, i) => {
+              return <tr key={item._id}>
+                <td className="footable-first-visible" style={{ display: 'table-cell' }}>{i + 1}</td>
+                <td style={{ display: 'table-cell' }}>{item.name}</td>
+                <td style={{ display: 'table-cell' }}>{item.parent_id && (item.parent_id.name)}</td>
+                <td style={{ display: 'table-cell' }}>{item.order_level}</td>
+                <td style={{ display: 'table-cell' }}>{item.level}</td>
+                <td style={{ display: 'table-cell' }}>{item.commision_rate}</td>
+              </tr>
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );

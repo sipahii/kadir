@@ -3,6 +3,8 @@ import { useAddNewSizeMutation, useDeleteSizeMutation, useGetSizesQuery } from '
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import ExportDataInPdf from '../../../common/exportDataInPdf/ExportDataInPdf';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function Size() {
     const [inputVal, setInputval] = useState({ size: "", size_code: "" });
@@ -83,7 +85,8 @@ function Size() {
                         {/* <Sizes /> */}
                         <div className=" col-lg-7 ">
                             <div className="card">
-                                <form>
+
+                                {/* <form>
                                     <div className="card-header">
                                         <h5 className="mb-0 h6">Sizes</h5>
                                         <div className="col-md-5">
@@ -93,10 +96,43 @@ function Size() {
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </form> */}
+
+                                <div className="card-header row">
+                                    <div className="row align-items-center">
+                                        <div className="col-lg-3 text-center text-md-left">
+                                            <h5 className="mb-md-0 h6">All Sizes</h5>
+                                        </div>
+                                        {data && <div className="col-lg-3" >
+                                            <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                                                <ReactHTMLTableToExcel
+                                                    style={{ margin: '0' }}
+                                                    id="test-table-xls-button"
+                                                    className="download-table-xls-button cusxel"
+                                                    table="table-to-xlsx"
+                                                    filename="tablexls"
+                                                    sheet="tablexls"
+                                                    buttonText="Download Excel sheet" />
+                                            </button>
+                                        </div>}
+                                        {data && <div className="col-lg-3 text-md-right">
+                                            <ExportDataInPdf />
+                                        </div>}
+
+                                        <div className="col-lg-3">
+                                            <form id="sort_currencies">
+                                                <div className="form-group mb-0 d-flex">
+                                                    <input type="text" name='search' className="form-control form-control-sm" placeholder="Type" fdprocessedid="07jxbu" onChange={onChangeSize} />
+                                                    <button className='btn btn-primary' type='button' onClick={searchData}>Search</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div className="card-body">
                                     {isLoading ? <h2>Loading...</h2>
-                                        : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{}}>
+                                        : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf" style={{}}>
                                             <thead>
                                                 <tr className="footable-header">
                                                     <th className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
@@ -222,6 +258,25 @@ function Size() {
                         </div>
                     </div>
                 </div>
+
+                <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" id='table-to-xlsx' style={{ display: 'none' }}>
+                    <thead>
+                        <tr className="footable-header">
+                            <th className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
+                            <th style={{ display: 'table-cell' }}>Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {blankArr && blankArr.map((item, i) => {
+                            return <tr key={item._id}>
+                                <td className="footable-first-visible" style={{ display: 'table-cell' }}>{i + 1}</td>
+                                <td style={{ display: 'table-cell' }}>{item.size || item.size_code}</td>
+                            </tr>
+                        })}
+
+                    </tbody>
+                </table>
             </div>
             <ToastContainer />
         </>

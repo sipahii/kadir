@@ -41,7 +41,7 @@ function AddMaterialJewelComp() {
     const [val, setVal] = useState(data);
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', description: '', slug: '', meta_title: '', meta_keyword: '', meta_description: '', sort_no: '', shape_id: '', country__id: '', language_id: item._id, isActive: false, lable: item.name }
             })

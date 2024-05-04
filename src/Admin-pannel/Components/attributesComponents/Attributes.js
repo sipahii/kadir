@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useDeleteAttributesMutation, useGetAttributesQuery } from "../all-products/allproductsApi/allProductsApi";
 import { useEffect } from "react";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function AttributesAdmin() {
 
@@ -23,11 +25,41 @@ function AttributesAdmin() {
         <>
             <div className=" col-lg-10 ">
                 <div className="card">
-                    <div className="card-header row gutters-5">
+
+                    {/* <div className="card-header row gutters-5">
                         <div className="col text-center text-md-left">
                         </div>
 
                         <div className="col-md-4">
+                            <form >
+                                <div className="input-group input-group-sm">
+                                    <input type="text" className="form-control" id="search" name="search" placeholder="Search" fdprocessedid="jv5p0d" />
+                                </div>
+                            </form>
+                        </div>
+                    </div> */}
+
+                    <div className="card-header row gutters-5">
+                        <div className="col-lg-5 text-center text-md-left">
+                            <h5 className="mb-md-0 h6">Attributes</h5>
+                        </div>
+                        {data && <div className="col-lg-2" >
+                            <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px' }}>
+                                <ReactHTMLTableToExcel
+                                    style={{ margin: '0' }}
+                                    id="test-table-xls-button"
+                                    className="download-table-xls-button cusxel"
+                                    table="table-to-xlsx"
+                                    filename="tablexls"
+                                    sheet="tablexls"
+                                    buttonText="Download Excel sheet" />
+                            </button>
+                        </div>}
+                        {data && <div className="col-lg-2 text-md-right">
+                            <ExportDataInPdf />
+                        </div>}
+
+                        <div className="col-md-3">
                             <form >
                                 <div className="input-group input-group-sm">
                                     <input type="text" className="form-control" id="search" name="search" placeholder="Search" fdprocessedid="jv5p0d" />
@@ -39,7 +71,7 @@ function AttributesAdmin() {
                     <div className="card-body">
 
                         {isLoading ? <h2>Loading...</h2>
-                            : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" style={{}}>
+                            : <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl exppdf" style={{}}>
                                 <thead>
                                     <tr className="footable-header">
                                         <th className="footable-first-visible" style={{ display: 'table-cell' }}>#</th><th style={{ display: 'table-cell' }}>Name</th><th style={{ display: 'table-cell' }}>Values</th><th className="text-right footable-last-visible" style={{ display: 'table-cell' }}>Options</th></tr>
@@ -71,6 +103,27 @@ function AttributesAdmin() {
                         }
                     </div>
                 </div>
+
+
+
+                <table className="table aiz-table mb-0 footable footable-1 breakpoint-xl" id="table-to-xlsx" style={{ display: 'none' }}>
+                    <thead>
+                        <tr className="footable-header">
+                            <th className="footable-first-visible" style={{ display: 'table-cell' }}>#</th>
+                            <th style={{ display: 'table-cell' }}>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {data && data.map((item, i) => {
+                            return <tr key={item._id}>
+                                <td className="footable-first-visible" style={{ display: 'table-cell' }}>{i + 1}</td>
+                                <td style={{ display: 'table-cell' }}>{item.name}</td>
+                            </tr>
+                        })}
+
+                    </tbody>
+                </table>
             </div>
         </>
     )
