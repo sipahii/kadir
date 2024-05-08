@@ -65,7 +65,7 @@ function AddRingSizeMultiLingual({ data, item, i, params, sendData, onChangeHand
                                         <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
                                             Select Category
                                         </label>
-                                        <select className="form-control form-select" name="parent_id" value={item?.shape_id} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
+                                        <select className="form-control form-select" name="parent_id" value={item?.parent_id} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
                                             <option selected>Select Category</option>
                                             {category && category.map((item, i) => {
                                                 return <option value={item?.uid} key={i}>{item?.name}</option>

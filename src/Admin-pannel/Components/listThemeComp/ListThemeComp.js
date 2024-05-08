@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { AiFillEdit } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function ListThemeComp() {
     const [getListData, setgetListData] = useState();
@@ -9,6 +10,7 @@ function ListThemeComp() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
+        setLoading(true)
         try {
             const res = await axios.get('https://onlineparttimejobs.in/api/themeJewel', {
                 headers: {
@@ -16,27 +18,37 @@ function ListThemeComp() {
                     Authorization: `Bearer ${token}`,
                 },
             })
+            setgetListData(res?.data)
             setLoading(false)
-            setgetListData(res.data)
         } catch (error) {
             setLoading(false)
-            alert('Server Error')
         }
+    };
 
+
+    const toastSuccessMessage = () => {
+        toast.success("Theme Deleted", {
+            position: "top-center"
+        })
+    };
+    const toastErrorMessage = () => {
+        toast.error("Theme Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
         try {
-            const res = await axios.delete(`https://onlineparttimejobs.in/api/theme/delete_theme/${id}`, {
+            const res = await axios.delete(`https://onlineparttimejobs.in/api/themejewel/delete_Theme/${id}`, {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -108,7 +120,7 @@ function ListThemeComp() {
                                 <thead>
                                     <tr>
                                         <th class="table-secondary" scope="col">Name</th>
-                                        <th class="table-secondary" scope="col">Code</th>
+                                        {/* <th class="table-secondary" scope="col">Code</th> */}
                                         <th class="table-secondary" scope="col">Description</th>
                                         <th class="table-secondary" scope="col">Status</th>
                                         <th class="table-secondary" scope="col">Action</th>
@@ -118,10 +130,10 @@ function ListThemeComp() {
                                     {loading ? <h3>Loading...</h3> : getListData && getListData.map((item, i) => {
                                         return <tr key={i}>
                                             <td scope="row">{item?.name}</td>
-                                            <td>{item?.code}</td>
+                                            {/* <td>{item?.code}</td> */}
                                             <td>{item?.description}</td>
-                                            <td>{item?.active ? 'Active' : 'InActive'}</td>
-                                            <td>
+                                            <td>{item?.isActive ? 'Active' : 'InActive'}</td>
+                                            <td style={{ display: 'flex', justifyContent: 'center' }}>
                                                 <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`edit/${item?.uid}`}>
                                                     <i className="las la-edit">
                                                     </i>
@@ -144,6 +156,7 @@ function ListThemeComp() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

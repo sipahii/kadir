@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function LabourChangeType() {
 
@@ -10,15 +11,33 @@ function LabourChangeType() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/labourChargeType', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        setLoading(false)
-        setgetListData(res.data)
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/labourChargeType', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
     };
+
+    const toastSuccessMessage = () => {
+        toast.success("LabourCharge Type Deleted", {
+            position: "top-center"
+        })
+    };
+    const toastErrorMessage = () => {
+        toast.error("LabourCharge Type Not Deleted ", {
+            position: "top-center"
+        })
+    };
+
+
 
     const deletData = async (id) => {
         try {
@@ -28,10 +47,10 @@ function LabourChangeType() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -106,7 +125,7 @@ function LabourChangeType() {
                                         <th class="table-secondary" scope="col">Code</th>
                                         <th class="table-secondary" scope="col">Description</th>
                                         <th class="table-secondary" scope="col">IsActive</th>
-                                        <th class="table-secondary" scope="col">Default</th>
+                                        {/* <th class="table-secondary" scope="col">Default</th> */}
                                         <th class="table-secondary" scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -117,7 +136,7 @@ function LabourChangeType() {
                                             <td>{item?.code}</td>
                                             <td>{item?.description}</td>
                                             <td>{item?.isActive ? 'Active' : 'InActive'}</td>
-                                            <td>{item?.default ? 'Active' : 'InActive'}</td>
+                                            {/* <td>{item?.default ? 'Active' : 'InActive'}</td> */}
                                             <td>
                                                 <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`edit/${item?.uid}`}>
                                                     <i className="las la-edit">
@@ -142,6 +161,7 @@ function LabourChangeType() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

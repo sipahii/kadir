@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai"
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function RingSize() {
     const [getListData, setgetListData] = useState();
@@ -9,6 +10,7 @@ function RingSize() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
+        setLoading(true)
         try {
             const res = await axios.get('https://onlineparttimejobs.in/api/ringSize', {
                 headers: {
@@ -16,12 +18,23 @@ function RingSize() {
                     Authorization: `Bearer ${token}`,
                 },
             })
+            setgetListData(res?.data)
             setLoading(false)
-            setgetListData(res.data)
         } catch (error) {
             setLoading(false)
-            alert('Server Error')
         }
+    };
+
+
+    const toastSuccessMessage = () => {
+        toast.success("RingSize Deleted", {
+            position: "top-center"
+        })
+    };
+    const toastErrorMessage = () => {
+        toast.error("RingSize Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
@@ -32,10 +45,10 @@ function RingSize() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -139,6 +152,7 @@ function RingSize() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

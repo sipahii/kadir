@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function ProductWearTagComp() {
 
@@ -9,14 +10,31 @@ function ProductWearTagComp() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/wearTag', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/wearTag', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    };
+
+
+    const toastSuccessMessage = () => {
+        toast.success("Product Wear Tag Deleted", {
+            position: "top-center"
         })
-        setLoading(false)
-        setgetListData(res.data)
+    };
+    const toastErrorMessage = () => {
+        toast.error("Product Wear Tag Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
@@ -27,10 +45,10 @@ function ProductWearTagComp() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -109,7 +127,7 @@ function ProductWearTagComp() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loading ? <h3>Loading...</h3> : getListData && getListData.map((item, i) => {
+                                    {loading ? <h3>Loading...</h3> : getListData && getListData?.map((item, i) => {
                                         return <tr key={i}>
                                             <td scope="row">{item?.name}</td>
                                             <td>{item?.code}</td>
@@ -139,6 +157,7 @@ function ProductWearTagComp() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

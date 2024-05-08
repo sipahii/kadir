@@ -1,10 +1,10 @@
 import React from 'react'
-// import EditLabourChargeComp from '../../Components/editLabourChargeComp/EditLabourChargeComp'
+import EditLabourChargeComp from '../../Components/editLabourChargeComp/EditLabourChargeComp'
 
 function EditLabourChargePage() {
     return (
         <>
-            {/* <EditLabourChargeComp /> */}
+            <EditLabourChargeComp />
         </>
     )
 }

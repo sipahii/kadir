@@ -137,7 +137,7 @@ function AddLabourChargeMultiLingual({ data, item, i, params, sendData, onChange
                                             Active
                                         </label>
                                         <div>
-                                            <select className="form-select" name='isActive' aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
+                                            <select className="form-select" name='isActive' value={item?.isActive} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
                                                 <option selected>Is Active</option>
                                                 <option value={true}>Yes</option>
                                                 <option value={false}>No</option>

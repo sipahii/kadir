@@ -48,7 +48,10 @@ function AddMaterialJewelMultiLang({ data, item, i, params, sendData, onChangeHa
                                 <h1 className="h3">{params?.uid ? 'Update' : "Add"} Material</h1>
                             </div>
                             <div className=''>
-                                <a href="https://onlineparttimejobs.in/api/bulkimport/productFormat" download>
+                                {/* <a href="https://onlineparttimejobs.in/api/bulkimport/productFormat" download>
+                                    <button className="btn btn-info">Download Sample</button>
+                                </a> */}
+                                <a href="#">
                                     <button className="btn btn-info">Download Sample</button>
                                 </a>
                             </div>
@@ -95,10 +98,6 @@ function AddMaterialJewelMultiLang({ data, item, i, params, sendData, onChangeHa
                                             })}
                                         </select>
                                     </div>
-
-
-
-
 
 
                                     <div className="col-lg-4 mt-3">

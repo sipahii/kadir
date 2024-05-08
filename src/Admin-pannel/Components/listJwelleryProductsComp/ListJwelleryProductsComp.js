@@ -2,6 +2,7 @@ import axios from "axios";
 import Multiselect from "multiselect-react-dropdown";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function ListJwelleryProductsComp() {
     const [getListData, setgetListData] = useState();
@@ -25,14 +26,19 @@ function ListJwelleryProductsComp() {
     const token = window.localStorage.getItem('adminToken');
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/product/jewel/admin', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        setLoading(false)
-        setgetListData(res.data)
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/product/jewel/admin', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
     };
     const getCategoryTypeData = async () => {
         const res = await axios.get('https://onlineparttimejobs.in/api/categoryType', {
@@ -133,6 +139,20 @@ function ListJwelleryProductsComp() {
     const resetData = () => {
         getdata()
     };
+
+
+    const toastSuccessMessage = () => {
+        toast.success("Product Deleted", {
+            position: "top-center"
+        })
+    };
+    const toastErrorMessage = () => {
+        toast.error("Product Not Deleted ", {
+            position: "top-center"
+        })
+    };
+
+
     const deletData = async (uid) => {
         try {
             const res = await axios.delete(`https://onlineparttimejobs.in/api/product/${uid}`, {
@@ -141,10 +161,10 @@ function ListJwelleryProductsComp() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     };
 
@@ -427,6 +447,7 @@ function ListJwelleryProductsComp() {
                 </div >
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div >
         </>
     )

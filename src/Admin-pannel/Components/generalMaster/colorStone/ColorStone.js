@@ -2,20 +2,39 @@ import { Link } from "react-router-dom"
 import { AiFillEdit } from "react-icons/ai"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+
 function ColorStone() {
     const [getListData, setgetListData] = useState();
     const [loading, setLoading] = useState(true)
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/colorStone', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/colorStone', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    };
+
+
+    const toastSuccessMessage = () => {
+        toast.success("Color Stone Deleted", {
+            position: "top-center"
         })
-        setLoading(false)
-        setgetListData(res.data)
+    };
+    const toastErrorMessage = () => {
+        toast.error("Color Stone Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
@@ -26,10 +45,10 @@ function ColorStone() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -101,9 +120,9 @@ function ColorStone() {
                                 <thead>
                                     <tr>
                                         <th class="table-secondary" scope="col">Name</th>
-                                        <th class="table-secondary" scope="col">Code</th>
-                                        <th class="table-secondary" scope="col">Shape</th>
-                                        <th class="table-secondary" scope="col">Country</th>
+                                        {/* <th class="table-secondary" scope="col">Code</th> */}
+                                        {/* <th class="table-secondary" scope="col">Shape</th> */}
+                                        {/* <th class="table-secondary" scope="col">Country</th> */}
                                         <th class="table-secondary" scope="col">Description</th>
                                         <th class="table-secondary" scope="col">Status</th>
                                         <th class="table-secondary" scope="col">Default</th>
@@ -114,9 +133,9 @@ function ColorStone() {
                                     {loading ? <h3>Loading...</h3> : getListData && getListData.map((item, i) => {
                                         return <tr key={i}>
                                             <td scope="row">{item?.name}</td>
-                                            <td>{item?.code}</td>
-                                            <td>---</td>
-                                            <td>---</td>
+                                            {/* <td>{item?.code}</td> */}
+                                            {/* <td>---</td> */}
+                                            {/* <td>---</td> */}
                                             <td>{item?.description}</td>
                                             <td>{item?.isActive ? 'Active' : 'InActive'}</td>
                                             <td>{item?.default ? 'Active' : 'InActive'}</td>
@@ -143,6 +162,7 @@ function ColorStone() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

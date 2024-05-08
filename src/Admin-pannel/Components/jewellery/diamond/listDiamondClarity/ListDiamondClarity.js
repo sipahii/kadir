@@ -2,21 +2,39 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { AiFillEdit } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function ListDiamondQuality() {
     const [getListData, setgetListData] = useState();
     const [loading, setLoading] = useState(true)
-    const token = window.localStorage.getItem('adminToken')
+    const token = window.localStorage.getItem('adminToken');
+
+
+    const toastSuccessMessage = () => {
+        toast.success("Diamond Clarity Deleted", {
+            position: "top-center"
+        })
+    };
+    const toastErrorMessage = () => {
+        toast.error("Diamond Clarity Not Deleted ", {
+            position: "top-center"
+        })
+    };
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/clarityMaster', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        setLoading(false)
-        setgetListData(res.data)
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/clarityMaster', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
     };
 
     const deletData = async (id) => {
@@ -27,10 +45,10 @@ function ListDiamondQuality() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage();
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage();
         }
     }
 
@@ -136,6 +154,7 @@ function ListDiamondQuality() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

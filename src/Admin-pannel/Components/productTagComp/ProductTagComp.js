@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function ProductTagComp() {
 
@@ -9,14 +10,31 @@ function ProductTagComp() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/productTag', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/productTag', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    };
+
+
+    const toastSuccessMessage = () => {
+        toast.success("Product Tag Deleted", {
+            position: "top-center"
         })
-        setLoading(false)
-        setgetListData(res.data)
+    };
+    const toastErrorMessage = () => {
+        toast.error("Product Tag Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
@@ -27,10 +45,10 @@ function ProductTagComp() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -96,7 +114,7 @@ function ProductTagComp() {
                                     <tr>
                                         <th class="table-secondary" scope="col">Title</th>
                                         <th class="table-secondary" scope="col">Code</th>
-                                        <th class="table-secondary" scope="col">Created At</th>
+                                        {/* <th class="table-secondary" scope="col">Created At</th> */}
                                         <th class="table-secondary" scope="col">IsActive</th>
                                         <th class="table-secondary" scope="col">Action</th>
                                     </tr>
@@ -106,7 +124,7 @@ function ProductTagComp() {
                                         return <tr key={i}>
                                             <td scope="row">{item?.name}</td>
                                             <td>{item?.code}</td>
-                                            <td>----</td>
+                                            {/* <td>----</td> */}
                                             <td>{item?.isActive ? 'Active' : 'InActive'}</td>
                                             <td>
                                                 <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`edit/${item?.uid}`}>
@@ -132,6 +150,7 @@ function ProductTagComp() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

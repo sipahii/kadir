@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { AiFillEdit } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function ListStyleManagementComp() {
     const [getListData, setgetListData] = useState();
@@ -9,14 +10,31 @@ function ListStyleManagementComp() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/style', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/style', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    };
+
+
+    const toastSuccessMessage = () => {
+        toast.success("Style Deleted", {
+            position: "top-center"
         })
-        setLoading(false)
-        setgetListData(res.data)
+    };
+    const toastErrorMessage = () => {
+        toast.error("Style Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
@@ -27,10 +45,10 @@ function ListStyleManagementComp() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -138,6 +156,7 @@ function ListStyleManagementComp() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

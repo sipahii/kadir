@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
 
 function CategoryTypeJwellsComp() {
     const [getListData, setgetListData] = useState();
@@ -9,14 +10,30 @@ function CategoryTypeJwellsComp() {
     const token = window.localStorage.getItem('adminToken')
 
     const getdata = async () => {
-        const res = await axios.get('https://onlineparttimejobs.in/api/categoryType', {
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ${token}`,
-            },
+        setLoading(true)
+        try {
+            const res = await axios.get('https://onlineparttimejobs.in/api/categoryType', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setgetListData(res?.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    };
+
+    const toastSuccessMessage = () => {
+        toast.success("CategoryType Deleted", {
+            position: "top-center"
         })
-        setLoading(false)
-        setgetListData(res.data)
+    };
+    const toastErrorMessage = () => {
+        toast.error("CategoryType Not Deleted ", {
+            position: "top-center"
+        })
     };
 
     const deletData = async (id) => {
@@ -27,10 +44,10 @@ function CategoryTypeJwellsComp() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            alert('Deleted')
+            toastSuccessMessage()
             getdata()
         } catch (error) {
-            alert('Not Deleted')
+            toastErrorMessage()
         }
     }
 
@@ -103,7 +120,7 @@ function CategoryTypeJwellsComp() {
                                         <th class="table-secondary" scope="col">Code</th>
                                         {/* <th class="table-secondary" scope="col">Category Type</th> */}
                                         <th class="table-secondary" scope="col">Slug</th>
-                                        <th class="table-secondary" scope="col">Default</th>
+                                        <th class="table-secondary" scope="col">Status</th>
                                         <th class="table-secondary" scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -136,6 +153,7 @@ function CategoryTypeJwellsComp() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+                <ToastContainer />
             </div>
         </>
     )

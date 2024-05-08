@@ -128,7 +128,7 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setMetalPurityMetalTypeData(res.data)
+                setMetalPurityMetalTypeData(res?.data)
             } catch (error) {
                 alert('Not Post')
             }
@@ -1221,7 +1221,7 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                                         <label className="col-md-12 col-from-label">Metal Purity</label>
                                                         <select className="form-select" aria-label="Default select example" name="metalPurity" onChange={(e) => handleChangeMetal(e, i)}>
                                                             <option selected>Select Metal Purity</option>
-                                                            {metalPurityMetalTypeData && metalPurityMetalTypeData.purity.map((purityItem, i) => {
+                                                            {metalPurityMetalTypeData && metalPurityMetalTypeData?.purity.map((purityItem, i) => {
                                                                 return <option value={purityItem?._id} key={i}>{purityItem?.name}</option>
                                                             })}
                                                         </select>
@@ -1649,7 +1649,7 @@ function AddJwelleryProduct222MultiLingual({ data, item, i, onChangeHandler, par
                                         <div className="card-body">
                                             <div className="form-group col-md-6">
                                                 <label className="title-color ms-2">Status</label>
-                                                <select className="form-select" name='isActive' aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
+                                                <select className="form-select" name='isActive' value={item?.isActive} aria-label="Default select example" onChange={(e) => { onChangeHandler(e, item.language_id) }}>
                                                     <option selected>Is Active</option>
                                                     <option value={true}>Yes</option>
                                                     <option value={false}>No</option>
