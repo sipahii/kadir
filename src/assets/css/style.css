@@ -10913,5 +10913,11 @@ table tbody tr .show-table {
     z-index: 1;
 }
 
+/* .custom-card-header {
+  display: block;
+} */
 
+#custome-cardHeader {
+  display: block;
+}
 

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import { AiFillEdit } from "react-icons/ai"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function LabourChargeRateCardComp() {
     const [getListData, setgetListData] = useState();
@@ -44,20 +46,51 @@ function LabourChargeRateCardComp() {
         <>
             <div className="aiz-main-content">
                 <div className="px-15px px-lg-25px">
-                    <div className="aiz-titlebar text-left mt-2 mb-3">
+                    {/* <div className="aiz-titlebar text-left mt-2 mb-3">
                         <div className="row align-items-center">
                             <div className="col-md-6">
                                 <h1 className="h3">Labour Charge</h1>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="card">
-                        <div className="card-header">
+                        {/* <div className="card-header">
                             <h5 className="mb-0 h6">Labour Charge</h5>
                             <div className="col-md-6 text-md-right">
                                 <Link to="/admin/labourCharge-rate/add" className="btn btn-info">
                                     <span>+ Add Labour Charge</span>
                                 </Link>
+                            </div>
+                        </div> */}
+
+
+
+                        <div className="card-header custom-card-header" id="custome-cardHeader">
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <h5 className="mb-0 h6">Labour Charge</h5>
+                                </div>
+                                {getListData?.length ? <div className="col-lg-2 text-right" >
+                                    <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px', margin: '0' }}>
+                                        <ReactHTMLTableToExcel
+                                            style={{ margin: '0' }}
+                                            id="test-table-xls-button"
+                                            className="download-table-xls-button cusxel"
+                                            table="table-to-xlsx"
+                                            filename="tablexls"
+                                            sheet="tablexls"
+                                            buttonText="Download Excel sheet" />
+                                    </button>
+                                </div> : null}
+                                {getListData?.length ? <div className="col-lg-2">
+                                    <ExportDataInPdf />
+                                </div> : null}
+
+                                <div className="col-lg-2 text-md-right">
+                                    <Link to="/admin/labourCharge-rate/add" className="btn btn-info">
+                                        <span>Add Labour Charge</span>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                         <div className="card-body">
@@ -100,7 +133,7 @@ function LabourChargeRateCardComp() {
                             </section>
 
 
-                            <table className="table table-3">
+                            <table className="table table-3 exppdf">
                                 <thead>
                                     <tr>
                                         <th class="table-secondary" scope="col">Title</th>
@@ -142,6 +175,30 @@ function LabourChargeRateCardComp() {
                 </div>
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
+
+                <table className="table table-3" id="table-to-xlsx" style={{ display: 'flex' }}>
+                    <thead>
+                        <tr>
+                            <th class="table-secondary" scope="col">Title</th>
+                            <th class="table-secondary" scope="col">Date</th>
+                            <th class="table-secondary" scope="col">Added From</th>
+                            <th class="table-secondary" scope="col">Metal Price Type</th>
+                            <th class="table-secondary" scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loading ? <h3>Loading...</h3> : getListData && getListData.map((item, i) => {
+                            return <tr key={i}>
+                                <td scope="row">{item?.name}</td>
+                                <td>{item?.code}</td>
+                                <td>---</td>
+                                <td>---</td>
+                                <td>{item?.isActive ? 'Active' : 'InActive'}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
+
             </div>
         </>
     )

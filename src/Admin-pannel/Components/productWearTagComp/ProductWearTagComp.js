@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function ProductWearTagComp() {
 
@@ -62,27 +64,57 @@ function ProductWearTagComp() {
         <>
             <div className="aiz-main-content">
                 <div className="px-15px px-lg-25px">
-                    <div className="aiz-titlebar text-left mt-2 mb-3">
+                    {/* <div className="aiz-titlebar text-left mt-2 mb-3">
                         <div className="row align-items-center">
                             <div className="col-md-6">
                                 <h1 className="h3">Product Wear Tag</h1>
                             </div>
-                            {/* <div className="col-md-6 text-md-right">
+                            <div className="col-md-6 text-md-right">
                                 <Link to="/admin/roles/create" className="btn btn-circle btn-info">
                                     <span>Add New Role</span>
                                 </Link>
-                            </div> */}
+                            </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="card">
-                        <div className="card-header">
+                        {/* <div className="card-header">
                             <h5 className="mb-0 h6">Product Wear Tag</h5>
                             <div className="col-md-6 text-md-right">
                                 <Link to="/admin/add-productWear-tag" className="btn btn-info">
                                     <span>+ Add Product Wear Tag</span>
                                 </Link>
                             </div>
+                        </div> */}
+
+                        <div className="card-header custom-card-header" id="custome-cardHeader">
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <h5 className="mb-0 h6">Product Wear Tag</h5>
+                                </div>
+                                {getListData?.length ? <div className="col-lg-2 text-right" >
+                                    <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px', margin: '0' }}>
+                                        <ReactHTMLTableToExcel
+                                            style={{ margin: '0' }}
+                                            id="test-table-xls-button"
+                                            className="download-table-xls-button cusxel"
+                                            table="table-to-xlsx"
+                                            filename="tablexls"
+                                            sheet="tablexls"
+                                            buttonText="Download Excel sheet" />
+                                    </button>
+                                </div> : null}
+                                {getListData?.length ? <div className="col-lg-2">
+                                    <ExportDataInPdf />
+                                </div> : null}
+
+                                <div className="col-lg-2 text-md-right">
+                                    <Link to="/admin/add-productWear-tag" className="btn btn-info">
+                                        <span>Add Product Wear Tag</span>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
+
                         <div className="card-body">
 
                             <section className="form-section">
@@ -116,7 +148,7 @@ function ProductWearTagComp() {
                             </section>
 
 
-                            <table className="table table-3">
+                            <table className="table table-3 exppdf">
                                 <thead>
                                     <tr>
                                         <th class="table-secondary" scope="col">Name</th>
@@ -158,6 +190,27 @@ function ProductWearTagComp() {
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
                 <ToastContainer />
+
+                <table className="table table-3" id="table-to-xlsx" style={{ display: 'none' }}>
+                    <thead>
+                        <tr>
+                            <th class="table-secondary" scope="col">Name</th>
+                            <th class="table-secondary" scope="col">Code</th>
+                            <th class="table-secondary" scope="col">Default</th>
+                            <th class="table-secondary" scope="col">IsActive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loading ? <h3>Loading...</h3> : getListData && getListData?.map((item, i) => {
+                            return <tr key={i}>
+                                <td scope="row">{item?.name}</td>
+                                <td>{item?.code}</td>
+                                <td>{item?.default ? 'Active' : 'InActive'}</td>
+                                <td>{item?.isActive ? 'Active' : 'InActive'}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
             </div>
         </>
     )

@@ -3,6 +3,8 @@ import Multiselect from "multiselect-react-dropdown";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import ExportDataInPdf from "../../../common/exportDataInPdf/ExportDataInPdf";
 
 function ListJwelleryProductsComp() {
     const [getListData, setgetListData] = useState();
@@ -172,23 +174,55 @@ function ListJwelleryProductsComp() {
         <>
             <div className="aiz-main-content">
                 <div className="px-15px px-lg-25px">
-                    <div className="aiz-titlebar text-left mt-2 mb-3">
+                    {/* <div className="aiz-titlebar text-left mt-2 mb-3">
                         <div className="row align-items-center">
                             <div className="col-md-6">
                                 <h1 className="h3">Products</h1>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="card">
-                        <div className="card-header">
+                        {/* <div className="card-header">
                             <h5 className="mb-0 h6">Products</h5>
-                            {/* <span style={{ width: '8px', height: '8px', backgroundColor: 'red', color: 'white', padding: '4px 6px', borderRadius: '3px' }}>03</span> */}
+                            <span style={{ width: '8px', height: '8px', backgroundColor: 'red', color: 'white', padding: '4px 6px', borderRadius: '3px' }}>03</span>
                             <div className="col-md-6 text-md-right">
                                 <Link to="/admin/add-metal-purity" className="btn btn-info">
                                     <span>+ Add Product</span>
                                 </Link>
                             </div>
+                        </div> */}
+
+                        <div className="card-header custom-card-header" id="custome-cardHeader">
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <h5 className="mb-0 h6">Products</h5>
+                                </div>
+                                {getListData?.length ? <div className="col-lg-2 text-right" >
+                                    <button style={{ background: '#2e294e', padding: '0', color: 'white', borderRadius: '5px', margin: '0' }}>
+                                        <ReactHTMLTableToExcel
+                                            style={{ margin: '0' }}
+                                            id="test-table-xls-button"
+                                            className="download-table-xls-button cusxel"
+                                            table="table-to-xlsx"
+                                            filename="tablexls"
+                                            sheet="tablexls"
+                                            buttonText="Download Excel sheet" />
+                                    </button>
+                                </div> : null}
+                                {getListData?.length ? <div className="col-lg-2">
+                                    <ExportDataInPdf />
+                                </div> : null}
+
+                                <div className="col-lg-2 text-md-right">
+                                    <Link to="/admin/add-jwellery-produt" className="btn btn-info">
+                                        <span>Add Products</span>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
+
+
+
                         <div className="card-body">
 
                             {/* <section className="form-section"> */}
@@ -362,7 +396,7 @@ function ListJwelleryProductsComp() {
                             {/* </section> */}
 
                             <div className="table table-responsive">
-                                <table className="table">
+                                <table className="table exppdf">
                                     <thead>
                                         <tr>
                                             <th class="table-secondary" >#</th>
@@ -382,7 +416,7 @@ function ListJwelleryProductsComp() {
                                     </thead>
                                     <tbody>
 
-                                        {loading ? <h3>Loading...</h3> : getListData && getListData.map((item, i) => {
+                                        {loading ? <h3>Loading...</h3> : getListData && getListData?.map((item, i) => {
                                             return <tr key={i}>
                                                 <td scope="row">{i + 1}</td>
                                                 <td scope="row">{item?.name}</td>
@@ -448,6 +482,72 @@ function ListJwelleryProductsComp() {
                 <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
                 </div>
                 <ToastContainer />
+
+
+                <table className="table" id="table-to-xlsx" style={{ display: 'none' }}>
+                    <thead>
+                        <tr>
+                            <th class="table-secondary" >#</th>
+                            <th class="table-secondary">Title</th>
+                            <th class="table-secondary">Collection</th>
+                            <th class="table-secondary">Category Type</th>
+                            <th class="table-secondary">Category</th>
+                            <th class="table-secondary">Sub Category</th>
+                            <th class="table-secondary">Labour Type</th>
+                            <th class="table-secondary">Metal Type</th>
+                            <th class="table-secondary">Metal Price Type</th>
+                            <th class="table-secondary">SKU</th>
+                            <th class="table-secondary">HSN Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {loading ? <h3>Loading...</h3> : getListData && getListData?.map((item, i) => {
+                            return <tr key={i}>
+                                <td scope="row">{i + 1}</td>
+                                <td scope="row">{item?.name}</td>
+
+                                <td scope="row">
+                                    {item?.Collection?.map((collectionitem, i) => {
+                                        return <span key={i} value={collectionitem?._id} style={{ display: 'block' }}>{collectionitem?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">
+                                    {item?.categoryType?.map((categtypeitem, i) => {
+                                        return <span key={i} value={categtypeitem?._id} style={{ display: 'block' }}>{categtypeitem?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">
+                                    {item?.category?.map((catitem, i) => {
+                                        return <span key={i} value={catitem?._id} style={{ display: 'block' }}>{catitem?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">
+                                    {item?.subCategory?.map((subcategitem, i) => {
+                                        return <span key={i} value={subcategitem?._id} style={{ display: 'block' }}>{subcategitem?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">
+                                    {item?.labourChargeType?.map((labourtypeitem, i) => {
+                                        return <span key={i} value={labourtypeitem?._id} style={{ display: 'block' }}>{labourtypeitem?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">
+                                    {item?.metals?.map((metalsTypeItem, i) => {
+                                        return <span key={i} value={metalsTypeItem?.metalType?._id} style={{ display: 'block' }}>{metalsTypeItem?.metalType?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">
+                                    {item?.metals?.map((metalsPriceTypeItem, i) => {
+                                        return <span key={i} value={metalsPriceTypeItem?.priceType?._id} style={{ display: 'block' }}>{metalsPriceTypeItem?.priceType?.name}</span>
+                                    })}
+                                </td>
+                                <td scope="row">{item?.sku}</td>
+                                <td>{item?.hsn_code}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
             </div >
         </>
     )
