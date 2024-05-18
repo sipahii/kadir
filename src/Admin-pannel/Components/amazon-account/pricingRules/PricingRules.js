@@ -60,7 +60,7 @@ function PricingRules() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/pricing-rules/edit-price-rule"
                     >
@@ -79,7 +79,7 @@ function PricingRules() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -94,7 +94,7 @@ function PricingRules() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/pricing-rules/edit-price-rule"
                     >
@@ -113,7 +113,7 @@ function PricingRules() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >

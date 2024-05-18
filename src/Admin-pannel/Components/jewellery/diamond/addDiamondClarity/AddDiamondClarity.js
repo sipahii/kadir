@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -19,6 +19,7 @@ function AddDiamondClarity() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
     const [value, setValue] = useState(0);
 
@@ -94,7 +95,7 @@ function AddDiamondClarity() {
     }
 
     const onChangeHandler = (e, id, bul) => {
-        console.log('onchnageHandle', e, id, bul)
+        // console.log('onchnageHandle', e, id, bul)
         if (e.target.name == 'approve') {
             const maped = val.map((item) => {
                 if (item.language_id == id) {
@@ -189,8 +190,13 @@ function AddDiamondClarity() {
                         "Content-type": "application/json; charset=UTF-8",
                         Authorization: `Bearer ${token}`,
                     },
-                })
-                toastSuccessMessage1()
+                });
+                console.log('editResp--', res)
+                toastSuccessMessage1();
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-diamond-clarity')
+                }, 5000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -202,12 +208,16 @@ function AddDiamondClarity() {
                         "Content-type": "application/json; charset=UTF-8",
                         Authorization: `Bearer ${token}`,
                     },
-                })
-                toastSuccessMessage2()
+                });
+                console.log('addResp--', res)
+                toastSuccessMessage2();
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-diamond-clarity')
+                }, 5000);
             } catch (error) {
                 toastErrorMessage2()
             }
-
         }
     };
 

@@ -104,7 +104,7 @@ function Dropship() {
                 <td>Active</td>
                 <td>
                   <a
-                    className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                    className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                     title="View"
                     href="/admin/add-ring-size"
                   >
@@ -132,7 +132,7 @@ function Dropship() {
                 <td>Active</td>
                 <td>
                   <a
-                    className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                    className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                     title="View"
                     href="/admin/add-ring-size"
                   >
@@ -158,7 +158,7 @@ function Dropship() {
                 <td>Active</td>
                 <td>
                   <a
-                    className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                    className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                     title="View"
                     href="/admin/add-ring-size"
                   >
@@ -184,7 +184,7 @@ function Dropship() {
                 <td>Active</td>
                 <td>
                   <a
-                    className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                    className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                     title="View"
                     href="/admin/add-ring-size"
                   >
@@ -210,7 +210,7 @@ function Dropship() {
                 <td>Active</td>
                 <td>
                   <a
-                    className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                    className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                     title="View"
                     href="/admin/add-ring-size"
                   >
@@ -236,7 +236,7 @@ function Dropship() {
                 <td>Active</td>
                 <td>
                   <a
-                    className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                    className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                     title="View"
                     href="/admin/add-ring-size"
                   >

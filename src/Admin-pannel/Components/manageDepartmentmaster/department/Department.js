@@ -61,16 +61,16 @@ function Department() {
                                 <td>{item?.createdAt}
                                 </td>
                                 <td>
-                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/department/edit/${item?._id}`}>
+                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/department/edit/${item?._id}`}>
                                         {/* <i className="las la-eye">
                                     </i> */}
                                         <AiFillEdit className="icon-icon" />
                                     </Link>
-                                    <button type="button" onClick={()=>handleDelete(item?._id)} className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                    <button type="button" onClick={()=>handleDelete(item?._id)} className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                         <i className="las la-trash icon-icon">
                                         </i>
                                     </button>
-                                    <Link className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/view-department/details/${item?._id}`}>
+                                    <Link className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/view-department/details/${item?._id}`}>
                                         {/* <i className="las la-eye">
                                     </i> */}
                                         <GrView />

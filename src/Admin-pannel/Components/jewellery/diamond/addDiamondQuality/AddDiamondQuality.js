@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -19,13 +19,13 @@ function AddDiamondSieves() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     const getData = async () => {
         setIsLoading(true)
         const res = await axios.get(`https://onlineparttimejobs.in/api/language/admin`, {
@@ -37,13 +37,10 @@ function AddDiamondSieves() {
         setIsLoading(false)
         setData(res.data)
     };
-
     useEffect(() => {
         getData()
     }, [])
-
     const [val, setVal] = useState(data)
-
     useEffect(() => {
         if (data && !params?.uid) {
             const maped = data.map((item) => {
@@ -53,7 +50,6 @@ function AddDiamondSieves() {
             setVal(maped)
         }
     }, [data]);
-
     const onChangeThumbnailImage = async (e, id) => {
         if (e.target.name == 'thumbnail_image') {
             let balnkObj = {};
@@ -92,7 +88,6 @@ function AddDiamondSieves() {
             setVal(maped);
         }
     };
-
     const onChangeHandler = (e, id, bul) => {
         if (e.target.name == 'approve') {
             const maped = val.map((item) => {
@@ -116,7 +111,6 @@ function AddDiamondSieves() {
             setVal(maped);
         }
     };
-
     const getByIdData = async () => {
         const res = await axios.get(`https://onlineparttimejobs.in/api/quality/${params?.uid}`, {
             headers: {
@@ -126,14 +120,11 @@ function AddDiamondSieves() {
         });
         setVal(res.data)
     };
-
     useEffect(() => {
         if (params?.uid) {
             getByIdData()
         }
     }, []);
-
-
     const toastSuccessMessage1 = () => {
         toast.success("Diamond Quality Updated", {
             position: "top-center"
@@ -144,7 +135,6 @@ function AddDiamondSieves() {
             position: "top-center"
         })
     };
-
     const toastSuccessMessage2 = () => {
         toast.success("Diamond Quality Added", {
             position: "top-center"
@@ -167,7 +157,11 @@ function AddDiamondSieves() {
                         Authorization: `Bearer ${token}`,
                     },
                 })
-                toastSuccessMessage1()
+                toastSuccessMessage1();
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-diamond-quality')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -180,15 +174,17 @@ function AddDiamondSieves() {
                         Authorization: `Bearer ${token}`,
                     },
                 })
-                toastSuccessMessage2()
+                toastSuccessMessage2();
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-diamond-quality')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage2()
             }
 
         }
     };
-
-    console.log('val---', val)
 
     return (
         <>

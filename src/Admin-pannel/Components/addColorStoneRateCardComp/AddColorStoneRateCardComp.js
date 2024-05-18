@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 
 function AddColorStoneRateCardComp() {
@@ -13,6 +13,7 @@ function AddColorStoneRateCardComp() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
 
     const onChangeHandler = (e) => {
@@ -59,6 +60,9 @@ function AddColorStoneRateCardComp() {
                     },
                 })
                 toastSuccessMessage1()
+                setTimeout(() => {
+                    navigate('../colorStone-rate')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -72,6 +76,9 @@ function AddColorStoneRateCardComp() {
                     },
                 })
                 toastSuccessMessage2()
+                setTimeout(() => {
+                    navigate('../colorStone-rate')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage2()
             }
@@ -206,7 +213,7 @@ function AddColorStoneRateCardComp() {
 
                                     <div className="col-lg-3 mt-3">
                                         <div className="form-group text-right mt-4">
-                                            <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>Save</button>
+                                            <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>{params?.id ? 'Update' : 'Save'}</button>
                                             <button className="btn btn-danger ms-2">Cancel</button>
                                         </div>
                                     </div>

@@ -54,7 +54,7 @@ function CategoryMap() {
                   <td>Clothing type</td>
                   {/* <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/amazon-account-info/account-info"
                     >
@@ -73,7 +73,7 @@ function CategoryMap() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -89,7 +89,7 @@ function CategoryMap() {
                   <td>Clothing</td>
                   {/* <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/amazon-account-info/account-info"
                     >
@@ -108,7 +108,7 @@ function CategoryMap() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >

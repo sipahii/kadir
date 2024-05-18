@@ -5535,26 +5535,26 @@ function SpecialSellerList() {
                                 onClick={() => {
                                   managePdfData(item);
                                 }}
-                                className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                                className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                                 type="button"
                               >
                                 <VscFilePdf />
                               </button>
-                              {/* <button onClick={() => { handleGenerateExcel(item) }} className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" type="button">
+                              {/* <button onClick={() => { handleGenerateExcel(item) }} className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" type="button">
                                                         <VscFilePdf />
                                                     </button> */}
 
                               <button
                                 type="button"
                                 onClick={() => handleDelete(item?.seller?._id)}
-                                className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                                className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                                 title="delete"
                                 fdprocessedid="yghhlt"
                               >
                                 <i className="las la-trash icon-icon"></i>
                               </button>
                               <Link
-                                className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                                className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                                 title="View"
                                 to={`/admin/special-seller/details/${item?.seller?._id}`}
                               >

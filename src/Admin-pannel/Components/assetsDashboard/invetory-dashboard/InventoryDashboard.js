@@ -157,14 +157,14 @@ function InvetoryDashboard() {
                                     <tr>
                                         <td>
                                             <div className='w-100'>
-                                                <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt" onClick={handleButton}>
+                                                <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt" onClick={handleButton}>
                                                     <AiFillEye />
                                                 </button>
 
-                                                <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt" onClick={cartButtonHandle}>
+                                                <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt" onClick={cartButtonHandle}>
                                                     <BsFillCartFill />
                                                 </button>
-                                                <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                                <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                     <FaShippingFast />
                                                 </button>
                                             </div>

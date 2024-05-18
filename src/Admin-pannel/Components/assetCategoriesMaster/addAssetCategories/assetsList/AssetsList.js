@@ -87,15 +87,15 @@ function AssetsList() {
                                                     <Link to={`/admin/allocate/${item?._id}`}>Allocate</Link>
                                                 </td>
                                                 <td>
-                                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/asset/edit/${item?._id}`}>
+                                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/asset/edit/${item?._id}`}>
                                                         <AiFillEdit className="icon-icon" />
                                                     </Link>
-                                                    <button type="button" onClick={() => handleDelete(item?._id)} className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                                    <button type="button" onClick={() => handleDelete(item?._id)} className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                         <i className="las la-trash icon-icon">
                                                         </i>
                                                     </button>
 
-                                                    <Link className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/asset/details/${item?._id}`}>
+                                                    <Link className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`/admin/asset/details/${item?._id}`}>
 
                                                         <GrView />
                                                     </Link>

@@ -60,7 +60,7 @@ function NewAmazonAccount() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/new-amazon-account/new-amazon-ac-edit"
                     >
@@ -79,7 +79,7 @@ function NewAmazonAccount() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -95,7 +95,7 @@ function NewAmazonAccount() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/new-amazon-account/new-amazon-ac-edit"
                     >
@@ -114,7 +114,7 @@ function NewAmazonAccount() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -130,7 +130,7 @@ function NewAmazonAccount() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/new-amazon-account/new-amazon-ac-edit"
                     >
@@ -149,7 +149,7 @@ function NewAmazonAccount() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -165,7 +165,7 @@ function NewAmazonAccount() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/new-amazon-account/new-amazon-ac-edit"
                     >
@@ -184,7 +184,7 @@ function NewAmazonAccount() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -200,7 +200,7 @@ function NewAmazonAccount() {
                   <td>A12233BYKZ</td>
                   <td>
                     <Link
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       to="/admin/new-amazon-account/new-amazon-ac-edit"
                     >
@@ -219,7 +219,7 @@ function NewAmazonAccount() {
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -235,7 +235,7 @@ function NewAmazonAccount() {
                   <td>A12233BYKZ</td>
                   <td>
                     <a
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       href="/admin/add-ring-size"
                     >
@@ -254,7 +254,7 @@ function NewAmazonAccount() {
                     </a>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >
@@ -270,7 +270,7 @@ function NewAmazonAccount() {
                   <td>A1BYKZ</td>
                   <td>
                     <a
-                      className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
+                      className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2"
                       title="View"
                       href="/admin/add-ring-size"
                     >
@@ -289,7 +289,7 @@ function NewAmazonAccount() {
                     </a>
                     <button
                       type="button"
-                      className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2"
+                      className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2"
                       title="delete"
                       fdprocessedid="yghhlt"
                     >

@@ -68,7 +68,7 @@ function AssetComments() {
                                 <td>{item?._id}</td>
                                 <td>{item?.createdAt}</td>
                                 <td>
-                                    <button type="button" onClick={()=>deleteHandle(item?._id)} className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                    <button type="button" onClick={()=>deleteHandle(item?._id)} className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                         <i className="las la-trash icon-icon">
                                         </i>
                                     </button>

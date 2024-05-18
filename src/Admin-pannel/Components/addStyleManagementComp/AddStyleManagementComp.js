@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -21,6 +21,7 @@ function AddStyleManagementComp() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
     const [value, setValue] = useState(0);
 
@@ -63,33 +64,33 @@ function AddStyleManagementComp() {
 
     const bringImage = (img) => {
         setImage(img)
-        console.log('img---',img)
+        console.log('img---', img)
     };
     const bringImage1 = (img) => {
         setImage1(img)
-        console.log('img1---',img)
+        console.log('img1---', img)
     };
     const bringImage2 = (img) => {
         setImage2(img)
-        console.log('img2---',img)
+        console.log('img2---', img)
     };
     const bringImage3 = (img) => {
         setImage3(img)
-        console.log('img3---',img)
+        console.log('img3---', img)
     };
 
     const bringFinalCaetgD = (finalCatD) => {
         setFinalCatD(finalCatD)
-        console.log('finalCatD---',finalCatD)
+        console.log('finalCatD---', finalCatD)
     };
     const bringFinalCategoryTypeD = (finalCategoryTypeD) => {
         setFinalCategoryTypeD(finalCategoryTypeD)
-        console.log('setFinalCategoryTypeD---',finalCategoryTypeD)
+        console.log('setFinalCategoryTypeD---', finalCategoryTypeD)
     };
 
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', language_id: item._id, isActive: false, lable: item.name, banner_img: image1, header_web_img: image, menu_log: image3, header_mob_img: image2, category: finalCatD, category_type: finalCategoryTypeD }
             })
@@ -153,6 +154,10 @@ function AddStyleManagementComp() {
                     },
                 })
                 toastSuccessMessage1()
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-style')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -166,6 +171,10 @@ function AddStyleManagementComp() {
                     },
                 })
                 toastSuccessMessage2()
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-style')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage2()
             }

@@ -52,17 +52,17 @@ const AssetIssue = () => {
                                 <td>6/7/2024</td>
                                 <td>12/7/2024</td>
                                 <td>
-                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
+                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <AiFillEdit className="icon-icon" />
                                     </Link>
-                                    <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                    <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                         <i className="las la-trash icon-icon">
                                         </i>
                                     </button>
 
-                                    <Link className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
+                                    <Link className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <GrView />
@@ -79,17 +79,17 @@ const AssetIssue = () => {
                                 <td>6/7/2024</td>
                                 <td>12/7/2024</td>
                                 <td>
-                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
+                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <AiFillEdit className="icon-icon" />
                                     </Link>
-                                    <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                    <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                         <i className="las la-trash icon-icon">
                                         </i>
                                     </button>
 
-                                    <Link className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
+                                    <Link className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <GrView />
@@ -106,17 +106,17 @@ const AssetIssue = () => {
                                 <td>6/7/2024</td>
                                 <td>12/7/2024</td>
                                 <td>
-                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
+                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <AiFillEdit className="icon-icon" />
                                     </Link>
-                                    <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                    <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                         <i className="las la-trash icon-icon">
                                         </i>
                                     </button>
 
-                                    <Link className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
+                                    <Link className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <GrView />
@@ -133,17 +133,17 @@ const AssetIssue = () => {
                                 <td>6/7/2024</td>
                                 <td>12/7/2024</td>
                                 <td>
-                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
+                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-asset-category">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <AiFillEdit className="icon-icon" />
                                     </Link>
-                                    <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                    <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                         <i className="las la-trash icon-icon">
                                         </i>
                                     </button>
 
-                                    <Link className="ms-2 btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
+                                    <Link className="ms-2 btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/asset-category-type-view">
                                         {/* <i className="las la-eye">
                             </i> */}
                                         <GrView />

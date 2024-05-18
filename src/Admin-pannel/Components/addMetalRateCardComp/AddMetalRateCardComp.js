@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 
 function AddMetalRateCardComp() {
@@ -12,6 +12,7 @@ function AddMetalRateCardComp() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
 
     const onChangeHandler = (e) => {
@@ -53,6 +54,9 @@ function AddMetalRateCardComp() {
                     },
                 })
                 toastSuccessMessage1()
+                setTimeout(() => {
+                    navigate('../metal-rate')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -66,6 +70,9 @@ function AddMetalRateCardComp() {
                     },
                 })
                 toastSuccessMessage2()
+                setTimeout(() => {
+                    navigate('../metal-rate')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage2()
             }

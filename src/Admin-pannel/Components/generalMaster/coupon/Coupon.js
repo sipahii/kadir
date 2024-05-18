@@ -90,12 +90,12 @@ function Coupon() {
                                         <td>20-03-2023</td>
                                         <td>Active</td>
                                         <td>
-                                            <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-ring-size">
+                                            <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="/admin/add-ring-size">
                                                 {/* <i className="las la-eye">
                                                 </i> */}
                                                 <AiFillEdit className="icon-icon" />
                                             </Link>
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <i className="las la-trash icon-icon">
                                                 </i>
                                             </button>
@@ -110,12 +110,12 @@ function Coupon() {
                                         <td>20-03-2023</td>
                                         <td>Active</td>
                                         <td>
-                                            <a className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" href="/admin/all_orders/order-Details/64789b752a93b23fb3d1220d">
+                                            <a className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" href="/admin/all_orders/order-Details/64789b752a93b23fb3d1220d">
                                                 {/* <i className="las la-eye">
                                                 </i> */}
                                                 <AiFillEdit className="icon-icon" />
                                             </a>
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <i className="las la-trash icon-icon">
                                                 </i>
                                             </button>
@@ -131,12 +131,12 @@ function Coupon() {
                                         <td>20-03-2023</td>
                                         <td>Active</td>
                                         <td>
-                                            <a className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" href="/admin/all_orders/order-Details/64789b752a93b23fb3d1220d">
+                                            <a className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" href="/admin/all_orders/order-Details/64789b752a93b23fb3d1220d">
                                                 {/* <i className="las la-eye">
                                                 </i> */}
                                                 <AiFillEdit className="icon-icon" />
                                             </a>
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <i className="las la-trash icon-icon">
                                                 </i>
                                             </button>
@@ -151,10 +151,10 @@ function Coupon() {
                                         <td>20-03-2023</td>
                                         <td>Active</td>
                                         <td>
-                                            <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="#">
+                                            <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to="#">
                                                 <AiFillEdit className="icon-icon" />
                                             </Link>
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <i className="las la-trash icon-icon">
                                                 </i>
                                             </button>

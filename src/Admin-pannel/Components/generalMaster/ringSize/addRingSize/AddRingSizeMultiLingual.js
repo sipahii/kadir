@@ -153,7 +153,7 @@ function AddRingSizeMultiLingual({ data, item, i, params, sendData, onChangeHand
 
                                     <div className="col-lg-12 mt-3" style={{ display: 'flex', justifyContent: 'end' }}>
                                         {data.length == i + 1 ? <div className="form-group mb-3 text-right">
-                                            <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>Save</button>
+                                            <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>{params?.uid ? 'Update' : 'Save'}</button>
                                             <button className="btn btn-danger ms-2">Cancel</button>
                                         </div>
                                             :

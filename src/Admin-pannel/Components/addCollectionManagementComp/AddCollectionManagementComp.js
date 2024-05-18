@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -21,6 +21,7 @@ function AddCollectionManagementComp() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
     const [value, setValue] = useState(0);
 
@@ -92,7 +93,7 @@ function AddCollectionManagementComp() {
 
 
     useEffect(() => {
-        if (data) {
+        if (data && !params?.uid) {
             const maped = data.map((item) => {
                 return { name: "", code: '', language_id: item._id, isActive: false, lable: item.name, banner_img: image1, header_web_img: image, menu_log: image3, header_mob_img: image2, category: finalCatD, category_type: finalCategoryTypeD }
             })
@@ -145,6 +146,7 @@ function AddCollectionManagementComp() {
         })
     };
 
+    const finalSendingD = { list: val };
 
     const sendData = async () => {
         if (params?.uid) {
@@ -156,6 +158,10 @@ function AddCollectionManagementComp() {
                     },
                 })
                 toastSuccessMessage1()
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-collection')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -169,13 +175,15 @@ function AddCollectionManagementComp() {
                     },
                 })
                 toastSuccessMessage2()
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../list-collection')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage2()
             }
         }
     };
-
-    const finalSendingD = { list: val };
 
 
     return (

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -18,6 +18,7 @@ function AddProductTagComp() {
 
     const token = window.localStorage.getItem('adminToken');
     const params = useParams();
+    const navigate = useNavigate();
 
     const [value, setValue] = useState(0);
 
@@ -127,6 +128,10 @@ function AddProductTagComp() {
                     },
                 })
                 toastSuccessMessage1()
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../product-tag')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage1()
             }
@@ -140,6 +145,10 @@ function AddProductTagComp() {
                     },
                 })
                 toastSuccessMessage2()
+                setTimeout(() => {
+                    setVal([])
+                    navigate('../product-tag')
+                }, 3000);
             } catch (error) {
                 toastErrorMessage2()
             }

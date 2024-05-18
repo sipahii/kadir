@@ -138,7 +138,7 @@ function AddStyleManagmentMultiLingual({ data, item, i, params, sendData, onChan
 
                         <section className="form-section">
                             <div className="row">
-                    
+
                                 <div className="col-lg-4 mb-2">
                                     <label className="form-check-label m-2" htmlFor="flexRadioDefault1">Name <span style={{ color: 'red' }}>*</span></label>
                                     <div>
@@ -285,7 +285,7 @@ function AddStyleManagmentMultiLingual({ data, item, i, params, sendData, onChan
 
                                 <div className="col-lg-12 mt-3">
                                     {data.length == i + 1 ? <div className="form-group mb-3 text-right">
-                                        <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>Save</button>
+                                        <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>{params?.uid ? 'Update' : 'Save'}</button>
                                         <button className="btn btn-danger ms-2">Cancel</button>
                                     </div>
                                         :
@@ -296,7 +296,7 @@ function AddStyleManagmentMultiLingual({ data, item, i, params, sendData, onChan
                                     }
 
                                 </div>
-                             
+
                             </div>
                         </section>
 

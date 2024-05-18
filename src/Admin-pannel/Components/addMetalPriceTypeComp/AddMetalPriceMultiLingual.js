@@ -124,7 +124,7 @@ function AddMetalPriceMultiLingual({ data, item, i, params, sendData, onChangeHa
 
                                     <div className="col-lg-12 mt-3" style={{ display: 'flex', justifyContent: 'end' }}>
                                         {data.length == i + 1 ? <div className="form-group mb-3 text-right">
-                                            <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>Save</button>
+                                            <button type="button" className="btn btn-primary" fdprocessedid="uzw7ye" onClick={sendData}>{params?.uid ? 'Update' : 'Save'}</button>
                                         </div>
                                             :
                                             <div className="form-group mb-3 text-right">

@@ -139,6 +139,9 @@ function ListJwelleryProductsComp() {
     };
 
     const resetData = () => {
+        setInputVal({
+            categoryType: null, category: null, name: null, sku: null, status: null, type: null, labourChargeType: [], collection: [], styles: [], occasion: [],
+        })
         getdata()
     };
 
@@ -156,6 +159,7 @@ function ListJwelleryProductsComp() {
 
 
     const deletData = async (uid) => {
+        setLoading(true)
         try {
             const res = await axios.delete(`https://onlineparttimejobs.in/api/product/${uid}`, {
                 headers: {
@@ -167,8 +171,11 @@ function ListJwelleryProductsComp() {
             getdata()
         } catch (error) {
             toastErrorMessage()
+            setLoading(false)
         }
     };
+
+
 
     return (
         <>
@@ -386,7 +393,7 @@ function ListJwelleryProductsComp() {
 
                                     <div className="col-lg-3 mt-4">
                                         <button className="btn btn-primary mr-3" type="submit">Search</button>
-                                        <button className="btn btn-danger" type="button" onClick={resetData}>Rest</button>
+                                        <button className="btn btn-danger" type="button" onClick={resetData}>Reset</button>
                                     </div>
 
                                 </div>
@@ -395,28 +402,33 @@ function ListJwelleryProductsComp() {
                             </form>
                             {/* </section> */}
 
-                            <div className="table table-responsive">
-                                <table className="table exppdf">
+                            {/* <div className="table table-responsive"> */}
+                            {/* <div className="custom-table-wrapper"> */}
+                                <table className="table table-3 exppdf">
                                     <thead>
                                         <tr>
-                                            <th class="table-secondary" >#</th>
-                                            <th class="table-secondary">Title</th>
-                                            <th class="table-secondary">Collection</th>
-                                            <th class="table-secondary">Category Type</th>
-                                            <th class="table-secondary">Category</th>
-                                            <th class="table-secondary">Sub Category</th>
-                                            <th class="table-secondary">Labour Type</th>
-                                            <th class="table-secondary">Metal Type</th>
-                                            <th class="table-secondary">Metal Price Type</th>
-                                            <th class="table-secondary">SKU</th>
-                                            <th class="table-secondary">HSN Code</th>
-                                            {/* <th class="table-secondary">Status</th> */}
-                                            <th class="table-secondary">Action</th>
+                                            <th className="table-secondary" scope="col">#</th>
+                                            <th className="table-secondary" scope="col">Title</th>
+                                            <th className="table-secondary" scope="col">Collection</th>
+                                            <th className="table-secondary" scope="col">Category Type</th>
+                                            <th className="table-secondary" scope="col">Category</th>
+                                            <th className="table-secondary" scope="col">Sub Category</th>
+                                            <th className="table-secondary" scope="col">Labour Type</th>
+                                            <th className="table-secondary" scope="col">Metal Type</th>
+                                            <th className="table-secondary" scope="col">Metal Price Type</th>
+                                            <th className="table-secondary" scope="col">SKU</th>
+                                            <th className="table-secondary" scope="col">HSN Code</th>
+                                            {/* <th className="table-secondary">Status</th> */}
+                                            <th className="table-secondary" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        {loading ? <h3>Loading...</h3> : getListData && getListData?.map((item, i) => {
+                                        {loading ? <div className="preloaderCount">
+                                            <div className="spinner-border" role="status">
+                                                <span className="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div> : getListData && getListData?.map((item, i) => {
                                             return <tr key={i}>
                                                 <td scope="row">{i + 1}</td>
                                                 <td scope="row">{item?.name}</td>
@@ -457,13 +469,13 @@ function ListJwelleryProductsComp() {
                                                     })}
                                                 </td>
                                                 <td scope="row">{item?.sku}</td>
-                                                <td>{item?.hsn_code}</td>
-                                                <td>
-                                                    <Link className="btn btn-soft-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`edit/${item?.uid}`}>
+                                                <td scope="row">{item?.hsn_code}</td>
+                                                <td scope="row">
+                                                    <Link className="btn btn-primary btn-icon btn-circle btn-sm me-2 btn-circle-2" title="View" to={`edit/${item?.uid}`}>
                                                         <i className="las la-edit">
                                                         </i>
                                                     </Link>
-                                                    <button type="button" onClick={() => deletData(item?.uid)} className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                                    <button type="button" onClick={() => deletData(item?.uid)} className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                         <i className="las la-trash icon-icon">
                                                         </i>
                                                     </button>
@@ -472,15 +484,15 @@ function ListJwelleryProductsComp() {
                                         })}
                                     </tbody>
                                 </table>
-                            </div>
+                            {/* </div> */}
 
                             <div className="aiz-pagination">
                             </div>
                         </div>
                     </div>
                 </div >
-                <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
-                </div>
+                {/* <div className="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+                </div> */}
                 <ToastContainer />
 
 

@@ -85,7 +85,7 @@ function CustomerDashboard() {
                                         <td>Amir Pune</td>
                                         <td>
 
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <AiFillEye />
                                             </button>
                                         </td>
@@ -106,7 +106,7 @@ function CustomerDashboard() {
                                         <td>Amir Pune</td>
                                         <td>
 
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <AiFillEye />
                                             </button>
                                         </td>
@@ -124,7 +124,7 @@ function CustomerDashboard() {
                                         <td>Amir Pune</td>
                                         <td>
 
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <AiFillEye />
                                             </button>
                                         </td>
@@ -142,7 +142,7 @@ function CustomerDashboard() {
                                         <td>Amir Pune</td>
                                         <td>
 
-                                            <button type="button" className="btn btn-soft-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
+                                            <button type="button" className="btn btn-danger btn-icon btn-circle btn-sm btn-circle-2" title="delete" fdprocessedid="yghhlt">
                                                 <AiFillEye />
                                             </button>
                                         </td>
